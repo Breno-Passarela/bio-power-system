@@ -1,1 +1,1 @@
-# Project for school of CST ADS
+# Project CST ADS School
