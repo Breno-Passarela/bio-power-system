@@ -60,7 +60,7 @@ int main(void) {
                     "> ");
                     scanf(" %d", &program_execute_action);
 
-                    if(program_execute_action == 3) break;
+                    // if(program_execute_action == 3) break;
 
                     switch(program_execute_action) {
                         case 1: 
@@ -70,6 +70,9 @@ int main(void) {
                         case 2:
                             // Code Client (Rafael && Matheus Bispo)
                             printf("\n Cliente selecionado");
+                            break;
+                        case 3:
+                            printf("\n Retornando...");
                             break;
                         default:
                             printf("\nOpção inválida! Tente novamente.\n");
