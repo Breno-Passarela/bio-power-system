@@ -70,9 +70,6 @@ int main(void) {
                         // Code Client (Rafael && Matheus Bispo)
                         printf("\n Cliente selecionado");
                         break;
-                      case 3:
-                        printf("\n Retornar ao menu principal");
-                    break;
                     default:
                         printf("\nOpção inválida! Tente novamente.\n");
                         break;
