@@ -33,7 +33,7 @@ int main(void) {
     char vRGV[TF][11], vCodV[TF][50];
     int vQtdeV[TF], vPrecoV[TF];
 
-    // controllers
+    // Controllers
     // Program
     int program_exit = 1, program_execute_action;
     char program_confirm_exit;
@@ -48,33 +48,35 @@ int main(void) {
         "5: Finalizar\n\n"
         "> ");
 
-        scanf("%d", &program_exit);
+        scanf(" %d", &program_exit);
 
         switch(program_exit) {
             case 1:
-                printf("\n"
-                "1: Produtos/Serviços\n"
-                "2: Clientes\n"
-                "3: Retornar\n"
-                "> ");
-                scanf(" %d", &program_execute_action);
+                do {
+                    printf("\n"
+                    "1: Produtos/Serviços\n"
+                    "2: Clientes\n"
+                    "3: Retornar\n"
+                    "> ");
+                    scanf(" %d", &program_execute_action);
 
-                if(program_execute_action == 3) break;
+                    if(program_execute_action == 3) break;
 
-                switch(program_execute_action) {
-                    case 1: 
-                        // Code Products and Services (Otávio && Breno Henrique)
-                        printf("\n Produtos e Serviços selecionado");
-                        break;
-                    case 2:
-                        // Code Client (Rafael && Matheus Bispo)
-                        printf("\n Cliente selecionado");
-                        break;
-                    default:
-                        printf("\nOpção inválida! Tente novamente.\n");
-                        break;
-                }
-                printf("\n");
+                    switch(program_execute_action) {
+                        case 1: 
+                            // Code Products and Services (Otávio && Breno Henrique)
+                            printf("\n Produtos e Serviços selecionado");
+                            break;
+                        case 2:
+                            // Code Client (Rafael && Matheus Bispo)
+                            printf("\n Cliente selecionado");
+                            break;
+                        default:
+                            printf("\nOpção inválida! Tente novamente.\n");
+                            break;
+                    }
+                    printf("\n");
+                } while(program_execute_action != 3);
                 break;
             case 2: 
                 // Code Delete (Breno Passarela && Kaua)
@@ -105,6 +107,9 @@ int main(void) {
                     program_exit = -1;
                 }
 
+                break;
+            default:
+                printf("\nOpção inválida! Tente novamente.\n");
                 break;
         }
     } while(program_exit!=0);
