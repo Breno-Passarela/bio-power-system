@@ -59,9 +59,7 @@ int main(void) {
                     "3: Retornar\n"
                     "> ");
                     scanf(" %d", &program_execute_action);
-
-                    // if(program_execute_action == 3) break;
-
+                    
                     switch(program_execute_action) {
                         case 1: 
                             // Code Products and Services (Otávio && Breno Henrique)
@@ -71,13 +69,9 @@ int main(void) {
                             // Code Client (Rafael && Matheus Bispo)
                             printf("\n Cliente selecionado");
                             break;
-                        case 3:
-                            printf("\n Retornando...");
-                            break;
-                        default:
-                            printf("\nOpção inválida! Tente novamente.\n");
-                            break;
                     }
+
+                    if(program_execute_action > 3 || program_execute_action <= 0) printf("\nOpção inválida! Tente novamente.\n"); 
                     printf("\n");
                 } while(program_execute_action != 3);
                 break;
