@@ -1,0 +1,8 @@
+.error-message {
+  color: #c80000;  
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  margin-top: 4px;
+  font-weight: 600;
+  display: block;
+}
