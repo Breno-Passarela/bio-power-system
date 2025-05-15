@@ -16,9 +16,9 @@
       <div class="logo-container">
         <img src="../imgs/img-logo-bio-power.png" height="150" alt="Logo Bio-Power" />
       </div>
-      <div class="Suplementos">
+      <!-- <div class="Suplementos">
         <img src="../imgs/img-suplementos.png" height="150" alt="Imagem de Suplementos" />
-      </div>
+      </div> -->
     </div>
 
     <form id="registerForm" class="register-form">
@@ -44,7 +44,7 @@
             </div>
 
             <div class="input-register-third">
-              <label class="input-register-label" for="data">Data de Aniversário</label>
+              <label class="input-register-label" for="data">Data de Nascimento</label>
               <div class="input-icon-container">
                 <input class="input-register-input" type="date" id="data" />
                 <i class="fas fa-calendar-alt"></i>
@@ -67,8 +67,8 @@
             <div class="input-register-third">
               <label class="input-register-label" for="senha">Senha</label>
               <div class="input-icon-container">
-                <input class="input-register-input" type="password" id="senha" placeholder="Ex: Senha@123" />
-                <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+                <input class="input-register-input" type="password" id="password" placeholder="Ex: Senha@123" />
+                <i class="fas fa-eye toggle-password" id="togglePassword" onclick="passwordShow('togglePassword', 'password')" ></i>
               </div>
               <span class="error-message" id="error-senha"></span>
             </div>
@@ -139,6 +139,7 @@
     </form>
   </div>
 
+  <script src="../js/toggle-password-login.js"></script>
   <script src="../js/auth-register.js"></script>
 </body>
 

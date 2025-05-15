@@ -1,9 +1,9 @@
-const togglePassword = document.getElementById("togglePassword");
-const passwordInput = document.getElementById("password");
-
-togglePassword.addEventListener("click", () => {
-    const isPassword = passwordInput.type === "password";
-    passwordInput.type = isPassword ? "text" : "password";
-    togglePassword.classList.toggle("fa-eye");
-    togglePassword.classList.toggle("fa-eye-slash");
-});
+function passwordShow(toggleId, inputId) {
+    const toggleIcon = document.getElementById(toggleId);
+    const input = document.getElementById(inputId);
+    
+    const isPassword = input.type === "password";
+    input.type = isPassword ? "text" : "password";
+    toggleIcon.classList.toggle("fa-eye");
+    toggleIcon.classList.toggle("fa-eye-slash");
+}

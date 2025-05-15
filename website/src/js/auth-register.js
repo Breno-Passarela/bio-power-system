@@ -44,9 +44,7 @@ const validateFields = () => {
   if (!form.nome) newErrors.nome = 'Nome é obrigatório.';
   if (!form.sobrenome) newErrors.sobrenome = 'Sobrenome é obrigatório.';
   if (!emailRegex.test(form.email)) newErrors.email = 'E-mail inválido.';
-  if (!strongPasswordRegex.test(form.senha)) {
-    newErrors.senha = 'A senha deve ter no mínimo 8 caracteres, com letra maiúscula, minúscula, número e caractere especial.';
-  }
+  if (!strongPasswordRegex.test(form.senha)) newErrors.senha = 'A senha deve ter no mínimo 8 caracteres <br> letra maiúscula <br> minúscula <br> Número <br> caractere especial.';
   if (!/^\d{11}$/.test(form.telefone)) newErrors.telefone = 'Telefone inválido. Deve conter 11 dígitos.';
   if (!/^\d{11}$/.test(form.cpf)) newErrors.cpf = 'CPF inválido. Deve conter 11 dígitos.';
   if (!form.endereco) newErrors.endereco = 'Endereço é obrigatório.';
@@ -61,7 +59,7 @@ function showErrors(errors) {
   for (const field in errors) {
     const errorSpan = document.getElementById(`error-${field}`);
     if (errorSpan) {
-      errorSpan.textContent = errors[field];
+      errorSpan.innerHTML = errors[field];
     }
   }
 }
