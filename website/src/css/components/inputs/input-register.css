@@ -1,0 +1,65 @@
+@import "../../colors.css";
+
+.input-icon-container {
+  position: relative;
+  width: 100%;
+}
+
+.input-icon-container i {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  cursor: pointer;
+}
+
+.input-register-input {
+  width: 100%;
+  padding: 14px 44px 14px 14px; 
+  border: 1px solid #F5F5F5;
+  background-color: #F5F5F5;
+  outline: none;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.input-register-input:focus {
+  box-shadow: 0 0 0 2px rgba(200, 0, 0, 1);
+}
+
+.input-register-label {
+  font-weight: 500;
+  margin-bottom: 6px;
+  display: inline-block;
+  color: #333;
+}
+
+/* Layout em linha (inputs lado a lado) */
+.input-register-row {
+  display: flex;
+  flex-direction: row;
+  gap: 30px; /* espaçamento maior entre os inputs lado a lado */
+  margin-bottom: 24px; /* espaço maior abaixo da linha */
+}
+
+.input-register-half {
+  flex: 1;
+  min-width: 0; /* ajuda no encolhimento em telas pequenas */
+}
+
+/* Estilo para agrupamento vertical (quando necessário) */
+.input-register-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px; /* maior espaçamento entre grupos */
+}
+
+/* Responsivo: quebra a linha se a tela for estreita */
+@media (max-width: 600px) {
+  .input-register-row {
+    flex-direction: column;
+    gap: 16px; /* espaçamento vertical menor em mobile */
+    margin-bottom: 20px;
+  }
+}
