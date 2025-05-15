@@ -4,8 +4,13 @@
     src: url('../../../fonts/Montserrat/static/Montserrat-Bold.ttf') format('truetype');
 }
 
+.container-register-button {
+    display: flex;
+    justify-content: center;
+}
+
 .register-button {
-    width: 100%;
+    width: 20%;
     background-color: var(--color-red-head);
     text-align: center;
     font-weight: bold;

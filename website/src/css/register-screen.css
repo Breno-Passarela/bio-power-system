@@ -21,6 +21,7 @@ body {
   align-items: center;
   min-height: 100vh;
   background: #fafafa;
+  user-select: none;
 }
 
 .container {
@@ -29,7 +30,7 @@ body {
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   width: 100%;
-  max-width: 800px;
+  max-width: 90vw;
 }
 
 .logo-container {

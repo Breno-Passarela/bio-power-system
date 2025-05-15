@@ -11,6 +11,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: sans-serif;
+  user-select: none;
 }
 
 .container {
@@ -102,7 +103,8 @@
 }
 
 .social-icons img:hover {
-    border: 1px solid #c80000;
+  transform: scale(1.1);
+  border: 1px solid #c80000;
 }
 
 @media (max-width: 768px) {

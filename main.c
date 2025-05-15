@@ -45,7 +45,7 @@ int main(void) {
         "2: Excluir\n"
         "3: Venda\n"
         "4: Relatórios\n"
-        "5: Finalizar\n\n"
+        "5: Finalizar\n"
         "> ");
 
         scanf(" %d", &program_exit);
@@ -67,7 +67,46 @@ int main(void) {
                             break;
                         case 2:
                             // Code Client (Rafael && Matheus Bispo)
-                            printf("\n Cliente selecionado");
+                            // printf("\n Cliente selecionado");
+
+                            char continue_choosen;
+                            char rg_temp[11];
+
+                            do {
+                                int repeat;
+
+                                do {
+                                    repeat = 0;
+
+                                    while (getchar() != '\n'); 
+
+                                    printf("Digite o RG: ");
+                                    gets(rg_temp);
+
+
+                                    for (int i = 0; i < TLC; i++) {
+                                        if (strcmp(rg_temp, vRG[i]) == 0) {
+                                            printf("RG já registrado! \n");
+                                            printf("Pressione enter para digitar outro... \n");
+                                            repeat = 1;
+                                            break;
+                                        }
+                                    }
+
+                                } while (repeat == 1);
+                                    
+                                strcpy(vRG[TLC], rg_temp);
+
+                                printf("Digite o nome do cliente: ");
+                                gets(vCliente[TLC]);
+
+                                TLC++;
+
+                                printf("\nQuer adicionar mais um cliente? (s/n)\n> ");
+                                scanf(" %c", &continue_choosen);
+                         
+
+                                } while (tolower(continue_choosen) == 's');
                             break;
                     }
 
