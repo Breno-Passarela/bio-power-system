@@ -63,7 +63,22 @@ int main(void) {
                     switch(program_execute_action) {
                         case 1: 
                             // Code Products and Services (Otávio && Breno Henrique)
-                            printf("\n Produtos e Serviços selecionado");
+                            // printf("\n Produtos e Serviços selecionado");
+                            // char vcod_temp[50];
+
+                            // do {
+                            //     printf("Digite o produto ou serviço: ");
+                            //     while(getchar() != '\n');
+                            //     gets(vcod_temp);
+
+                            //     printf("");
+
+
+
+
+
+                            // } while();
+
                             break;
                         case 2:
                             // Code Client (Rafael && Matheus Bispo)
@@ -77,18 +92,24 @@ int main(void) {
 
                                 do {
                                     repeat = 0;
+                                    int i = 0;
 
                                     while (getchar() != '\n'); 
 
                                     printf("Digite o RG: ");
                                     gets(rg_temp);
 
+                                    if(strlen(rg_temp) != 11) {
+                                        printf("RG com tamanho inválido! \n");
+                                        printf("Pressione enter para digitar novamente... \n");
+                                        repeat = 1;
+                                    }
 
-                                    for (int i = 0; i < TLC; i++) {
+                                    while(i < TLC && strlen(rg_temp) == 11) {
                                         if (strcmp(rg_temp, vRG[i]) == 0) {
                                             printf("RG já registrado! \n");
                                             printf("Pressione enter para digitar outro... \n");
-                                            repeat = 1;
+                                            repeat = 1; 
                                             break;
                                         }
                                     }
