@@ -1,0 +1,25 @@
+@import "../../colors.css";
+@font-face {
+    font-family: Montserrat;
+    src: url('../../../fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+}
+
+.buy-button {
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size:larger;
+    background-color: var(--color-green-buy);
+    border: 0px;
+    border-radius: 12px;
+}
+
+.buy-button-high {
+    padding: 20px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--color-green-buy);
+    border: 0px;
+    border-radius: 12px;
+}

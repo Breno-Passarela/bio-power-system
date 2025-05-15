@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Bio-Power - Entrar</title>
+    <link rel="stylesheet" href="../css/auth-screen.css"/>
+    <!-- Import font -->
+    <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer" 
+    />
+</head>
+<body>
+  <div class="container">
+    <div class="presentation-section">
+      <img src="../imgs/img-auth-login.png" alt="Apresentação Bio-Power" />
+    </div>
+    
+    <div class="form-section">
+      <div class="logo-container">
+        <img src="../imgs/img-logo-bio-power.png" height="150px" alt="Logo Bio-Power" />
+      </div>
+
+      <form class="login-form">
+        <label class="input-auth-label" for="email">Email</label>
+        <div class="input-icon-container">
+            <input class="input-auth-input" type="email" id="email" placeholder="Ex: joao@gmail.com" />
+            <i class="fas fa-user"></i>
+        </div>
+
+        <label class="input-auth-label" for="password">Senha</label>
+        <div class="input-icon-container">
+            <input class="input-auth-input" type="password" id="password" placeholder="Ex: senha@123" />
+            <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+        </div>
+
+        <div class="options-row">
+          <label><input type="checkbox" /> Lembre-se</label>
+          <a class="link-auth" href="#">Esqueceu a senha?</a>
+        </div>
+
+        <button class="auth-button" type="submit">ENTRAR</button>
+
+        <p class="register-link">Não tem uma conta? <a class="link-auth" href="./auth-register.html">Inscrever-se</a></p>
+
+        <div class="divider">
+          <hr />
+          <div class="social-icons">
+            <img src="../imgs/social/img-google.jpg" alt="Google" />
+            <img src="../imgs/social/img-facebook.png" alt="Facebook" />
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script src="../js/toggle-password-login.js"></script>
+  </div>
+</body>
+</html>

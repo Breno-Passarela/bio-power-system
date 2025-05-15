@@ -1,0 +1,12 @@
+@import "../../colors.css";
+@font-face {
+    font-family: Montserrat;
+    src: url('../../../fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+}
+
+
+.link-auth {
+    font-size: 14px;
+    color: var(--color-blue-link);
+    font-size: 15px;
+}

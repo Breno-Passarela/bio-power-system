@@ -1,0 +1,48 @@
+@import "../../colors.css";
+
+.input-icon-container {
+  position: relative;
+  width: 100%;
+}
+
+.input-icon-container i {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  cursor: pointer;
+}
+
+.input-auth-input {
+  width: 100%;
+  padding: 14px 44px 14px 14px; 
+  border: 1px solid #F5F5F5;
+  background-color: #F5F5F5;
+  outline: none;
+  border-radius: 6px;
+}
+
+.input-auth-input:focus {
+  box-shadow: 0 0 0 2px rgba(200, 0, 0, 1);
+}
+
+.input-auth-label {
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.input-auth-input[type="email"],
+.input-auth-input[type="password"],
+.input-auth-input[type="text"] {
+  padding: 20px;
+  border: 1px solid #F5F5F5;
+  background-color: #F5F5F5;
+  outline: none;
+}
+
+.input-auth-input[type="email"]:focus,
+.input-auth-input[type="password"]:focus {
+    box-shadow: 0 0 0 2px rgba(200, 0, 0, 1);
+}
+
