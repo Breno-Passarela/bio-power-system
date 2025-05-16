@@ -50,6 +50,9 @@ int main(void) {
         switch(program_exit) {
             case 1:
                 do {
+
+                    printf("\nCadastro selecionado: \n");
+
                     printf("\n"
                     "1: Produtos/Serviços\n"
                     "2: Clientes\n"
@@ -60,7 +63,7 @@ int main(void) {
                     switch(program_execute_action) {
                         case 1: 
                             // Code Products and Services (Otávio && Breno Henrique)
-                            // printf("\n Produtos e Serviços selecionado");
+                            printf("\n Produtos e Serviços selecionado");
                             char vcod_temp[50];
                             char vprodserv_temp[50];
                             float vpreco_temp;
@@ -72,7 +75,7 @@ int main(void) {
 
                                 do {
                                     repeat = 0;
-                                    printf("Digite o código do produto ou serviço: ");
+                                    printf("\nDigite o código do produto ou serviço: ");
                                     gets(vcod_temp);
 
                                     int i = 0;
@@ -114,7 +117,7 @@ int main(void) {
                                 
                                 vPreco[TLP] = (int)(vpreco_temp * 100 + 0.5); // Casting
                                 
-                                printf("\n-> %d | %s | %s | %d | %d -> %f\n", TLP+1, vCod[TLP], vProdServ[TLP], vQtde[TLP], vPreco[TLP], vPreco[TLP] / 100.0);
+                                printf("\n-> %d | %s | %s | %d | %d -> %f\n", TLP+1, vCod[TLP], vProdServ[TLP], vQtde[TLP], vPreco[TLP], (float)vPreco[TLP] / 100.0);
 
                                 TLP++;
 
