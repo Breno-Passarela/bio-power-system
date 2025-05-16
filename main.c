@@ -3,9 +3,6 @@
 #include <ctype.h>
 
 #define TF 255
-// #define TFP 255
-// #define TFC 255
-// #define TFS 255
 
 int main(void) {
     /*
@@ -66,11 +63,11 @@ int main(void) {
                             // printf("\n Produtos e Serviços selecionado");
                             char vcod_temp[50];
                             char vprodserv_temp[50];
-                            float vpreco;
+                            float vpreco_temp;
                             int repeat;
 
                             do {
-                                repeat == 0;
+                                repeat = 0;
                                 while(getchar() != '\n');
 
                                 do {
@@ -82,7 +79,6 @@ int main(void) {
                                     while(i < TLP) {
                                         if(strcmp(vcod_temp, vCod[i]) == 0) {
                                             printf("Código %s já cadastrado! \n", vcod_temp);
-                                            printf("Pressione enter para digitar novamente... \n");
                                             repeat = 1;
                                         }
                                         i++;
@@ -100,7 +96,6 @@ int main(void) {
                                     while(i < TLP) {
                                         if(strcmp(vprodserv_temp, vProdServ[i]) == 0) {
                                             printf("Produto %s já cadastrado! \n", vprodserv_temp);
-                                            printf("Pressione enter para digitar novamente... \n");
                                             repeat = 1;
                                         }
                                         i++;
@@ -110,13 +105,16 @@ int main(void) {
 
                                 strcpy(vProdServ[TLP], vprodserv_temp);
 
-                                printf("Quantidade: ");
+                                printf("Quantidade do produto: ");
                                 scanf(" %d", &vQtde[TLP]);
 
-                                printf("\n-> %d | %s | %s | %d\n", TLP+1, vCod[TLP], vProdServ[TLP], vQtde[TLP]);
-
-                                // printf("Digite o preço: ");
-                                // scanf(" %f", &vpreco);
+                                
+                                printf("Digite o preço: ");
+                                scanf(" %f", &vpreco_temp);
+                                
+                                vPreco[TLP] = (int)(vpreco_temp * 100 + 0.5); // Casting
+                                
+                                printf("\n-> %d | %s | %s | %d | %d -> %f\n", TLP+1, vCod[TLP], vProdServ[TLP], vQtde[TLP], vPreco[TLP], vPreco[TLP] / 100.0);
 
                                 TLP++;
 
