@@ -97,6 +97,7 @@ int main(void) {
                                     while (getchar() != '\n'); 
 
                                     printf("Digite o RG: ");
+                                    fflush(stdin);
                                     gets(rg_temp);
 
                                     if(strlen(rg_temp) != 11) {
@@ -105,13 +106,13 @@ int main(void) {
                                         repeat = 1;
                                     }
 
-                                    while(i < TLC && strlen(rg_temp) == 11) {
+                                    while(i < TLC && strlen(rg_temp) == 11 && repeat == 0) {
                                         if (strcmp(rg_temp, vRG[i]) == 0) {
                                             printf("RG já registrado! \n");
                                             printf("Pressione enter para digitar outro... \n");
                                             repeat = 1; 
-                                            break;
                                         }
+                                        i++;
                                     }
 
                                 } while (repeat == 1);
@@ -144,7 +145,7 @@ int main(void) {
                 printf("\n Venda selecionado \n");
                 break;
             case 4: 
-                // Code Report (Otávio && Breno Passarela)
+                // Code Report (Otávio && Breno Passarela && Breno Henrique)
                 printf("\n Relatório selecionado \n");
                 break;
             case 5: 
