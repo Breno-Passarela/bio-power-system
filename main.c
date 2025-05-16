@@ -36,7 +36,7 @@ int main(void) {
     // Controllers
     // Program
     int program_exit = 1, program_execute_action;
-    char program_confirm_exit;
+    char program_confirm_exit, continue_choosen;
 
     // Interface
     do {
@@ -64,27 +64,70 @@ int main(void) {
                         case 1: 
                             // Code Products and Services (Otávio && Breno Henrique)
                             // printf("\n Produtos e Serviços selecionado");
-                            // char vcod_temp[50];
+                            char vcod_temp[50];
+                            char vprodserv_temp[50];
+                            float vpreco;
+                            int repeat;
 
-                            // do {
-                            //     printf("Digite o produto ou serviço: ");
-                            //     while(getchar() != '\n');
-                            //     gets(vcod_temp);
+                            do {
+                                repeat == 0;
+                                while(getchar() != '\n');
 
-                            //     printf("");
+                                do {
+                                    repeat = 0;
+                                    printf("Digite o código do produto ou serviço: ");
+                                    gets(vcod_temp);
 
+                                    int i = 0;
+                                    while(i < TLP) {
+                                        if(strcmp(vcod_temp, vCod[i]) == 0) {
+                                            printf("Código %s já cadastrado! \n", vcod_temp);
+                                            printf("Pressione enter para digitar novamente... \n");
+                                            repeat = 1;
+                                        }
+                                        i++;
+                                    }
+                                } while(repeat == 1);
+                                
+                                strcpy(vCod[TLP], vcod_temp);
 
+                                do {
+                                    repeat = 0;
+                                    printf("Digite o produto ou serviço: ");
+                                    gets(vprodserv_temp);
 
+                                    int i = 0;
+                                    while(i < TLP) {
+                                        if(strcmp(vprodserv_temp, vProdServ[i]) == 0) {
+                                            printf("Produto %s já cadastrado! \n", vprodserv_temp);
+                                            printf("Pressione enter para digitar novamente... \n");
+                                            repeat = 1;
+                                        }
+                                        i++;
+                                    }                         
 
+                                } while(repeat == 1);
 
-                            // } while();
+                                strcpy(vProdServ[TLP], vprodserv_temp);
+
+                                printf("Quantidade: ");
+                                scanf(" %d", &vQtde[TLP]);
+
+                                printf("\n-> %d | %s | %s | %d\n", TLP+1, vCod[TLP], vProdServ[TLP], vQtde[TLP]);
+
+                                // printf("Digite o preço: ");
+                                // scanf(" %f", &vpreco);
+
+                                TLP++;
+
+                                printf("\nQuer adicionar mais um cliente? (s/n)\n> ");
+                                scanf(" %c", &continue_choosen);
+                            } while(tolower(continue_choosen) == 's');
 
                             break;
                         case 2:
                             // Code Client (Rafael && Matheus Bispo)
                             // printf("\n Cliente selecionado");
-
-                            char continue_choosen;
                             char rg_temp[11];
 
                             do {
