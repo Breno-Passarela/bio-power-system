@@ -1,8 +1,4 @@
 @import "../../colors.css";
-@font-face {
-    font-family: Montserrat;
-    src: url('../../../fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
-}
 
 .buy-button {
     padding: 20px;

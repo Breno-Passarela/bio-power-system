@@ -1,8 +1,4 @@
 @import "../../colors.css";
-@font-face {
-    font-family: Montserrat;
-    src: url('../../../fonts/Montserrat/static/Montserrat-Bold.ttf') format('truetype');
-}
 
 .container-register-button {
     display: flex;

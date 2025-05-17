@@ -20,7 +20,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #fafafa;
+  background: #ffffff;
   user-select: none;
 }
 
@@ -28,7 +28,6 @@ body {
   background-color: #ffffff;
   padding: 40px 30px;
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   width: 100%;
   max-width: 90vw;
 }
@@ -55,7 +54,6 @@ body {
   height: auto;
 }
 
-
 .register-link {
   margin-top: 16px;
   text-align: center;
@@ -63,9 +61,7 @@ body {
 }
 
 .link-register {
-  color: #c80000;
-  text-decoration: none;
-  font-weight: 600;
+  color: var(--color-blue-link);
 }
 
 .link-register:hover {
