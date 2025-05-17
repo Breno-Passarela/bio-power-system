@@ -1,10 +1,6 @@
 @import url('./components/buttons/button-auth.css');
 @import url('./components/links/link-forgot-password.css');
 @import url('./components/inputs/input-auth.css');
-@font-face {
-    font-family: Montserrat;
-    src: url('../../../fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
-}
 
 * {
   margin: 0;
