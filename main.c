@@ -29,7 +29,7 @@ int main(void) {
     // Client
     char vRG[TF][11], vCliente[TF][30];
 
-    // Services
+    // Sellings
     char vRGV[TF][11], vCodV[TF][50];
     int vQtdeV[TF], vPrecoV[TF];
 
@@ -139,6 +139,70 @@ int main(void) {
             case 2: 
                 // Code Delete (Breno Passarela && Kaua)
                 printf("\n Exclusão selecionado \n");
+
+                do {
+                    printf("\n"
+                    "1: Produtos/Serviços\n"
+                    "2: Clientes\n"
+                    "3: Vendas\n"
+                    "4: Retornar\n"
+                    "> ");
+                    scanf(" %d", &program_execute_action);
+
+                    switch(program_execute_action) {
+                        case 1:
+                            break;
+                        case 2:
+                            char continue_choosen;
+                            char rg_temp[11];
+                            
+                            do {
+                                int repeat = 0;
+
+                                do {
+                                    repeat = 0;
+                                    int i = 0;
+
+                                    while (getchar() != '\n');
+
+                                    printf("Digite o RG do cliente que deseja excluir: ");
+                                    fflush(stdin);
+                                    gets(rg_temp);
+
+                                    while(i < TLV && repeat == 0) {
+                                        if (strcmp(rg_temp, vRGV[i]) == 0) {
+                                            printf("RG com vendas pendentes! \n");
+                                            printf("Pressione enter para digitar outro... \n");
+                                            repeat = 1;
+                                        } else {
+                                            i++;
+                                        }
+                                    }
+                                    
+                                    printf("RG temporário: %s \n", rg_temp);
+                                    
+                                    for(i = 0; i <= TLC && repeat == 0; i++) {
+                                        printf("RG %d: %s \n", i, vRG[i]);
+
+                                        // if (strcmp(rg_temp, vRG[i]) == 0) {
+                                        //     // for() {
+                                        //     //     strcpy(vRG[i], vRG[i + 1]);
+                                        //     // }
+                                        // } else {
+                                        //     printf("RG não existe! \n");
+                                        //     printf("Pressione enter para digitar outro... \n");
+                                        //     repeat = 1;
+                                        // }
+                                    }
+                                } while (repeat == 1);
+                            } while (tolower(continue_choosen) == 's');
+                            break;
+                        case 3:
+                    }
+
+                    if(program_execute_action > 3 || program_execute_action <= 0) printf("\nOpção inválida! Tente novamente.\n"); 
+                    printf("\n");
+                } while(program_execute_action != 3);
                 break;
             case 3:
                 // Code Sell (Lucas && Gui Leal)
