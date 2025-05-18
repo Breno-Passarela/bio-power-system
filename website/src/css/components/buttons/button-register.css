@@ -21,3 +21,9 @@
 .register-button:hover {
     background-color: var(--color-red-hover);
 }
+
+@media (max-width: 768px) {
+    .register-button {
+        width: 80%;
+    }
+}

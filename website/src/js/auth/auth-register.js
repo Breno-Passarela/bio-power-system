@@ -7,22 +7,23 @@ const form = {
   cpf: "",
   endereco: "",
   cep: "",
-  data: ""  
+  data: "",
+  genero: ""
 };
 
 document.getElementById("registerForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  // Preenche o objeto com os valores do formulário
   form.nome = document.getElementById("nome").value.trim();
   form.sobrenome = document.getElementById("sobrenome").value.trim();
   form.email = document.getElementById("email").value.trim();
-  form.senha = document.getElementById("senha").value.trim();
+  form.senha = document.getElementById("password").value.trim();
   form.telefone = document.getElementById("telefone").value.trim();
   form.cpf = document.getElementById("cpf").value.trim();
   form.endereco = document.getElementById("endereco").value.trim();
   form.cep = document.getElementById("cep").value.trim();
   form.data = document.getElementById("data").value.trim();
+  form.genero = document.getElementById("genero").value;
 
   const errors = validateFields();
   clearErrors();
@@ -50,7 +51,7 @@ const validateFields = () => {
   if (!form.endereco) newErrors.endereco = 'Endereço é obrigatório.';
   if (!/^\d{8}$/.test(form.cep)) newErrors.cep = 'CEP inválido. Deve conter 8 dígitos.';
   if (!form.data) newErrors.data = 'Data é obrigatória';
-  if (!form.genero) newErrors.genero = 'Gênero é obrigatório';
+  if (!form.genero || form.genero == "not_valid") newErrors.genero = 'Gênero é obrigatório';
 
   return newErrors;
 };
@@ -69,13 +70,14 @@ function clearErrors() {
   errorSpans.forEach(span => span.textContent = "");
 }
 
-// Mostrar/ocultar senha
-const togglePassword = document.getElementById("togglePassword");
-const senhaInput = document.getElementById("senha");
-
-togglePassword.addEventListener("click", () => {
-  const isPassword = senhaInput.type === "password";
-  senhaInput.type = isPassword ? "text" : "password";
-  togglePassword.classList.toggle("fa-eye");
-  togglePassword.classList.toggle("fa-eye-slash");
+// Validation date
+document.getElementById('data').addEventListener('input', function (e) {
+  let value = e.target.value.replace(/\D/g, '').slice(0, 8);
+  if (value.length >= 5) {
+    e.target.value = value.replace(/(\d{2})(\d{2})(\d{0,4})/, '$1/$2/$3');
+  } else if (value.length >= 3) {
+    e.target.value = value.replace(/(\d{2})(\d{0,2})/, '$1/$2');
+  } else {
+    e.target.value = value;
+  }
 });

@@ -1,6 +1,6 @@
 @import url('./components/buttons/button-register.css');
 @import url('./components/links/link-forgot-password.css');
-@import url('./components/Error/error-message.css');
+@import url('./components/error/error-message.css');
 @import url('./components/inputs/input-register.css');
 
 @font-face {

@@ -9,7 +9,6 @@
   <link rel="shortcut icon" href="../imgs/img-icon-site.png" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-
 <body>
   <div class="container">
     <div class="img-flex-container">
@@ -46,7 +45,7 @@
             <div class="input-register-third">
               <label class="input-register-label" for="data">Data de Nascimento</label>
               <div class="input-icon-container">
-                <input class="input-register-input" type="date" id="data" />
+                <input class="input-register-input" type="text" id="data" placeholder="Ex: DD/MM/AAAA" />
                 <i class="fas fa-calendar-alt"></i>
               </div>
               <span class="error-message" id="error-data"></span>
@@ -116,7 +115,7 @@
           <!-- Linha 4: Gênero -->
           <div class="input-register-group">
             <label class="input-register-label">Gênero Biológico</label>
-            <div style="display: flex; gap: 20px; align-items: center;">
+            <!-- <div style="display: flex; gap: 20px; align-items: center;">
               <label style="display: flex; align-items: center; gap: 5px;">
                 <input type="radio" name="genero" value="homem" id="generoHomem" />
                 Homem
@@ -125,7 +124,13 @@
                 <input type="radio" name="genero" value="mulher" id="generoMulher" />
                 Mulher
               </label>
-            </div>
+            </div> -->
+            <select class="input-register-input" style="cursor: pointer;" name="Gênero Biológico" id="genero">
+              <option value="not_valid" disabled selected>Selecione uma opção</option>
+              <option value="nao_informado">Prefiro não informar</option>
+              <option value="mulher">Mulher</option>
+              <option value="homem">Homem</option>
+            </select>
             <span class="error-message" id="error-genero"></span>
           </div>
       </div>
