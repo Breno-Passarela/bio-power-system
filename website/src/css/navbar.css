@@ -1,11 +1,13 @@
 @import url('./components/buttons/button-cart.css');
 @import url('./colors.css');
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
 
 .navbar {
+    font-family: Arial, Helvetica, sans-serif;
     height: 12vh;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 12px 40px;
     background-color: #ffffff;
     color: var(--color-red-logo);
@@ -22,8 +24,11 @@
 }
 
 .navbar-logo {
-    font-size: 1.9rem;
+    font-family: "League Spartan", sans-serif;
+    font-size: 2.1rem;
+    font-optical-sizing: auto;
     font-weight: 700;
+    font-style: bold;
     cursor: pointer;
     flex: 1;
     min-width: 160px;
@@ -44,6 +49,7 @@
 }
 
 .navbar-search input[type="search"] {
+    font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     max-width: 450px;
     padding: 10px 20px;
@@ -73,7 +79,7 @@
     display: flex;
     gap: 25px;
     flex: 2;
-    justify-content: center;
+    justify-content: flex-end;
     min-width: 250px;
 }
 
@@ -505,7 +511,7 @@
     }
 
     .navbar-logo {
-        font-size: 1.6rem;
+        font-size: 2.1rem;
     }
 
     .hamburger-menu {
