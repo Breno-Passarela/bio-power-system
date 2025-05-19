@@ -24,7 +24,7 @@ int main(void) {
     int vQtde[TF], vPreco[TF];
 
     // Client
-    char vRG[TF][11], vCliente[TF][30];
+    char vRG[TF][12], vCliente[TF][30];
 
     // Services
     char vRGV[TF][11], vCodV[TF][50];
@@ -121,7 +121,7 @@ int main(void) {
 
                                 TLP++;
 
-                                printf("\nQuer adicionar mais um cliente? (s/n)\n> ");
+                                printf("\nQuer adicionar mais um cliente? (S/N)\n> ");
                                 scanf(" %c", &continue_choosen);
                             } while(tolower(continue_choosen) == 's');
 
@@ -129,7 +129,9 @@ int main(void) {
                         case 2:
                             // Code Client (Rafael && Matheus Bispo)
                             // printf("\n Cliente selecionado");
-                            char rg_temp[11];
+
+                            char continue_choosen;
+                            char rg_temp[12];
 
                             do {
                                 int repeat;
@@ -168,7 +170,7 @@ int main(void) {
 
                                 TLC++;
 
-                                printf("\nQuer adicionar mais um cliente? (s/n)\n> ");
+                                printf("\nQuer adicionar mais um cliente? (S/N)\n> ");
                                 scanf(" %c", &continue_choosen);
                          
 
@@ -183,6 +185,73 @@ int main(void) {
             case 2: 
                 // Code Delete (Breno Passarela && Kaua)
                 printf("\n Exclusão selecionado \n");
+
+                do {
+                    printf("\n"
+                    "1: Produtos/Serviços\n"
+                    "2: Clientes\n"
+                    "3: Vendas\n"
+                    "4: Retornar\n"
+                    "> ");
+                    scanf(" %d", &program_execute_action);
+
+                    switch(program_execute_action) {
+                        case 1:
+                            break;
+                        case 2:
+                            char continue_choosen;
+                            char rg_temp[12];
+                            
+                            do {
+                                int repeat = 0;
+
+                                do {
+                                    repeat = 0;
+                                    int i = 0;
+                                    int j = 0;
+
+                                    while (getchar() != '\n');
+
+                                    printf("Digite o RG do cliente que deseja excluir: ");
+                                    fflush(stdin);
+                                    gets(rg_temp);
+
+                                    while(i < TLV && repeat == 0) {
+                                        if (strcmp(rg_temp, vRGV[i]) == 0) {
+                                            printf("RG com vendas pendentes! \n");
+                                            printf("Pressione enter para digitar outro... \n");
+                                            repeat = 1;
+                                        } else {
+                                            i++;
+                                        }
+                                    }
+
+                                    for(i = 0; i < TLC && strcmp(rg_temp, vRG[i]) != 0; i++);
+
+                                    if(i == TLC) {
+                                        printf("RG não existe! \n");
+                                        printf("Pressione enter para digitar outro... \n");
+                                        repeat = 1;
+                                    } else {
+                                        for(j = i; j < TLC - 1; j++) {
+                                            strcpy(vRG[j], vRG[j + 1]);
+                                            strcpy(vCliente[j], vCliente[j + 1]);
+                                        }
+                                        TLC--;
+                                        
+                                        printf("Cliente com RG %s excluído com sucesso.\n", rg_temp);
+                                    }
+                                } while (repeat == 1);
+
+                                printf("\nQuer excluir mais um cliente? (S/N)\n> ");
+                                scanf(" %c", &continue_choosen);
+                            } while (tolower(continue_choosen) == 's');
+                        break;
+                    }
+
+                    if(program_execute_action > 3 || program_execute_action <= 0) printf("\nOpção inválida! Tente novamente.\n"); 
+                    printf("\n");
+                } while(program_execute_action != 3);
                 break;
             case 3:
                 // Code Sell (Lucas && Gui Leal)
