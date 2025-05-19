@@ -27,10 +27,10 @@ int main(void) {
     int vQtde[TF], vPreco[TF];
 
     // Client
-    char vRG[TF][11], vCliente[TF][30];
+    char vRG[TF][12], vCliente[TF][30];
 
     // Sellings
-    char vRGV[TF][11], vCodV[TF][50];
+    char vRGV[TF][12], vCodV[TF][50];
     int vQtdeV[TF], vPrecoV[TF];
 
     // Controllers
@@ -85,7 +85,7 @@ int main(void) {
                             // printf("\n Cliente selecionado");
 
                             char continue_choosen;
-                            char rg_temp[11];
+                            char rg_temp[12];
 
                             do {
                                 int repeat;
@@ -106,7 +106,7 @@ int main(void) {
                                         repeat = 1;
                                     }
 
-                                    while(i < TLC && strlen(rg_temp) == 11 && repeat == 0) {
+                                    while(i < TLC && strlen(rg_temp) == 12 && repeat == 0) {
                                         if (strcmp(rg_temp, vRG[i]) == 0) {
                                             printf("RG já registrado! \n");
                                             printf("Pressione enter para digitar outro... \n");
@@ -154,7 +154,7 @@ int main(void) {
                             break;
                         case 2:
                             char continue_choosen;
-                            char rg_temp[11];
+                            char rg_temp[12];
                             
                             do {
                                 int repeat = 0;
@@ -162,6 +162,7 @@ int main(void) {
                                 do {
                                     repeat = 0;
                                     int i = 0;
+                                    int j = 0;
 
                                     while (getchar() != '\n');
 
@@ -178,26 +179,28 @@ int main(void) {
                                             i++;
                                         }
                                     }
-                                    
-                                    printf("RG temporário: %s \n", rg_temp);
-                                    
-                                    for(i = 0; i <= TLC && repeat == 0; i++) {
-                                        printf("RG %d: %s \n", i, vRG[i]);
 
-                                        // if (strcmp(rg_temp, vRG[i]) == 0) {
-                                        //     // for() {
-                                        //     //     strcpy(vRG[i], vRG[i + 1]);
-                                        //     // }
-                                        // } else {
-                                        //     printf("RG não existe! \n");
-                                        //     printf("Pressione enter para digitar outro... \n");
-                                        //     repeat = 1;
-                                        // }
+                                    for(i = 0; i < TLC && strcmp(rg_temp, vRG[i]) != 0; i++);
+
+                                    if(i == TLC) {
+                                        printf("RG não existe! \n");
+                                        printf("Pressione enter para digitar outro... \n");
+                                        repeat = 1;
+                                    } else {
+                                        for(j = i; j < TLC - 1; j++) {
+                                            strcpy(vRG[j], vRG[j + 1]);
+                                            strcpy(vCliente[j], vCliente[j + 1]);
+                                        }
+                                        TLC--;
+                                        
+                                        printf("Cliente com RG %s excluído com sucesso.\n", rg_temp);
                                     }
                                 } while (repeat == 1);
+
+                                printf("\nQuer excluir mais um cliente? (s/n)\n> ");
+                                scanf(" %c", &continue_choosen);
                             } while (tolower(continue_choosen) == 's');
-                            break;
-                        case 3:
+                        break;
                     }
 
                     if(program_execute_action > 3 || program_execute_action <= 0) printf("\nOpção inválida! Tente novamente.\n"); 
