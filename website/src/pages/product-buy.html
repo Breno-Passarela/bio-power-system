@@ -1,11 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produto</title>
+    <meta charset="UTF-8" />
+    <title>Detalhes do Produto</title>
+    <link rel="shortcut icon" href="../imgs/img-icon-site.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="../css/produtc-buy-screen.css" />
 </head>
+
 <body>
-    <h1>tela do Produto selecionado</h1>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-logo">Bio-Power</div>
+
+        <div class="navbar-search" id="navbarSearch">
+            <button class="search-icon-mobile" id="searchIconMobile">
+                <i class="fas fa-search"></i>
+            </button>
+            <input type="search" placeholder="Pesquisar produtos..." aria-label="Pesquisar produtos"
+                class="search-input-hidden" id="searchInputMobile" />
+            <button class="search-submit-mobile" id="searchSubmitMobile">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+            <button class="search-close-mobile" id="searchCloseMobile">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <button class="hamburger-menu" id="hamburgerMenu">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="navbar-links">
+            <a href="./product-list.html">Loja</a>
+            <a href="/sobre.html">Sobre Nós</a>
+            <a href="/categorias.html">Categorias</a>
+        </div>
+
+        <div class="button-cart-container">
+            <button class="cart-button">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </button>
+        </div>
+
+        <div class="navbar-profile" id="navbarProfile">
+            <img id="profileAvatar" class="navbar-avatar" alt="Avatar" style="display: none" />
+            <span id="loginText" class="login-text" style="display: none">Fazer login/Criar conta</span>
+
+            <div class="profile-dropdown" id="profileDropdown">
+                <div class="profile-dropdown-content">
+                    <a href="#">Configuração</a>
+                    <a href="#" id="logoutBtn">Sair</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Screen -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-content">
+            <button class="close-menu-button" id="closeMenuButton">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="mobile-menu-links">
+                <a href="/loja.html">Loja</a>
+                <a href="/sobre.html">Sobre Nós</a>
+                <a href="/categorias.html">Categorias</a>
+            </div>
+            <div class="mobile-menu-auth">
+                <div id="mobileAuthLoggedOut" class="mobile-auth-item" style="display: none;">
+                    <a href="./src/pages/auth-login.html" class="mobile-login-button">
+                        <i class="fas fa-user-circle"></i> Fazer login/Criar conta
+                    </a>
+                </div>
+                <div id="mobileAuthLoggedIn" class="mobile-auth-item" style="display: none;">
+                    <img id="mobileAvatar" class="mobile-avatar" alt="Avatar" />
+                    <a href="#" class="mobile-settings-link">Configuração</a>
+                    <button id="mobileLogoutBtn" class="mobile-logout-button">
+                        <i class="fas fa-sign-out-alt"></i> Sair
+                    </button>
+                </div>
+            </div>
+            <div class="mobile-menu-cart">
+                <button class="cart-button mobile-cart-button">
+                    <i class="fa-solid fa-cart-shopping"></i> Carrinho
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-buy-container">
+        <img id="product-image" class="product-image" src="" alt="Produto" />
+
+        <div class="product-info">
+            <h1 id="product-name" class="product-name"></h1>
+            <p id="product-price" class="product-price"></p>
+            <p id="product-discount" class="product-discount"></p>
+            <p id="product-credit" class="product-credit"></p>
+        </div>
+
+        <div id="product-description" class="product-description">
+        </div>
+
+        <button id="buy-button">Comprar</button>
+    </div>
+
+    <script src="../js/auth/auth-product-buy.js"> </script>
+
 </body>
+
 </html>

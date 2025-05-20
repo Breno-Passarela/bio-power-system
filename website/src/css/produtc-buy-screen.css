@@ -1,0 +1,42 @@
+@import url('navbar.css');
+@import url('../css/components/cards/cards-buy.css'); 
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff; 
+  color: #333;
+}
+
+.product-buy-container {
+  max-width: 600px;
+  margin: 50px auto;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; 
+}
+
+.product-image {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: contain;
+  max-height: 350px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem; 
+}
+
+@media (max-width: 640px) {
+  .product-buy-container {
+    padding: 1.25rem 1.25rem;
+    margin: 2rem 1rem;
+  }
+}
