@@ -227,7 +227,7 @@ int main(void) {
                                         printf("Pressione enter para digitar outro... \n");
                                         repeat = 1;
                                     } else {
-                                        for(j = i; j < TLC - 1; j++) {
+                                        for(j = i; j < TLP - 1; j++) {
                                             strcpy(vCod[j], vCod[j + 1]);
                                             strcpy(vProdServ[j], vProdServ[j + 1]);
                                             vQtde[j], vQtde[j + 1];
