@@ -121,7 +121,7 @@ int main(void) {
 
                                 TLP++;
 
-                                printf("\nQuer adicionar mais um cliente? (S/N)\n> ");
+                                printf("\nQuer adicionar mais um produto? (S/N)\n> ");
                                 scanf(" %c", &continue_choosen);
                             } while(tolower(continue_choosen) == 's');
 
@@ -172,7 +172,6 @@ int main(void) {
 
                                 printf("\nQuer adicionar mais um cliente? (S/N)\n> ");
                                 scanf(" %c", &continue_choosen);
-                         
 
                                 } while (tolower(continue_choosen) == 's');
                             break;
@@ -190,23 +189,68 @@ int main(void) {
                     printf("\n"
                     "1: Produtos/Serviços\n"
                     "2: Clientes\n"
-                    "3: Vendas\n"
-                    "4: Retornar\n"
+                    "3: Retornar\n"
                     "> ");
                     scanf(" %d", &program_execute_action);
 
                     switch(program_execute_action) {
                         case 1:
+                            char vcod_temp[50];
+
+                            do {
+                                int repeat = 0;
+
+                                do {
+                                    int i = 0;
+                                    int j = 0;
+
+                                    while (getchar() != '\n');
+
+                                    printf("Digite o código do produto que deseja excluir: ");
+                                    fflush(stdin);
+                                    gets(vcod_temp);
+
+                                    while(i < TLV && repeat == 0) {
+                                        if (strcmp(vcod_temp, vCodV[i]) == 0) {
+                                            printf("Produto com vendas pendentes! \n");
+                                            printf("Pressione enter para digitar outro... \n");
+                                            repeat = 1;
+                                        } else {
+                                            i++;
+                                        }
+                                    }
+                                    
+                                    for(i = 0; i < TLP && strcmp(vcod_temp, vCod[TLP]) != 0; i++);
+
+                                    if(i == TLP) {
+                                        printf("Produto não existe! \n");
+                                        printf("Pressione enter para digitar outro... \n");
+                                        repeat = 1;
+                                    } else {
+                                        for(j = i; j < TLC - 1; j++) {
+                                            strcpy(vCod[j], vCod[j + 1]);
+                                            strcpy(vProdServ[j], vProdServ[j + 1]);
+                                            vQtde[j], vQtde[j + 1];
+                                            vPreco[j], vPreco[j + 1];
+                                        }
+                                        TLP--;
+                                        
+                                        printf("Produto com código %s excluído com sucesso.\n", vcod_temp);
+                                    }
+                                } while(repeat == 1);
+
+                                printf("\nQuer excluir mais um produto? (S/N)\n> ");
+                                scanf(" %c", &continue_choosen);
+                            } while(tolower(continue_choosen) == 's');
+
                             break;
                         case 2:
-                            char continue_choosen;
                             char rg_temp[12];
                             
                             do {
                                 int repeat = 0;
 
                                 do {
-                                    repeat = 0;
                                     int i = 0;
                                     int j = 0;
 
@@ -265,7 +309,7 @@ int main(void) {
                 // Confirm program exit
                 int conditional;
                 do {
-                    printf("Tem certeza ? (S/n) \n");
+                    printf("Tem certeza ? (S/N) \n");
                     scanf(" %c", &program_confirm_exit);
                     // Condition to be checked, it kind of returns 0 for false and 1 for true
                     conditional = tolower(program_confirm_exit) != 'n' && tolower(program_confirm_exit) != 's';
