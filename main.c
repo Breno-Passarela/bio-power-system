@@ -220,7 +220,7 @@ int main(void) {
                                         }
                                     }
                                     
-                                    for(i = 0; i < TLP && strcmp(vcod_temp, vCod[TLP]) != 0; i++);
+                                    for(i = 0; i <= TLP && strcmp(vcod_temp, vCod[TLP]) != 0; i++);
 
                                     if(i == TLP) {
                                         printf("Produto não existe! \n");
@@ -270,7 +270,7 @@ int main(void) {
                                         }
                                     }
 
-                                    for(i = 0; i < TLC && strcmp(rg_temp, vRG[i]) != 0; i++);
+                                    for(i = 0; i <= TLC && strcmp(rg_temp, vRG[i]) != 0; i++);
 
                                     if(i == TLC) {
                                         printf("RG não existe! \n");
