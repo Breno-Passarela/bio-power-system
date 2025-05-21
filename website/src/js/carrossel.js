@@ -1,22 +1,42 @@
-let index = 0;
+let currentSlide = 0;
+const slides = document.querySelectorAll(".carousel-slide");
+const wrapper = document.getElementById("carouselWrapper");
+const dotsContainer = document.getElementById("carouselDots");
 
-function changeImage(direction) {
-  const images = document.querySelector('.imagens');
-  const totalImages = images.children.length;
-
-  index += direction;
-
-  if (index >= totalImages) {
-    index = 0;
-  }
-
-  if (index < 0) {
-    index = totalImages - 1;
-  }
-
-  images.style.transform = `translateX(-${index * 100}%)`;
+function updateCarousel() {
+  wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+  document.querySelectorAll(".carousel-dots span").forEach((dot, index) => {
+    dot.classList.toggle("active", index === currentSlide);
+  });
 }
 
-setInterval(() => {
-  changeImage(1);
-}, 3000);
+function createDots() {
+  slides.forEach((_, index) => {
+    const dot = document.createElement("span");
+    dot.addEventListener("click", () => {
+      currentSlide = index;
+      updateCarousel();
+    });
+    dotsContainer.appendChild(dot);
+  });
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % slides.length;
+  updateCarousel();
+}
+
+function prevSlide() {
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  updateCarousel();
+}
+
+let autoPlay = setInterval(nextSlide, 5000); // auto-play a cada 5s
+
+// Pausa quando passa o mouse
+wrapper.addEventListener("mouseenter", () => clearInterval(autoPlay));
+wrapper.addEventListener("mouseleave", () => autoPlay = setInterval(nextSlide, 5000));
+
+// Inicializar
+createDots();
+updateCarousel();
