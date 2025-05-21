@@ -1,0 +1,78 @@
+/* Estilo individual para cada card de produto */
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cart-item:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item img {
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Detalhes do produto no card */
+.item-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.item-details h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.price {
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #007bff;
+}
+
+/* Controle de quantidade */
+.quantity-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.qty-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: #e0e0e0;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.qty-btn:hover {
+  background-color: #ccc;
+}
+
+.qty-input {
+  width: 50px;
+  text-align: center;
+  font-size: 15px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}

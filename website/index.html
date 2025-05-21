@@ -1,133 +1,132 @@
-  <!DOCTYPE html>
-  <html lang="pt">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Bio-Power</title>
-      <link rel="shortcut icon" href="./src/imgs/img-icon-site.png" type="image/x-icon">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="pt">
 
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
-      />
-      <link rel="stylesheet" href="src/css/home-screen.css" />
-      <link rel="stylesheet" href="src/css/navbar.css" />
-      <link rel="stylesheet" href="src/css/carrousel.css">
-    </head>
-    <body>
-      <div class="container">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bio-Power</title>
+  <link rel="shortcut icon" href="./src/imgs/img-icon-site.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
 
-        <!-- Navbar -->
-        <nav class="navbar">
-          <div class="navbar-logo">Bio-Power</div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="src/css/home-screen.css" />
+  <link rel="stylesheet" href="src/css/navbar.css" />
+  <link rel="stylesheet" href="src/css/carrousel.css">
+</head>
 
-          <div class="navbar-search" id="navbarSearch">
-            <button class="search-icon-mobile" id="searchIconMobile">
-              <i class="fas fa-search"></i>
-            </button>
-            <input
-              type="search"
-              placeholder="Pesquisar produtos..."
-              aria-label="Pesquisar produtos"
-              class="search-input-hidden"
-              id="searchInputMobile"
-            />
-            <button class="search-submit-mobile" id="searchSubmitMobile">
-              <i class="fas fa-paper-plane"></i>
-            </button>
-            <button class="search-close-mobile" id="searchCloseMobile">
-              <i class="fas fa-times"></i>
-            </button>
+<body>
+  <div class="container">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="navbar-logo">
+        <a href="./index.html" style=" text-decoration: none; color: #990000;">
+
+          Bio-Power
+        </a>
+      </div>
+
+      <div class="navbar-search" id="navbarSearch">
+        <button class="search-icon-mobile" id="searchIconMobile">
+          <i class="fas fa-search"></i>
+        </button>
+        <input type="search" placeholder="Pesquisar produtos..." aria-label="Pesquisar produtos"
+          class="search-input-hidden" id="searchInputMobile" />
+        <button class="search-submit-mobile" id="searchSubmitMobile">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+        <button class="search-close-mobile" id="searchCloseMobile">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <button class="hamburger-menu" id="hamburgerMenu">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="navbar-links">
+        <a href="src/pages/product-list.html">Loja</a>
+        <a href="src/pages/sobre.html">Sobre Nós</a>
+        <a href="/categorias.html">Categorias</a>
+      </div>
+      <div class="button-cart-container">
+        <button class="cart-button">
+          <a href="./src/pages/shopping-cart.html" style="text-decoration: none; color: white;">
+            <i class="fa-solid fa-cart-shopping">
+
+            </i>
+          </a>
+        </button>
+      </div>
+
+      <div class="navbar-profile" id="navbarProfile">
+        <img id="profileAvatar" class="navbar-avatar" alt="Avatar" style="display: none" />
+        <span id="loginText" class="login-text" style="display: none">Fazer login/Criar conta</span>
+
+        <div class="profile-dropdown" id="profileDropdown">
+          <div class="profile-dropdown-content">
+            <a href="#">Configuração</a>
+            <a href="#" id="logoutBtn">Sair</a>
           </div>
-
-          <button class="hamburger-menu" id="hamburgerMenu">
-            <i class="fas fa-bars"></i>
-          </button>
-
-          <div class="navbar-links">
-            <a href="src/pages/product-list.html">Loja</a>
-            <a href="/sobre.html">Sobre Nós</a>
-            <a href="/categorias.html">Categorias</a>
-          </div>
-
-          <div class="button-cart-container">
-            <button class="cart-button">
-              <i class="fa-solid fa-cart-shopping"></i>
-            </button>
-          </div>
-
-          <div class="navbar-profile" id="navbarProfile">
-            <img
-              id="profileAvatar"
-              class="navbar-avatar"
-              alt="Avatar"
-              style="display: none"
-            />
-            <span id="loginText" class="login-text" style="display: none"
-              >Fazer login/Criar conta</span
-            >
-
-            <div class="profile-dropdown" id="profileDropdown">
-              <div class="profile-dropdown-content">
-                <a href="#">Configuração</a>
-                <a href="#" id="logoutBtn">Sair</a>
-              </div>
-            </div>
-          </div>
-        </nav>
-
-
-        <!-- Content page -->
-        <div class="carrousel">
-          <div class="images">
-            <img src="src/imgs/carrousel/banner.png" alt="Imagem 1">
-            <img src="src/imgs/carrousel/banner-2.png" alt="Imagem 2">
-            <img src="src/imgs/carrousel/banner-3.png" alt="Imagem 3">
-          </div>
-          <button class="prev" onclick="changeImage(-1)">&#10094;</button>
-          <button class="next" onclick="changeImage(1)">&#10095;</button>
         </div>
       </div>
+    </nav>
 
-      <!-- Mobile Screen -->
-      <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-          <div class="mobile-menu-content">
-              <button class="close-menu-button" id="closeMenuButton">
-                  <i class="fas fa-times"></i>
-              </button>
-              <div class="mobile-menu-links">
-                  <a href="src/pages/product-list.html">Loja</a>
-                  <a href="/sobre.html">Sobre Nós</a>
-                  <a href="/categorias.html">Categorias</a>
-              </div>
-              <div class="mobile-menu-auth">
-                  <div id="mobileAuthLoggedOut" class="mobile-auth-item" style="display: none;">
-                      <a href="./src/pages/auth-login.html" class="mobile-login-button">
-                          <i class="fas fa-user-circle"></i> Fazer login/Criar conta
-                      </a>
-                  </div>
-                  <div id="mobileAuthLoggedIn" class="mobile-auth-item" style="display: none;">
-                      <img id="mobileAvatar" class="mobile-avatar" alt="Avatar"/>
-                      <a href="#" class="mobile-settings-link">Configuração</a>
-                      <button id="mobileLogoutBtn" class="mobile-logout-button">
-                          <i class="fas fa-sign-out-alt"></i> Sair
-                      </button>
-                  </div>
-              </div>
-              <div class="mobile-menu-cart">
-                  <button class="cart-button mobile-cart-button">
-                      <i class="fa-solid fa-cart-shopping"></i> Carrinho
-                  </button>
-              </div>
+    <!-- Mobile Screen -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+      <div class="mobile-menu-content">
+        <button class="close-menu-button" id="closeMenuButton">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="mobile-menu-links">
+          <a href="src/pages/product-list.html">Loja</a>
+          <a href="src/pages/sobre.html">Sobre Nós</a>
+          <a href="/categorias.html">Categorias</a>
+        </div>
+        <div class="mobile-menu-auth">
+          <div id="mobileAuthLoggedOut" class="mobile-auth-item" style="display: none;">
+            <a href="./src/pages/auth-login.html" class="mobile-login-button">
+              <i class="fas fa-user-circle"></i> Fazer login/Criar conta
+            </a>
           </div>
+          <div id="mobileAuthLoggedIn" class="mobile-auth-item" style="display: none;">
+            <img id="mobileAvatar" class="mobile-avatar" alt="Avatar" />
+            <a href="#" class="mobile-settings-link">Configuração</a>
+            <button id="mobileLogoutBtn" class="mobile-logout-button">
+              <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
+          </div>
+        </div>
+        <div class="mobile-menu-cart">
+          <button class="cart-button mobile-cart-button">
+            <a href="./shopping-cart.html" style="text-decoration: none; color: white;">
+
+              <i class="fa-solid fa-cart-shopping"></i> Carrinho
+            </a>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content page -->
+    <div class="carousel-container">
+      <div class="carousel-wrapper" id="carouselWrapper">
+        <div class="carousel-slide"><img src="src/imgs/carrousel/banner.png" alt="Slide 1"></div>
+        <div class="carousel-slide"><img src="src/imgs/carrousel/banner-2.png" alt="Slide 2"></div>
+        <div class="carousel-slide"><img src="src/imgs/carrousel/banner-3.png" alt="Slide 3"></div>
       </div>
 
-    <script src="./src/js/navbar-script.js"></script> 
+      <button class="carousel-btn prev" onclick="prevSlide()">&#10094;</button>
+      <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
+
+      <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+
+    <script src="./src/js/navbar-script.js"></script>
     <script src="./src/js/carrossel.js"></script>
-    </body>
-  </html>
+</body>
+
+</html>
