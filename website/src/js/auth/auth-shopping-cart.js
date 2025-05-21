@@ -51,7 +51,7 @@ function renderCarrinho() {
                 <p class="price">${formatarPreco(produto.preco)} / unidade</p>
                 <div class="quantity-box">
                     <span>${produto.qtd} Qtd</span>
-                    <i class="fa-solid fa-pen"></i>
+                    <i class="fa-solid fa-pen" style="cursor: pointer;"></i>
                 </div>
             </div>
             <div class="cart-item-total">${formatarPreco(totalItem)}</div>

@@ -1,4 +1,3 @@
-/* Seu CSS já fornecido */
 .products {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -24,10 +23,6 @@
   max-width: 320px;
   margin-left: auto;
   margin-right: auto;
-}
-
-.product-card:hover {
-  transform: translateY(-6px);
 }
 
 .product-card img {

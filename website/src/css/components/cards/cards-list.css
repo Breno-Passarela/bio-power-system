@@ -1,7 +1,7 @@
 .products {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
-  gap: 2.5rem 2rem; /* espaçamento vertical e horizontal */
+  grid-template-columns: repeat(1, 0.5fr); 
+  gap: 10px; 
   padding: 2rem;
   width: calc(100% - 250px);
   box-sizing: border-box;
@@ -15,20 +15,14 @@
   padding: 2.5rem 1.5rem 1.5rem;
   background: white;
   text-align: center;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease;
   overflow: visible;
   margin-top: 4rem;
   
-  /* largura automática para ocupar o espaço da grid */
   width: 100%;
-  max-width: 320px; /* max para limitar o tamanho em telas grandes */
+  max-width: 320px;
   margin-left: auto;
   margin-right: auto;
-}
-
-.product-card:hover {
-  transform: translateY(-6px);
 }
 
 .product-card img {

@@ -1,14 +1,10 @@
 @import url('components/sidebar-filtro/sidebar.css');
 @import url('components/cards/cards-list.css');
-@import url('navbar.css');
 
-
-
-
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #fff;
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
 }
 
 header {
