@@ -59,9 +59,8 @@ const products = [
 
 function goToProductBuy(product) {
   sessionStorage.setItem('selectedProduct', JSON.stringify(product));
-  window.location.href = 'product-buy.html'; 
+  window.location.href = 'product-buy.html';
 }
-
 function renderProducts() {
   const productsContainer = document.querySelector(".products");
   productsContainer.innerHTML = "";
@@ -75,6 +74,12 @@ function renderProducts() {
       <h3>${product.nome}</h3>
       <p class="price">${product.preco} <span>${product.desconto}</span></p>
       <p class="credit">${product.credito}</p>
+      <div class="buttons">
+        <button class="buy" onclick="goToProductBuy(${JSON.stringify(product).replace(/"/g, '&quot;')})">Comprar</button>
+        <button class="cart-icon" title="Adicionar ao carrinho" onclick="handleAddToCart(event, ${JSON.stringify(product).replace(/"/g, '&quot;')})">
+          <i class="fa-solid fa-cart-shopping"></i>
+        </button>
+      </div>
     `;
 
     productCard.onclick = () => goToProductBuy(product);
@@ -83,6 +88,11 @@ function renderProducts() {
   });
 }
 
+function handleAddToCart(event, product) {
+  event.stopPropagation(); // evita o clique no card
+  addToCart(product);
+   window.location.href = '../../pages/shopping-cart.html'; // caminho absoluto
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   renderProducts();
