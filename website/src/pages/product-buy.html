@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/produtc-buy-screen.css" />
 </head>
 
@@ -24,6 +25,7 @@
                 Bio-Power
             </a>
         </div>
+
         <div class="navbar-search" id="navbarSearch">
             <button class="search-icon-mobile" id="searchIconMobile">
                 <i class="fas fa-search"></i>
@@ -43,25 +45,27 @@
         </button>
 
         <div class="navbar-links">
-            <a href="./product-list.html">Loja</a>
-            <a href="./sobre.html">Sobre Nós</a>
-            <a href="/categorias.html">Categorias</a>
+            <a href="product-list.html">Loja</a>
+            <a href="sobre.html">Sobre Nós</a>
+            <a href="categorias.html">Categorias</a>
         </div>
-
         <div class="button-cart-container">
-            <button class="cart-button">
-                <a href="./shopping-cart.html" style="text-decoration: none; color: white;">
+            <a href="shopping-cart.html" style="text-decoration: none; color: white;">
+                <button class="cart-button">
                     <i class="fa-solid fa-cart-shopping">
 
                     </i>
-                </a>
-            </button>
+                </button>
+            </a>
         </div>
-
 
         <div class="navbar-profile" id="navbarProfile">
             <img id="profileAvatar" class="navbar-avatar" alt="Avatar" style="display: none" />
-            <span id="loginText" class="login-text" style="display: none">Fazer login/Criar conta</span>
+            
+            <a href="auth-login.html">
+                <span id="loginText" class="login-text" style="display: none">Fazer login/Criar conta</span>
+            </a>
+            
 
             <div class="profile-dropdown" id="profileDropdown">
                 <div class="profile-dropdown-content">
@@ -81,11 +85,11 @@
             <div class="mobile-menu-links">
                 <a href="product-list.html">Loja</a>
                 <a href="sobre.html">Sobre Nós</a>
-                <a href="/categorias.html">Categorias</a>
+                <a href="categorias.html">Categorias</a>
             </div>
             <div class="mobile-menu-auth">
                 <div id="mobileAuthLoggedOut" class="mobile-auth-item" style="display: none;">
-                    <a href="./src/pages/auth-login.html" class="mobile-login-button">
+                    <a href="auth-login.html" class="mobile-login-button">
                         <i class="fas fa-user-circle"></i> Fazer login/Criar conta
                     </a>
                 </div>
@@ -125,6 +129,7 @@
     </div>
 
     <script src="../js/auth/auth-product-buy.js"> </script>
+    <script src="../js/navbar-script.js"></script>
 
 </body>
 
