@@ -1,42 +1,84 @@
-let currentSlide = 0;
-const slides = document.querySelectorAll(".carousel-slide");
+// =====================
+// Carrossel Principal
+// =====================
 const wrapper = document.getElementById("carouselWrapper");
+const slides = document.querySelectorAll(".carousel-slide");
 const dotsContainer = document.getElementById("carouselDots");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+let currentSlide = 0;
+const totalSlides = slides.length;
 
 function updateCarousel() {
   wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
-  document.querySelectorAll(".carousel-dots span").forEach((dot, index) => {
+  document.querySelectorAll("#carouselDots span").forEach((dot, index) => {
     dot.classList.toggle("active", index === currentSlide);
   });
 }
 
 function createDots() {
-  slides.forEach((_, index) => {
+  for (let i = 0; i < totalSlides; i++) {
     const dot = document.createElement("span");
     dot.addEventListener("click", () => {
-      currentSlide = index;
+      currentSlide = i;
       updateCarousel();
+      resetAutoPlay();
     });
     dotsContainer.appendChild(dot);
-  });
+  }
 }
 
 function nextSlide() {
-  currentSlide = (currentSlide + 1) % slides.length;
+  currentSlide = (currentSlide + 1) % totalSlides;
   updateCarousel();
 }
 
 function prevSlide() {
-  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
   updateCarousel();
 }
 
-let autoPlay = setInterval(nextSlide, 5000); // auto-play a cada 5s
+let autoPlay = setInterval(nextSlide, 5000);
 
-// Pausa quando passa o mouse
-wrapper.addEventListener("mouseenter", () => clearInterval(autoPlay));
-wrapper.addEventListener("mouseleave", () => autoPlay = setInterval(nextSlide, 5000));
+function resetAutoPlay() {
+  clearInterval(autoPlay);
+  autoPlay = setInterval(nextSlide, 5000);
+}
 
-// Inicializar
-createDots();
-updateCarousel();
+// Eventos do carrossel principal
+if (nextBtn && prevBtn && wrapper) {
+  nextBtn.addEventListener("click", () => {
+    nextSlide();
+    resetAutoPlay();
+  });
+
+  prevBtn.addEventListener("click", () => {
+    prevSlide();
+    resetAutoPlay();
+  });
+
+  wrapper.addEventListener("mouseenter", () => clearInterval(autoPlay));
+  wrapper.addEventListener("mouseleave", () => resetAutoPlay());
+
+  createDots();
+  updateCarousel();
+}
+
+// =====================
+// Mini Carrossel de Categorias
+// =====================
+function scrollCarousel(direction) {
+  const carouselTrack = document.getElementById("carouselTrack");
+  const item = document.querySelector(".category-item");
+
+  if (!carouselTrack || !item) return;
+
+  const itemStyle = getComputedStyle(item);
+  const itemWidth = item.offsetWidth + parseInt(itemStyle.marginRight || 30);
+
+  carouselTrack.scrollBy({
+    left: direction * itemWidth,
+    behavior: "smooth",
+  });
+}

@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrinho</title>
-    <link rel="shortcut icon" href="./src/imgs/img-icon-site.png" type="image/x-icon">
+    <title>Bio-Power | Carrinho</title>
+    ]
+    <link rel="shortcut icon" href="../imgs/img-icon-site.png" type="image/x-icon">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
@@ -27,6 +29,7 @@
                 Bio-Power
             </a>
         </div>
+
         <div class="navbar-search" id="navbarSearch">
             <button class="search-icon-mobile" id="searchIconMobile">
                 <i class="fas fa-search"></i>
@@ -46,25 +49,29 @@
         </button>
 
         <div class="navbar-links">
-            <a href="./product-list.html">Loja</a>
-           <a href="./sobre.html">Sobre Nós</a>
-            <a href="/categorias.html">Categorias</a>
+            <a href="product-list.html">Loja</a>
+            <a href="sobre.html">Sobre Nós</a>
+            <a href="#" id="abrirModalBtn">
+                Categorias <i id="categoriaArrow" class="fas fa-chevron-down"></i>
+            </a>
         </div>
-
         <div class="button-cart-container">
-            <button class="cart-button">
-                <a href="./shopping-cart.html" style="text-decoration: none; color: white;">
+            <a href="shopping-cart.html" style="text-decoration: none; color: white;">
+                <button class="cart-button">
                     <i class="fa-solid fa-cart-shopping">
 
                     </i>
-                </a>
-            </button>
+                </button>
+            </a>
         </div>
-
 
         <div class="navbar-profile" id="navbarProfile">
             <img id="profileAvatar" class="navbar-avatar" alt="Avatar" style="display: none" />
-            <span id="loginText" class="login-text" style="display: none">Fazer login/Criar conta</span>
+
+            <a href="auth-login.html">
+                <span id="loginText" class="login-text" style="display: none">Fazer login/Criar conta</span>
+            </a>
+
 
             <div class="profile-dropdown" id="profileDropdown">
                 <div class="profile-dropdown-content">
@@ -83,13 +90,13 @@
                 <i class="fas fa-times"></i>
             </button>
             <div class="mobile-menu-links">
-               <a href="product-list.html">Loja</a>
+                <a href="product-list.html">Loja</a>
                 <a href="sobre.html">Sobre Nós</a>
                 <a href="/categorias.html">Categorias</a>
             </div>
             <div class="mobile-menu-auth">
                 <div id="mobileAuthLoggedOut" class="mobile-auth-item" style="display: none;">
-                    <a href="./src/pages/auth-login.html" class="mobile-login-button">
+                    <a href="auth-login.html" class="mobile-login-button">
                         <i class="fas fa-user-circle"></i> Fazer login/Criar conta
                     </a>
                 </div>
@@ -101,10 +108,70 @@
                     </button>
                 </div>
             </div>
-            <div class="mobile-menu-cart">
+            <a href="./shopping-cart.html" style="text-decoration: none; color: white;">
                 <button class="cart-button mobile-cart-button">
+
                     <i class="fa-solid fa-cart-shopping"></i> Carrinho
                 </button>
+            </a>
+        </div>
+    </div>
+
+    <!-- Modal de Categorias -->
+    <div id="modalCategorias" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Categorias</h2>
+                <span class="fechar">&times;</span>
+            </div>
+            <div class="categorias-container">
+                <div class="categoria-coluna">
+                    <h3>Proteína</h3>
+                    <ul>
+                        <li><a href="#">Whey Protein</a></li>
+                        <li><a href="#">Albumina</a></li>
+                        <li><a href="#">Caseína</a></li>
+                        <li><a href="#">Blend de Proteína</a></li>
+                        <li><a href="#">Proteína de Soja</a></li>
+                    </ul>
+                </div>
+
+                <div class="categoria-coluna">
+                    <h3>Aminoácidos</h3>
+                    <ul>
+                        <li><a href="#">BCAA</a></li>
+                        <li><a href="#">Creatina</a></li>
+                        <li><a href="#">Glutamina</a></li>
+                        <li><a href="#">Leucina</a></li>
+                    </ul>
+                </div>
+
+                <div class="categoria-coluna">
+                    <h3>Carboidratos</h3>
+                    <ul>
+                        <li><a href="#">Waxy Maize</a></li>
+                        <li><a href="#">Dextrose</a></li>
+                        <li><a href="#">Maltodextrina</a></li>
+                    </ul>
+                </div>
+
+                <div class="categoria-coluna">
+                    <h3>Veganos</h3>
+                    <ul>
+                        <li><a href="#">Proteína de Arroz</a></li>
+                        <li><a href="#">Proteína da Ervilha</a></li>
+                        <li><a href="#">Aminoácidos Veganos</a></li>
+                    </ul>
+                </div>
+
+                <div class="categoria-coluna">
+                    <h3>Vitaminas</h3>
+                    <ul>
+                        <li><a href="#">Complexo B</a></li>
+                        <li><a href="#">Multivitamínico</a></li>
+                        <li><a href="#">Carnitina</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Referências dos elementos do navbar
   const profile = document.getElementById("navbarProfile");
   const avatar = document.getElementById("profileAvatar");
   const loginText = document.getElementById("loginText");
@@ -6,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = document.getElementById("logoutBtn");
   const token = localStorage.getItem("token");
 
+  // Referências do menu mobile
   const hamburgerMenu = document.getElementById("hamburgerMenu");
   const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
   const closeMenuButton = document.getElementById("closeMenuButton");
@@ -15,15 +17,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const mobileLogoutBtn = document.getElementById("mobileLogoutBtn");
   const mobileLoginButton = document.querySelector(".mobile-login-button");
 
+  // Pesquisa mobile
   const searchIconMobile = document.getElementById("searchIconMobile");
   const searchInputMobile = document.getElementById("searchInputMobile");
   const navbarSearch = document.getElementById("navbarSearch");
   const searchCloseMobile = document.getElementById("searchCloseMobile");
   const searchSubmitMobile = document.getElementById("searchSubmitMobile");
 
-
+  // Navbar fixo com scroll
   const navbar = document.querySelector(".navbar");
 
+  // Login / Logout
   if (token) {
     profileDropdown.style.display = "flex";
     avatar.src =
@@ -37,18 +41,15 @@ document.addEventListener("DOMContentLoaded", () => {
     mobileAvatar.src = avatar.src;
   } else {
     profileDropdown.style.display = "none";
-
     avatar.style.display = "none";
     loginText.style.display = "block";
-    profile.onclick = () => {
-      window.location.href = "./src/pages/auth-login.html";
-    };
+    profile.onclick = () =>
+      (window.location.href = "./src/pages/auth-login.html");
 
     mobileAuthLoggedIn.style.display = "none";
     mobileAuthLoggedOut.style.display = "block";
-    mobileLoginButton.onclick = () => {
-      window.location.href = "./src/pages/auth-login.html";
-    };
+    mobileLoginButton.onclick = () =>
+      (window.location.href = "./src/pages/auth-login.html");
   }
 
   logoutBtn.addEventListener("click", (e) => {
@@ -63,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "./src/pages/auth-login.html";
   });
 
+  // Menu mobile
   hamburgerMenu.addEventListener("click", () => {
     mobileMenuOverlay.classList.add("active");
     document.body.style.overflow = "hidden";
@@ -80,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Pesquisa mobile
   const performSearch = () => {
     const searchTerm = searchInputMobile.value.trim();
     if (searchTerm) {
@@ -101,7 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   searchCloseMobile.addEventListener("click", closeMobileSearch);
-
   searchSubmitMobile.addEventListener("click", performSearch);
 
   searchInputMobile.addEventListener("keypress", (e) => {
@@ -120,15 +122,46 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  navbarSearch.addEventListener("click", (e) => {
-    e.stopPropagation();
+  navbarSearch.addEventListener("click", (e) => e.stopPropagation());
+
+  // Efeito scroll na navbar
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 0) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
   });
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 0) { 
-      navbar.classList.add("scrolled");
-    } else { 
-      navbar.classList.remove("scrolled");
+  // Modal de Categorias
+  const modal = document.getElementById("modalCategorias");
+  const abrirModalBtn = document.getElementById("abrirModalBtn");
+  const fecharModal = document.querySelector(".fechar");
+  const categoriaArrow = document.getElementById("categoriaArrow");
+
+  abrirModalBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    if (modal.style.display === "block") {
+      // Fecha o modal
+      modal.style.display = "none";
+      categoriaArrow.classList.remove("rotated");
+    } else {
+      // Abre o modal
+      modal.style.display = "block";
+      categoriaArrow.classList.add("rotated");
+    }
+  });
+
+  fecharModal.addEventListener("click", () => {
+    modal.style.display = "none";
+    categoriaArrow.classList.remove("rotated");
+  });
+
+  window.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+      categoriaArrow.classList.remove("rotated");
     }
   });
 });

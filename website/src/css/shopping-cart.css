@@ -1,9 +1,9 @@
-@import url('./components/cards/cards-shopping.css');
+@import url("./components/cards/cards-shopping.css");
 
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
 
 .cart-container {
