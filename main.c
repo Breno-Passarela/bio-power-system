@@ -439,10 +439,8 @@ int main(void)
 
                             break;
                         case 2:
-                            int i = 0;
-
                             printf("\n");
-                            for (i = 0; i < TLC; i++) {
+                            for (int i = 0; i < TLC; i++) {
                                 printf("%d | %s | %s\n", i + 1, vRG, vCliente);
                             }
                             printf("\n");
@@ -453,10 +451,8 @@ int main(void)
 
                             break;
                         case 3:
-                            int i = 0;
-
                             printf("\n");
-                            for (i = 0; i < TLV; i++) {
+                            for (int i = 0; i < TLV; i++) {
                                 printf("%d | %s | %s | %d | %.2f\n", i + 1, vRGV[i], vCodV[i], vQtdeV[i], (float)vPrecoV[i] / 100.0);
                             }
                             printf("\n");
