@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <locale.h>
 
 #define TF 255
 
@@ -16,6 +17,7 @@ int main(void)
             float conversionBack = conversionNext / 100.0; -> (12.3)
             (Result: 19.99)
     */
+    setlocale(LC_ALL, "pt_BR.utf8");
 
     // Position at a given physical size
     int TLV = 0, TLP = 0, TLC = 0, TLS = 0;
@@ -296,31 +298,25 @@ int main(void)
                             fflush(stdin);
                             gets(rg_temp);
 
-                            while (i < TLV && repeat == 0)
-                            {
-                                if (strcmp(rg_temp, vRGV[i]) == 0)
-                                {
+                            while (i < TLV && repeat == 0) {
+                                if (strcmp(rg_temp, vRGV[i]) == 0) {
                                     printf("RG com vendas pendentes! \n");
                                     printf("Pressione enter para digitar outro... \n");
                                     repeat = 1;
                                 }
-                                else
-                                {
+                                else {
                                     i++;
                                 }
                             }
 
-                            for (i = 0; i <= TLC && strcmp(rg_temp, vRG[i]) != 0; i++)
-                                ;
+                            for (i = 0; i <= TLC && strcmp(rg_temp, vRG[i]) != 0; i++);
 
-                            if (i == TLC)
-                            {
+                            if (i == TLC) {
                                 printf("RG não existe! \n");
                                 printf("Pressione enter para digitar outro... \n");
                                 repeat = 1;
                             }
-                            else
-                            {
+                            else {
                                 for (j = i; j < TLC - 1; j++)
                                 {
                                     strcpy(vRG[j], vRG[j + 1]);
@@ -355,10 +351,10 @@ int main(void)
                 do{
                     printf("\nVenda selecionada\n");
 
-                    printf("\nDigite seu RG:\n");
-                    scanf("%s", vRG[TLC]);
-
                     do{
+                        printf("\nDigite seu RG:\n");
+                        scanf("%s", vRG[TLC]);
+
                         for (int i = 0; i < TLC; i++) {
                             if (strcmp(vRG[TLC], vRG[i]) == 0) {                           
                                 client_found = 1; 
