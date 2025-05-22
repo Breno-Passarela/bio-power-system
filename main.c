@@ -367,7 +367,7 @@ int main(void)
 
                         if (!client_found) {
                             printf("RG não cadastrado! Não é possível realizar a venda.\n");
-                            repeat = 1
+                            repeat = 1;
                         }
                     } while(repeat = 1);
                     
