@@ -17,8 +17,10 @@
   <link rel="stylesheet" href="src/css/home-screen.css" />
   <link rel="stylesheet" href="src/css/navbar.css" />
   <link rel="stylesheet" href="src/css/carrousel.css">
-  <link rel="stylesheet" href="src/css/components/cards/cards-home.css">
 
+  <link rel="stylesheet" href="src/css/category-home.css">
+  <link rel="stylesheet" href="src/css/products-home.css">
+  <link rel="stylesheet" href="src/css/components/cards/cards-home.css">
 
 </head>
 
@@ -58,13 +60,11 @@
         <a href="#" id="abrirModalBtn">
           Categorias <i id="categoriaArrow" class="fas fa-chevron-down"></i>
         </a>
-
       </div>
       <div class="button-cart-container">
-        <a href="./src/pages/shopping-cart.html" style="text-decoration: none; color: white;">
+        <a href="src/pages/shopping-cart.html" style="text-decoration: none; color: white;">
           <button class="cart-button">
             <i class="fa-solid fa-cart-shopping">
-
             </i>
           </button>
         </a>
@@ -195,96 +195,118 @@
       <div class="carousel-dots" id="carouselDots"></div>
     </div>
 
-    <!-- MINI CARROSSEL DE CATEGORIAS -->
-    <section class="mini-carousel">
-      <h2>Tipos de Produtos</h2>
-      <div class="mini-carousel-wrapper">
-        <button class="arrow left" onclick="scrollCarousel(-1)">&#10094;</button>
 
-        <div class="carousel-track" id="carouselTrack">
-          <a href="antioxidantes.html" class="category-item">
-            <img src="./src/imgs/categoria/Antioxidantes.png" alt="Antioxidantes">
-            <span>Antioxidantes</span>
-          </a>
-          <a href="proteicos.html" class="category-item">
-            <img src="./src/imgs/categoria/Proteicos.png" alt="Proteicos">
-            <span>Proteicos</span>
-          </a>
-          <a href="vitaminicos.html" class="category-item">
-            <img src="./src/imgs/categoria/Vitamínicos.png" alt="Vitamínicos">
-            <span>Vitamínicos</span>
-          </a>
-          <a href="energeticos.html" class="category-item">
-            <img src="./src/imgs/categoria/Energéticos.png" alt="Energéticos">
-            <span>Energéticos</span>
-          </a>
-          <a href="veganos.html" class="category-item">
-            <img src="./src/imgs/categoria/Veganos.png" alt="Veganos">
-            <span>Veganos</span>
-          </a>
-          <a href="item.html" class="category-item">
-            <img src="./src/imgs/categoria/indispo.png" alt="Veganos">
-            <span>Veganos</span>
-          </a>
-          <a href="item.html" class="category-item">
-            <img src="./src/imgs/categoria/indispo.png" alt="Veganos">
-            <span>Veganos</span>
-          </a>
-          <a href="item.html" class="category-item">
-            <img src="./src/imgs/categoria/indispo.png" alt="Veganos">
-            <span>Veganos</span>
-          </a>
+    <section class="categories-section">
+      <div class="category">
+        <div class="category-circle">
+          <img src="src/imgs/product/product1.png" alt="Antioxidantes" />
         </div>
+        <p>Antioxidantes</p>
+      </div>
+      <div class="category">
+        <div class="category-circle">
+          <img src="src/imgs/product/product2.png" alt="Proteicos" />
+        </div>
+        <p>Proteicos</p>
+      </div>
+      <div class="category">
+        <div class="category-circle">
+          <img src="src/imgs/product/product6.png" alt="Vitaminicos" />
+        </div>
+        <p>Vitamínicos</p>
+      </div>
+      <div class="category">
+        <div class="category-circle">
+          <img src="src/imgs/product/product5.png" alt="Energeticos" />
+        </div>
+        <p>Energéticos</p>
+      </div>
+      <div class="category">
+        <div class="category-circle">
+          <img src="src/imgs/product/product7.png" alt="Veganos" />
+        </div>
+        <p>Veganos</p>
+      </div>
 
-        <button class="arrow right" onclick="scrollCarousel(1)">&#10095;</button>
+      <div class="arrow">
+        <span>&#10095;</span>
       </div>
     </section>
 
     <!-- Produtos -->
-    <div class="products" style="display:flex; flex-wrap:wrap;">
-      <!-- produtos vão aparecer aqui -->
-    </div>
+    <section class="bestsellers">
+      <div class="bestsellers-wrapper">
+        <h2 class="bestsellers-title">Mais vendidos</h2>
+        <div class="bestsellers-line"></div>
+      </div>
 
-    <div id="product-details" style="display:none;">
-      <!-- detalhes do produto aparecerão aqui -->
-    </div>
+      <div class="bestsellers-list">
+        <!-- Product 1 -->
+        <div class="product-card">
+          <img src="src/imgs/product/product9.png" alt="Pré-treino Insanity 300g" />
+          <h3>Pré-treino Insanity 300g</h3>
+          <p class="price">R$109,90 <span>no boleto ou pix</span></p>
+          <p class="installments">ou R$122,11 no cartão de crédito<br>em até 6x de R$20,35 sem juros</p>
+          <div class="buttons">
+            <a href="./src/pages/shopping-cart.html">
+              <button class="cart-btn">
+                <i class="fa fa-shopping-cart"></i>
+              </button>
+            </a>
+            <button class="buy-btn">Comprar</button>
+          </div>
+        </div>
 
-    <!-- Seção de Destaques -->
-    <section class="destaques">
-      <h2>Produtos em Destaque</h2>
-      <div class="produtos">
-        <div class="produto">
-          <img src="src/imgs/produtos/produto1.jpg" alt="Produto 1">
-          <h3>Whey Protein Isolado</h3>
-          <p>R$ 199,90</p>
-          <button>Comprar</button>
+        <!-- Product 2 -->
+        <div class="product-card">
+          <img src="src/imgs/product/product1.png" alt="Creatina Monohidratada 250g" />
+          <h3>Creatina Monohidratada 250g</h3>
+          <p class="price">R$85,92 <span>no boleto ou pix</span></p>
+          <p class="installments">ou R$88,80 no cartão de crédito<br>em até 6x de R$14,80 sem juros</p>
+          <div class="buttons">
+            <a href="./src/pages/shopping-cart.html">
+              <button class="cart-btn">
+                <i class="fa fa-shopping-cart"></i>
+              </button>
+            </a>
+            <button class="buy-btn">Comprar</button>
+          </div>
         </div>
-        <div class="produto">
-          <img src="src/imgs/produtos/produto2.jpg" alt="Produto 2">
-          <h3>Creatina Monohidratada</h3>
-          <p>R$ 89,90</p>
-          <button>Comprar</button>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+          <img src="src/imgs/product/product10.png" alt="Whey de baunilha 1kg" />
+          <h3>Whey de baunilha–1kg</h3>
+          <p class="price">R$99,90 <span>no boleto ou pix</span></p>
+          <p class="installments">ou R$138,77 no cartão de crédito<br>em até 6x de R$23,13 sem juros</p>
+          <div class="buttons">
+            <a href="./src/pages/shopping-cart.html">
+              <button class="cart-btn">
+                <i class="fa fa-shopping-cart"></i>
+              </button>
+            </a>
+            <button class="buy-btn">Comprar</button>
+          </div>
         </div>
-        <div class="produto">
-          <img src="src/imgs/produtos/produto3.jpg" alt="Produto 3">
-          <h3>Multivitamínico Completo</h3>
-          <p>R$ 59,90</p>
-          <button>Comprar</button>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+          <img src="src/imgs/product/product13.png" alt="Whey de chocolate 1kg" />
+          <h3>Whey de chocolate–1kg</h3>
+          <p class="price">R$99,90 <span>no boleto ou pix</span></p>
+          <p class="installments">ou R$138,77 no cartão de crédito<br>em até 6x de R$23,13 sem juros</p>
+          <div class="buttons">
+            <a href="./src/pages/shopping-cart.html">
+              <button class="cart-btn">
+                <i class="fa fa-shopping-cart"></i>
+              </button>
+            </a>
+            <button class="buy-btn">Comprar</button>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Seção de Categorias -->
-    <section class="categorias">
-      <h2>Categorias</h2>
-      <div class="lista-categorias">
-        <a href="#"><img src="src/imgs/categorias/proteinas.jpg" alt="Proteínas"><span>Proteínas</span></a>
-        <a href="#"><img src="src/imgs/categorias/aminoacidos.jpg" alt="Aminoácidos"><span>Aminoácidos</span></a>
-        <a href="#"><img src="src/imgs/categorias/carboidratos.jpg" alt="Carboidratos"><span>Carboidratos</span></a>
-        <a href="#"><img src="src/imgs/categorias/veganos.jpg" alt="Veganos"><span>Veganos</span></a>
-        <a href="#"><img src="src/imgs/categorias/vitaminas.jpg" alt="Vitaminas"><span>Vitaminas</span></a>
-      </div>
-    </section>
 
     <!-- Rodapé -->
     <footer class="rodape">
