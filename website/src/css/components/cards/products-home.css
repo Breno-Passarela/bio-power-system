@@ -1,0 +1,143 @@
+.bestsellers {
+  padding: 2rem 3rem;
+  margin-top: 1rem;
+}
+
+.bestsellers-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.bestsellers-title {
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  color: #000;
+  margin: 0;
+}
+
+.bestsellers-line {
+  flex-grow: 1;
+  height: 1.5px;
+  background-color: #000;
+}
+
+.bestsellers-list {
+  display: flex;
+  gap: 2rem;
+  padding-bottom: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  position: relative;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  padding: 2.5rem 1.5rem 1.5rem;
+  background: white;
+  text-align: center;
+  transition: transform 0.3s ease;
+  overflow: visible;
+  margin-top: 4rem;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.185);
+  transition: transform 0.3s ease;
+  width: 100%;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-top: -55px;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+.product-card h3,
+.price,
+.installments {
+  margin: 0.25rem 0;
+  text-align: start;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.price span {
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: #555;
+}
+
+.installments {
+  color: #2e7d32;
+  font-size: 0.9rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.cart-btn {
+  background: white;
+  border: 1px solid;
+  color: red;
+  box-shadow: 0 2px 6px rgba(255, 0, 0, 0.3);
+  padding: 0.6rem 0.9rem;
+  border-radius: 12px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.buy-btn {
+  background: green;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0.6rem 1.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  font-size: 1rem;
+}
+
+.cart-btn {
+  background: red;
+  color: white;
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.5);
+}
+
+.buy-btn {
+  background: darkgreen;
+}
+
+.cart-btn:hover {
+  background-color: #990000;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.buy-btn:hover {
+  background-color: #256729;
+  transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+  .product-card {
+    margin-top: 3rem;
+  }
+}
