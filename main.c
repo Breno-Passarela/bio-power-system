@@ -129,7 +129,7 @@ int main(void)
 
                         vPreco[TLP] = (int)(vpreco_temp * 100 + 0.5); // Casting
 
-                        printf("\n-> %d | %s | %s | %d | %d -> %f\n", TLP + 1, vCod[TLP], vProdServ[TLP], vQtde[TLP], vPreco[TLP], (float)vPreco[TLP] / 100.0);
+                        printf("\n-> %d | %s | %s | %d | %d -> %.2f\n", TLP + 1, vCod[TLP], vProdServ[TLP], vQtde[TLP], vPreco[TLP], (float)vPreco[TLP] / 100.0);
 
                         TLP++;
 
@@ -344,65 +344,134 @@ int main(void)
             } while (program_execute_action != 3);
             break;
         case 3:
-            printf("\nVenda selecionada\n");
+            char continue_choosen;
+            do {
+                int repeat;
+                int client_found = 0;
+                int product_found = 0;
+                int product_index = -1;
+                float product_price = 0.0;
+                
+                do{
+                    printf("\nVenda selecionada\n");
 
-            printf("\nDigite seu RG:\n");
-            scanf("%s", vRG[TLC]);
+                    printf("\nDigite seu RG:\n");
+                    scanf("%s", vRG[TLC]);
 
-            
-            int cliente_encontrado = 0;
-            for (int i = 0; i < TLC; i++)
-            {
-                if (strcmp(vRG[TLC], vRG[i]) == 0)
-                {                           
-                    cliente_encontrado = 1; 
-                }
-            }
+                    do{
+                        for (int i = 0; i < TLC; i++) {
+                            if (strcmp(vRG[TLC], vRG[i]) == 0) {                           
+                                client_found = 1; 
+                            }
+                        }
 
-            if (!cliente_encontrado)
-            {
-                printf("RG não cadastrado! Não é possivel realizar a venda.\n");
-            }
+                        if (!client_found) {
+                            printf("RG não cadastrado! Não é possível realizar a venda.\n");
+                            repeat = 1
+                        }
+                    } while(repeat = 1);
+                    
+                    do{
+                        printf("\nDigite o código do produto:\n");
+                        scanf("%s", vCod[TLP]);
 
-            
-            printf("\nDigite o codigo do produto:\n");
-            scanf("%s", vCod[TLP]);
+                        for (int i = 0; i < TLP; i++) {
+                            if (strcmp(vCod[TLP], vCod[i]) == 0) {                                             
+                                product_found = 1;                   
+                                product_price = (float)vPreco[i] / 100.0; 
+                                product_index = i;                       
+                            }
+                        }
 
-            int produto_encontrado = 0;
-            float preco_produto = 0.0;
-            int produto_index = -1;
-            for (int i = 0; i < TLP; i++)
-            {
-                if (strcmp(vCod[TLP], vCod[i]) == 0)
-                {                                             
-                    produto_encontrado = 1;                   
-                    preco_produto = (float)vPreco[i] / 100.0; 
-                    produto_index = i;                       
-                }
-            }
+                        if (!product_found) {
+                            printf("Código do produto não encontrado!\n");
+                        }
+                    } while(repeat = 1);
 
-            if (!produto_encontrado)
-            {
-                printf("Codigo do produto não encontrado!\n");
-            }
+                    printf("Digite a quantidade do produto: ");
+                    scanf("%d", &qtd);
 
-            printf("Digite a quantidade do produto: ");
-            scanf("%d", &qtd);
+                    if (qtd <= 0 || qtd > vQtde[product_index]) {
+                        printf("Quantidade inválida ou insuficiente em estoque!\n");
+                        printf("Não foi possível concluir a venda\n");
+                        repeat = 1;
+                    }
 
-            if (qtd <= 0 || qtd > vQtde[produto_index])
-            {
-                printf("Quantidade invalida ou insuficiente em estoque!\n");
-            }
+                    if (repeat = 0) {
+                        float selling = qtd * product_price;
+                        vQtde[product_index] -= qtd;
+                        TLV++;
 
-            float venda = qtd * preco_produto;
-            vQtde[produto_index] -= qtd; 
+                        printf("O valor da venda foi: %.2f\n", selling);
+                    }
+                } while (repeat = 1);
 
-            printf("O valor da venda foi: %.2f\n", venda);
+                printf("\nQuer cadastrar uma venda? (S/N)\n> ");
+                scanf(" %c", &continue_choosen);
+            } while (tolower(continue_choosen) == 's');
             break;
-
         case 4:
             // Code Report (Otávio && Breno Passarela && Breno Henrique)
-            printf("\n Relatório selecionado \n");
+            printf("\nRelatório selecionado \n");
+            
+                do {
+                    printf("\n"
+                    "1: Gerenciar Produtos/Serviços\n"
+                    "2: Gerenciar Clientes\n"
+                    "3: Gerenciar Vendas\n"
+                    "4: Retornar\n"
+                    "> ");
+                    scanf(" %d", &program_execute_action);
+
+                    switch(program_execute_action) {
+                        case 1:
+                            int i = 0;
+
+                            printf("\n");
+                            for (i = 0; i < TLP; i++) {
+                                printf("%d | %s | %s | %d | %.2f\n", i + 1, vCod[i], vProdServ[i], vQtde[i], (float)vPreco[i] / 100.0);
+                            }
+                            printf("\n");
+
+                            printf("Pressione Enter para continuar...\n");
+                            while(getchar() != '\n');
+                            getchar();
+
+                            break;
+                        case 2:
+                            int i = 0;
+
+                            printf("\n");
+                            for (i = 0; i < TLC; i++) {
+                                printf("%d | %s | %s\n", i + 1, vRG, vCliente);
+                            }
+                            printf("\n");
+
+                            printf("Pressione Enter para continuar...\n");
+                            while(getchar() != '\n');
+                            getchar();
+
+                            break;
+                        case 3:
+                            int i = 0;
+
+                            printf("\n");
+                            for (i = 0; i < TLV; i++) {
+                                printf("%d | %s | %s | %d | %.2f\n", i + 1, vRGV[i], vCodV[i], vQtdeV[i], (float)vPrecoV[i] / 100.0);
+                            }
+                            printf("\n");
+
+                            printf("Pressione Enter para continuar...\n");
+                            while(getchar() != '\n');
+                            getchar();
+
+                            break;
+                    }
+
+                    if(program_execute_action > 4 || program_execute_action <= 0) printf("\nOpção inválida! Tente novamente.\n"); 
+                    printf("\n");
+                } while(program_execute_action != 3);   
+
             break;
         case 5:
             // Confirm program exit
@@ -411,7 +480,7 @@ int main(void)
             {
                 printf("Tem certeza ? (S/N) \n");
                 scanf(" %c", &program_confirm_exit);
-                // Condition to be checked, it kind of returns 0 for false and 1 for true
+                // Condition to be checked, it returns 0 for false and 1 for true
                 conditional = tolower(program_confirm_exit) != 'n' && tolower(program_confirm_exit) != 's';
                 if (conditional)
                     printf("Resposta inválida! Tente novamente...");
