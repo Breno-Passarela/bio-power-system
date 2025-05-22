@@ -1,9 +1,11 @@
-@import url('../css/components/cards/cards-buy.css'); 
+@import url("../css/components/cards/cards-buy.css");
 
 body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fff; 
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff;
   color: #333;
 }
 
@@ -16,7 +18,7 @@ body {
   padding: 2rem 2.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem; 
+  gap: 1.25rem;
 }
 
 .product-image {
@@ -30,7 +32,7 @@ body {
 .product-info {
   display: flex;
   flex-direction: column;
-  gap: 0.625rem; 
+  gap: 0.625rem;
 }
 
 @media (max-width: 640px) {

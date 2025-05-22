@@ -1,5 +1,143 @@
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+/* Seção de Destaques */
+.destaques {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.destaques h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #990000;
+}
+
+.produtos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.produto {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 250px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.produto img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.produto h3 {
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.produto p {
+  font-size: 1em;
+  color: #333;
+}
+
+.produto button {
+  background-color: #990000;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.produto button:hover {
+  background-color: #b30000;
+}
+
+/* Seção de Categorias */
+.categorias {
+  padding: 40px 20px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.categorias h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #990000;
+}
+
+.lista-categorias {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.lista-categorias a {
+  text-decoration: none;
+  color: #333;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lista-categorias img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.lista-categorias span {
+  font-size: 1em;
+}
+
+/* Rodapé */
+.rodape {
+  background-color: #990000;
+  color: #fff;
+  padding: 20px 0;
+}
+
+.rodape-conteudo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.rodape-logo a {
+  font-size: 1.5em;
+  color: #fff;
+  text-decoration: none;
+}
+
+.rodape-links a {
+  margin: 0 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.rodape-links a:hover {
+  text-decoration: underline;
+}
+
+.rodape-social a {
+  margin: 0 5px;
+  color: #fff;
+  font-size: 1.2em;
+}
+
+.rodape-direitos {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 0.9em;
 }

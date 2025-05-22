@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bio-Power</title>
+  <title>Bio-Power | Home</title>
+
   <link rel="shortcut icon" href="./src/imgs/img-icon-site.png" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,9 +13,13 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <link rel="stylesheet" href="src/css/home-screen.css" />
   <link rel="stylesheet" href="src/css/navbar.css" />
   <link rel="stylesheet" href="src/css/carrousel.css">
+  <link rel="stylesheet" href="src/css/components/cards/cards-home.css">
+
+
 </head>
 
 <body>
@@ -50,11 +55,14 @@
       <div class="navbar-links">
         <a href="src/pages/product-list.html">Loja</a>
         <a href="src/pages/sobre.html">Sobre Nós</a>
-        <a href="/categorias.html">Categorias</a>
+        <a href="#" id="abrirModalBtn">
+          Categorias <i id="categoriaArrow" class="fas fa-chevron-down"></i>
+        </a>
+
       </div>
       <div class="button-cart-container">
         <a href="./src/pages/shopping-cart.html" style="text-decoration: none; color: white;">
-        <button class="cart-button">
+          <button class="cart-button">
             <i class="fa-solid fa-cart-shopping">
 
             </i>
@@ -111,12 +119,74 @@
       </div>
     </div>
 
+    <!-- Modal de Categorias -->
+    <div id="modalCategorias" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Categorias</h2>
+          <span class="fechar">&times;</span>
+        </div>
+        <div class="categorias-container">
+          <div class="categoria-coluna">
+            <h3>Proteína</h3>
+            <ul>
+              <li><a href="#">Whey Protein</a></li>
+              <li><a href="#">Albumina</a></li>
+              <li><a href="#">Caseína</a></li>
+              <li><a href="#">Blend de Proteína</a></li>
+              <li><a href="#">Proteína de Soja</a></li>
+            </ul>
+          </div>
+
+          <div class="categoria-coluna">
+            <h3>Aminoácidos</h3>
+            <ul>
+              <li><a href="#">BCAA</a></li>
+              <li><a href="#">Creatina</a></li>
+              <li><a href="#">Glutamina</a></li>
+              <li><a href="#">Leucina</a></li>
+            </ul>
+          </div>
+
+          <div class="categoria-coluna">
+            <h3>Carboidratos</h3>
+            <ul>
+              <li><a href="#">Waxy Maize</a></li>
+              <li><a href="#">Dextrose</a></li>
+              <li><a href="#">Maltodextrina</a></li>
+            </ul>
+          </div>
+
+          <div class="categoria-coluna">
+            <h3>Veganos</h3>
+            <ul>
+              <li><a href="#">Proteína de Arroz</a></li>
+              <li><a href="#">Proteína da Ervilha</a></li>
+              <li><a href="#">Aminoácidos Veganos</a></li>
+            </ul>
+          </div>
+
+          <div class="categoria-coluna">
+            <h3>Vitaminas</h3>
+            <ul>
+              <li><a href="#">Complexo B</a></li>
+              <li><a href="#">Multivitamínico</a></li>
+              <li><a href="#">Carnitina</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Content page -->
     <div class="carousel-container">
       <div class="carousel-wrapper" id="carouselWrapper">
         <div class="carousel-slide"><img src="src/imgs/carrousel/banner.png" alt="Slide 1"></div>
         <div class="carousel-slide"><img src="src/imgs/carrousel/banner-2.png" alt="Slide 2"></div>
         <div class="carousel-slide"><img src="src/imgs/carrousel/banner-3.png" alt="Slide 3"></div>
+        <div class="carousel-slide"><img src="src/imgs/carrousel/banner-4.png" alt="Slide 4"></div>
+        <div class="carousel-slide"><img src="src/imgs/carrousel/banner-5.png" alt="Slide 5"></div>
+        <div class="carousel-slide"><img src="src/imgs/carrousel/banner-6.png" alt="Slide 6"></div>
       </div>
 
       <button class="carousel-btn prev" onclick="prevSlide()">&#10094;</button>
@@ -125,6 +195,120 @@
       <div class="carousel-dots" id="carouselDots"></div>
     </div>
 
+    <!-- MINI CARROSSEL DE CATEGORIAS -->
+    <section class="mini-carousel">
+      <h2>Tipos de Produtos</h2>
+      <div class="mini-carousel-wrapper">
+        <button class="arrow left" onclick="scrollCarousel(-1)">&#10094;</button>
+
+        <div class="carousel-track" id="carouselTrack">
+          <a href="antioxidantes.html" class="category-item">
+            <img src="./src/imgs/categoria/Antioxidantes.png" alt="Antioxidantes">
+            <span>Antioxidantes</span>
+          </a>
+          <a href="proteicos.html" class="category-item">
+            <img src="./src/imgs/categoria/Proteicos.png" alt="Proteicos">
+            <span>Proteicos</span>
+          </a>
+          <a href="vitaminicos.html" class="category-item">
+            <img src="./src/imgs/categoria/Vitamínicos.png" alt="Vitamínicos">
+            <span>Vitamínicos</span>
+          </a>
+          <a href="energeticos.html" class="category-item">
+            <img src="./src/imgs/categoria/Energéticos.png" alt="Energéticos">
+            <span>Energéticos</span>
+          </a>
+          <a href="veganos.html" class="category-item">
+            <img src="./src/imgs/categoria/Veganos.png" alt="Veganos">
+            <span>Veganos</span>
+          </a>
+          <a href="item.html" class="category-item">
+            <img src="./src/imgs/categoria/indispo.png" alt="Veganos">
+            <span>Veganos</span>
+          </a>
+          <a href="item.html" class="category-item">
+            <img src="./src/imgs/categoria/indispo.png" alt="Veganos">
+            <span>Veganos</span>
+          </a>
+          <a href="item.html" class="category-item">
+            <img src="./src/imgs/categoria/indispo.png" alt="Veganos">
+            <span>Veganos</span>
+          </a>
+        </div>
+
+        <button class="arrow right" onclick="scrollCarousel(1)">&#10095;</button>
+      </div>
+    </section>
+
+    <!-- Produtos -->
+    <div class="products" style="display:flex; flex-wrap:wrap;">
+      <!-- produtos vão aparecer aqui -->
+    </div>
+
+    <div id="product-details" style="display:none;">
+      <!-- detalhes do produto aparecerão aqui -->
+    </div>
+
+    <!-- Seção de Destaques -->
+    <section class="destaques">
+      <h2>Produtos em Destaque</h2>
+      <div class="produtos">
+        <div class="produto">
+          <img src="src/imgs/produtos/produto1.jpg" alt="Produto 1">
+          <h3>Whey Protein Isolado</h3>
+          <p>R$ 199,90</p>
+          <button>Comprar</button>
+        </div>
+        <div class="produto">
+          <img src="src/imgs/produtos/produto2.jpg" alt="Produto 2">
+          <h3>Creatina Monohidratada</h3>
+          <p>R$ 89,90</p>
+          <button>Comprar</button>
+        </div>
+        <div class="produto">
+          <img src="src/imgs/produtos/produto3.jpg" alt="Produto 3">
+          <h3>Multivitamínico Completo</h3>
+          <p>R$ 59,90</p>
+          <button>Comprar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção de Categorias -->
+    <section class="categorias">
+      <h2>Categorias</h2>
+      <div class="lista-categorias">
+        <a href="#"><img src="src/imgs/categorias/proteinas.jpg" alt="Proteínas"><span>Proteínas</span></a>
+        <a href="#"><img src="src/imgs/categorias/aminoacidos.jpg" alt="Aminoácidos"><span>Aminoácidos</span></a>
+        <a href="#"><img src="src/imgs/categorias/carboidratos.jpg" alt="Carboidratos"><span>Carboidratos</span></a>
+        <a href="#"><img src="src/imgs/categorias/veganos.jpg" alt="Veganos"><span>Veganos</span></a>
+        <a href="#"><img src="src/imgs/categorias/vitaminas.jpg" alt="Vitaminas"><span>Vitaminas</span></a>
+      </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="rodape">
+      <div class="rodape-conteudo">
+        <div class="rodape-logo">
+          <a href="./index.html">Bio-Power</a>
+        </div>
+        <div class="rodape-links">
+          <a href="src/pages/sobre.html">Sobre Nós</a>
+          <a href="src/pages/contato.html">Contato</a>
+          <a href="src/pages/politica.html">Política de Privacidade</a>
+        </div>
+        <div class="rodape-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      <div class="rodape-direitos">
+        <p>&copy; 2025 Bio-Power. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <script src="./src/js/auth/auth-home.js"></script>
     <script src="./src/js/navbar-script.js"></script>
     <script src="./src/js/carrossel.js"></script>
 </body>
