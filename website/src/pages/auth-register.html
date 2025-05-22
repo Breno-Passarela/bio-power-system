@@ -5,10 +5,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bio-Power - Cadastro</title>
-  <link rel="stylesheet" href="../css/register-screen.css" />
+
   <link rel="shortcut icon" href="../imgs/img-icon-site.png" type="image/x-icon">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="../css/screen/register-screen.css" />
+
 </head>
+
 <body>
   <div class="container">
     <div class="img-flex-container">
@@ -22,100 +27,101 @@
 
     <form id="registerForm" class="register-form">
       <div class="register-form-inputs">
-          <!-- Linha 1: Nome | Email | Data de Nascimento -->
-          <div class="input-register-row">
-            <div class="input-register-third">
-              <label class="input-register-label" for="nome">Nome</label>
-              <div class="input-icon-container">
-                <input class="input-register-input" type="text" id="nome" placeholder="Ex: João" />
-                <i class="fas fa-user"></i>
-              </div>
-              <span class="error-message" id="error-nome"></span>
+        <!-- Linha 1: Nome | Email | Data de Nascimento -->
+        <div class="input-register-row">
+          <div class="input-register-third">
+            <label class="input-register-label" for="nome">Nome</label>
+            <div class="input-icon-container">
+              <input class="input-register-input" type="text" id="nome" placeholder="Ex: João" />
+              <i class="fas fa-user"></i>
             </div>
-
-            <div class="input-register-third">
-              <label class="input-register-label" for="email">Email</label>
-              <div class="input-icon-container">
-                <input class="input-register-input" type="email" id="email" placeholder="Ex: joao@gmail.com" />
-                <i class="fas fa-envelope"></i>
-              </div>
-              <span class="error-message" id="error-email"></span>
-            </div>
-
-            <div class="input-register-third">
-              <label class="input-register-label" for="data">Data de Nascimento</label>
-              <div class="input-icon-container">
-                <input class="input-register-input" type="text" id="data" placeholder="Ex: DD/MM/AAAA" />
-                <i class="fas fa-calendar-alt"></i>
-              </div>
-              <span class="error-message" id="error-data"></span>
-            </div>
+            <span class="error-message" id="error-nome"></span>
           </div>
 
-          <!-- Linha 2: Sobrenome | Senha | Telefone -->
-          <div class="input-register-row">
-            <div class="input-register-third">
-              <label class="input-register-label" for="sobrenome">Sobrenome</label>
-              <div class="input-icon-container">
-                <input class="input-register-input" type="text" id="sobrenome" placeholder="Ex: da Silva" />
-                <i class="fas fa-user"></i>
-              </div>
-              <span class="error-message" id="error-sobrenome"></span>
+          <div class="input-register-third">
+            <label class="input-register-label" for="email">Email</label>
+            <div class="input-icon-container">
+              <input class="input-register-input" type="email" id="email" placeholder="Ex: joao@gmail.com" />
+              <i class="fas fa-envelope"></i>
             </div>
-
-            <div class="input-register-third">
-              <label class="input-register-label" for="senha">Senha</label>
-              <div class="input-icon-container">
-                <input class="input-register-input" type="password" id="password" placeholder="Ex: Senha@123" />
-                <i class="fas fa-eye toggle-password" id="togglePassword" onclick="passwordShow('togglePassword', 'password')" ></i>
-              </div>
-              <span class="error-message" id="error-senha"></span>
-            </div>
-
-            <div class="input-register-third">
-              <label class="input-register-label" for="telefone">Telefone</label>
-              <div class="input-icon-container">
-                <input class="input-register-input" type="text" id="telefone" placeholder="Ex: 11912345678" />
-                <i class="fas fa-phone"></i>
-              </div>
-              <span class="error-message" id="error-telefone"></span>
-            </div>
+            <span class="error-message" id="error-email"></span>
           </div>
 
-          <!-- Linha 3: CPF | Endereço | CEP -->
-          <div class="input-register-row">
-            <div class="input-register-third">
-              <label class="input-register-label" for="cpf">CPF</label>
-              <div class="input-icon-container">
-                <input class="input-register-input" type="text" id="cpf" placeholder="Ex: 12345678900" />
-                <i class="fas fa-id-card"></i>
-              </div>
-              <span class="error-message" id="error-cpf"></span>
+          <div class="input-register-third">
+            <label class="input-register-label" for="data">Data de Nascimento</label>
+            <div class="input-icon-container">
+              <input class="input-register-input" type="text" id="data" placeholder="Ex: DD/MM/AAAA" />
+              <i class="fas fa-calendar-alt"></i>
             </div>
+            <span class="error-message" id="error-data"></span>
+          </div>
+        </div>
 
-            <div class="input-register-third">
-              <label class="input-register-label" for="endereco">Endereço</label>
-              <div class="input-icon-container">
-                <input class="input-register-input" type="text" id="endereco" placeholder="Ex: Rua A, 123" />
-                <i class="fas fa-map-marker-alt"></i>
-              </div>
-              <span class="error-message" id="error-endereco"></span>
+        <!-- Linha 2: Sobrenome | Senha | Telefone -->
+        <div class="input-register-row">
+          <div class="input-register-third">
+            <label class="input-register-label" for="sobrenome">Sobrenome</label>
+            <div class="input-icon-container">
+              <input class="input-register-input" type="text" id="sobrenome" placeholder="Ex: da Silva" />
+              <i class="fas fa-user"></i>
             </div>
-
-            <div class="input-register-third">
-              <label class="input-register-label" for="cep">CEP</label>
-              <div class="input-icon-container">
-                <input class="input-register-input" type="text" id="cep" placeholder="Ex: 12345678" />
-                <i class="fas fa-map-pin"></i>
-              </div>
-              <span class="error-message" id="error-cep"></span>
-            </div>
+            <span class="error-message" id="error-sobrenome"></span>
           </div>
 
-          <!-- Linha 4: Gênero -->
-          <div class="input-register-group">
-            <label class="input-register-label">Gênero Biológico</label>
-            <!-- <div style="display: flex; gap: 20px; align-items: center;">
+          <div class="input-register-third">
+            <label class="input-register-label" for="senha">Senha</label>
+            <div class="input-icon-container">
+              <input class="input-register-input" type="password" id="password" placeholder="Ex: Senha@123" />
+              <i class="fas fa-eye toggle-password" id="togglePassword"
+                onclick="passwordShow('togglePassword', 'password')"></i>
+            </div>
+            <span class="error-message" id="error-senha"></span>
+          </div>
+
+          <div class="input-register-third">
+            <label class="input-register-label" for="telefone">Telefone</label>
+            <div class="input-icon-container">
+              <input class="input-register-input" type="text" id="telefone" placeholder="Ex: 11912345678" />
+              <i class="fas fa-phone"></i>
+            </div>
+            <span class="error-message" id="error-telefone"></span>
+          </div>
+        </div>
+
+        <!-- Linha 3: CPF | Endereço | CEP -->
+        <div class="input-register-row">
+          <div class="input-register-third">
+            <label class="input-register-label" for="cpf">CPF</label>
+            <div class="input-icon-container">
+              <input class="input-register-input" type="text" id="cpf" placeholder="Ex: 12345678900" />
+              <i class="fas fa-id-card"></i>
+            </div>
+            <span class="error-message" id="error-cpf"></span>
+          </div>
+
+          <div class="input-register-third">
+            <label class="input-register-label" for="endereco">Endereço</label>
+            <div class="input-icon-container">
+              <input class="input-register-input" type="text" id="endereco" placeholder="Ex: Rua A, 123" />
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <span class="error-message" id="error-endereco"></span>
+          </div>
+
+          <div class="input-register-third">
+            <label class="input-register-label" for="cep">CEP</label>
+            <div class="input-icon-container">
+              <input class="input-register-input" type="text" id="cep" placeholder="Ex: 12345678" />
+              <i class="fas fa-map-pin"></i>
+            </div>
+            <span class="error-message" id="error-cep"></span>
+          </div>
+        </div>
+
+        <!-- Linha 4: Gênero -->
+        <div class="input-register-group">
+          <label class="input-register-label">Gênero Biológico</label>
+          <!-- <div style="display: flex; gap: 20px; align-items: center;">
               <label style="display: flex; align-items: center; gap: 5px;">
                 <input type="radio" name="genero" value="homem" id="generoHomem" />
                 Homem
@@ -125,14 +131,14 @@
                 Mulher
               </label>
             </div> -->
-            <select class="input-register-input" style="cursor: pointer;" name="Gênero Biológico" id="genero">
-              <option value="not_valid" disabled selected>Selecione uma opção</option>
-              <option value="nao_informado">Prefiro não informar</option>
-              <option value="mulher">Mulher</option>
-              <option value="homem">Homem</option>
-            </select>
-            <span class="error-message" id="error-genero"></span>
-          </div>
+          <select class="input-register-input" style="cursor: pointer;" name="Gênero Biológico" id="genero">
+            <option value="not_valid" disabled selected>Selecione uma opção</option>
+            <option value="nao_informado">Prefiro não informar</option>
+            <option value="mulher">Mulher</option>
+            <option value="homem">Homem</option>
+          </select>
+          <span class="error-message" id="error-genero"></span>
+        </div>
       </div>
 
       <div class="container-register-button">
