@@ -12,13 +12,7 @@ const produtos = [
         imagem: "../imgs/product/product2.png"
     },
     {
-        nome: "Sweet onion",
-        preco: 99.90,
-        qtd: 1,
-        imagem: "../imgs/product/product3.png"
-    },
-    {
-        nome: "Sweet onion",
+        nome: "Pré-Treino 300g",
         preco: 99.90,
         qtd: 1,
         imagem: "../imgs/product/product3.png"
@@ -59,7 +53,7 @@ function renderCarrinho() {
         container.appendChild(item);
     });
 
-    document.getElementById("cartItemCount").textContent = `: ${itemCount} itens`;
+    document.getElementById("cartItemCount").textContent = `: ${itemCount - 1} itens`;
     document.getElementById("subtotal").textContent = formatarPreco(subtotal);
 
     // Definindo valores fixos para frete e desconto conforme seu exemplo
