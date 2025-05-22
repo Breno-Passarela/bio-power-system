@@ -17,10 +17,9 @@ int main(void)
             float conversionBack = conversionNext / 100.0; -> (12.3)
             (Result: 19.99)
     */
-    setlocale(LC_ALL, "pt_BR.utf8");
 
     // Position at a given physical size
-    int TLV = 0, TLP = 0, TLC = 0, TLS = 0;
+    int TLV = 0, TLP = 0, TLC = 0;
 
     // Product
     char vCod[TF][50], vProdServ[TF][50];
@@ -36,7 +35,7 @@ int main(void)
     // Controllers
     // Program
     int program_exit = 1, program_execute_action;
-    char program_confirm_exit, continue_choosen;
+    char program_confirm_exit, continue_choosen = 'n';
 
     // Interface
     do
@@ -70,7 +69,7 @@ int main(void)
                 {
                 case 1:
                     // Code Products and Services (Otávio && Breno Henrique)
-                    printf("\n Produtos e Serviços selecionado");
+                    printf("\n Produtos e Serviços selecionado \n");
                     char vcod_temp[50];
                     char vprodserv_temp[50];
                     float vpreco_temp;
@@ -104,7 +103,7 @@ int main(void)
                         do
                         {
                             repeat = 0;
-                            printf("Digite o produto ou serviço: ");
+                            printf("Digite o nome produto ou serviço: ");
                             gets(vprodserv_temp);
 
                             int i = 0;
@@ -134,6 +133,7 @@ int main(void)
 
                         TLP++;
 
+                        while (getchar() != '\n');
                         printf("\nQuer adicionar mais um produto? (S/N)\n> ");
                         scanf(" %c", &continue_choosen);
                     } while (tolower(continue_choosen) == 's');
@@ -141,9 +141,8 @@ int main(void)
                     break;
                 case 2:
                     // Code Client (Rafael && Matheus Bispo)
-                    // printf("\n Cliente selecionado");
+                    printf("\n Cliente selecionado \n");
 
-                    char continue_choosen;
                     char rg_temp[12];
 
                     do
@@ -335,7 +334,6 @@ int main(void)
             } while (program_execute_action != 3);
             break;
         case 3:
-            char continue_choosen;
             char rg_temp[12];
 
             if (TLP > 0) {
