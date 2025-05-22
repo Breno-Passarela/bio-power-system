@@ -79,8 +79,7 @@ int main(void)
                     do
                     {
                         repeat = 0;
-                        while (getchar() != '\n')
-                            ;
+                        while (getchar() != '\n');
 
                         do
                         {
@@ -156,8 +155,7 @@ int main(void)
                             repeat = 0;
                             int i = 0;
 
-                            while (getchar() != '\n')
-                                ;
+                            while (getchar() != '\n');
 
                             printf("Digite o RG: ");
                             fflush(stdin);
@@ -229,8 +227,7 @@ int main(void)
                             int i = 0;
                             int j = 0;
 
-                            while (getchar() != '\n')
-                                ;
+                            while (getchar() != '\n');
 
                             printf("Digite o código do produto que deseja excluir: ");
                             fflush(stdin);
@@ -250,8 +247,7 @@ int main(void)
                                 }
                             }
 
-                            for (i = 0; i <= TLP && strcmp(vcod_temp, vCod[TLP]) != 0; i++)
-                                ;
+                            for (i = 0; i <= TLP && strcmp(vcod_temp, vCod[TLP]) != 0; i++);
 
                             if (i == TLP)
                             {
@@ -291,8 +287,7 @@ int main(void)
                             int i = 0;
                             int j = 0;
 
-                            while (getchar() != '\n')
-                                ;
+                            while (getchar() != '\n');
 
                             printf("Digite o RG do cliente que deseja excluir: ");
                             fflush(stdin);
@@ -341,70 +336,85 @@ int main(void)
             break;
         case 3:
             char continue_choosen;
-            do {
-                int repeat;
-                int client_found = 0;
-                int product_found = 0;
-                int product_index = -1;
-                float product_price = 0.0;
-                
-                do{
-                    printf("\nVenda selecionada\n");
+            char rg_temp[12];
 
-                    do{
-                        printf("\nDigite seu RG:\n");
-                        scanf("%s", vRG[TLC]);
+            if (TLP > 0) {
+                do {
+                    int repeat;
+                    int client_found = 0;
+                    int product_found = 0;
+                    int product_index = -1;
+                    float product_price = 0.0;
 
-                        for (int i = 0; i < TLC; i++) {
-                            if (strcmp(vRG[TLC], vRG[i]) == 0) {                           
-                                client_found = 1; 
+                        do{
+                            printf("\nVenda selecionada\n");
+
+                            do{
+                                printf("\nDigite seu RG:\n");
+                                scanf("%s", rg_temp);
+
+                                for (int i = 0; i < TLC; i++) {
+                                    if (strcmp(vRG[TLC], vRG[i]) == 0) {                           
+                                        client_found = 1; 
+                                    }
+                                }
+
+                                if (!client_found) {
+                                    printf("RG não cadastrado! Não é possível realizar a venda.\n");
+                                    repeat = 1;
+                                }
+
+                                if (strlen(rg_temp) != 11)
+                                {
+                                    printf("RG com tamanho inválido! \n");
+                                    printf("Pressione enter para digitar novamente... \n");
+                                    repeat = 1;
+                                }
+                            } while(repeat = 1);
+
+                            strcpy(vRG[TLC], rg_temp);
+                            
+                            do {
+                                printf("\nDigite o código do produto:\n");
+                                scanf("%s", vCod[TLP]);
+
+                                for (int i = 0; i < TLP; i++) {
+                                    if (strcmp(vCod[TLP], vCod[i]) == 0) {                                             
+                                        product_found = 1;                   
+                                        product_price = (float)vPreco[i] / 100.0; 
+                                        product_index = i;                       
+                                    }
+                                }
+
+                                if (!product_found) {
+                                    printf("Código do produto não encontrado!\n");
+                                }
+                            } while(repeat = 1);
+
+                            printf("Digite a quantidade do produto: ");
+                            scanf("%d", &qtd);
+
+                            if (qtd <= 0 || qtd > vQtde[product_index]) {
+                                printf("Quantidade inválida ou insuficiente em estoque!\n");
+                                printf("Não foi possível concluir a venda\n");
+                                repeat = 1;
                             }
-                        }
 
-                        if (!client_found) {
-                            printf("RG não cadastrado! Não é possível realizar a venda.\n");
-                            repeat = 1;
-                        }
-                    } while(repeat = 1);
-                    
-                    do{
-                        printf("\nDigite o código do produto:\n");
-                        scanf("%s", vCod[TLP]);
+                            if (repeat = 0) {
+                                float selling = qtd * product_price;
+                                vQtde[product_index] -= qtd;
+                                TLV++;
 
-                        for (int i = 0; i < TLP; i++) {
-                            if (strcmp(vCod[TLP], vCod[i]) == 0) {                                             
-                                product_found = 1;                   
-                                product_price = (float)vPreco[i] / 100.0; 
-                                product_index = i;                       
+                                printf("O valor da venda foi: %.2f\n", selling);
                             }
-                        }
+                        } while (repeat = 1);
 
-                        if (!product_found) {
-                            printf("Código do produto não encontrado!\n");
-                        }
-                    } while(repeat = 1);
-
-                    printf("Digite a quantidade do produto: ");
-                    scanf("%d", &qtd);
-
-                    if (qtd <= 0 || qtd > vQtde[product_index]) {
-                        printf("Quantidade inválida ou insuficiente em estoque!\n");
-                        printf("Não foi possível concluir a venda\n");
-                        repeat = 1;
-                    }
-
-                    if (repeat = 0) {
-                        float selling = qtd * product_price;
-                        vQtde[product_index] -= qtd;
-                        TLV++;
-
-                        printf("O valor da venda foi: %.2f\n", selling);
-                    }
-                } while (repeat = 1);
-
-                printf("\nQuer cadastrar uma venda? (S/N)\n> ");
-                scanf(" %c", &continue_choosen);
-            } while (tolower(continue_choosen) == 's');
+                        printf("\nQuer cadastrar uma venda? (S/N)\n> ");
+                        scanf(" %c", &continue_choosen);
+                } while (tolower(continue_choosen) == 's');
+            } else {
+                printf("Não há produtos cadastrados!\n");
+            }
             break;
         case 4:
             // Code Report (Otávio && Breno Passarela && Breno Henrique)
@@ -462,7 +472,7 @@ int main(void)
 
                     if(program_execute_action > 4 || program_execute_action <= 0) printf("\nOpção inválida! Tente novamente.\n"); 
                     printf("\n");
-                } while(program_execute_action != 3);   
+                } while(program_execute_action != 4);   
 
             break;
         case 5:
