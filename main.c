@@ -338,7 +338,7 @@ int main(void)
 
             if (TLP > 0) {
                 do {
-                    int repeat;
+                    int repeat = 0;
                     int client_found = 0;
                     int product_found = 0;
                     int product_index = -1;
@@ -349,10 +349,10 @@ int main(void)
 
                             do{
                                 printf("\nDigite seu RG:\n");
-                                scanf("%s", rg_temp);
+                                scanf("%s", &rg_temp);
 
                                 for (int i = 0; i < TLC; i++) {
-                                    if (strcmp(vRG[TLC], vRG[i]) == 0) {                           
+                                    if (strcmp(vRG[i], rg_temp) == 0) {                           
                                         client_found = 1; 
                                     }
                                 }
@@ -368,7 +368,7 @@ int main(void)
                                     printf("Pressione enter para digitar novamente... \n");
                                     repeat = 1;
                                 }
-                            } while(repeat = 1);
+                            } while(repeat == 1);
 
                             strcpy(vRG[TLC], rg_temp);
                             
@@ -387,7 +387,7 @@ int main(void)
                                 if (!product_found) {
                                     printf("Código do produto não encontrado!\n");
                                 }
-                            } while(repeat = 1);
+                            } while(repeat == 1);
 
                             printf("Digite a quantidade do produto: ");
                             scanf("%d", &qtd);
@@ -398,14 +398,14 @@ int main(void)
                                 repeat = 1;
                             }
 
-                            if (repeat = 0) {
+                            if (!repeat) {
                                 float selling = qtd * product_price;
                                 vQtde[product_index] -= qtd;
                                 TLV++;
 
                                 printf("O valor da venda foi: %.2f\n", selling);
                             }
-                        } while (repeat = 1);
+                        } while (repeat == 1);
 
                         printf("\nQuer cadastrar uma venda? (S/N)\n> ");
                         scanf(" %c", &continue_choosen);
