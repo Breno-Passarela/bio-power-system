@@ -130,7 +130,7 @@ int main(void)
 
                         vPreco[TLP] = (int)(vpreco_temp * 100 + 0.5);
 
-                        printf("\n-> %d | %s | %s | %d | %d -> %.2f\n", TLP + 1, vCod[TLP], vProdServ[TLP], vQtde[TLP], vPreco[TLP], (float)vPreco[TLP] / 100.0);
+                        printf("\n-> %d | Cod: %s | Produto: %s | Quantidade: %d | Preço: %d -> %.2f\n", TLP + 1, vCod[TLP], vProdServ[TLP], vQtde[TLP], vPreco[TLP], (float)vPreco[TLP] / 100.0);
 
                         TLP++;
 
@@ -187,6 +187,8 @@ int main(void)
 
                         printf("Digite o nome do cliente: ");
                         gets(vCliente[TLC]);
+
+                        printf("%d | %s | %s", TLC + 1, vRG[TLC], vCliente[TLC]);
 
                         TLC++;
 
@@ -270,7 +272,7 @@ int main(void)
                                 }
                                 TLP--;
 
-                                printf("Produto com código %s excluído com sucesso.\n", vcod_temp);
+                                printf("\nProduto com código %s excluído com sucesso.\n", vcod_temp);
                             }
                         } while (repeat == 1);
 
@@ -294,7 +296,7 @@ int main(void)
                             while (getchar() != '\n')
                                 ;
 
-                            printf("Digite o RG do cliente que deseja excluir: ");
+                            printf("Digite o RG do cliente que deseja excluir: \n");
                             fflush(stdin);
                             gets(rg_temp);
 
@@ -302,8 +304,8 @@ int main(void)
                             {
                                 if (strcmp(rg_temp, vRGV[i]) == 0)
                                 {
-                                    printf("RG com vendas pendentes! \n");
-                                    printf("Pressione enter para digitar outro... \n");
+                                    printf("\nRG com vendas pendentes! \n");
+                                    printf("\nPressione enter para digitar outro... \n");
                                     repeat = 1;
                                 }
                                 else
@@ -330,7 +332,7 @@ int main(void)
                                 }
                                 TLC--;
 
-                                printf("Cliente com RG %s excluído com sucesso.\n", rg_temp);
+                                printf("\nCliente com RG %s excluído com sucesso.\n", rg_temp);
                             }
                         } while (repeat == 1);
 
@@ -442,7 +444,7 @@ int main(void)
 
                     vQtdeV[TLV] = qtd_temp;
 
-                    printf("\n-> %d | %s | %s | %d | %.2f", TLV + 1, vCodV[TLV], vProdServV[TLV], vQtdeV[TLV], (float)vPrecoV[TLV] / 100.0);
+                    printf("\n-> %d | Cod. Produto: %s | Quantidade: %s | Quantidade: %d | Preço: %.2f", TLV + 1, vCodV[TLV], vProdServV[TLV], vQtdeV[TLV], (float)vPrecoV[TLV] / 100.0);
 
                     TLV++;
 
@@ -475,7 +477,7 @@ int main(void)
                     printf("\n");
                     for (int i = 0; i < TLP; i++)
                     {
-                        printf("%d | %s | %s | %d | %.2f\n", i + 1, vCod[i], vProdServ[i], vQtde[i], (float)vPreco[i] / 100.0);
+                        printf("%d | Cod.. Produto: %s | Produto: %s | Quantidade: %d | Preço: %.2f\n", i + 1, vCod[i], vProdServ[i], vQtde[i], (float)vPreco[i] / 100.0);
                     }
                     printf("\n");
 
@@ -489,7 +491,7 @@ int main(void)
                     printf("\n");
                     for (int i = 0; i < TLC; i++)
                     {
-                        printf("%d | %s | %s\n", i + 1, vRG[i], vCliente[i]);
+                        printf(" %d | RG: %s | Nome Cliente: %s\n", i + 1, vRG[i], vCliente[i]);
                     }
                     printf("\n");
 
@@ -502,7 +504,7 @@ int main(void)
                     printf("\n");
                     for (int i = 0; i < TLV; i++)
                     {
-                        printf("%d | %s | %s | %d | %.2f\n", i + 1, vCodV[i], vProdServV[i], vQtdeV[i], (float)vPrecoV[i] / 100.0);
+                        printf("%d | Cliente: %s |Cod.. Produto: %s | Produto: %s | Quantidade: %d | Preço: %.2f\n", i + 1, vCliente[i] ,vCodV[i], vProdServV[i], vQtdeV[i], (float)vPrecoV[i] / 100.0);
                     }
                     printf("\n");
 
