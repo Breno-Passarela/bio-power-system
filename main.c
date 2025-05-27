@@ -69,7 +69,7 @@ int main(void)
                 {
                 case 1:
                     // Code Products and Services (Otávio && Breno Henrique)
-                    printf("\n Produtos e Serviços selecionado \n");
+                    printf("\nProdutos e Serviços selecionado \n");
                     char vcod_temp[50];
                     char vprodserv_temp[50];
                     float vpreco_temp;
@@ -143,7 +143,7 @@ int main(void)
                     break;
                 case 2:
                     // Code Client (Rafael && Matheus Bispo)
-                    printf("\n Cliente selecionado \n");
+                    printf("\nCliente selecionado \n");
 
                     char rg_temp[12];
 
@@ -360,10 +360,8 @@ int main(void)
                     int product_index = -1;
                     float product_price = 0.0;
 
-                    do
-                    {
-                        printf("\nVenda selecionada\n");
-
+                    printf("\nVenda selecionada\n");
+                    
                         do
                         {
                             printf("\nDigite o RG à cadastrar para a venda:\n");
@@ -377,16 +375,16 @@ int main(void)
                                 }
                             }
 
-                            if (!client_found)
-                            {
-                                printf("RG não cadastrado! Não é possível realizar a venda.\n");
-                                repeat = 1;
-                            }
-
                             if (strlen(rg_temp) != 11)
                             {
                                 printf("RG com tamanho inválido! \n");
                                 printf("Pressione enter para digitar novamente... \n");
+                                repeat = 1;
+                            }
+
+                            if (!client_found && repeat == 0)
+                            {
+                                printf("RG não cadastrado! Não é possível realizar a venda.\n");
                                 repeat = 1;
                             }
                         } while (repeat == 1);
@@ -400,7 +398,7 @@ int main(void)
 
                             for (int i = 0; i < TLP; i++)
                             {
-                                if (strcmp(vCod[TLP], vcod_temp) == 0)
+                                if (strcmp(vCod[i], vcod_temp) == 0)
                                 {
                                     product_found = 1;
                                     product_price = (float)vPreco[i] / 100.0;
@@ -411,31 +409,34 @@ int main(void)
                             if (!product_found)
                             {
                                 printf("Código do produto não encontrado!\n");
+                                repeat == 1;
                             }
                         } while (repeat == 1);
 
                         strcpy(vCodV[TLV], vcod_temp);
 
-                        printf("Digite a quantidade do produto: ");
-                        scanf("%d", &qtd_temp);
+                        do
+                        { 
+                            printf("Digite a quantidade do produto: ");
+                            scanf("%d", &qtd_temp);
 
-                        if (qtd_temp <= 0 || qtd_temp > vQtde[product_index])
-                        {
-                            printf("Quantidade inválida ou insuficiente em estoque!\n");
-                            printf("Não foi possível concluir a venda\n");
-                            repeat = 1;
-                        }
+                            if (qtd_temp <= 0 || qtd_temp > vQtde[product_index])
+                            {
+                                printf("Quantidade inválida ou insuficiente em estoque!\n");
+                                printf("Não foi possível concluir a venda\n");
+                                repeat = 1;
+                            }
 
-                        if (!repeat)
-                        {
-                            float total = (float)qtd_temp * product_price;
-                            vQtde[product_index] -= qtd_temp;
+                            if (!repeat)
+                            {
+                                float total = (float)qtd_temp * product_price;
+                                vQtde[product_index] -= qtd_temp;
 
-                            TLV++;
+                                TLV++;
 
-                            printf("O valor da venda foi: %.2f\n", total);
-                        }
-                    } while (repeat == 1);
+                                printf("O valor da venda foi: %.2f\n", total);
+                            }
+                        } while(repeat == 1);
 
                     printf("\nQuer cadastrar mais uma venda? (S/N)\n> ");
                     scanf(" %c", &continue_choosen);
