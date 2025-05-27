@@ -29,7 +29,7 @@ int main(void)
     char vRG[TF][12], vCliente[TF][30];
 
     // Selling
-    char vRGV[TF][12], vCodV[TF][50];
+    char vRGV[TF][12], vCodV[TF][50], vProdServV[TF][50];
     int vQtdeV[TF], vPrecoV[TF];
 
     // Controllers
@@ -406,6 +406,8 @@ int main(void)
                                 }
                             }
 
+                            strcpy(vProdServV[product_index], vProdServ[product_index]);
+
                             if (!product_found)
                             {
                                 printf("Código do produto não encontrado!\n");
@@ -432,11 +434,15 @@ int main(void)
                                 float total = (float)qtd_temp * product_price;
                                 vQtde[product_index] -= qtd_temp;
 
-                                TLV++;
+                                vPrecoV[TLV] == total * 100.0;
 
                                 printf("O valor da venda foi: %.2f\n", total);
                             }
                         } while(repeat == 1);
+
+                    printf("\n-> %d | %s | %s | %d | %.2f", TLV + 1, vCodV[TLV], vProdServV[TLV], vQtdeV[TLV], (float)vPrecoV[TLV] / 100.0);
+
+                    TLV++;
 
                     printf("\nQuer cadastrar mais uma venda? (S/N)\n> ");
                     scanf(" %c", &continue_choosen);
@@ -494,7 +500,7 @@ int main(void)
                     printf("\n");
                     for (int i = 0; i < TLV; i++)
                     {
-                        printf("%d | %s | %s | %d | %.2f\n", i + 1, vRGV[i], vCodV[i], vQtdeV[i], (float)vPrecoV[i] / 100.0);
+                        printf("%d | %s | %s | %d | %.2f\n", i + 1, vCodV[TLV], vProdServV[TLV], vQtdeV[TLV], (float)vPrecoV[TLV] / 100.0);
                     }
                     printf("\n");
 
