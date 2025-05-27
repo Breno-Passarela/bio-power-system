@@ -44,7 +44,7 @@ int main(void)
                "1: Cadastro\n"
                "2: Excluir\n"
                "3: Venda\n"
-               "4: Relatórios\n"
+               "4: Relatorios\n"
                "5: Finalizar\n"
                "> ");
 
@@ -59,7 +59,7 @@ int main(void)
                 printf("\nCadastro selecionado: \n");
 
                 printf("\n"
-                       "1: Produtos/Serviços\n"
+                       "1: Produtos/Servicos\n"
                        "2: Clientes\n"
                        "3: Retornar\n"
                        "> ");
@@ -69,7 +69,7 @@ int main(void)
                 {
                 case 1:
                     // Code Products and Services (Otávio && Breno Henrique)
-                    printf("\nProdutos e Serviços selecionado \n");
+                    printf("\nProdutos e Servicos selecionado \n");
                     char vcod_temp[50];
                     char vprodserv_temp[50];
                     float vpreco_temp;
@@ -84,7 +84,7 @@ int main(void)
                         do
                         {
                             repeat = 0;
-                            printf("\nDigite o código do produto ou serviço: ");
+                            printf("\nDigite o codigo do produto ou servico: ");
                             gets(vcod_temp);
 
                             int i = 0;
@@ -92,7 +92,7 @@ int main(void)
                             {
                                 if (strcmp(vcod_temp, vCod[i]) == 0)
                                 {
-                                    printf("Código %s já cadastrado! \n", vcod_temp);
+                                    printf("Codigo %s ja cadastrado! \n", vcod_temp);
                                     repeat = 1;
                                 }
                                 i++;
@@ -104,7 +104,7 @@ int main(void)
                         do
                         {
                             repeat = 0;
-                            printf("Digite o nome produto ou serviço: ");
+                            printf("Digite o nome produto ou servico: ");
                             gets(vprodserv_temp);
 
                             int i = 0;
@@ -112,7 +112,7 @@ int main(void)
                             {
                                 if (strcmp(vprodserv_temp, vProdServ[i]) == 0)
                                 {
-                                    printf("Produto %s já cadastrado! \n", vprodserv_temp);
+                                    printf("Produto %s ja cadastrado! \n", vprodserv_temp);
                                     repeat = 1;
                                 }
                                 i++;
@@ -125,12 +125,12 @@ int main(void)
                         printf("Quantidade do produto: ");
                         scanf(" %d", &vQtde[TLP]);
 
-                        printf("Digite o preço: ");
+                        printf("Digite o preco: ");
                         scanf(" %f", &vpreco_temp);
 
                         vPreco[TLP] = (int)(vpreco_temp * 100 + 0.5);
 
-                        printf("\n-> %d | Cod: %s | Produto: %s | Quantidade: %d | Preço: %d -> %.2f\n", TLP + 1, vCod[TLP], vProdServ[TLP], vQtde[TLP], vPreco[TLP], (float)vPreco[TLP] / 100.0);
+                        printf("\n-> %d | Cod. Produto: %s | Produto: %s | Quantidade: %d | Preco Unitario: %d -> %.2f\n", TLP + 1, vCod[TLP], vProdServ[TLP], vQtde[TLP], vPreco[TLP], (float)vPreco[TLP] / 100.0);
 
                         TLP++;
 
@@ -165,7 +165,7 @@ int main(void)
 
                             if (strlen(rg_temp) != 11)
                             {
-                                printf("RG com tamanho inválido! \n");
+                                printf("RG com tamanho invalido! \n");
                                 printf("Pressione enter para digitar novamente... \n");
                                 repeat = 1;
                             }
@@ -174,7 +174,7 @@ int main(void)
                             {
                                 if (strcmp(rg_temp, vRG[i]) == 0)
                                 {
-                                    printf("RG já registrado! \n");
+                                    printf("RG ja registrado! \n");
                                     printf("Pressione enter para digitar outro... \n");
                                     repeat = 1;
                                 }
@@ -188,7 +188,7 @@ int main(void)
                         printf("Digite o nome do cliente: ");
                         gets(vCliente[TLC]);
 
-                        printf("%d | %s | %s", TLC + 1, vRG[TLC], vCliente[TLC]);
+                        printf("%d | RG: %s | Nome Cliente: %s", TLC + 1, vRG[TLC], vCliente[TLC]);
 
                         TLC++;
 
@@ -200,18 +200,18 @@ int main(void)
                 }
 
                 if (program_execute_action > 3 || program_execute_action <= 0)
-                    printf("\nOpção inválida! Tente novamente.\n");
+                    printf("\nOpcao invalida! Tente novamente.\n");
                 printf("\n");
             } while (program_execute_action != 3);
             break;
         case 2:
             // Code Delete (Breno Passarela && Kaua)
-            printf("\n Exclusão selecionado \n");
+            printf("\n Exclusao selecionado \n");
 
             do
             {
                 printf("\n"
-                       "1: Produtos/Serviços\n"
+                       "1: Produtos/Servicos\n"
                        "2: Clientes\n"
                        "3: Retornar\n"
                        "> ");
@@ -234,7 +234,7 @@ int main(void)
                             while (getchar() != '\n')
                                 ;
 
-                            printf("Digite o código do produto que deseja excluir: ");
+                            printf("Digite o codigo do produto que deseja excluir: ");
                             fflush(stdin);
                             gets(vcod_temp);
 
@@ -257,7 +257,7 @@ int main(void)
 
                             if (i == TLP)
                             {
-                                printf("Produto não existe! \n");
+                                printf("Produto nao existe! \n");
                                 printf("Pressione enter para digitar outro... \n");
                                 repeat = 1;
                             }
@@ -272,7 +272,7 @@ int main(void)
                                 }
                                 TLP--;
 
-                                printf("\nProduto com código %s excluído com sucesso.\n", vcod_temp);
+                                printf("\nProduto com codigo %s excluído com sucesso.\n", vcod_temp);
                             }
                         } while (repeat == 1);
 
@@ -319,7 +319,7 @@ int main(void)
 
                             if (i == TLC)
                             {
-                                printf("RG não existe! \n");
+                                printf("RG nao existe! \n");
                                 printf("Pressione enter para digitar outro... \n");
                                 repeat = 1;
                             }
@@ -343,7 +343,7 @@ int main(void)
                 }
 
                 if (program_execute_action > 3 || program_execute_action <= 0)
-                    printf("\nOpção inválida! Tente novamente.\n");
+                    printf("\nOpcao invalida! Tente novamente.\n");
                 printf("\n");
             } while (program_execute_action != 3);
             break;
@@ -366,7 +366,7 @@ int main(void)
                     
                         do
                         {
-                            printf("\nDigite o RG à cadastrar para a venda:");
+                            printf("\nDigite o RG a cadastrar para a venda:");
                             scanf(" %s", &rg_temp);
 
                             for (int i = 0; i < TLC; i++)
@@ -379,14 +379,14 @@ int main(void)
 
                             if (strlen(rg_temp) != 11)
                             {
-                                printf("RG com tamanho inválido! \n");
+                                printf("RG com tamanho invalido! \n");
                                 printf("Pressione enter para digitar novamente... \n");
                                 repeat = 1;
                             }
 
                             if (!client_found && repeat == 0)
                             {
-                                printf("RG não cadastrado! Não é possível realizar a venda.\n");
+                                printf("RG nao cadastrado! Nao é possível realizar a venda.\n");
                                 repeat = 1;
                             }
                         } while (repeat == 1);
@@ -395,7 +395,7 @@ int main(void)
 
                         do
                         {
-                            printf("\nDigite o código do produto:");
+                            printf("\nDigite o codigo do produto:");
                             scanf(" %s", &vcod_temp);
 
                             for (int i = 0; i < TLP; i++)
@@ -412,7 +412,7 @@ int main(void)
 
                             if (!product_found)
                             {
-                                printf("Código do produto não encontrado!\n");
+                                printf("Codigo do produto nao encontrado!\n");
                                 repeat == 1;
                             }
                         } while (repeat == 1);
@@ -426,8 +426,8 @@ int main(void)
 
                             if (qtd_temp <= 0 || qtd_temp > vQtde[product_index])
                             {
-                                printf("Quantidade inválida ou insuficiente em estoque!\n");
-                                printf("Não foi possível concluir a venda\n");
+                                printf("Quantidade invalida ou insuficiente em estoque!\n");
+                                printf("Nao foi possível concluir a venda\n");
                                 repeat = 1;
                             }
 
@@ -444,7 +444,7 @@ int main(void)
 
                     vQtdeV[TLV] = qtd_temp;
 
-                    printf("\n-> %d | Cod. Produto: %s | Quantidade: %s | Quantidade: %d | Preço: %.2f", TLV + 1, vCodV[TLV], vProdServV[TLV], vQtdeV[TLV], (float)vPrecoV[TLV] / 100.0);
+                    printf("\n-> %d | Cod. Produto: %s | Quantidade: %s | Quantidade: %d | Preco: %.2f", TLV + 1, vCodV[TLV], vProdServV[TLV], vQtdeV[TLV], (float)vPrecoV[TLV] / 100.0);
 
                     TLV++;
 
@@ -454,17 +454,17 @@ int main(void)
             }
             else
             {
-                printf("Não há produtos cadastrados!\n");
+                printf("Nao ha produtos cadastrados!\n");
             }
             break;
         case 4:
             // Code Report (Otávio && Breno Passarela && Breno Henrique)
-            printf("\nRelatório selecionado \n");
+            printf("\nRelatorio selecionado \n");
 
             do
             {
                 printf("\n"
-                       "1: Gerenciar Produtos/Serviços\n"
+                       "1: Gerenciar Produtos/Servicos\n"
                        "2: Gerenciar Clientes\n"
                        "3: Gerenciar Vendas\n"
                        "4: Retornar\n"
@@ -477,7 +477,7 @@ int main(void)
                     printf("\n");
                     for (int i = 0; i < TLP; i++)
                     {
-                        printf("%d | Cod.. Produto: %s | Produto: %s | Quantidade: %d | Preço: %.2f\n", i + 1, vCod[i], vProdServ[i], vQtde[i], (float)vPreco[i] / 100.0);
+                        printf("%d | Cod. Produto: %s | Produto: %s | Quantidade: %d | Preco: %.2f\n", i + 1, vCod[i], vProdServ[i], vQtde[i], (float)vPreco[i] / 100.0);
                     }
                     printf("\n");
 
@@ -504,7 +504,7 @@ int main(void)
                     printf("\n");
                     for (int i = 0; i < TLV; i++)
                     {
-                        printf("%d | Cliente: %s |Cod.. Produto: %s | Produto: %s | Quantidade: %d | Preço: %.2f\n", i + 1, vCliente[i] ,vCodV[i], vProdServV[i], vQtdeV[i], (float)vPrecoV[i] / 100.0);
+                        printf("%d | Cliente: %s |Cod. Produto: %s | Produto: %s | Quantidade: %d | Preco: %.2f\n", i + 1, vCliente[i] ,vCodV[i], vProdServV[i], vQtdeV[i], (float)vPrecoV[i] / 100.0);
                     }
                     printf("\n");
 
@@ -517,7 +517,7 @@ int main(void)
                 }
 
                 if (program_execute_action > 4 || program_execute_action <= 0)
-                    printf("\nOpção inválida! Tente novamente.\n");
+                    printf("\nOpcao invalida! Tente novamente.\n");
                 printf("\n");
             } while (program_execute_action != 4);
 
@@ -532,7 +532,7 @@ int main(void)
                 // Condition to be checked, it returns 0 for false and 1 for true
                 conditional = tolower(program_confirm_exit) != 'n' && tolower(program_confirm_exit) != 's';
                 if (conditional)
-                    printf("Resposta inválida! Tente novamente...");
+                    printf("Resposta invalida! Tente novamente...");
             } while (conditional);
 
             if (tolower(program_confirm_exit) == 's')
@@ -546,7 +546,7 @@ int main(void)
 
             break;
         default:
-            printf("\nOpção inválida! Tente novamente.\n");
+            printf("\nOpcao invalida! Tente novamente.\n");
             break;
         }
     } while (program_exit != 0);
