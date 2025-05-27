@@ -348,7 +348,7 @@ int main(void)
         case 3:
             char rg_temp[12];
             char vcod_temp[50];
-            int qtd_temp[50];
+            int qtd_temp;
 
             if (TLP > 0)
             {
