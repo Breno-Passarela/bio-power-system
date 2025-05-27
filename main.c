@@ -23,12 +23,12 @@ int main(void)
 
     // Product
     char vCod[TF][50], vProdServ[TF][50];
-    int vQtde[TF], vPreco[TF], qtd;
+    int vQtde[TF], vPreco[TF];
 
     // Client
     char vRG[TF][12], vCliente[TF][30];
 
-    // Services
+    // Selling
     char vRGV[TF][12], vCodV[TF][50];
     int vQtdeV[TF], vPrecoV[TF];
 
@@ -347,6 +347,9 @@ int main(void)
             break;
         case 3:
             char rg_temp[12];
+            char vcod_temp[50];
+            int qtd_temp[50];
+
             if (TLP > 0)
             {
                 do
@@ -363,8 +366,8 @@ int main(void)
 
                         do
                         {
-                            printf("\nDigite seu RG:\n");
-                            scanf("%s", &rg_temp);
+                            printf("\nDigite o RG à cadastrar para a venda:\n");
+                            scanf(" %s", &rg_temp);
 
                             for (int i = 0; i < TLC; i++)
                             {
@@ -393,11 +396,11 @@ int main(void)
                         do
                         {
                             printf("\nDigite o código do produto:\n");
-                            scanf("%s", vCod[TLP]);
+                            scanf(" %s", vcod_temp);
 
                             for (int i = 0; i < TLP; i++)
                             {
-                                if (strcmp(vCod[TLP], vCod[i]) == 0)
+                                if (strcmp(vCod[TLP], vcod_temp) == 0)
                                 {
                                     product_found = 1;
                                     product_price = (float)vPreco[i] / 100.0;
@@ -411,10 +414,12 @@ int main(void)
                             }
                         } while (repeat == 1);
 
-                        printf("Digite a quantidade do produto: ");
-                        scanf("%d", &qtd);
+                        strcpy(vCodV[TLV], vcod_temp);
 
-                        if (qtd <= 0 || qtd > vQtde[product_index])
+                        printf("Digite a quantidade do produto: ");
+                        scanf("%d", &qtd_temp);
+
+                        if (qtd_temp <= 0 || qtd_temp > vQtde[product_index])
                         {
                             printf("Quantidade inválida ou insuficiente em estoque!\n");
                             printf("Não foi possível concluir a venda\n");
@@ -423,15 +428,16 @@ int main(void)
 
                         if (!repeat)
                         {
-                            float selling = qtd * product_price;
-                            vQtde[product_index] -= qtd;
+                            float total = (float)qtd_temp * product_price;
+                            vQtde[product_index] -= qtd_temp;
+
                             TLV++;
 
-                            printf("O valor da venda foi: %.2f\n", selling);
+                            printf("O valor da venda foi: %.2f\n", total);
                         }
                     } while (repeat == 1);
 
-                    printf("\nQuer cadastrar uma venda? (S/N)\n> ");
+                    printf("\nQuer cadastrar mais uma venda? (S/N)\n> ");
                     scanf(" %c", &continue_choosen);
                 } while (tolower(continue_choosen) == 's');
             }
@@ -457,10 +463,8 @@ int main(void)
                 switch (program_execute_action)
                 {
                 case 1:
-                    int i = 0;
-
                     printf("\n");
-                    for (i = 0; i < TLP; i++)
+                    for (int i = 0; i < TLP; i++)
                     {
                         printf("%d | %s | %s | %d | %.2f\n", i + 1, vCod[i], vProdServ[i], vQtde[i], (float)vPreco[i] / 100.0);
                     }
@@ -481,8 +485,7 @@ int main(void)
                     printf("\n");
 
                     printf("Pressione Enter para continuar...\n");
-                    while (getchar() != '\n')
-                        ;
+                    while (getchar() != '\n');
                     getchar();
 
                     break;
