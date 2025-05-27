@@ -26,10 +26,10 @@ int main(void)
     int vQtde[TF], vPreco[TF];
 
     // Client
-    char vRG[TF][12], vCliente[TF][30];
+    char vRG[TF][10], vCliente[TF][30];
 
     // Selling
-    char vRGV[TF][12], vCodV[TF][50], vProdServV[TF][50];
+    char vRGV[TF][10], vCodV[TF][50], vProdServV[TF][50];
     int vQtdeV[TF], vPrecoV[TF];
 
     // Controllers
@@ -145,7 +145,7 @@ int main(void)
                     // Code Client (Rafael && Matheus Bispo)
                     printf("\nCliente selecionado \n");
 
-                    char rg_temp[12];
+                    char rg_temp[10];
 
                     do
                     {
@@ -163,14 +163,14 @@ int main(void)
                             fflush(stdin);
                             gets(rg_temp);
 
-                            if (strlen(rg_temp) != 11)
+                            if (strlen(rg_temp) != 9)
                             {
                                 printf("RG com tamanho invalido! \n");
                                 printf("Pressione enter para digitar novamente... \n");
                                 repeat = 1;
                             }
 
-                            while (i < TLC && strlen(rg_temp) == 11 && repeat == 0)
+                            while (i < TLC && strlen(rg_temp) == 9 && repeat == 0)
                             {
                                 if (strcmp(rg_temp, vRG[i]) == 0)
                                 {
@@ -282,7 +282,7 @@ int main(void)
 
                     break;
                 case 2:
-                    char rg_temp[12];
+                    char rg_temp[10];
 
                     do
                     {
@@ -348,7 +348,7 @@ int main(void)
             } while (program_execute_action != 3);
             break;
         case 3:
-            char rg_temp[12];
+            char rg_temp[10];
             char vcod_temp[50];
             int qtd_temp;
 
@@ -377,7 +377,7 @@ int main(void)
                                 }
                             }
 
-                            if (strlen(rg_temp) != 11)
+                            if (strlen(rg_temp) != 9)
                             {
                                 printf("RG com tamanho invalido! \n");
                                 printf("Pressione enter para digitar novamente... \n");
