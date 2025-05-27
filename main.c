@@ -364,7 +364,7 @@ int main(void)
                     
                         do
                         {
-                            printf("\nDigite o RG à cadastrar para a venda:\n");
+                            printf("\nDigite o RG à cadastrar para a venda:");
                             scanf(" %s", &rg_temp);
 
                             for (int i = 0; i < TLC; i++)
@@ -393,8 +393,8 @@ int main(void)
 
                         do
                         {
-                            printf("\nDigite o código do produto:\n");
-                            scanf(" %s", vcod_temp);
+                            printf("\nDigite o código do produto:");
+                            scanf(" %s", &vcod_temp);
 
                             for (int i = 0; i < TLP; i++)
                             {
@@ -419,7 +419,7 @@ int main(void)
 
                         do
                         { 
-                            printf("Digite a quantidade do produto: ");
+                            printf("\nDigite a quantidade do produto: ");
                             scanf("%d", &qtd_temp);
 
                             if (qtd_temp <= 0 || qtd_temp > vQtde[product_index])
@@ -434,11 +434,13 @@ int main(void)
                                 float total = (float)qtd_temp * product_price;
                                 vQtde[product_index] -= qtd_temp;
 
-                                vPrecoV[TLV] == total * 100.0;
-
-                                printf("O valor da venda foi: %.2f\n", total);
+                                printf("\nO valor da venda foi: %.2f\n", total);
+                                
+                                vPrecoV[TLV] = (int)(total * 100 + 0.5);
                             }
                         } while(repeat == 1);
+
+                    vQtdeV[TLV] = qtd_temp;
 
                     printf("\n-> %d | %s | %s | %d | %.2f", TLV + 1, vCodV[TLV], vProdServV[TLV], vQtdeV[TLV], (float)vPrecoV[TLV] / 100.0);
 
@@ -500,7 +502,7 @@ int main(void)
                     printf("\n");
                     for (int i = 0; i < TLV; i++)
                     {
-                        printf("%d | %s | %s | %d | %.2f\n", i + 1, vCodV[TLV], vProdServV[TLV], vQtdeV[TLV], (float)vPrecoV[TLV] / 100.0);
+                        printf("%d | %s | %s | %d | %.2f\n", i + 1, vCodV[i], vProdServV[i], vQtdeV[i], (float)vPrecoV[i] / 100.0);
                     }
                     printf("\n");
 
