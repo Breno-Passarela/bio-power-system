@@ -364,83 +364,88 @@ int main(void)
 
                     printf("\nVenda selecionada\n");
                     
-                        do
+                    do
+                    {
+                        repeat = 0;
+
+                        printf("\nDigite o RG a cadastrar para a venda:");
+                        scanf(" %s", &rg_temp);
+
+                        for (int i = 0; i < TLC; i++)
                         {
-                            printf("\nDigite o RG a cadastrar para a venda:");
-                            scanf(" %s", &rg_temp);
-
-                            for (int i = 0; i < TLC; i++)
+                            if (strcmp(vRG[i], rg_temp) == 0)
                             {
-                                if (strcmp(vRG[i], rg_temp) == 0)
-                                {
-                                    client_found = 1;
-                                }
+                                client_found = 1;
                             }
+                        }
 
-                            if (strlen(rg_temp) != 9)
-                            {
-                                printf("RG com tamanho invalido! \n");
-                                printf("Pressione enter para digitar novamente... \n");
-                                repeat = 1;
-                            }
-
-                            if (!client_found && repeat == 0)
-                            {
-                                printf("RG nao cadastrado! Nao é possível realizar a venda.\n");
-                                repeat = 1;
-                            }
-                        } while (repeat == 1);
-
-                        strcpy(vRGV[TLV], rg_temp);
-
-                        do
+                        if (strlen(rg_temp) != 9)
                         {
-                            printf("\nDigite o codigo do produto:");
-                            scanf(" %s", &vcod_temp);
+                            printf("RG com tamanho invalido! \n");
+                            printf("Pressione enter para digitar novamente... \n");
+                            repeat = 1;
+                        }
 
-                            for (int i = 0; i < TLP; i++)
+                        if (!client_found && repeat == 0)
+                        {
+                            printf("RG nao cadastrado! Nao é possível realizar a venda.\n");
+                            repeat = 1;
+                        }
+                    } while (repeat == 1);
+
+                    strcpy(vRGV[TLV], rg_temp);
+
+                    do
+                    {
+                        printf("\nDigite o codigo do produto:");
+                        scanf(" %s", &vcod_temp);
+
+                        for (int i = 0; i < TLP; i++)
+                        {
+                            if (strcmp(vCod[i], vcod_temp) == 0)
                             {
-                                if (strcmp(vCod[i], vcod_temp) == 0)
-                                {
-                                    product_found = 1;
-                                    product_price = (float)vPreco[i] / 100.0;
-                                    product_index = i;
-                                }
+                                product_found = 1;
+                                product_price = (float)vPreco[i] / 100.0;
+                                product_index = i;
                             }
+                        }
 
-                            strcpy(vProdServV[product_index], vProdServ[product_index]);
+                        strcpy(vProdServV[product_index], vProdServ[product_index]);
 
-                            if (!product_found)
-                            {
-                                printf("Codigo do produto nao encontrado!\n");
-                                repeat == 1;
-                            }
-                        } while (repeat == 1);
+                        if (!product_found)
+                        {
+                            printf("Codigo do produto nao encontrado!\n");
+                            repeat == 1;
+                        }
+                    } while (repeat == 1);
 
-                        strcpy(vCodV[TLV], vcod_temp);
+                    strcpy(vCodV[TLV], vcod_temp);
 
-                        do
-                        { 
-                            printf("\nDigite a quantidade do produto: ");
-                            scanf("%d", &qtd_temp);
+                    do
+                    { 
+                        repeat = 0;
 
-                            if (qtd_temp <= 0 || qtd_temp > vQtde[product_index])
-                            {
-                                printf("Quantidade invalida ou insuficiente em estoque!\n");
-                                printf("Nao foi possível concluir a venda\n");
-                                repeat = 1;
-                            }
+                        printf("\nDigite a quantidade do produto: ");
+                        scanf("%d", &qtd_temp);
+                        printf("Essa bosta:%d \n", qtd_temp);
 
-                            if (!repeat)
-                            {
-                                float total = (float)qtd_temp * product_price;
-                                vQtde[product_index] -= qtd_temp;
+                        if (qtd_temp <= 0 || qtd_temp > vQtde[product_index])
+                        {
+                            printf("Quantidade invalida ou insuficiente em estoque!\n");
+                            printf("Nao foi possível concluir a venda\n");
+                            repeat = 1;
+                        }
 
-                                printf("\nO valor da venda foi: %.2f\n", total);
-                                
-                                vPrecoV[TLV] = (int)(total * 100 + 0.5);
-                            }
-                        } while(repeat == 1);
+                        if (!repeat)
+                        {
+                            float total = (float)qtd_temp * product_price;
+                            vQtde[product_index] -= qtd_temp;
+
+                            printf("\nO valor da venda foi: %.2f\n", total);
+                            
+                            vPrecoV[TLV] = (int)(total * 100 + 0.5);
+                        }
+                    } while(repeat == 1);
 
                     vQtdeV[TLV] = qtd_temp;
 
