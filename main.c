@@ -397,6 +397,8 @@ int main(void)
 
                     do
                     {
+                        repeat = 0;
+
                         printf("\nDigite o codigo do produto:");
                         scanf(" %s", &vcod_temp);
 
@@ -415,7 +417,7 @@ int main(void)
                         if (!product_found)
                         {
                             printf("Codigo do produto nao encontrado!\n");
-                            repeat == 1;
+                            repeat = 1;
                         }
                     } while (repeat == 1);
 
@@ -427,7 +429,6 @@ int main(void)
 
                         printf("\nDigite a quantidade do produto: ");
                         scanf("%d", &qtd_temp);
-                        printf("Essa bosta:%d \n", qtd_temp);
 
                         if (qtd_temp <= 0 || qtd_temp > vQtde[product_index])
                         {
