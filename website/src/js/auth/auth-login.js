@@ -22,9 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const newToken = generateToken();
     localStorage.setItem("token", newToken);
-    
-    console.log("Token set in localStorage:", localStorage.getItem('token')); 
 
-    window.location.href = "../../index.html"; 
+    console.log("Token set in localStorage:", localStorage.getItem("token"));
+
+    window.location.href = "../../home.html";
   });
 });

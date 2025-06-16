@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="src/css/screen/home-screen.css" />
   <link rel="stylesheet" href="src/css/navbar.css" />
   <link rel="stylesheet" href="src/css/components/carousel/carrousel.css">
+  <link rel="stylesheet" href="src/css/components/carousel/mini-carrousel.css">
 
 </head>
 
@@ -92,7 +93,7 @@
         </div>
         <div class="mobile-menu-auth">
           <div id="mobileAuthLoggedOut" class="mobile-auth-item" style="display: none;">
-            <a href="./src/pages/auth-login.html" class="mobile-login-button">
+            <a href="src/pages/auth-login.html" class="mobile-login-button">
               <i class="fas fa-user-circle"></i> Fazer login/Criar conta
             </a>
           </div>
@@ -107,7 +108,6 @@
         <div class="mobile-menu-cart">
           <button class="cart-button mobile-cart-button">
             <a href="./shopping-cart.html" style="text-decoration: none; color: white;">
-
               <i class="fa-solid fa-cart-shopping"></i> Carrinho
             </a>
           </button>
@@ -154,11 +154,11 @@
           </div>
 
           <div class="categoria-coluna">
-            <h3>Veganos</h3>
+            <h3>indispo</h3>
             <ul>
               <li><a href="#">Proteína de Arroz</a></li>
               <li><a href="#">Proteína da Ervilha</a></li>
-              <li><a href="#">Aminoácidos Veganos</a></li>
+              <li><a href="#">Aminoácidos indispo</a></li>
             </ul>
           </div>
 
@@ -174,7 +174,7 @@
       </div>
     </div>
 
-    <!-- Content page -->
+    <!-- Carrousel Principal-->
     <div class="carousel-container">
       <div class="carousel-wrapper" id="carouselWrapper">
         <div class="carousel-slide"><img src="src/imgs/carrousel/banner.png" alt="Slide 1"></div>
@@ -191,45 +191,49 @@
       <div class="carousel-dots" id="carouselDots"></div>
     </div>
 
+  <!-- Mini - carrousel -->
+  <section class="categories-section">
+    <button class="arrow left-arrow" onclick="scrollCategories(-1)" disabled>‹</button>
+  
+    <div id="categoriesCarousel" class="categories-track">
+      <div class="category category-item">
+        <img src="src/imgs/categoria/Antioxidantes.png" alt="Categoria 1" />
+        <span>Antioxidantes</span>
+      </div>
+      <div class="category category-item">
+        <img src="src/imgs/categoria/Energéticos.png" alt="Categoria 2" />
+        <span>Energéticos</span>
+      </div>
+      <div class="category category-item">
+        <img src="src/imgs/categoria/Proteicos.png" alt="Proteicos" />
+        <span>Proteicos</span>
+      </div>
+      <div class="category category-item">
+        <img src="src/imgs/categoria/indispo.png" alt="indispo" />
+        <span>indisponivel</span>
+      </div>
+      <div class="category category-item">
+        <img src="src/imgs/categoria/indispo.png" alt="indispo" />
+        <span>indisponivel</span>
+      </div>
+      <div class="category category-item">
+        <img src="src/imgs/categoria/indispo.png" alt="indispo" />
+        <span>indisponivel</span>
+      </div>
+      <div class="category category-item">
+        <img src="src/imgs/categoria/indispo.png" alt="indispo" />
+        <span>indisponivel</span>
+      </div>
+      <div class="category category-item">
+        <img src="src/imgs/categoria/indispo.png" alt="indispo" />
+        <span>indisponivel</span>
+      </div>
+      <!-- mais itens -->
+    </div>
+  
+    <button class="arrow right-arrow" onclick="scrollCategories(1)">›</button>
+  </section>
 
-    <section class="categories-section">
-      <div class="category">
-        <div class="category-circle">
-          <img src="src/imgs/product/product1.png" alt="Antioxidantes" />
-        </div>
-        <p>Antioxidantes</p>
-      </div>
-      <div class="category">
-        <div class="category-circle">
-          <img src="src/imgs/product/product2.png" alt="Proteicos" />
-        </div>
-        <p>Proteicos</p>
-      </div>
-      <div class="category">
-        <div class="category-circle">
-          <img src="src/imgs/product/product6.png" alt="Vitaminicos" />
-        </div>
-        <p>Vitamínicos</p>
-      </div>
-      <div class="category">
-        <div class="category-circle">
-          <img src="src/imgs/product/product5.png" alt="Energeticos" />
-        </div>
-        <p>Energéticos</p>
-      </div>
-      <div class="category">
-        <div class="category-circle">
-          <img src="src/imgs/product/product7.png" alt="Veganos" />
-        </div>
-        <p>Veganos</p>
-      </div>
-
-      <div class="arrow">
-        <span>&#10095;</span>
-      </div>
-    </section>
-
-    <!-- Produtos -->
     <section class="bestsellers">
       <div class="bestsellers-wrapper">
         <h2 class="bestsellers-title">Mais vendidos</h2>
@@ -392,6 +396,7 @@
 
     <script src="./src/js/navbar-script.js"></script>
     <script src="./src/js/carrosel/carrossel.js"></script>
+    <script src="src/js/carrosel/mini-carrousel.js"></script>
 </body>
 
 </html>
