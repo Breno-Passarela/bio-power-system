@@ -202,18 +202,29 @@
     </div>
 
     <div class="product-buy-container">
-      <img id="product-image" class="product-image" src="" alt="Produto" />
+      <div class="product-top">
+        <img id="product-image" class="product-image" src="" alt="Produto" />
 
-      <div class="product-info">
-        <h1 id="product-name" class="product-name"></h1>
-        <p id="product-price" class="product-price"></p>
-        <p id="product-discount" class="product-discount"></p>
-        <p id="product-credit" class="product-credit"></p>
+        <div class="product-info">
+          <h1 id="product-name" class="product-name"></h1>
+
+          <div class="rating" data-rating="4.3">
+            <div class="stars" id="product-stars"></div>
+            <small id="rating-count">(50 avaliações)</small>
+          </div>
+
+          <p class="price-main" id="product-price"></p>
+          <p class="price-discount" id="product-discount"></p>
+          <p class="price-credit" id="product-credit"></p>
+
+          <div class="buttons">
+            <button class="cart-icon">🛒</button>
+            <button id="buy-button">Comprar</button>
+          </div>
+        </div>
       </div>
 
-      <div id="product-description" class="product-description"></div>
-
-      <button id="buy-button">Comprar</button>
+      <div class="product-description" id="product-description"></div>
     </div>
 
     <script src="../js/auth/auth-product-buy.js"></script>
