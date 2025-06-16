@@ -96,6 +96,7 @@
         </div>
       </div>
     </nav>
+
     <!-- Mobile Screen -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay">
       <div class="mobile-menu-content">
@@ -201,43 +202,191 @@
       </div>
     </div>
 
-    <!-- Filtro-->
+    <!-- Filtro -->
     <main>
       <aside class="sidebar">
         <h3>Pesquisar</h3>
+
+        <!-- Marcas -->
         <div class="filter-section">
           <h4>Marcas</h4>
-          <div class="tags">
-            <span>Growth</span>
-            <span>DUX</span>
-            <span>Dark lab</span>
-            <span>+</span>
-          </div>
+          <label
+            ><input type="checkbox" name="marca" value="Growth" /> Growth</label
+          >
+          <label><input type="checkbox" name="marca" value="DUX" /> DUX</label>
+          <label
+            ><input type="checkbox" name="marca" value="Dark Lab" /> Dark
+            Lab</label
+          >
+          <label
+            ><input type="checkbox" name="marca" value="Integral Médica" />
+            Integral Médica</label
+          >
+          <label
+            ><input type="checkbox" name="marca" value="Black Skull" /> Black
+            Skull</label
+          >
         </div>
 
+        <!-- Preço -->
         <div class="filter-section">
           <h4>Preço</h4>
-          <input type="range" style="cursor: pointer" min="0" max="100" />
-          <span>R$0-100</span>
+          <input
+            type="range"
+            id="filtroPreco"
+            min="0"
+            max="500"
+            value="500"
+            style="cursor: pointer"
+          />
+          <span id="precoLabel">Até R$500</span>
         </div>
 
+        <!-- Sabores -->
         <div class="filter-section">
           <h4>Sabor</h4>
-          <label><input type="checkbox" /> Chocolate</label>
-          <label><input type="checkbox" /> Baunilha</label>
-          <label><input type="checkbox" /> Doce de Leite</label>
+          <label
+            ><input type="checkbox" name="sabor" value="Chocolate" />
+            Chocolate</label
+          >
+          <label
+            ><input type="checkbox" name="sabor" value="Baunilha" />
+            Baunilha</label
+          >
+          <label
+            ><input type="checkbox" name="sabor" value="Doce de Leite" /> Doce
+            de Leite</label
+          >
+          <label><input type="checkbox" name="sabor" value="Uva" /> Uva</label>
+          <label
+            ><input type="checkbox" name="sabor" value="Sem sabor" /> Sem
+            sabor</label
+          >
         </div>
 
+        <!-- Categorias Proteína -->
         <div class="filter-section">
-          <h4>Categoria</h4>
-          <label><input type="checkbox" /> Creatina</label>
-          <label><input type="checkbox" /> Whey</label>
-          <label><input type="checkbox" /> Termogênico</label>
+          <h4>Proteína</h4>
+          <label
+            ><input type="checkbox" name="categoria" value="Whey Protein" />
+            Whey Protein</label
+          >
+          <label
+            ><input type="checkbox" name="categoria" value="Albumina" />
+            Albumina</label
+          >
+          <label
+            ><input type="checkbox" name="categoria" value="Caseína" />
+            Caseína</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              name="categoria"
+              value="Blend de Proteína"
+            />
+            Blend de Proteína</label
+          >
+          <label
+            ><input type="checkbox" name="categoria" value="Proteína de Soja" />
+            Proteína de Soja</label
+          >
         </div>
+
+        <!-- Categorias Aminoácidos -->
+        <div class="filter-section">
+          <h4>Aminoácidos</h4>
+          <label
+            ><input type="checkbox" name="categoria" value="BCAA" /> BCAA</label
+          >
+          <label
+            ><input type="checkbox" name="categoria" value="Creatina" />
+            Creatina</label
+          >
+          <label
+            ><input type="checkbox" name="categoria" value="Glutamina" />
+            Glutamina</label
+          >
+          <label
+            ><input type="checkbox" name="categoria" value="Leucina" />
+            Leucina</label
+          >
+        </div>
+
+        <!-- Categorias Carboidratos -->
+        <div class="filter-section">
+          <h4>Carboidratos</h4>
+          <label
+            ><input type="checkbox" name="categoria" value="Waxy Maize" /> Waxy
+            Maize</label
+          >
+          <label
+            ><input type="checkbox" name="categoria" value="Dextrose" />
+            Dextrose</label
+          >
+          <label
+            ><input type="checkbox" name="categoria" value="Maltodextrina" />
+            Maltodextrina</label
+          >
+        </div>
+
+        <!-- Categorias Veganos -->
+        <div class="filter-section">
+          <h4>Veganos</h4>
+          <label
+            ><input
+              type="checkbox"
+              name="categoria"
+              value="Proteína de Arroz"
+            />
+            Proteína de Arroz</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              name="categoria"
+              value="Proteína da Ervilha"
+            />
+            Proteína da Ervilha</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              name="categoria"
+              value="Aminoácidos Veganos"
+            />
+            Aminoácidos Veganos</label
+          >
+        </div>
+
+        <!-- Categorias Vitaminas -->
+        <div class="filter-section">
+          <h4>Vitaminas</h4>
+          <label
+            ><input type="checkbox" name="categoria" value="Complexo B" />
+            Complexo B</label
+          >
+          <label
+            ><input type="checkbox" name="categoria" value="Multivitamínico" />
+            Multivitamínico</label
+          >
+          <label
+            ><input type="checkbox" name="categoria" value="Carnitina" />
+            Carnitina</label
+          >
+        </div>
+
+        <!-- Botão Limpar Filtros -->
+        <button
+          id="limparFiltros"
+          style="margin-top: 1rem; padding: 0.5rem 1rem; cursor: pointer"
+        >
+          Limpar Filtros
+        </button>
       </aside>
 
       <!-- Produtos -->
-      <div class="products" style="display: flex; flex-wrap: wrap">
+      <div class="products">
         <!-- produtos vão aparecer aqui -->
       </div>
 
