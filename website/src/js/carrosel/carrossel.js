@@ -11,6 +11,9 @@ let currentSlide = 0;
 const totalSlides = slides.length;
 
 function updateCarousel() {
+  // Detectar toque para mobile
+  wrapper.addEventListener("touchstart", () => clearInterval(autoPlay));
+  wrapper.addEventListener("touchend", () => resetAutoPlay());
   wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
   document.querySelectorAll("#carouselDots span").forEach((dot, index) => {
     dot.classList.toggle("active", index === currentSlide);
@@ -63,22 +66,4 @@ if (nextBtn && prevBtn && wrapper) {
 
   createDots();
   updateCarousel();
-}
-
-// =====================
-// Mini Carrossel de Categorias
-// =====================
-function scrollCarousel(direction) {
-  const carouselTrack = document.getElementById("carouselTrack");
-  const item = document.querySelector(".category-item");
-
-  if (!carouselTrack || !item) return;
-
-  const itemStyle = getComputedStyle(item);
-  const itemWidth = item.offsetWidth + parseInt(itemStyle.marginRight || 30);
-
-  carouselTrack.scrollBy({
-    left: direction * itemWidth,
-    behavior: "smooth",
-  });
 }

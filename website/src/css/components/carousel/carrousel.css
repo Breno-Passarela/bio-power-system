@@ -74,91 +74,70 @@
 .carousel-dots .active {
   background-color: #000;
 }
-/* ================= MIni - Carousel ================= */
-.mini-carousel {
-  padding: 40px 25px;
-  background-color: #fff;
-  text-align: center;
-}
 
-.mini-carousel h2 {
-  font-size: 2rem; /* aumentado */
-  margin-bottom: 25px;
-  font-weight: bold;
-}
-
-.mini-carousel-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.carousel-track {
-  display: flex;
-  overflow-x: hidden;
-  gap: 35px; /* aumentado */
-  padding: 15px 0; /* aumentado */
-  max-width: 95%; /* ligeiramente aumentado */
-  scroll-behavior: smooth;
-}
-
-.carousel-track::-webkit-scrollbar {
-  display: none;
-}
-
-.category-item {
-  flex: 0 0 calc((100% - 4 * 35px) / 5);
-  text-align: center;
-  text-decoration: none;
-  color: #000;
-}
-
-.category-item img {
-  width: 210px;
-  height: 210px;
-  border-radius: 50%;
-  border: 2px solid #000;
-  object-fit: cover;
-  padding: 6px;
-  background-color: #fff;
-  transition: transform 0.2s;
-}
-
-.category-item img:hover {
-  transform: scale(1.07);
-}
-
-.category-item span {
-  display: block;
-  margin-top: 10px;
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-.arrow {
-  background: none;
-  border: none;
-  font-size: 34px;
-  cursor: pointer;
-  padding: 0 20px;
-  color: #333;
-  user-select: none;
-  z-index: 1;
-}
-
-.arrow:hover {
-  color: #000;
-}
-
+/* Responsividade gMobile */
 @media (max-width: 768px) {
   .carousel-container {
-    width: 95%;
-    margin-top: 80px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .carousel-slide img {
+    height: 300px;
   }
 
   .carousel-btn {
-    font-size: 18px;
-    padding: 8px;
+    font-size: 20px;
+    padding: 6px;
+  }
+
+  .carousel-dots {
+    bottom: 10px;
+  }
+
+  .category-item {
+    flex: 0 0 calc((100% - 2 * 20px) / 2.2); /* Mostra 2 itens por vez */
+  }
+
+  .category-item img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .category-item span {
+    font-size: 0.9rem;
+  }
+
+  .mini-carousel h2 {
+    font-size: 1.5rem;
+  }
+
+  .carousel-track {
+    gap: 20px;
+    padding: 10px 0;
+  }
+
+  .arrow {
+    font-size: 28px;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-slide img {
+    height: 220px;
+  }
+
+  .category-item img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .category-item {
+    flex: 0 0 calc((100% - 2 * 10px) / 1.8);
+  }
+
+  .carousel-btn {
+    padding: 4px;
   }
 }
