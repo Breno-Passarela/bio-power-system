@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
   img.src = product.imagem;
   img.alt = product.alt;
 
-  // Descrição exemplo, você pode customizar por produto se quiser
   const descriptionEl = document.getElementById("product-description");
   descriptionEl.textContent = `Produto da categoria "${product.categoria}", da marca "${product.marca}". 
       Sabor: ${product.sabor}. Este produto é ideal para quem busca qualidade e resultados comprovados. 
@@ -26,4 +25,33 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("buy-button").onclick = () => {
     alert(`Compra iniciada para: ${product.nome}`);
   };
+
+  // Simulação de avaliação dinâmica (ex: viria de um backend)
+  const ratingValue = 4.3;
+  const ratingCount = 50;
+  const starContainer = document.getElementById("product-stars");
+  const ratingText = document.getElementById("rating-count");
+
+  renderStars(ratingValue, starContainer);
+  ratingText.textContent = `(${ratingCount} avaliações)`;
 });
+
+function renderStars(rating, container) {
+  container.innerHTML = "";
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 >= 0.25 && rating % 1 < 0.75;
+  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+  for (let i = 0; i < fullStars; i++) {
+    container.innerHTML += "★";
+  }
+  if (hasHalfStar) {
+    container.innerHTML += "☆"; // Você pode trocar por meia estrela com SVG se quiser
+  }
+  for (let i = 0; i < emptyStars; i++) {
+    container.innerHTML += "✩";
+  }
+
+  container.style.color = "orange";
+  container.style.fontSize = "1.2rem";
+}
