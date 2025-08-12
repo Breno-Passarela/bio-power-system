@@ -1,10 +1,29 @@
-# Project CST ADS School
 
-> The code is filled with comments for easy and quick navigation by the team.
+<div align="center">
 
-## Why choose String for fields like RG and vCods?
-Because we follow a simple rule: when we deal with immutable numbers — meaning numbers we won’t perform arithmetic operations on — they don’t need to be stored as numeric types. Instead, they should be treated as defined text. Additionally, there's a risk of losing the leading zero in an RG (Brazilian ID number), as RGs can start with 0, and storing them as integers may lead to rounding or truncation.
+![Bio Power Logo](website/src/imgs/img-logo-bio-power.png)
 
-## Why use int for monetary values?
-Although it might seem unnecessary at first glance, using int is actually one of the best industry practices. float or double types can lead to inconsistencies due to precision errors, which may cause small but impactful financial losses. That’s why we usually use decimal or even int. Yes, int — as long as we know where the decimal point is. This way, we can represent cents without losing precision or facing unnecessary rounding.
-Why this choice? Simply due to knowledge and best practices.
+</div>
+
+## 🧾 Sobre o Projeto
+
+O **Bio Power** é uma plataforma web inovadora para uma farmácia especializada em suplementos, vitaminas e produtos voltados para saúde e bem-estar. Nosso objetivo é oferecer uma experiência de compra diferenciada, moderna e personalizada, fugindo dos padrões convencionais encontrados nas farmácias tradicionais.
+
+Com um catálogo abrangente e uma interface intuitiva, o Bio Power busca facilitar o acesso dos usuários a produtos de alta qualidade, promovendo saúde com confiança e praticidade.
+
+---
+
+## 🚀 Funcionalidades Principais
+
+- Catálogo completo de suplementos, vitaminas e demais produtos de saúde  
+- Interface simples, clara e de fácil navegação  
+- Design responsivo (em desenvolvimento) para diferentes dispositivos  
+- Estrutura desenvolvida com tecnologias básicas, sem o uso de frameworks, garantindo total controle e flexibilidade no código  
+
+---
+
+## 🛠 Tecnologias Utilizadas
+
+[![Tecnologias](https://skillicons.dev/icons?i=js,html,css,c)](https://skillicons.dev)
+
+---
