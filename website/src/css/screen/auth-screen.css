@@ -4,6 +4,12 @@ body {
   margin: 0;
 }
 
+.titulo {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
 .presentation-section {
   background: linear-gradient(to bottom, #c80000, #7d0808);
 }

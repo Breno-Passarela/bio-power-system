@@ -21,9 +21,9 @@
   </head>
 
   <body
-    class="bg-white d-flex justify-content-center align-items-center vh-100"
+    class="bg-white d-flex justify-content-center align-items-center"
   >
-    <div class="container p-4 rounded shadow-sm" style="max-width: 1100px">
+    <div class="container p-4 rounded shadow-sm" style="max-width: 1300px">
       <!-- Logo -->
       <div class="text-center mb-4">
         <img
@@ -31,109 +31,35 @@
           height="150"
           alt="Logo Bio-Power"
         />
+
+        <h1 class="titulo mt-3">Cadastro de usuários</h1>
       </div>
 
       <form id="registerForm">
-        <div class="row g-3">
+        <div class="row g-4">
           <!-- Nome -->
-          <div class="col-md-4">
+          <div class="col-12 col-md-4">
             <label for="nome" class="form-label">Nome</label>
             <div class="input-group">
               <input
                 type="text"
                 class="form-control"
                 id="nome"
-                placeholder="Ex: João"
+                placeholder="João da Silva"
               />
               <span class="input-group-text"><i class="fas fa-user"></i></span>
-            </div>
-          </div>
-
-          <!-- Email -->
-          <div class="col-md-4">
-            <label for="email" class="form-label">Email</label>
-            <div class="input-group">
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                placeholder="Ex: joao@gmail.com"
-              />
-              <span class="input-group-text"
-                ><i class="fas fa-envelope"></i
-              ></span>
-            </div>
-          </div>
-
-          <!-- Data de Nascimento -->
-          <div class="col-md-4">
-            <label for="data" class="form-label">Data de Nascimento</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control"
-                id="data"
-                placeholder="Ex: DD/MM/AAAA"
-              />
-              <span class="input-group-text"
-                ><i class="fas fa-calendar-alt"></i
-              ></span>
-            </div>
-          </div>
-
-          <!-- Sobrenome -->
-          <div class="col-md-4">
-            <label for="sobrenome" class="form-label">Sobrenome</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control"
-                id="sobrenome"
-                placeholder="Ex: da Silva"
-              />
-              <span class="input-group-text"><i class="fas fa-user"></i></span>
-            </div>
-          </div>
-
-          <!-- Senha -->
-          <div class="col-md-4">
-            <label for="senha" class="form-label">Senha</label>
-            <div class="input-group">
-              <input
-                type="password"
-                class="form-control"
-                id="senha"
-                placeholder="Ex: Senha@123"
-              />
-              <span class="input-group-text">
-                <i class="fas fa-eye toggle-password"></i>
-              </span>
-            </div>
-          </div>
-
-          <!-- Telefone -->
-          <div class="col-md-4">
-            <label for="telefone" class="form-label">Telefone</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control"
-                id="telefone"
-                placeholder="Ex: 11912345678"
-              />
-              <span class="input-group-text"><i class="fas fa-phone"></i></span>
             </div>
           </div>
 
           <!-- CPF -->
-          <div class="col-md-4">
+          <div class="col-12 col-md-4">
             <label for="cpf" class="form-label">CPF</label>
             <div class="input-group">
               <input
                 type="text"
                 class="form-control"
                 id="cpf"
-                placeholder="Ex: 12345678900"
+                placeholder="123.456.789-00"
               />
               <span class="input-group-text"
                 ><i class="fas fa-id-card"></i
@@ -141,47 +67,179 @@
             </div>
           </div>
 
-          <!-- Endereço -->
-          <div class="col-md-4">
-            <label for="endereco" class="form-label">Endereço</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control"
-                id="endereco"
-                placeholder="Ex: Rua A, 123"
-              />
-              <span class="input-group-text"
-                ><i class="fas fa-map-marker-alt"></i
-              ></span>
-            </div>
-          </div>
-
-          <!-- CEP -->
-          <div class="col-md-4">
-            <label for="cep" class="form-label">CEP</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control"
-                id="cep"
-                placeholder="Ex: 12345678"
-              />
-              <span class="input-group-text"
-                ><i class="fas fa-map-pin"></i
-              ></span>
-            </div>
-          </div>
-
           <!-- Gênero Biológico -->
-          <div class="col-md-12">
+          <div class="col-12 col-md-4">
             <label for="genero" class="form-label">Gênero Biológico</label>
             <select id="genero" class="form-select">
               <option selected disabled>Selecione uma opção</option>
               <option value="nao_informado">Prefiro não informar</option>
-              <option value="mulher">Mulher</option>
-              <option value="homem">Homem</option>
+              <option value="mulher">Feminino</option>
+              <option value="homem">Masculino</option>
             </select>
+          </div>
+
+        <!-- Email -->
+        <div class="col-12 col-md-4">
+          <label for="email" class="form-label">Email</label>
+          <div class="input-group">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="joao@gmail.com"
+            />
+            <span class="input-group-text"
+              ><i class="fas fa-envelope"></i
+            ></span>
+          </div>
+        </div>
+
+        <!-- Telefone -->
+        <div class="col-12 col-md-4">
+          <label for="telefone" class="form-label">Telefone</label>
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              id="telefone"
+              placeholder="(11) 91234-5678"
+            />
+            <span class="input-group-text">
+              <i class="fas fa-phone"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- Data de Nascimento -->
+        <div class="col-12 col-md-4">
+          <label for="data" class="form-label">Data de Nascimento</label>
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              id="data"
+              placeholder="DD/MM/AAAA"
+            />
+            <button
+              class="btn btn-outline-danger"
+              ><i class="fas fa-calendar-alt"></i
+            ></button>
+          </div>
+        </div>
+
+        <hr>
+        
+        <!-- CEP -->
+        <div class="col-md-3">
+          <label for="cep" class="form-label">CEP</label>
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              id="cep"
+              placeholder="12.345-678"
+            />
+            <span class="input-group-text">
+              <i class="fas fa-map-pin"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- Cidade -->
+        <div class="col-md-6">
+          <label for="cidade" class="form-label">Cidade</label>
+          <div class="input-group">
+            <input 
+              type="text"
+              class="form-control"
+              id="cidade"
+              placeholder="São Paulo"
+            >
+            <span class="input-group-text">
+              <i class="fa-solid fa-location-dot"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- CEP -->
+        <div class="col-md-3">
+          <label for="estado" class="form-label">Estado</label>
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              id="estado"
+              placeholder="SP"
+            />
+            <span class="input-group-text">
+              <i class="fa-solid fa-location-dot"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- Bairro -->
+        <div class="col-md-5">
+          <label for="bairro" class="form-label">Bairro</label>
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              id="bairro"
+              placeholder="SP"
+            />
+            <span class="input-group-text">
+              <i class="fa-solid fa-location-dot"></i>
+            </span>
+          </div>
+        </div>
+        
+        <!-- Rua -->
+        <div class="col-md-5">
+          <label for="endereco" class="form-label">Rua</label>
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              id="endereco"
+              placeholder="Rua A"
+            />
+            <span class="input-group-text">
+              <i class="fa-solid fa-location-dot"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- Número -->
+        <div class="col-md-2">
+          <label for="numero" class="form-label">Número</label>
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              id="numero"
+              placeholder="100"
+            />
+            <span class="input-group-text">
+              <i class="fa-solid fa-location-dot"></i>
+            </span>
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- Senha -->
+        <div class="col-md-4">
+          <label for="senha" class="form-label">Senha</label>
+          <div class="input-group">
+            <input
+              type="password"
+              class="form-control"
+              id="senha"
+              placeholder="Senha@123"
+            />
+            <span class="input-group-text">
+              <i class="fas fa-eye toggle-password"></i>
+            </span>
           </div>
         </div>
 

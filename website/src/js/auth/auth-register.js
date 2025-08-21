@@ -1,6 +1,5 @@
 const form = {
   nome: "",
-  sobrenome: "",
   email: "",
   senha: "",
   telefone: "",
@@ -15,7 +14,6 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
   e.preventDefault();
 
   form.nome = document.getElementById("nome").value.trim();
-  form.sobrenome = document.getElementById("sobrenome").value.trim();
   form.email = document.getElementById("email").value.trim();
   form.senha = document.getElementById("password").value.trim();
   form.telefone = document.getElementById("telefone").value.trim();
@@ -43,7 +41,6 @@ const validateFields = () => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!form.nome) newErrors.nome = 'Nome é obrigatório.';
-  if (!form.sobrenome) newErrors.sobrenome = 'Sobrenome é obrigatório.';
   if (!emailRegex.test(form.email)) newErrors.email = 'E-mail inválido.';
   if (!strongPasswordRegex.test(form.senha)) newErrors.senha = 'A senha deve ter no mínimo 8 caracteres <br> letra maiúscula <br> minúscula <br> Número <br> caractere especial.';
   if (!/^\d{11}$/.test(form.telefone)) newErrors.telefone = 'Telefone inválido. Deve conter 11 dígitos.';

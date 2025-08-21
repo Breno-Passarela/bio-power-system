@@ -40,6 +40,9 @@
       <div class="col-md-6 d-flex flex-column justify-content-center align-items-center px-4 bg-white">
         <div class="logo-container mb-4 text-center">
           <img src="../imgs/img-logo-bio-power.png" alt="Logo Bio-Power" />
+
+
+          <h1 class="titulo mt-3" >Login</h1>
         </div>
 
         <form class="w-100" style="max-width:400px;">
@@ -48,7 +51,7 @@
             <label for="email" class="form-label fw-semibold">Email</label>
             <div class="position-relative">
               <i class="fas fa-user input-icon"></i>
-              <input type="email" class="form-control" id="email" placeholder="Ex: joao@gmail.com" />
+              <input type="email" class="form-control" id="email" placeholder="Ex: joao@gmail.com" required />
             </div>
           </div>
 
@@ -59,7 +62,7 @@
               <i class="fas fa-lock input-icon"></i>
               <i class="fas fa-eye toggle-password" id="togglePassword"
                 onclick="passwordShow('togglePassword', 'password')"></i>
-              <input type="password" class="form-control" id="password" placeholder="Ex: senha@123" />
+              <input type="password" class="form-control" id="password" placeholder="Ex: senha@123" required />
             </div>
           </div>
 

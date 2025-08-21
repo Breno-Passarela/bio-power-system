@@ -15,11 +15,17 @@
   font-family: "Montserrat", sans-serif;
 }
 
+.titulo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
 body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   background: #ffffff;
   user-select: none;
 }
