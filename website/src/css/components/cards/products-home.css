@@ -144,14 +144,12 @@
 }
 
 .cart-btn:hover {
-  background-color: #990000;
+  background-color: #ff0000;
   color: #fff;
-  transform: scale(1.05);
 }
 
 .buy-btn:hover {
   background-color: #256729;
-  transform: scale(1.05);
 }
 
 @media (max-width: 600px) {
