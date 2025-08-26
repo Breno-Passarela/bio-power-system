@@ -73,3 +73,9 @@ body {
 .link-register:hover {
   text-decoration: underline;
 }
+
+.readonly-style {
+  background-color: #f8f9fa;
+  pointer-events: none;
+  color: #6c757d;
+}

@@ -23,7 +23,7 @@
   <!-- Import icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+  
   <link rel="stylesheet" href="../css/screen/auth-screen.css" />
 
 </head>
@@ -33,16 +33,22 @@
     <div class="row h-100">
       <!-- Lado da imagem -->
       <div class="col-md-6 d-none d-md-flex presentation-section justify-content-center align-items-center">
-        <img src="../imgs/img-auth-login.png" alt="Apresentação Bio-Power" class="img-fluid" />
+        <img src="../imgs/img-auth-login.png" alt="Apresentação Bio-Power" class="img-fluid"  />
+   
       </div>
 
       <!-- Lado do formulário -->
       <div class="col-md-6 d-flex flex-column justify-content-center align-items-center px-4 bg-white">
         <div class="logo-container mb-4 text-center">
-          <img src="../imgs/img-logo-bio-power.png" alt="Logo Bio-Power" />
+          <img src="../imgs/img-logo-bio-power.png" id="img-logo" style="cursor: pointer;" alt="Logo Bio-Power" />
 
+          <script>
+            document.getElementById("img-logo").addEventListener("click", () => {
+              window.location.href = "../../home.html";
+            });
+          </script>
 
-          <h1 class="titulo mt-3" >Login</h1>
+          <!-- <h1 class="titulo mt-3" >Login</h1> -->
         </div>
 
         <form class="w-100" style="max-width:400px;">
@@ -51,7 +57,7 @@
             <label for="email" class="form-label fw-semibold">Email</label>
             <div class="position-relative">
               <i class="fas fa-user input-icon"></i>
-              <input type="email" class="form-control" id="email" placeholder="Ex: joao@gmail.com" required />
+              <input type="email" class="form-control p-3 ps-5" id="email" placeholder="Ex: joao@gmail.com" required />
             </div>
           </div>
 
@@ -59,10 +65,10 @@
           <div class="mb-4 input-with-icon">
             <label for="password" class="form-label fw-semibold">Senha</label>
             <div class="position-relative">
-              <i class="fas fa-lock input-icon"></i>
+              <i class="fas fa-lock input-icon" ></i>
               <i class="fas fa-eye toggle-password" id="togglePassword"
                 onclick="passwordShow('togglePassword', 'password')"></i>
-              <input type="password" class="form-control" id="password" placeholder="Ex: senha@123" required />
+              <input type="password" class="form-control p-3 ps-5" id="password" placeholder="Ex: senha@123" required />
             </div>
           </div>
 
