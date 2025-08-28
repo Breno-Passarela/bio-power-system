@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bio-Power - Cadastro</title>
 
+    <link
+      rel="shortcut icon"
+      href="../imgs/img-icon-site.png"
+      type="image/x-icon"
+    />
+
     <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -16,13 +22,9 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
     <link rel="stylesheet" href="../css/screen/register-screen.css" />
   </head>
-
-  <body
-    class="bg-white d-flex justify-content-center align-items-center"
-  >
+  <body class="bg-white d-flex justify-content-center align-items-center">
     <div class="container p-4 rounded shadow-sm" style="max-width: 1300px">
       <!-- Logo -->
       <div class="text-center mb-4">
@@ -31,16 +33,13 @@
           height="150"
           alt="Logo Bio-Power"
           id="img-logo"
-          style="cursor: pointer;"
+          style="cursor: pointer"
         />
-
         <script>
           document.getElementById("img-logo").addEventListener("click", () => {
             window.location.href = "../../home.html";
           });
         </script>
-
-        <!-- <h1 class="titulo mt-3">Cadastro de usuários</h1> -->
       </div>
 
       <form id="registerForm">
@@ -57,6 +56,7 @@
               />
               <span class="input-group-text"><i class="fas fa-user"></i></span>
             </div>
+            <span id="error-nome" class="text-danger error-message"></span>
           </div>
 
           <!-- CPF -->
@@ -73,9 +73,10 @@
                 ><i class="fas fa-id-card"></i
               ></span>
             </div>
+            <span id="error-cpf" class="text-danger error-message"></span>
           </div>
 
-          <!-- Gênero Biológico -->
+          <!-- Gênero -->
           <div class="col-12 col-md-4">
             <label for="genero" class="form-label">Gênero Biológico</label>
             <select id="genero" class="form-select p-2">
@@ -84,193 +85,199 @@
               <option value="mulher">Feminino</option>
               <option value="homem">Masculino</option>
             </select>
+            <span id="error-genero" class="text-danger error-message"></span>
           </div>
 
-        <!-- Email -->
-        <div class="col-12 col-md-4">
-          <label for="email" class="form-label">Email</label>
-          <div class="input-group">
-            <input
-              type="email"
-              class="form-control p-2"
-              id="email"
-              placeholder="joao@gmail.com"
-            />
-            <span class="input-group-text"
-              ><i class="fas fa-envelope"></i
-            ></span>
-          </div>
-        </div>
-
-        <!-- Telefone -->
-        <div class="col-12 col-md-4">
-          <label for="telefone" class="form-label">Telefone</label>
-          <div class="input-group">
-            <input
-              type="text"
-              class="form-control p-2"
-              id="telefone"
-              placeholder="(11) 91234-5678"
-            />
-            <span class="input-group-text">
-              <i class="fas fa-phone"></i>
-            </span>
-          </div>
-        </div>
-
-        <!-- Data de Nascimento -->
-        <div class="col-12 col-md-4">
-          <label for="data" class="form-label">Data de Nascimento</label>
-          <div class="input-group">
-            <input
-              type="text"
-              class="form-control p-2"
-              id="data"
-              placeholder="DD/MM/AAAA"
-            />
-            <button
-              class="btn btn-outline-danger"
-              ><i class="fas fa-calendar-alt"></i
-            ></button>
-          </div>
-        </div>
-
-        <hr>
-        
-        <!-- CEP -->
-        <div class="col-md-3">
-          <label for="cep" class="form-label">CEP</label>
-          <div class="input-group">
-            <input
-              type="text"
-              class="form-control p-2"
-              id="cep"
-              placeholder="12345-678"
-            />
-            <span class="input-group-text">
-              <i class="fas fa-map-pin"></i>
-            </span>
-          </div>
-        </div>
-
-        <!-- Cidade -->
-        <div class="col-md-6">
-          <label for="cidade" class="form-label">Cidade</label>
-          <div class="input-group">
-            <input 
-              type="text"
-              class="form-control p-2"
-              id="cidade"
-              placeholder="São Paulo"
-            >
-            <span class="input-group-text">
-              <i class="fa-solid fa-location-dot"></i>
-            </span>
-          </div>
-        </div>
-
-        <!-- CEP -->
-        <div class="col-md-3">
-          <label for="estado" class="form-label">Estado</label>
-          <div class="input-group">
-            <input
-              type="text"
-              class="form-control p-2"
-              id="estado"
-              placeholder="SP"
-            />
-            <span class="input-group-text">
-              <i class="fa-solid fa-location-dot"></i>
-            </span>
-          </div>
-        </div>
-
-        <!-- Bairro -->
-        <div class="col-md-5">
-          <label for="bairro" class="form-label">Bairro</label>
-          <div class="input-group">
-            <input
-              type="text"
-              class="form-control p-2"
-              id="bairro"
-              placeholder="Bairro A"
-            />
-            <span class="input-group-text">
-              <i class="fa-solid fa-location-dot"></i>
-            </span>
-          </div>
-        </div>
-        
-        <!-- Rua -->
-        <div class="col-md-5">
-          <label for="endereco" class="form-label">Rua</label>
-          <div class="input-group">
-            <input
-              type="text"
-              class="form-control p-2"
-              id="endereco"
-              placeholder="Rua B"
-            />
-            <span class="input-group-text">
-              <i class="fa-solid fa-location-dot"></i>
-            </span>
-          </div>
-        </div>
-
-        <!-- Número -->
-        <div class="col-md-2">
-          <label for="numero" class="form-label">Número</label>
-          <div class="input-group">
-            <input
-              type="text"
-              class="form-control p-2"
-              id="numero"
-              placeholder="100"
-            />
-            <span class="input-group-text">
-              <i class="fa-solid fa-location-dot"></i>
-            </span>
-          </div>
-        </div>
-
-        <hr>
-
-        <!-- Senha -->
-        <div class="row justify-content-center">
-          <div class="col-md-5">
-            <label for="senha" class="form-label">Senha</label>
+          <!-- Email -->
+          <div class="col-12 col-md-4">
+            <label for="email" class="form-label">Email</label>
             <div class="input-group">
               <input
-                type="password"
-                class="form-control p-2" 
-                id="senha"
-                placeholder="Senha@123"
+                type="email"
+                class="form-control p-2"
+                id="email"
+                placeholder="joao@gmail.com"
               />
-              <button
-                class="btn btn-outline-danger"
-                onclick="passwordShow('toggleSenha', 'senha')"
-              >
-                <i
-                  id="toggleSenha"
-                  class="fa fa-eye"
-                ></i
-              ></button>
+              <span class="input-group-text"
+                ><i class="fas fa-envelope"></i
+              ></span>
+            </div>
+            <span id="error-email" class="text-danger error-message"></span>
+          </div>
+
+          <!-- Telefone -->
+          <div class="col-12 col-md-4">
+            <label for="telefone" class="form-label">Telefone</label>
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control p-2"
+                id="telefone"
+                placeholder="(11) 91234-5678"
+              />
+              <span class="input-group-text"><i class="fas fa-phone"></i></span>
+            </div>
+            <span id="error-telefone" class="text-danger error-message"></span>
+          </div>
+
+          <!-- Data -->
+          <div class="col-12 col-md-4">
+            <label for="data" class="form-label">Data de Nascimento</label>
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control p-2"
+                id="data"
+                placeholder="DD/MM/AAAA"
+              />
+              <button type="button" class="btn btn-outline-danger">
+                <i class="fas fa-calendar-alt"></i>
+              </button>
+            </div>
+            <span id="error-data" class="text-danger error-message"></span>
+          </div>
+
+          <hr />
+
+          <!-- CEP -->
+          <div class="col-md-3">
+            <label for="cep" class="form-label">CEP</label>
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control p-2"
+                id="cep"
+                placeholder="12345-678"
+              />
+              <span class="input-group-text"
+                ><i class="fas fa-map-pin"></i
+              ></span>
+            </div>
+            <span id="error-cep" class="text-danger error-message"></span>
+          </div>
+
+          <!-- Cidade -->
+          <div class="col-md-6">
+            <label for="cidade" class="form-label">Cidade</label>
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control p-2"
+                id="cidade"
+                placeholder="São Paulo"
+              />
+              <span class="input-group-text"
+                ><i class="fa-solid fa-location-dot"></i
+              ></span>
+            </div>
+            <span id="error-cidade" class="text-danger error-message"></span>
+          </div>
+
+          <!-- Estado -->
+          <div class="col-md-3">
+            <label for="estado" class="form-label">Estado</label>
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control p-2"
+                id="estado"
+                placeholder="SP"
+              />
+              <span class="input-group-text"
+                ><i class="fa-solid fa-location-dot"></i
+              ></span>
+            </div>
+            <span id="error-estado" class="text-danger error-message"></span>
+          </div>
+
+          <!-- Bairro -->
+          <div class="col-md-5">
+            <label for="bairro" class="form-label">Bairro</label>
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control p-2"
+                id="bairro"
+                placeholder="Bairro A"
+              />
+              <span class="input-group-text"
+                ><i class="fa-solid fa-location-dot"></i
+              ></span>
+            </div>
+            <span id="error-bairro" class="text-danger error-message"></span>
+          </div>
+
+          <!-- Rua -->
+          <div class="col-md-5">
+            <label for="endereco" class="form-label">Rua</label>
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control p-2"
+                id="endereco"
+                placeholder="Rua B"
+              />
+              <span class="input-group-text"
+                ><i class="fa-solid fa-location-dot"></i
+              ></span>
+            </div>
+            <span id="error-endereco" class="text-danger error-message"></span>
+          </div>
+
+          <!-- Número -->
+          <div class="col-md-2">
+            <label for="numero" class="form-label">Número</label>
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control p-2"
+                id="numero"
+                placeholder="100"
+              />
+              <span class="input-group-text"
+                ><i class="fa-solid fa-location-dot"></i
+              ></span>
+            </div>
+            <span id="error-numero" class="text-danger error-message"></span>
+          </div>
+
+          <hr />
+
+          <!-- Senha -->
+          <div class="row justify-content-center">
+            <div class="col-md-5">
+              <label for="senha" class="form-label">Senha</label>
+              <div class="input-group">
+                <input
+                  type="password"
+                  class="form-control p-2"
+                  id="senha"
+                  placeholder="Senha@123"
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline-danger"
+                  onclick="passwordShow('toggleSenha', 'senha')"
+                >
+                  <i id="toggleSenha" class="fa fa-eye"></i>
+                </button>
+              </div>
+              <span id="error-senha" class="text-danger error-message"></span>
             </div>
           </div>
-        </div>
 
-        <!-- Botão -->
-        <div class="text-center mt-4">
-          <button type="submit" class="btn btn-danger px-5 py-2">
-            Cadastrar
-          </button>
-        </div>
+          <!-- Botão -->
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-danger px-5 py-2">
+              Cadastrar
+            </button>
+          </div>
 
-        <!-- Link -->
-        <p class="text-center mt-3">
-          Já tem uma conta?
-          <a href="auth-login.html" class="text-primary">Entrar</a>
-        </p>
+          <p class="text-center mt-3">
+            Já tem uma conta?
+            <a href="auth-login.html" class="text-primary">Entrar</a>
+          </p>
+        </div>
       </form>
     </div>
 
