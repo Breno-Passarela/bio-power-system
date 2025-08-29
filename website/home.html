@@ -21,7 +21,23 @@
   <link rel="stylesheet" href="src/css/components/carousel/mini-carrousel.css">
 
 </head>
+<style>
+  .custom-carousel .carousel-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%;
+  }
 
+  @media (max-width: 768px) {
+    .custom-carousel .carousel-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+  }
+</style>
 <body>
   <div class="containe">
 
@@ -69,7 +85,7 @@
 
       <div class="navbar-profile" id="navbarProfile">
         <img id="profileAvatar" class="navbar-avatar" alt="Avatar" style="display: none" />
-        <span id="loginText" class="login-text" style="display: none">Fazer login/Criar conta</span>
+        <span id="loginText" class="login-text" style="display: none">Entrar</span>
 
         <div class="profile-dropdown" id="profileDropdown">
           <div class="profile-dropdown-content">
@@ -107,7 +123,7 @@
         </div>
         <div class="mobile-menu-cart">
           <button class="cart-button mobile-cart-button">
-            <a href="./shopping-cart.html" style="text-decoration: none; color: white;">
+            <a href="./shopping-cart.html" style="text-decoration: none; color: black;">
               <i class="fa-solid fa-cart-shopping"></i> Carrinho
             </a>
           </button>
@@ -191,25 +207,25 @@
       <div class="carousel-dots" id="carouselDots"></div>
     </div> -->
 
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleControls" class="carousel slide custom-carousel" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img class="d-block w-100" src="src/imgs/carrousel/banner.png" alt="First slide">
+          <img src="src/imgs/carrousel/banner.png" class="d-block w-100 img-fluid" alt="First slide">
+        </div>
+        <!-- <div class="carousel-item">
+          <img src="src/imgs/carrousel/banner-2.png" class="d-block w-100 img-fluid" alt="Second slide">
+        </div> -->
+        <div class="carousel-item">
+          <img src="src/imgs/carrousel/banner-3.png" class="d-block w-100 img-fluid" alt="Third slide">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="src/imgs/carrousel/banner-2.png" alt="Second slide">
+          <img src="src/imgs/carrousel/banner-4.png" class="d-block w-100 img-fluid" alt="Fourth slide">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="src/imgs/carrousel/banner-3.png" alt="Third slide">
+          <img src="src/imgs/carrousel/banner-5.png" class="d-block w-100 img-fluid" alt="Fifth slide">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="src/imgs/carrousel/banner-4.png" alt="Fourth slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="src/imgs/carrousel/banner-5.png" alt="Fifth slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="src/imgs/carrousel/banner-6.png" alt="Sixth slide">
+          <img src="src/imgs/carrousel/banner-6.png" class="d-block w-100 img-fluid" alt="Sixth slide">
         </div>
       </div>
 
@@ -225,6 +241,7 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
+
 
       <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
