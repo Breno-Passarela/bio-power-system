@@ -125,12 +125,16 @@
             <label for="data" class="form-label">Data de Nascimento</label>
             <div class="input-group">
               <input
-                type="text"
+                type="date"
                 class="form-control p-2"
                 id="data"
                 placeholder="DD/MM/AAAA"
               />
-              <button type="button" class="btn btn-outline-danger">
+              <button
+                type="button"
+                class="btn btn-outline-danger"
+                onclick="document.getElementById('data').showPicker()"
+              >
                 <i class="fas fa-calendar-alt"></i>
               </button>
             </div>
@@ -149,8 +153,8 @@
                 id="cep"
                 placeholder="12345-678"
               />
-              <span class="input-group-text"
-                ><i class="fas fa-map-pin"></i
+              <span class="input-group-text">
+                <i class="fas fa-map-pin"></i
               ></span>
             </div>
             <span id="error-cep" class="text-danger error-message"></span>

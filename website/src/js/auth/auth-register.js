@@ -119,39 +119,34 @@ document.getElementById("telefone").addEventListener("input", function (e) {
   else e.target.value = value;
 });
 
-document.getElementById("data").addEventListener("input", function (e) {
-  let value = e.target.value.replace(/\D/g, "").slice(0, 8);
-  if (value.length >= 5)
-    e.target.value = value.replace(/(\d{2})(\d{2})(\d{0,4})/, "$1/$2/$3");
-  else if (value.length >= 3)
-    e.target.value = value.replace(/(\d{2})(\d{0,2})/, "$1/$2");
-  else e.target.value = value;
-});
-
 // API CEP
 document.getElementById("cep").addEventListener("blur", async function () {
   const cep = this.value.replace(/\D/g, "");
-  if (cep.length !== 8) return;
+  if (cep.length !== 8) {
+    console.log("CEP inválido!");
+    return;
+  } 
   try {
     const res = await fetch(`https://brasilapi.com.br/api/cep/v1/${cep}`);
-    if (!res.ok) throw new Error("CEP não encontrado");
+    if (!res.ok) {
+      throw new Error("CEP não encontrado");
+    }
     const data = await res.json();
+    
+    const mapaCampos = {
+      estado: "state",
+      cidade: "city",
+      bairro: "neighborhood",
+      endereco: "street",
+    };
+  
     ["estado", "cidade", "bairro", "endereco"].forEach((id) => {
       const input = document.getElementById(id);
-      input.value =
-        data[
-          id === "estado"
-            ? "state"
-            : id === "cidade"
-            ? "city"
-            : id === "bairro"
-            ? "neighborhood"
-            : "street"
-        ] || "";
+      input.value = data[mapaCampos[id]] || "";
       input.classList.add("readonly-style");
     });
   } catch (e) {
-    console.error("Erro CEP:", e);
+    console.error("Erro da API de CEP:", e);
   }
 });
 
@@ -180,11 +175,6 @@ window.addEventListener("load", () => {
   });
 });
 
-// Botões do form tipo button
-document.querySelectorAll("button").forEach((btn) => {
-  if (!btn.type) btn.type = "button";
-});
-
 // Função para mostrar senha
 function passwordShow(toggleId, inputId) {
   const toggle = document.getElementById(toggleId);
@@ -196,4 +186,11 @@ function passwordShow(toggleId, inputId) {
     input.type = "password";
     toggle.classList.replace("fa-eye-slash", "fa-eye");
   }
+}
+
+const inputDate = document.getElementById('data');
+if (inputDate.showPicker) {
+  inputDate.showPicker();
+} else {
+  inputDate.focus();
 }

@@ -79,3 +79,7 @@ body {
   pointer-events: none;
   color: #6c757d;
 }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none !important;
+}
