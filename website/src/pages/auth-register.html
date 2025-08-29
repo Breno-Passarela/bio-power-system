@@ -78,12 +78,16 @@
 
           <!-- Gênero -->
           <div class="col-12 col-md-4">
-            <label for="genero" class="form-label">Gênero Biológico</label>
-            <select id="genero" class="form-select p-2">
-              <option selected disabled>Selecione uma opção</option>
+            <label for="genero" class="form-label fw-semibold"
+              >Gênero Biológico</label
+            >
+            <select id="genero" class="form-select shadow-sm p-2">
+              <option value="" selected disabled hidden>
+                Selecione uma opção
+              </option>
               <option value="nao_informado">Prefiro não informar</option>
-              <option value="mulher">Feminino</option>
-              <option value="homem">Masculino</option>
+              <option value="feminino">Feminino</option>
+              <option value="masculino">Masculino</option>
             </select>
             <span id="error-genero" class="text-danger error-message"></span>
           </div>
