@@ -1,59 +1,185 @@
-body {
-  margin: 0;
 
-  padding: 0;
 
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      .header-section {
+        text-align: center;
+        color: white;
+        margin-bottom: 50px;
+      }
 
-  background-color: #f2f2f2;
+      .header-section h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
 
-  display: flex;
+      .header-section p {
+        font-size: 1.2rem;
+        opacity: 0.95;
+      }
 
-  justify-content: center;
+      .content-wrapper {
+        background: white;
+        border-radius: 20px;
+        padding: 50px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
 
-  align-items: center;
+      .about-section {
+        margin-bottom: 60px;
+      }
 
-  height: 100vh;
-}
+      .about-section h2 {
+        color: #990000;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 30px;
+        position: relative;
+        padding-bottom: 15px;
+      }
 
-.container {
-  text-align: center;
+      .about-section h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, #cc0000, #990000);
+        border-radius: 2px;
+      }
 
-  background-color: #ffffff;
+      .about-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 25px;
+      }
 
-  padding: 40px;
+      .values-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin: 40px 0;
+      }
 
-  border-radius: 12px;
+      .value-card {
+        text-align: center;
+        padding: 30px;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+      }
 
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
+      .value-card:hover {
+        transform: translateY(-10px);
+      }
 
-h1 {
-  color: #e74c3c;
+      .value-card i {
+        font-size: 3rem;
+        color: #990000;
+        margin-bottom: 15px;
+      }
 
-  margin-bottom: 10px;
-}
+      .value-card h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+      }
 
-p {
-  color: #555555;
+      .value-card p {
+        color: #666;
+        font-size: 1rem;
+      }
 
-  margin-bottom: 30px;
+      .contact-section {
+        background: linear-gradient(135deg, #990000 0%, #990000 100%);
+        padding: 50px;
+        border-radius: 20px;
+        color: white;
+      }
 
-  font-size: 18px;
-}
+      .contact-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 30px;
+        text-align: center;
+      }
 
-.btn-home {
-  text-decoration: none;
+      .form-label {
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
 
-  background-color: #990000;
+      .form-control,
+      .form-select {
+        border-radius: 10px;
+        padding: 12px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.9);
+      }
 
-  color: white;
+      .form-control:focus,
+      .form-select:focus {
+        border-color: white;
+        box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+        background: white;
+      }
 
-  padding: 12px 24px;
+      .btn-submit {
+        background: white;
+        color: #990000;
+        font-weight: 700;
+        font-size: 1.1rem;
+        padding: 12px 40px;
+        border: none;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        width: 100%;
+      }
 
-  border-radius: 8px;
+      .btn-submit:hover {
+        background: #f0f0f0;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
 
-  font-size: 16px;
+      .btn-back {
+        display: inline-block;
+        margin-bottom: 30px;
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: transform 0.3s ease;
+      }
 
-  transition: background-color 0.3s ease;
-}
+      .btn-back:hover {
+        transform: translateX(-5px);
+        color: white;
+      }
+
+      .alert {
+        border-radius: 10px;
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .header-section h1 {
+          font-size: 2rem;
+        }
+
+        .content-wrapper {
+          padding: 30px 20px;
+        }
+
+        .about-section h2,
+        .contact-section h2 {
+          font-size: 2rem;
+        }
+
+        .contact-section {
+          padding: 30px 20px;
+        }
+      }
