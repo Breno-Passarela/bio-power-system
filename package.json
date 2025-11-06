@@ -1,0 +1,22 @@
+{
+  "name": "bio-power-system",
+  "version": "1.0.0",
+  "description": "<div align=\"center\">",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Breno-Passarela/bio-power-system.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Breno-Passarela/bio-power-system/issues"
+  },
+  "homepage": "https://github.com/Breno-Passarela/bio-power-system#readme",
+  "dependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
