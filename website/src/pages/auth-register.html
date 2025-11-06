@@ -42,143 +42,176 @@
         </script>
       </div>
 
-      <form id="registerForm">
+      <form id="registerForm" novalidate>
         <div class="row g-4">
           <div class="col-12">
             <h5 class="mb-3">Informações Pessoais</h5>
           </div>
+
           <!-- Nome -->
           <div class="col-12 col-md-6">
-            <label for="nome" class="form-label">Nome</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control p-2"
-                id="nome"
-                placeholder="João da Silva"
-              />
-              <span class="input-group-text"><i class="fas fa-user"></i></span>
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nome"
+                    placeholder="Nome completo"
+                  />
+                  <label for="nome">Nome</label>
+                </div>
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <div id="error-nome" class="invalid-feedback"></div>
             </div>
-            <span id="error-nome" class="text-danger error-message"></span>
           </div>
 
           <!-- Sobrenome -->
           <div class="col-12 col-md-6">
-            <label for="sobrenome" class="form-label">Sobrenome</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control p-2"
-                id="sobrenome"
-                placeholder="Silva"
-              />
-              <span class="input-group-text"><i class="fas fa-user"></i></span>
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="sobrenome"
+                    placeholder="Sobrenome"
+                  />
+                  <label for="sobrenome">Sobrenome</label>
+                </div>
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <div id="error-sobrenome" class="invalid-feedback"></div>
             </div>
-            <span id="error-sobrenome" class="text-danger error-message"></span>
           </div>
 
           <!-- CPF -->
           <div class="col-12 col-md-6">
-            <label for="cpf" class="form-label">CPF</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control p-2"
-                id="cpf"
-                placeholder="123.456.789-00"
-              />
-              <span class="input-group-text"
-                ><i class="fas fa-id-card"></i
-              ></span>
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cpf"
+                    placeholder="000.000.000-00"
+                  />
+                  <label for="cpf">CPF</label>
+                </div>
+                <span class="input-group-text"
+                  ><i class="fas fa-id-card"></i
+                ></span>
+              </div>
+              <div id="error-cpf" class="invalid-feedback"></div>
             </div>
-            <span id="error-cpf" class="text-danger error-message"></span>
           </div>
 
           <!-- Gênero -->
           <div class="col-12 col-md-6">
-            <label for="genero" class="form-label"
-              >Gênero Biológico</label
-            >
-            <select id="genero" class="form-select shadow-sm p-2">
-              <option value="" selected disabled hidden>
-                Selecione uma opção
-              </option>
-              <option value="nao_informado">Prefiro não informar</option>
-              <option value="feminino">Feminino</option>
-              <option value="masculino">Masculino</option>
-            </select>
-            <span id="error-genero" class="text-danger error-message"></span>
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <select id="genero" class="form-select" aria-label="Gênero Biológico">
+                    <option value="" selected disabled hidden></option>
+                    <option value="nao_informado">Prefiro não informar</option>
+                    <option value="feminino">Feminino</option>
+                    <option value="masculino">Masculino</option>
+                  </select>
+                  <label for="genero">Gênero Biológico</label>
+                </div>
+                <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+              </div>
+              <div id="error-genero" class="invalid-feedback"></div>
+            </div>
           </div>
 
           <!-- Email -->
           <div class="col-12 col-md-6">
-            <label for="email" class="form-label">Email</label>
-            <div class="input-group">
-              <input
-                type="email"
-                class="form-control p-2"
-                id="email"
-                placeholder="joao@gmail.com"
-              />
-              <span class="input-group-text"
-                ><i class="fas fa-envelope"></i
-              ></span>
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="nome@exemplo.com"
+                  />
+                  <label for="email">Email</label>
+                </div>
+                <span class="input-group-text"
+                  ><i class="fas fa-envelope"></i
+                ></span>
+              </div>
+              <div id="error-email" class="invalid-feedback"></div>
             </div>
-            <span id="error-email" class="text-danger error-message"></span>
           </div>
 
           <!-- Telefone -->
           <div class="col-12 col-md-6">
-            <label for="telefone" class="form-label">Telefone</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control p-2"
-                id="telefone"
-                placeholder="(11) 91234-5678"
-              />
-              <span class="input-group-text"><i class="fas fa-phone"></i></span>
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="telefone"
+                    placeholder="(00) 90000-0000"
+                  />
+                  <label for="telefone">Telefone</label>
+                </div>
+                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+              </div>
+              <div id="error-telefone" class="invalid-feedback"></div>
             </div>
-            <span id="error-telefone" class="text-danger error-message"></span>
           </div>
 
-          <!-- Data -->
+          <!-- Data de nascimento -->
           <div class="col-12 col-md-6">
-            <label for="data" class="form-label">Data de Nascimento</label>
-            <div class="input-group">
-              <input
-                type="date"
-                class="form-control p-2"
-                id="data"
-                placeholder="DD/MM/AAAA"
-              />
-              <button
-                type="button"
-                class="btn btn-outline-danger"
-                onclick="document.getElementById('data').showPicker()"
-              >
-                <i class="fas fa-calendar-alt"></i>
-              </button>
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="data"
+                    placeholder=" "
+                  />
+                  <label for="data">Data de Nascimento</label>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-outline-danger"
+                  onclick="document.getElementById('data').showPicker()"
+                  aria-label="Abrir seletor de data"
+                >
+                  <i class="fas fa-calendar-alt"></i>
+                </button>
+              </div>
+              <div id="error-data" class="invalid-feedback"></div>
             </div>
-            <span id="error-data" class="text-danger error-message"></span>
           </div>
 
           <!-- Estado Civil -->
           <div class="col-12 col-md-6">
-            <label for="estadoCivil" class="form-label">Estado Civil</label>
-            <select id="estadoCivil" class="form-select shadow-sm p-2">
-              <option value="" selected disabled hidden>Selecione uma opção</option>
-              <option value="solteiro">Solteiro(a)</option>
-              <option value="casado">Casado(a)</option>
-              <option value="divorciado">Divorciado(a)</option>
-              <option value="viuvo">Viúvo(a)</option>
-              <option value="uniao_estavel">União Estável</option>
-              <option value="prefiro_nao_informar">Prefiro não informar</option>
-            </select>
-            <span id="error-estadoCivil" class="text-danger error-message"></span>
+            <div class="floating-field">
+              <div class="form-floating">
+                <select id="estadoCivil" class="form-select" aria-label="Estado Civil">
+                  <option value="" selected disabled hidden></option>
+                  <option value="solteiro">Solteiro(a)</option>
+                  <option value="casado">Casado(a)</option>
+                  <option value="divorciado">Divorciado(a)</option>
+                  <option value="viuvo">Viúvo(a)</option>
+                  <option value="uniao_estavel">União Estável</option>
+                  <option value="prefiro_nao_informar">Prefiro não informar</option>
+                </select>
+                <label for="estadoCivil">Estado Civil</label>
+              </div>
+              <div id="error-estadoCivil" class="invalid-feedback"></div>
+            </div>
           </div>
 
-          <div class="col-12"><hr/></div>
+          <div class="col-12"><hr /></div>
 
           <div class="col-12">
             <h5 class="mb-3">Endereço</h5>
@@ -186,122 +219,151 @@
 
           <!-- CEP -->
           <div class="col-md-3">
-            <label for="cep" class="form-label">CEP</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control p-2"
-                id="cep"
-                placeholder="12345-678"
-              />
-              <span class="input-group-text">
-                <i class="fas fa-map-pin"></i
-              ></span>
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cep"
+                    placeholder="00000-000"
+                  />
+                  <label for="cep">CEP</label>
+                </div>
+                <span class="input-group-text">
+                  <i class="fas fa-map-pin"></i>
+                </span>
+              </div>
+              <div id="error-cep" class="invalid-feedback"></div>
             </div>
-            <span id="error-cep" class="text-danger error-message"></span>
           </div>
 
           <!-- Cidade -->
           <div class="col-md-6">
-            <label for="cidade" class="form-label">Cidade</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control p-2"
-                id="cidade"
-                placeholder="São Paulo"
-              />
-              <span class="input-group-text"
-                ><i class="fa-solid fa-location-dot"></i
-              ></span>
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cidade"
+                    placeholder="Cidade"
+                  />
+                  <label for="cidade">Cidade</label>
+                </div>
+                <span class="input-group-text"
+                  ><i class="fa-solid fa-location-dot"></i
+                ></span>
+              </div>
+              <div id="error-cidade" class="invalid-feedback"></div>
             </div>
-            <span id="error-cidade" class="text-danger error-message"></span>
           </div>
 
           <!-- Estado -->
           <div class="col-md-3">
-            <label for="estado" class="form-label">Estado</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control p-2"
-                id="estado"
-                placeholder="SP"
-              />
-              <span class="input-group-text"
-                ><i class="fa-solid fa-location-dot"></i
-              ></span>
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="estado"
+                    placeholder="UF"
+                    maxlength="2"
+                  />
+                  <label for="estado">Estado</label>
+                </div>
+                <span class="input-group-text"
+                  ><i class="fa-solid fa-location-dot"></i
+                ></span>
+              </div>
+              <div id="error-estado" class="invalid-feedback"></div>
             </div>
-            <span id="error-estado" class="text-danger error-message"></span>
           </div>
 
           <!-- Bairro -->
           <div class="col-md-5">
-            <label for="bairro" class="form-label">Bairro</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control p-2"
-                id="bairro"
-                placeholder="Bairro A"
-              />
-              <span class="input-group-text"
-                ><i class="fa-solid fa-location-dot"></i
-              ></span>
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="bairro"
+                    placeholder="Bairro"
+                  />
+                  <label for="bairro">Bairro</label>
+                </div>
+                <span class="input-group-text"
+                  ><i class="fa-solid fa-location-dot"></i
+                ></span>
+              </div>
+              <div id="error-bairro" class="invalid-feedback"></div>
             </div>
-            <span id="error-bairro" class="text-danger error-message"></span>
           </div>
 
           <!-- Rua -->
           <div class="col-md-5">
-            <label for="endereco" class="form-label">Rua</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control p-2"
-                id="endereco"
-                placeholder="Rua B"
-              />
-              <span class="input-group-text"
-                ><i class="fa-solid fa-location-dot"></i
-              ></span>
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="endereco"
+                    placeholder="Rua"
+                  />
+                  <label for="endereco">Rua</label>
+                </div>
+                <span class="input-group-text"
+                  ><i class="fa-solid fa-location-dot"></i
+                ></span>
+              </div>
+              <div id="error-endereco" class="invalid-feedback"></div>
             </div>
-            <span id="error-endereco" class="text-danger error-message"></span>
           </div>
 
           <!-- Número -->
           <div class="col-md-2">
-            <label for="numero" class="form-label">Número</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control p-2"
-                id="numero"
-                placeholder="100"
-              />
-              <span class="input-group-text"
-                ><i class="fa-solid fa-location-dot"></i
-              ></span>
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="numero"
+                    placeholder="Número"
+                  />
+                  <label for="numero">Número</label>
+                </div>
+                <span class="input-group-text"
+                  ><i class="fa-solid fa-location-dot"></i
+                ></span>
+              </div>
+              <div id="error-numero" class="invalid-feedback"></div>
             </div>
-            <span id="error-numero" class="text-danger error-message"></span>
           </div>
 
           <!-- Complemento -->
-          <div class="col-md-10">
-            <label for="complemento" class="form-label">Complemento</label>
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control p-2"
-                id="complemento"
-                placeholder="Apto, Bloco, Sala, etc"
-              />
-              <span class="input-group-text"><i class="fas fa-building"></i></span>
+          <div class="col-md-12">
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <textarea
+                    class="form-control"
+                    id="complemento"
+                    placeholder="Complemento"
+                    style="height: 120px"
+                  ></textarea>
+                  <label for="complemento">Complemento</label>
+                </div>
+                <span class="input-group-text"><i class="fas fa-building"></i></span>
+              </div>
+              <div id="error-complemento" class="invalid-feedback"></div>
             </div>
-            <span id="error-complemento" class="text-danger error-message"></span>
           </div>
 
-          <div class="col-12"><hr/></div>
+          <div class="col-12"><hr /></div>
 
           <div class="col-12">
             <h5 class="mb-3">Senha</h5>
@@ -310,23 +372,28 @@
           <!-- Senha -->
           <div class="row justify-content-center">
             <div class="col-md-5">
-              <label for="senha" class="form-label">Senha</label>
-              <div class="input-group">
-                <input
-                  type="password"
-                  class="form-control p-2"
-                  id="senha"
-                  placeholder="Senha@123"
-                />
-                <button
-                  type="button"
-                  class="btn btn-outline-danger"
-                  onclick="passwordShow('toggleSenha', 'senha')"
-                >
-                  <i id="toggleSenha" class="fa fa-eye"></i>
-                </button>
+              <div class="floating-field">
+                <div class="input-group floating-input-group">
+                  <div class="form-floating flex-grow-1">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="senha"
+                      placeholder="Senha@123"
+                    />
+                    <label for="senha">Senha</label>
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger"
+                    onclick="passwordShow('toggleSenha', 'senha')"
+                    aria-label="Mostrar ou ocultar senha"
+                  >
+                    <i id="toggleSenha" class="fa fa-eye"></i>
+                  </button>
+                </div>
+                <div id="error-senha" class="invalid-feedback"></div>
               </div>
-              <span id="error-senha" class="text-danger error-message"></span>
             </div>
           </div>
 
