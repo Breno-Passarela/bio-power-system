@@ -1,18 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <windows.h>
+// #include <windows.h>
 
 typedef struct
 {
     int dia, mes, ano;
 } Dia;
+typedef struct
+{
+    int lote, mes, ano;
+
+} PromocaoProduto;
+;
 
 typedef struct
 {
-    int lote, quantidade;
+    int cod, lote, quantidade;
     char nome[200], descricao[255], laboratorio[200], tipo[100];
     float valor, desconto;
+    PromocaoProduto prom;
     Dia validade;
 } Produto;
 
@@ -21,13 +28,54 @@ typedef struct
     char usuario[200], senha[200];
 } Administrador;
 
-// Telas do software
-
-void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo)
+int buscaCod(FILE *ptProduto, int cod)
 {
+    Produto p;
+    rewind(ptProduto);
+    fread(&p, sizeof(Produto), 1, ptProduto);
+    while (!feof(ptProduto) && p.cod != cod)
+    {
+        fread(&p, sizeof(Produto), 1, ptProduto);
+    }
+    if (!feof(ptProduto))
+    {
+        return ftell(ptProduto) - sizeof(Produto);
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+int buscaADM(FILE *ptAdm, char usuario[200])
+{
+    Administrador adm;
+    rewind(ptAdm);
+    fread(&adm, sizeof(Administrador), 1, ptAdm);
+    while (!feof(ptAdm) && strcmp(adm.usuario, usuario) != 0)
+    {
+        fread(&adm, sizeof(Administrador), 1, ptAdm);
+    }
+    if (!feof(ptAdm))
+    {
+        return ftell(ptAdm) - sizeof(Administrador);
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+// Telas do software
+// Menu do sistema de administrador
+void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
+    FILE *ptAdm;
+    Administrador adm;
     system("cls");
     printf("\nVoce selecionou o sistema de Administrador!\n");
-    int menu, submenu;
+    int menu, submenu, pos, op;
+    char resp;
+    char usuario[200];
 
     do
     {
@@ -42,7 +90,7 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo)
 
         switch (menu)
         {
-        case 1:
+        case 1:{
             printf("\n1: Cadastrar Administrador\n");
             printf("2: Deletar Administrador\n");
             printf("3: Editar Administrador\n");
@@ -51,27 +99,171 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo)
 
             scanf("%d", &submenu);
             system("cls");
-            switch (submenu)
-            {
-            case 1:
+            switch (submenu){
+            case 1:{
                 printf("\nCadastrar Administrador em desenvolvimento\n");
+                FILE *ptAdm;
+                ptAdm = fopen("administradores.bin", "ab+");
+                if (ptAdm == NULL)
+                {
+                    printf("Erro ao criar o arquivo de administradores.\n");
+                    system("pause");
+                }
+                else
+                {
+                    do
+                    {
+                        printf("Digite o nome do novo administrador: ");fflush(stdin);
+                        scanf(" %s", &adm.usuario);
+                        //gets(adm.usuario);
+                        pos = buscaADM(ptAdm, adm.usuario);
+                        if (pos == -1)
+                        {
+                            printf("Digite a senha do novo administrador: ");fflush(stdin);
+                            scanf(" %s", &adm.senha);
+                            //gets(adm.senha);
+                            fwrite(&adm, sizeof(Administrador), 1, ptAdm);
+                            printf("Administrador cadastrado com sucesso!\n");
+                        }
+                        else
+                        {
+                            fseek(ptAdm, pos, 0);
+                            fread(&adm, sizeof(Administrador), 1, ptAdm);
+                            printf("Administrador ja existe!\n");
+                        }
+                        printf("Deseja cadastrar outro administrador? (s/n):\n> ");
+                        scanf(" %c", &resp);
+                    } while (resp == 's' || resp == 'S');
+                }
                 system("pause");
+                fclose(ptAdm);
                 break;
-            case 2:
-                printf("\nDeletar Administrador em desenvolvimento\n");
-                system("pause");
+            }
+            case 2:{
+                FILE *ptAdm;
+                ptAdm = fopen("administradores.bin", "rb+");
+                if (ptAdm == NULL)
+                {
+                    printf("Erro ao abrir o arquivo de administradores.\n");
+                    system("pause");
+                }
+                else
+                {
+                    printf("\nDeletar Administrador em desenvolvimento\n");
+                    printf("Digite o nome do administrador a ser deletado: ");fflush(stdin);
+                    scanf(" %s", &usuario);
+                    if (strcmp(usuario, "/0") != 0)
+                    {
+                        pos = buscaADM(ptAdm, usuario);
+                        if (pos == -1)
+                        {
+                            printf("Administrador nao encontrado!\n");
+                            system("pause");
+                        }
+                        else
+                        {
+                            fseek(ptAdm, pos, 0);
+                            fread(&adm, sizeof(Administrador), 1, ptAdm);
+                            printf("\n---------------------------------\n");
+                            printf("Administrador: %s\n", adm.usuario);
+                            printf("---------------------------------\n");
+                            printf("Tem certeza que deseja deletar este administrador? (s/n):\n> ");
+                            scanf(" %c", &resp);
+                            if (resp == 's' || resp == 'S')
+                            {
+                                FILE *ptTemp;
+                                ptTemp = fopen("temp.bin", "wb");
+                                rewind(ptAdm);
+                                fread(&adm, sizeof(Administrador), 1, ptAdm);
+                                while (!feof(ptAdm))
+                                {
+                                    if (strcmp(adm.usuario, usuario) != 0)
+                                    {
+                                        fwrite(&adm, sizeof(Administrador), 1, ptTemp);
+                                    }
+                                    fread(&adm, sizeof(Administrador), 1, ptAdm);
+                                }
+                                fclose(ptAdm);
+                                fclose(ptTemp);
+                                remove("administradores.bin");
+                                rename("temp.bin", "administradores.bin");
+                            }
+                        }
+                    }
+                    printf("Administrador deletado com sucesso!\n");
+                }
                 break;
-            case 3:
+            }
+            case 3:{
                 printf("\nEditar Administrador em desenvolvimento\n");
-                system("pause");
+                FILE *ptAdm;
+                ptAdm = fopen("administradores.bin", "rb+");
+                if (ptAdm == NULL){
+                    printf("Erro ao abrir o arquivo de administradores.\n");
+                    system("pause");
+                }
+                else{
+                    printf("Digite o nome do administrador a ser editado: ");fflush(stdin);
+                    scanf(" %s", adm.usuario);
+
+                    while (strcmp(adm.usuario, "\0") != 0 ){
+                        pos = buscaADM(ptAdm, adm.usuario);
+                        if (pos == -1){
+                            printf("Administrador nao encontrado!\n");
+                            system("pause");
+                        }
+                        else{
+                            fseek(ptAdm, pos, 0);
+                            fread(&adm, sizeof(Administrador), 1, ptAdm);
+
+                            printf("\n---------------------------------\n");
+                            printf("Administrador: %s\n", adm.usuario);
+                            printf("---------------------------------\n");
+
+                            printf("Deseja alterar: ");
+                            printf("\n1: Usuario");
+                            printf("\n2: Senha");
+                            printf("\n> ");
+                            scanf("%d", &op);
+
+                            switch (op){
+                                case 1:
+                                    printf("Digite o novo usuario: \n> ");
+                                    fflush(stdin);
+                                    scanf(" %s", adm.usuario);
+                                    fseek(ptAdm, pos, 0);
+                                    fwrite(&adm, sizeof(Administrador), 1, ptAdm);
+                                    printf("Usuario alterado com sucesso!\n");
+                                break;
+
+                                case 2:
+                                    printf("Digite a nova senha: \n> ");
+                                    fflush(stdin);
+                                    scanf(" %s", adm.senha);
+                                    fseek(ptAdm, pos, 0);
+                                    fwrite(&adm, sizeof(Administrador), 1, ptAdm);
+                                    printf("Senha alterada com sucesso!\n");
+                                break;
+                            }
+                        }
+                        printf("Administrador editado com sucesso!\n");
+                        system("pause");
+                    }
+                }
+                fclose(ptAdm);
                 break;
+            }
+
             case 4:
+            {
                 printf("\nVoltando ao menu principal.\n");
                 break;
+            }
             default:
                 printf("\nOpção inválida! Tente novamente.\n");
             }
             break;
+        }
         case 2:
             printf("\n1: Cadastrar Produto\n");
             printf("2: Deletar Produto\n");
@@ -133,6 +325,7 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo)
     } while (menu != 5);
 }
 
+// Menu do sistema de cliente
 void sistemaCliente(Produto *produtos, int *produtosTopo)
 {
     system("cls");
@@ -177,6 +370,7 @@ void sistemaCliente(Produto *produtos, int *produtosTopo)
     } while (menu != 2);
 }
 
+// Menu do sistema de gerenciar laboratórios
 void gerenciarLaboratorios(Produto *produtos)
 {
     system("cls");
@@ -211,6 +405,7 @@ void gerenciarLaboratorios(Produto *produtos)
     } while (menu != 3);
 }
 
+// Menu do sistema de gerenciar tipos de produtos
 void gerenciarTiposProdutos(Produto *produtos)
 {
     system("cls");
@@ -245,6 +440,7 @@ void gerenciarTiposProdutos(Produto *produtos)
     } while (menu != 3);
 }
 
+// Menu do sistema de gerenciar categorias de produtos
 void gerenciarCategoriaProdutos(Produto *produtos)
 {
     system("cls");
@@ -279,28 +475,31 @@ void gerenciarCategoriaProdutos(Produto *produtos)
     } while (menu != 3);
 }
 
+// Menu do sistema de promoção por validade
 void promocaoValidade(Produto *produtos, int produtosTopo)
 {
+
+    Produto P;
     system("cls");
-    int m, a, l, i;
+    int i;
 
     printf("\nDigite o lote do produto:\n> ");
-    scanf("%d", &l);
+    scanf("%d", &P.prom.lote);
     system("cls");
 
     printf("\nDigite a data de hoje:\nMês(mm):\n> ");
-    scanf("%d", &m);
+    scanf("%d", &P.prom.mes);
     system("cls");
 
     printf("\nAno(aaaa):\n> ");
-    scanf("%d", &a);
+    scanf("%d", &P.prom.ano);
     system("cls");
 
     for (i = 0; i < produtosTopo; i++)
     {
-        if (produtos[i].lote == l)
+        if (produtos[i].lote == P.prom.lote)
         {
-            if (produtos[i].validade.ano == a && produtos[i].validade.mes == m)
+            if (produtos[i].validade.ano == P.prom.ano && produtos[i].validade.mes == P.prom.mes)
             {
                 printf("\nProduto %s está perto de vencer!\n", produtos[i].nome);
             }
@@ -308,7 +507,7 @@ void promocaoValidade(Produto *produtos, int produtosTopo)
     }
 }
 
-main()
+int main()
 {
     int menuLogin, c;
     int tmnhListaAdm = 200;
