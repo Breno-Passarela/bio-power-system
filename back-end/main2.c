@@ -3,19 +3,16 @@
 #include <string.h>
 // #include <windows.h>
 
-typedef struct
-{
+typedef struct{
     int dia, mes, ano;
 } Dia;
-typedef struct
-{
+
+typedef struct{
     int lote, mes, ano;
 
 } PromocaoProduto;
-;
 
-typedef struct
-{
+typedef struct{
     int cod, lote, quantidade;
     char nome[200], descricao[255], laboratorio[200], tipo[100];
     float valor, desconto;
@@ -23,13 +20,11 @@ typedef struct
     Dia validade;
 } Produto;
 
-typedef struct
-{
+typedef struct{
     char usuario[200], senha[200];
 } Administrador;
 
-int buscaCod(FILE *ptProduto, int cod)
-{
+int buscaCodProduto(FILE *ptProduto, int cod){
     Produto p;
     rewind(ptProduto);
     fread(&p, sizeof(Produto), 1, ptProduto);
@@ -47,8 +42,7 @@ int buscaCod(FILE *ptProduto, int cod)
     }
 }
 
-int buscaADM(FILE *ptAdm, char usuario[200])
-{
+int buscaADM(FILE *ptAdm, char usuario[200]){
     Administrador adm;
     rewind(ptAdm);
     fread(&adm, sizeof(Administrador), 1, ptAdm);
@@ -66,16 +60,77 @@ int buscaADM(FILE *ptAdm, char usuario[200])
     }
 }
 
+int loginAdministrador() {
+    FILE *ptAdm; 
+    char usuario[200], senha[200];
+    Administrador adm;
+
+    printf("\nDigite o usuario: ");
+    scanf(" %s", usuario);
+
+    printf("Digite a senha: ");
+    scanf(" %s", senha);
+
+    ptAdm = fopen("administradores.bin", "rb");
+    if (!ptAdm) {
+        printf("\nNenhum administrador cadastrado!\n");
+        system("pause");
+        return 0;
+    }
+
+    while (fread(&adm, sizeof(Administrador), 1, ptAdm)) {
+        if (strcmp(adm.usuario, usuario) == 0 && strcmp(adm.senha, senha) == 0) {
+            fclose(ptAdm);
+            return 1; 
+        }
+    }
+
+    fclose(ptAdm);
+    return 0; 
+}
+
+void criarAdminInicial() {
+    FILE *ptAdm;
+    Administrador adm;
+    ptAdm = fopen("administradores.bin", "rb");
+
+    if(ptAdm){ 
+        fclose(ptAdm); 
+        return; 
+    }
+
+    ptAdm = fopen("administradores.bin", "wb");
+    if(ptAdm == NULL){
+        printf("Erro ao criar o arquivo de administradores.\n");
+        return;
+    }else{
+        strcpy(adm.usuario, "biopower");
+        strcpy(adm.senha, "123456");
+    
+        fwrite(&adm, sizeof(Administrador), 1, ptAdm);
+    }
+    fclose(ptAdm);
+}
+
 // Telas do software
 // Menu do sistema de administrador
 void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
     FILE *ptAdm;
+    FILE *ptProduto;
+    FILE *ptTempProduto;
+    FILE *ptTempAdm;
+
     Administrador adm;
-    system("cls");
-    printf("\nVoce selecionou o sistema de Administrador!\n");
+    Produto pd;
+
     int menu, submenu, pos, op;
+    int cod;
+
     char resp;
     char usuario[200];
+
+    system("cls");
+    printf("\nVoce selecionou o sistema de Administrador!\n");
 
     do
     {
@@ -94,15 +149,15 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
             printf("\n1: Cadastrar Administrador\n");
             printf("2: Deletar Administrador\n");
             printf("3: Editar Administrador\n");
-            printf("4: Voltar\n");
+            printf("4: Exibir Administrador\n");
+            printf("5: Voltar\n");
             printf("> ");
 
             scanf("%d", &submenu);
             system("cls");
             switch (submenu){
             case 1:{
-                printf("\nCadastrar Administrador em desenvolvimento\n");
-                FILE *ptAdm;
+                printf("\nCadastrar Administrador\n");
                 ptAdm = fopen("administradores.bin", "ab+");
                 if (ptAdm == NULL)
                 {
@@ -113,13 +168,13 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
                 {
                     do
                     {
-                        printf("Digite o nome do novo administrador: ");fflush(stdin);
+                        printf("Digite o nome do novo administrador: ");
                         scanf(" %s", &adm.usuario);
                         //gets(adm.usuario);
                         pos = buscaADM(ptAdm, adm.usuario);
                         if (pos == -1)
                         {
-                            printf("Digite a senha do novo administrador: ");fflush(stdin);
+                            printf("Digite a senha do novo administrador: ");
                             scanf(" %s", &adm.senha);
                             //gets(adm.senha);
                             fwrite(&adm, sizeof(Administrador), 1, ptAdm);
@@ -140,7 +195,6 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
                 break;
             }
             case 2:{
-                FILE *ptAdm;
                 ptAdm = fopen("administradores.bin", "rb+");
                 if (ptAdm == NULL)
                 {
@@ -149,8 +203,8 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
                 }
                 else
                 {
-                    printf("\nDeletar Administrador em desenvolvimento\n");
-                    printf("Digite o nome do administrador a ser deletado: ");fflush(stdin);
+                    printf("\nDeletar Administrador\n");
+                    printf("Digite o nome do administrador a ser deletado: ");
                     scanf(" %s", &usuario);
                     if (strcmp(usuario, "/0") != 0)
                     {
@@ -171,20 +225,19 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
                             scanf(" %c", &resp);
                             if (resp == 's' || resp == 'S')
                             {
-                                FILE *ptTemp;
-                                ptTemp = fopen("temp.bin", "wb");
+                                ptTempAdm = fopen("temp.bin", "wb");
                                 rewind(ptAdm);
                                 fread(&adm, sizeof(Administrador), 1, ptAdm);
                                 while (!feof(ptAdm))
                                 {
                                     if (strcmp(adm.usuario, usuario) != 0)
                                     {
-                                        fwrite(&adm, sizeof(Administrador), 1, ptTemp);
+                                        fwrite(&adm, sizeof(Administrador), 1, ptTempAdm);
                                     }
                                     fread(&adm, sizeof(Administrador), 1, ptAdm);
                                 }
                                 fclose(ptAdm);
-                                fclose(ptTemp);
+                                fclose(ptTempAdm);
                                 remove("administradores.bin");
                                 rename("temp.bin", "administradores.bin");
                             }
@@ -195,15 +248,14 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
                 break;
             }
             case 3:{
-                printf("\nEditar Administrador em desenvolvimento\n");
-                FILE *ptAdm;
+                printf("\nEditar Administrador\n");
                 ptAdm = fopen("administradores.bin", "rb+");
                 if (ptAdm == NULL){
                     printf("Erro ao abrir o arquivo de administradores.\n");
                     system("pause");
                 }
                 else{
-                    printf("Digite o nome do administrador a ser editado: ");fflush(stdin);
+                    printf("Digite o nome do administrador a ser editado: ");
                     scanf(" %s", adm.usuario);
 
                     while (strcmp(adm.usuario, "\0") != 0 ){
@@ -229,7 +281,7 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
                             switch (op){
                                 case 1:
                                     printf("Digite o novo usuario: \n> ");
-                                    fflush(stdin);
+                                    
                                     scanf(" %s", adm.usuario);
                                     fseek(ptAdm, pos, 0);
                                     fwrite(&adm, sizeof(Administrador), 1, ptAdm);
@@ -238,7 +290,7 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
 
                                 case 2:
                                     printf("Digite a nova senha: \n> ");
-                                    fflush(stdin);
+                                    
                                     scanf(" %s", adm.senha);
                                     fseek(ptAdm, pos, 0);
                                     fwrite(&adm, sizeof(Administrador), 1, ptAdm);
@@ -253,9 +305,25 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
                 fclose(ptAdm);
                 break;
             }
-
-            case 4:
-            {
+            case 4:{
+                printf("\nExibir Administrador\n");
+                ptAdm = fopen("administradores.bin", "rb");
+                if (ptAdm == NULL){
+                    printf("Erro ao abrir o arquivo de administradores.\n");
+                    system("pause");
+                }else{
+                    printf("\nLista de Administradores:\n");
+                    while (fread(&adm, sizeof(Administrador), 1, ptAdm)){
+                        printf("\n---------------------------------\n");
+                        printf("Administrador: %s\n", adm.usuario);
+                        printf("---------------------------------\n");
+                    }
+                    fclose(ptAdm);
+                }
+                system("pause");
+                break;
+            }
+            case 5:{
                 printf("\nVoltando ao menu principal.\n");
                 break;
             }
@@ -269,39 +337,262 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
             printf("2: Deletar Produto\n");
             printf("3: Editar Produto\n");
             printf("4: Vender Produto\n");
-            printf("5: Controlar Estoque\n");
-            printf("6: Verificar por Tipo de Produto\n");
-            printf("7: Voltar para o Menu\n");
+            printf("5: Exibir Produto\n");
+            printf("6: Controlar Estoque\n");
+            printf("7: Verificar por Tipo de Produto\n");
+            printf("8: Voltar para o Menu\n");
             printf("> ");
             scanf("%d", &submenu);
             system("cls");
             switch (submenu)
             {
             case 1:
-                printf("\nCadastrar Produto em desenvolvimento\n");
+                printf("\nCadastrar Produto\n");
+                ptProduto = fopen("produtos.bin", "ab+");
+                if (ptProduto == NULL){
+                    printf("Erro ao criar o arquivo de produtos.\n");
+                    system("pause");
+                }
+                else{
+                    do {
+                        system("cls");
+                        printf("Digite o codigo do produto: ");
+                        scanf("%d", &pd.cod);
+                        pos = buscaCodProduto(ptProduto, pd.cod);
+                        if(pos == -1){
+                            printf("Digite o nome do produto: ");
+                            scanf(" %s", pd.nome);
+                            printf("Digite a descricao do produto: ");
+                            scanf(" %s", pd.descricao);
+                            printf("Digite o laboratorio do produto: ");
+                            scanf(" %s", pd.laboratorio);
+                            printf("Digite o tipo do produto: ");
+                            scanf(" %s", pd.tipo);
+                            printf("Digite o valor do produto: ");
+                            scanf("%f", &pd.valor);
+                            printf("Digite o desconto do produto: ");
+                            scanf("%f", &pd.desconto);
+                            printf("Digite o lote do produto: ");
+                            scanf("%d", &pd.lote);
+                            printf("Digite a validade do produto (dia mes ano): ");
+                            scanf("%d %d %d", &pd.validade.dia, &pd.validade.mes, &pd.validade.ano);
+                            fwrite(&pd, sizeof(Produto), 1, ptProduto);
+                            printf("Produto cadastrado com sucesso!\n");
+                        }else{
+                            fseek(ptProduto, pos, 0);
+                            fread(&pd, sizeof(Produto), 1, ptProduto);
+                            printf("Produto ja existe!\n");
+                        }
+                        printf("Deseja cadastrar outro produto? (s/n):\n> ");
+                        scanf(" %c", &resp);
+                    } while (resp == 's' || resp == 'S');
+                }
+                fclose(ptProduto);
                 system("pause");
                 break;
             case 2:
-                printf("\nDeletar Produto em desenvolvimento\n");
+                printf("\nDeletar Produto\n");
+                ptProduto = fopen("produtos.bin", "rb+");
+                if(ptProduto == NULL){
+                    printf("Erro ao abrir o arquivo de produtos.\n");
+                    system("pause");
+                }else{
+                    system("cls");
+                    printf("Digite o codigo do produto a ser deletado: ");
+                    scanf("%d", &cod);
+                    if(cod != 0){
+                        pos = buscaCodProduto(ptProduto, cod);
+                        if(pos == -1){
+                            printf("Produto nao encontrado!\n");
+                            system("pause");
+                        }else{
+                            fseek(ptProduto, pos, 0);
+                            fread(&pd, sizeof(Produto), 1, ptProduto);
+                            printf("\n---------------------------------\n");
+                            printf("Codigo: %d\n", pd.cod);
+                            printf("Produto: %s\n", pd.nome);
+                            printf("Descricao: %s\n", pd.descricao);
+                            printf("Laboratorio: %s\n", pd.laboratorio);
+                            printf("Tipo: %s\n", pd.tipo);
+                            printf("Valor: %.2f\n", pd.valor);
+                            printf("Desconto: %.2f\n", pd.desconto);
+                            printf("Lote: %d\n", pd.lote);
+                            printf("Validade: %d/%d/%d\n", pd.validade.dia, pd.validade.mes, pd.validade.ano);
+                            printf("---------------------------------\n");
+                            printf("Tem certeza que deseja deletar este produto? (s/n):\n> ");
+                            scanf(" %c", &resp);
+                            if(resp == 's' || resp == 'S'){
+                               
+                                ptTempProduto = fopen("temp.bin", "wb");
+                                rewind(ptProduto);
+                                fread(&pd, sizeof(Produto), 1, ptProduto);
+                                while(!feof(ptProduto)){
+                                    if(pd.cod != cod){
+                                        fwrite(&pd, sizeof(Produto), 1, ptTempProduto);
+                                    }
+                                    fread(&pd, sizeof(Produto), 1, ptProduto);
+                                }
+                                fclose(ptProduto);
+                                fclose(ptTempProduto);
+                                remove("produtos.bin");
+                                rename("temp.bin", "produtos.bin");
+                                printf("Produto deletado com sucesso!\n");
+                            }
+                        }
+                    }
+                }
                 system("pause");
                 break;
             case 3:
-                printf("\nEditar Produto em desenvolvimento\n");
+                system("cls");
+                printf("\nEditar Produto\n");
+                ptProduto = fopen("produtos.bin", "rb+");
+                if (ptProduto == NULL){
+                    printf("Erro ao abrir o arquivo de produtos.\n");
+                    system("pause");
+                }else{
+                    printf("Digite o codigo do produto a ser editado: ");
+                    scanf("%d", &pd.cod);
+
+                    while (pd.cod != 0 ){
+                        pos = buscaCodProduto(ptProduto, pd.cod);
+                        if (pos == -1){
+                            printf("Produto nao encontrado!\n");
+                            system("pause");
+                        }else{
+                            fseek(ptProduto, pos, 0);
+                            fread(&pd, sizeof(Produto), 1, ptProduto);
+
+                            printf("\n---------------------------------\n");
+                            printf("Codigo: %d\n", pd.cod);
+                            printf("Produto: %s\n", pd.nome);
+                            printf("Descricao: %s\n", pd.descricao);
+                            printf("Laboratorio: %s\n", pd.laboratorio);
+                            printf("Tipo: %s\n", pd.tipo);
+                            printf("Valor: %.2f\n", pd.valor);
+                            printf("Desconto: %.2f\n", pd.desconto);
+                            printf("Lote: %d\n", pd.lote);
+                            printf("Validade: %d/%d/%d\n", pd.validade.dia, pd.validade.mes, pd.validade.ano);
+                            printf("---------------------------------\n");
+                            printf("Deseja alterar: ");
+                            printf("\n1: Nome");
+                            printf("\n2: Descricao");
+                            printf("\n3: Laboratorio");
+                            printf("\n4: Tipo");
+                            printf("\n5: Valor");
+                            printf("\n6: Desconto");
+                            printf("\n7: Lote");
+                            printf("\n8: Validade");
+                            printf("\n> ");
+                            scanf("%d", &op);
+
+                            switch(op){
+                                case 1:
+                                    printf("Digite o novo nome: \n> ");
+                                    scanf(" %s", pd.nome);
+                                    fseek(ptProduto, pos, 0);
+                                    fwrite(&pd, sizeof(Produto), 1, ptProduto);
+                                    printf("Nome alterado com sucesso!\n");
+                                break;
+                                case 2:
+                                    printf("Digite a nova descricao: \n> ");
+                                    scanf(" %s", pd.descricao);
+                                    fseek(ptProduto, pos, 0);
+                                    fwrite(&pd, sizeof(Produto), 1, ptProduto);
+                                    printf("Descricao alterada com sucesso!\n");
+                                break;
+                                case 3:
+                                    printf("Digite o novo laboratorio: \n> ");
+                                    scanf(" %s", pd.laboratorio);
+                                    fseek(ptProduto, pos, 0);
+                                    fwrite(&pd, sizeof(Produto), 1, ptProduto);
+                                    printf("Laboratorio alterado com sucesso!\n");
+                                break;
+                                case 4:
+                                    printf("Digite o novo tipo: \n> ");
+                                    scanf(" %s", pd.tipo);
+                                    fseek(ptProduto, pos, 0);
+                                    fwrite(&pd, sizeof(Produto), 1, ptProduto);
+                                    printf("Tipo alterado com sucesso!\n");
+                                break;
+                                case 5:
+                                    printf("Digite o novo valor: \n> ");
+                                    scanf("%f", &pd.valor);
+                                    fseek(ptProduto, pos, 0);
+                                    fwrite(&pd, sizeof(Produto), 1, ptProduto);
+                                    printf("Valor alterado com sucesso!\n");
+                                break;
+                                case 6:
+                                    printf("Digite o novo desconto: \n> ");
+                                    scanf("%f", &pd.desconto);
+                                    fseek(ptProduto, pos, 0);
+                                    fwrite(&pd, sizeof(Produto), 1, ptProduto);
+                                    printf("Desconto alterado com sucesso!\n");
+                                break;
+                                case 7:
+                                    printf("Digite o novo lote: \n> ");
+                                    scanf("%d", &pd.lote);
+                                    fseek(ptProduto, pos, 0);
+                                    fwrite(&pd, sizeof(Produto), 1, ptProduto);
+                                    printf("Lote alterado com sucesso!\n");
+                                break;
+                                case 8:
+                                    printf("Digite a nova validade (dia mes ano): \n> ");
+                                    scanf("%d %d %d", &pd.validade.dia, &pd.validade.mes, &pd.validade.ano);
+                                    fseek(ptProduto, pos, 0);
+                                    fwrite(&pd, sizeof(Produto), 1, ptProduto);
+                                    printf("Validade alterada com sucesso!\n");
+                                break;
+                                default:
+                                    printf("Opcao invalida!\n");
+                                    break;
+                            }
+                        }
+                        printf("Digite o codigo do produto a ser editado: ");
+                        scanf("%d", &pd.cod);
+                    }
+                }
+                fclose(ptProduto);
                 system("pause");
                 break;
             case 4:
-                printf("\nVender Produto em desenvolvimento\n");
+                printf("\nVender Produto\n");
                 system("pause");
                 break;
             case 5:
-                printf("\nControlar Estoque em desenvolvimento\n");
+                printf("\nExibir Produto\n");
+                    ptProduto = fopen("produtos.bin", "rb");
+                if (ptProduto == NULL){
+                    printf("Erro ao abrir o arquivo de produtos.\n");
+                    system("pause");
+                }else{
+                    printf("\nLista de Produtos:\n");
+                    while (fread(&pd, sizeof(Produto), 1, ptProduto)){
+                        printf("\n---------------------------------\n");
+                        printf("Codigo: %d\n", pd.cod);
+                        printf("Produto: %s\n", pd.nome);
+                        printf("Descricao: %s\n", pd.descricao);
+                        printf("Laboratorio: %s\n", pd.laboratorio);
+                        printf("Tipo: %s\n", pd.tipo);
+                        printf("Valor: %.2f\n", pd.valor);
+                        printf("Desconto: %.2f\n", pd.desconto);
+                        printf("Lote: %d\n", pd.lote);
+                        printf("Validade: %d/%d/%d\n", pd.validade.dia, pd.validade.mes, pd.validade.ano);
+                        printf("---------------------------------\n");
+                    }
+                    fclose(ptProduto);
+                }
                 system("pause");
                 break;
             case 6:
-                printf("\nVerificar por tipo de produto em desenvolvimento\n");
+                printf("\nControlar Estoque\n");
                 system("pause");
                 break;
             case 7:
+                printf("\nVerificar por tipo de produto\n");
+                system("pause");
+                break;
+            case 8:
                 printf("\nVoltando ao menu principal.\n");
                 break;
             default:
@@ -309,11 +600,11 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
             }
             break;
         case 3:
-            printf("\nRelatórios em desenvolvimento\n");
+            printf("\nRelatórios\n");
             system("pause");
             break;
         case 4:
-            printf("\nGerenciar laboratórios em desenvolvimento\n");
+            printf("\nGerenciar laboratórios\n");
             system("pause");
             break;
         case 5:
@@ -326,11 +617,14 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
 }
 
 // Menu do sistema de cliente
-void sistemaCliente(Produto *produtos, int *produtosTopo)
-{
+void sistemaCliente(Produto *produtos, int *produtosTopo){
+    FILE *ptProduto;
+    Produto pd;
+
+    int menu, submenu;
+
     system("cls");
     printf("\nVoce selecionou o sistema de cliente!\n");
-    int menu, submenu;
 
     do
     {
@@ -351,7 +645,27 @@ void sistemaCliente(Produto *produtos, int *produtosTopo)
             switch (submenu)
             {
             case 1:
-                printf("\nVer Catálogo em desenvolvimento\n");
+                ptProduto = fopen("produtos.bin", "rb");
+                if (ptProduto == NULL){
+                    printf("Erro ao abrir o arquivo de produtos.\n");
+                    system("pause");
+                }else {
+                    printf("\nCatálogo de Produtos:\n");
+                    while (fread(&pd, sizeof(Produto), 1, ptProduto)){
+                        printf("\n---------------------------------\n");
+                        printf("Codigo: %d\n", pd.cod);
+                        printf("Produto: %s\n", pd.nome);
+                        printf("Descricao: %s\n", pd.descricao);
+                        printf("Laboratorio: %s\n", pd.laboratorio);
+                        printf("Tipo: %s\n", pd.tipo);
+                        printf("Valor: %.2f\n", pd.valor);
+                        printf("Desconto: %.2f\n", pd.desconto);
+                        printf("Lote: %d\n", pd.lote);
+                        printf("Validade: %d/%d/%d\n", pd.validade.dia, pd.validade.mes, pd.validade.ano);
+                        printf("---------------------------------\n");
+                    }
+                    fclose(ptProduto);
+                }
                 system("pause");
                 break;
             case 2:
@@ -371,8 +685,7 @@ void sistemaCliente(Produto *produtos, int *produtosTopo)
 }
 
 // Menu do sistema de gerenciar laboratórios
-void gerenciarLaboratorios(Produto *produtos)
-{
+void gerenciarLaboratorios(Produto *produtos){
     system("cls");
     printf("\nVocê selecionou gerenciar laboratórios de produto.\n");
     int menu;
@@ -389,11 +702,11 @@ void gerenciarLaboratorios(Produto *produtos)
         switch (menu)
         {
         case 1:
-            printf("\nRelatório de venda por laboratórios em desenvolvimento\n");
+            printf("\nRelatório de venda por laboratórios\n");
             system("pause");
             break;
         case 2:
-            printf("\nVerificar estoque de produtos por laboratório em desenvolvimento\n");
+            printf("\nVerificar estoque de produtos por laboratório\n");
             system("pause");
             break;
         case 3:
@@ -424,11 +737,11 @@ void gerenciarTiposProdutos(Produto *produtos)
         switch (menu)
         {
         case 1:
-            printf("\nRelatório de venda por tipo de produto em desenvolvimento\n");
+            printf("\nRelatório de venda por tipo de produto\n");
             system("pause");
             break;
         case 2:
-            printf("\nControle de estoque por tipo de produto em desenvolvimento\n");
+            printf("\nControle de estoque por tipo de produto\n");
             system("pause");
             break;
         case 3:
@@ -459,11 +772,11 @@ void gerenciarCategoriaProdutos(Produto *produtos)
         switch (menu)
         {
         case 1:
-            printf("\nRelatório de venda por categoria de produto em desenvolvimento\n");
+            printf("\nRelatório de venda por categoria de produto\n");
             system("pause");
             break;
         case 2:
-            printf("\nControle de estoque por categoria de produto em desenvolvimento\n");
+            printf("\nControle de estoque por categoria de produto\n");
             system("pause");
             break;
         case 3:
@@ -507,8 +820,9 @@ void promocaoValidade(Produto *produtos, int produtosTopo)
     }
 }
 
-int main()
-{
+int main(){
+
+    criarAdminInicial(); 
     int menuLogin, c;
     int tmnhListaAdm = 200;
 
@@ -536,37 +850,13 @@ int main()
         switch (menuLogin)
         {
         case 1:
-        {
-            char usuarioPedido[200], senhaPedido[200];
-            printf("\nDigite o usuario: ");
-            while ((c = getchar()) != '\n' && c != EOF)
-                ;
-            fgets(usuarioPedido, sizeof(usuarioPedido), stdin);
-            usuarioPedido[strcspn(usuarioPedido, "\n")] = '\0'; // remove \n
-
-            printf("Digite a senha: ");
-            fgets(senhaPedido, sizeof(senhaPedido), stdin);
-            senhaPedido[strcspn(senhaPedido, "\n")] = '\0';
-            system("cls");
-
-            int achou = 0;
-            for (i = 0; i < admTopo && !achou; i++)
-            {
-                if (strcmp(administradores[i].usuario, usuarioPedido) == 0 &&
-                    strcmp(administradores[i].senha, senhaPedido) == 0)
-                {
-                    strcpy(loginSalvo, usuarioPedido);
-                    sistemaAdmin(loginSalvo, produtos, &produtosTopo);
-                    achou = 1;
-                }
-            }
-
-            if (!achou)
-            {
-                printf("\nConta nao encontrada. Tente novamente!\n");
+            if (loginAdministrador()) {
+                sistemaAdmin("admin", produtos, &produtosTopo);
+            } else {
+                printf("\nUsuario ou senha incorretos!\n");
+                system("pause");
             }
             break;
-        }
         case 2:
             sistemaCliente(produtos, &produtosTopo);
             break;
