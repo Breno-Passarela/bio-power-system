@@ -344,8 +344,7 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
             printf("> ");
             scanf("%d", &submenu);
             system("cls");
-            switch (submenu)
-            {
+            switch (submenu){
             case 1:
                 printf("\nCadastrar Produto\n");
                 ptProduto = fopen("produtos.bin", "ab+");
@@ -561,7 +560,7 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
                 break;
             case 5:
                 printf("\nExibir Produto\n");
-                    ptProduto = fopen("produtos.bin", "rb");
+                ptProduto = fopen("produtos.bin", "rb");
                 if (ptProduto == NULL){
                     printf("Erro ao abrir o arquivo de produtos.\n");
                     system("pause");
@@ -601,6 +600,77 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
             break;
         case 3:
             printf("\nRelatórios\n");
+            printf("1 - Listar todos os produtos\n");
+            printf("2 - Listar produtos por laboratorio\n");
+            printf("3 - Listar produtos por tipo\n");
+            printf("4 - Listar produtos com estoque baixo\n");
+            printf("5 - Listar produtos em promocao\n");
+            printf("6 - Listar produtos por faixa de preço\n");
+            printf("7 - Relatório de vendas\n");
+            printf("8 - Voltar ao menu principal\n");
+            printf("> ");
+            scanf("%d", &submenu);
+            system("cls");
+
+            switch (submenu){
+            case 1:
+                printf("\nRelatório: Todos os produtos\n");
+                ptProduto = fopen("produtos.bin", "rb");
+                if (ptProduto == NULL){
+                    printf("Erro ao abrir o arquivo de produtos.\n");
+                    system("pause");
+                }else{
+                    while (fread(&pd, sizeof(Produto), 1, ptProduto)){
+                        printf("\n---------------------------------\n");
+                        printf("Codigo: %d\n", pd.cod);
+                        printf("Produto: %s\n", pd.nome);
+                        printf("Descricao: %s\n", pd.descricao);
+                        printf("Laboratorio: %s\n", pd.laboratorio);
+                        printf("Tipo: %s\n", pd.tipo);
+                        printf("Valor: %.2f\n", pd.valor);
+                        printf("Desconto: %.2f\n", pd.desconto);
+                        printf("Lote: %d\n", pd.lote);
+                        printf("Validade: %d/%d/%d\n", pd.validade.dia, pd.validade.mes, pd.validade.ano);
+                        printf("---------------------------------\n");
+                    }
+                    fclose(ptProduto);
+                }
+                system("pause");
+                break;
+
+            case 2:
+                printf("\nRelatório: Produtos por laboratório\n");
+                break;
+
+            case 3:
+                printf("\nRelatório: Produtos por tipo\n");
+                break;
+
+            case 4:
+                printf("\nRelatório: Estoque baixo\n");
+                break;
+
+            case 5:
+                printf("\nRelatório: Produtos em promoção\n");
+                break;
+
+            case 6:
+                printf("\nRelatório: Faixa de preço\n");
+                break;
+
+            case 7:
+                printf("\nRelatório: Vendas realizadas\n");
+                // gerarRelatorioVendas();
+                break;
+            case 8:
+                printf("\nVoltando ao menu principal...\n");
+                break;
+
+            default:
+                printf("\nOpcao inválida!\n");
+                
+            }
+
             system("pause");
             break;
         case 4:
