@@ -17,30 +17,10 @@ const form = {
   complemento: "",
 };
 
-const fieldOrder = [
-  "nome",
-  "sobrenome",
-  "email",
-  "senha",
-  "telefone",
-  "cpf",
-  "endereco",
-  "numero",
-  "cep",
-  "data",
-  "genero",
-  "estado",
-  "cidade",
-  "bairro",
-  "estadoCivil",
-  "complemento",
-];
-
-const NAME_MIN_LENGTH = 5;
+const NAME_MIN_LENGTH = 3;
 const NAME_REGEX = /^[A-Za-zÀ-ÿ]+(?: [A-Za-zÀ-ÿ]+)*$/;
 const CITY_REGEX = /^[A-Za-zÀ-ÿ]+(?:[\s'-][A-Za-zÀ-ÿ]+)*$/;
 const STREET_REGEX = /^[A-Za-zÀ-ÿ0-9]+(?:[\s.'-][A-Za-zÀ-ÿ0-9]+)*$/;
-const MIN_AGE = 18;
 const ERROR_ICON_HTML = '<i class="fa-solid fa-circle-exclamation me-1"></i>';
 
 document
@@ -61,34 +41,22 @@ document
   });
 
 function collectFormValues() {
-  const nomeInput = document.getElementById("nome");
-  const sobrenomeInput = document.getElementById("sobrenome");
-  const cidadeInput = document.getElementById("cidade");
-  const bairroInput = document.getElementById("bairro");
-  const estadoInput = document.getElementById("estado");
-
-  form.nome = normalizeSpaces((nomeInput?.value || "").trim());
-  form.sobrenome = normalizeSpaces((sobrenomeInput?.value || "").trim());
-  form.email = (document.getElementById("email")?.value || "").trim();
-  form.senha = (document.getElementById("senha")?.value || "").trim();
-  form.telefone = (document.getElementById("telefone")?.value || "").trim();
-  form.cpf = (document.getElementById("cpf")?.value || "").trim();
-  form.endereco = (document.getElementById("endereco")?.value || "").trim();
-  form.numero = (document.getElementById("numero")?.value || "").trim();
-  form.cep = (document.getElementById("cep")?.value || "").trim();
+  form.nome = normalizeSpaces(getId(nome));
+  form.sobrenome = normalizeSpaces((sobrenomeInput?.value || ""));
+  form.email = (document.getElementById("email")?.value || "");
+  form.senha = (document.getElementById("senha")?.value || "");
+  form.telefone = (document.getElementById("telefone")?.value || "");
+  form.cpf = (document.getElementById("cpf")?.value || "");
+  form.endereco = (document.getElementById("endereco")?.value || "");
+  form.numero = (document.getElementById("numero")?.value || "");
+  form.cep = (document.getElementById("cep")?.value || "");
   form.data = document.getElementById("data")?.value || "";
   form.genero = document.getElementById("genero")?.value || "";
-  form.estado = ((estadoInput?.value || "").trim().toUpperCase());
-  form.cidade = normalizeSpaces((cidadeInput?.value || "").trim());
-  form.bairro = normalizeSpaces((bairroInput?.value || "").trim());
+  form.estado = ((estadoInput?.value || "").toUpperCase());
+  form.cidade = normalizeSpaces((cidadeInput?.value || ""));
+  form.bairro = normalizeSpaces((bairroInput?.value || ""));
   form.estadoCivil = document.getElementById("estadoCivil")?.value || "";
-  form.complemento = (document.getElementById("complemento")?.value || "").trim();
-
-  if (nomeInput) nomeInput.value = form.nome;
-  if (sobrenomeInput) sobrenomeInput.value = form.sobrenome;
-  if (cidadeInput) cidadeInput.value = form.cidade;
-  if (bairroInput) bairroInput.value = form.bairro;
-  if (estadoInput) estadoInput.value = form.estado;
+  form.complemento = (document.getElementById("complemento")?.value || "");
 }
 
 function validateFields() {
@@ -176,9 +144,6 @@ function validateFields() {
       errors.data = "Informe uma data de nascimento válida.";
     } else if (birthDate > new Date()) {
       errors.data = "Data de nascimento não pode ser futura.";
-    } else if (calculateAge(birthDate) < MIN_AGE) {
-      errors.data = `Cadastro disponível apenas para maiores de ${MIN_AGE} anos.`;
-    }
   }
 
   if (!form.genero) {
@@ -397,10 +362,6 @@ if (inputDate) {
   }
 }
 
-function normalizeSpaces(value) {
-  return value.replace(/\s+/g, " ");
-}
-
 function calculateAge(birthDate) {
   const today = new Date();
   let age = today.getFullYear() - birthDate.getFullYear();
@@ -411,4 +372,19 @@ function calculateAge(birthDate) {
   }
 
   return age;
+}}
+
+function normalizeSpaces(inputValue) {
+  let trimmedText = inputValue.trim();
+
+  let wordsArray = trimmedText.split(" ");
+
+  filteredWordsArray = wordsArray.filter((word) => word != "");
+
+  normalizedText = filteredWordsArray.join(" ");
+}
+
+
+function getId(id) {
+  return document.getElementById(`#${id}`);
 }

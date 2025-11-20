@@ -23,112 +23,157 @@ var dados = [
 ];
 
 function montarTabela() {
-  let tbody = document.querySelector("#grid tbody");
+  let vTbody = document.querySelector("#grid tbody");
+  if (!vTbody) return;
   let html = "";
-
   for (let item of dados) {
     html += `
-      <tr>
-        <td class="text-center">
-          <input type="checkbox" class="check-row" data-id="${item.id}">
-        </td>
-        <td class ="coluna">${item.id}</td>
-        <td class="coluna">${item.name}</td>
-        <td class="coluna">${item.descricao}</td>
-        <td class="coluna">R$ ${item.price.toFixed(2)}</td>
-        <td class="coluna">${item.quantidade}</td>
-
-        <td class="text-center">
-          <button class="btn btn-sm btn-danger" onclick="removerProduto(${
-            item.id
-          })">
-            <i class="fa fa-trash"></i>
-          </button>
-        </td>
-      </tr>
+        <tr>
+            <td class="text-center coluna">
+              <input type="checkbox" class="check-row" data-id="${item.id}">
+            </td>
+            <td class="coluna text-center">${item.id}</td>
+            <td class="coluna">${item.name}</td>
+            <td class="coluna">${item.descricao}</td>
+            <td class="coluna text-center">R$ ${item.price.toFixed(2)}</td>
+            <td class="coluna text-center">${item.quantidade}</td>
+            <td class="text-center coluna">
+              <a class="btn btn-sm btn-danger btn-remover-linha" onclick="excluirItem(${item.id})">
+                <i class="fa fa-trash"></i>
+              </a>
+            </td>
+        </tr>
     `;
   }
-
-  tbody.innerHTML = html;
+  vTbody.innerHTML = html;
 }
 
-function adicionarProduto() {
-  let vId = document.querySelector("#id-produto").value;
-  let vnome = document.querySelector("#nome-produto").value;
-  let vdescricao = document.querySelector("#descricao-produto").value;
-  let vprice = parseFloat(document.querySelector("#price-produto").value);
-  let vquantidade = parseInt(
-    document.querySelector("#quantidade-produto").value
-  );
-
-  if (
-    vnome === "" ||
-    vdescricao === "" ||
-    isNaN(vprice) ||
-    isNaN(vquantidade)
-  ) {
-    alert("Por favor, preencha todos os campos corretamente.");
-    vId.focus();
-  } else {
-    let novoItem = {
-      id: new Date().getTime(),
-      name: vnome.value,
-      descricao: vdescricao.value,
-      price: vprice.value,
-      quantidade: vquantidade.value,
-    };
-    dados.push(novoItem);
-    montarTabela();
-    vId.value = "";
-    vnome.value = "";
-    vdescricao.value = "";
-    vprice.value = "";
-    vquantidade.value = "";
-    vId.focus();
-    alert("Produto adicionado com sucesso!");
+function marcarInvalid(input, mensagem) {
+  if (!input) return;
+  input.classList.add("is-invalid");
+  const feedback = input.closest(".form-floating")?.querySelector(".invalid-feedback");
+  if (feedback) {
+    feedback.textContent = mensagem;
   }
 }
 
-function RemoverProduto(idDelete) {
+function limparValidacao(inputs) {
+  inputs.forEach((input) => {
+    if (!input) return;
+    input.classList.remove("is-invalid");
+    const feedback = input.closest(".form-floating")?.querySelector(".invalid-feedback");
+    if (feedback) {
+      feedback.textContent = "";
+    }
+  });
+}
+
+function adicionarItem() {
+  let nomeInput = document.querySelector("#nome-produtos");
+  let descricaoInput = document.querySelector("#descricao-produtos");
+  let precoInput = document.querySelector("#preco-produtos");
+  let quantidadeInput = document.querySelector("#quantidade-produtos");
+
+  if (!nomeInput || !descricaoInput || !precoInput || !quantidadeInput) return;
+
+  limparValidacao([nomeInput, descricaoInput, precoInput, quantidadeInput]);
+
+  let valido = true;
+
+  if (nomeInput.value.trim() === "") {
+    marcarInvalid(nomeInput, "O nome é obrigatório.");
+    valido = false;
+  }
+
+  if (descricaoInput.value.trim() === "") {
+    marcarInvalid(descricaoInput, "A descrição é obrigatória.");
+    valido = false;
+  }
+
+  const precoConvertido = parseFloat(precoInput.value);
+  if (precoInput.value.trim() === "" || Number.isNaN(precoConvertido)) {
+    marcarInvalid(precoInput, "Informe um preço válido.");
+    valido = false;
+  }
+
+  const quantidadeConvertida = parseInt(quantidadeInput.value, 10);
+  if (quantidadeInput.value.trim() === "" || Number.isNaN(quantidadeConvertida)) {
+    marcarInvalid(quantidadeInput, "Informe uma quantidade válida.");
+    valido = false;
+  }
+
+  if (!valido) {
+    return;
+  }
+
+  let novoItem = {
+    id: dados.length > 0 ? dados[dados.length - 1].id + 1 : 1,
+    name: nomeInput.value.trim(),
+    descricao: descricaoInput.value.trim(),
+    price: precoConvertido,
+    quantidade: quantidadeConvertida,
+  };
+  dados.push(novoItem);
+  montarTabela();
+  nomeInput.value = "";
+  descricaoInput.value = "";
+  precoInput.value = "";
+  quantidadeInput.value = "";
+  nomeInput.focus();
+}
+
+function excluirItem(id) {
   let listaAux = [];
-  if (((let = 0), i < dados.length, i++)) {
-    if (dados[i].quantidade != 0) listaAux.push(dados[i]);
+  for (let i = 0; i < dados.length; i++) {
+    if (dados[i].id != id) {
+      listaAux.push(dados[i]);
+    }
   }
   dados = listaAux;
   montarTabela();
 }
 
-function removerSelecionados() {
-  let listaSelec = document.querySelectorAll(".check-row:checked");
-  if (listaSelec.length > 0) {
-    for (let ck of listaSelec) {
-      if (ck.checked) {
-        RemoverProduto(ck.dataset.id);
+function excluirSelecionados() {
+  let listaCk = document.querySelectorAll(".check-row");
+  if (listaCk.length > 0) {
+    for (let ck of listaCk) {
+      if (ck.checked == true) {
+        excluirItem(parseInt(ck.dataset.id, 10));
       }
     }
-  }else{
-    alert("Nenhum produto selecionado para remoção.");
+  } else {
+    alert("Não há produtos na lista para serem excluídos.");
   }
 }
 
-function selecionaTodos(){
-    let listaCK = document.querySelectorAll(".check-row");
-    let ckTodos = document.querySelector("#ck-todos");
-    for(let ck of listaCK){
-        ck.checked = ckTodos.checked;
-    } 
+function selecionaTodos() {
+  let listaCk = document.querySelectorAll(".check-row");
+  let ckpai = document.querySelector("#ckTodos");
+  if (!ckpai) return;
+  for (let ck of listaCk) {
+    ck.checked = ckpai.checked;
+  }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
     montarTabela();
 
-    var btnAdd = document.querySelector("#btn-add-produto");
-    btnAdd.addEventListener("click", adicionarProduto, false);
-    
-    var btnRemover = document.querySelector("#btn-remover-selecionados");
-    btnRemover.addEventListener("click", removerSelecionados, false);
+    var button = document.querySelector("#btn-add");
+    if (button) {
+      button.addEventListener("click", adicionarItem, false);
+    }
 
-    var ckTodos = document.querySelector("#ck-todos");
-    ckTodos.addEventListener("change", selecionaTodos, false);
-}, false);
+    var buttonExcluirSelecionado = document.querySelector("#btnExcluirSelecionados");
+    if (buttonExcluirSelecionado) {
+      buttonExcluirSelecionado.addEventListener("click", excluirSelecionados, false);
+    }
 
+    var ckpai = document.querySelector("#ckTodos");
+    if (ckpai) {
+      ckpai.addEventListener("click", selecionaTodos, false);
+    }
+  },
+  false
+);

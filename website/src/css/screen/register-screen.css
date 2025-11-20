@@ -2,11 +2,11 @@
 @import url("../components/error/error-message.css");
 @import url("../components/inputs/input-register.css");
 
-@font-face {
+/* @font-face {
   font-family: Montserrat;
   src: url("../../../fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
     format("truetype");
-}
+} */
 
 * {
   margin: 0px;
@@ -84,8 +84,17 @@ body {
   color: #6c757d;
 }
 
+/* Esconder ícone de data no chrome */
 input[type="date"]::-webkit-calendar-picker-indicator {
   display: none !important;
+  -webkit-appearance: none;
+}
+
+/* Esconder  ícone no firefox*/
+input[type="date"],
+input[type="date"]:focus {
+  -webkit-text-fill-color: FieldText;
+  color: transparent;
 }
 
 .floating-input-group {
