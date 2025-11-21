@@ -140,8 +140,3 @@ input[type="date"]:focus {
   flex-direction: column;
   gap: 0.25rem;
 }
-
-.floating-field .invalid-feedback {
-  display: none;
-  margin: 0;
-}
