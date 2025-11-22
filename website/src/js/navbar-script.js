@@ -44,24 +44,24 @@ document.addEventListener("DOMContentLoaded", () => {
     avatar.style.display = "none";
     loginText.style.display = "block";
     profile.onclick = () =>
-      (window.location.href = "./src/pages/auth-login.html");
+      (window.location.href = "./src/pages/login.html");
 
     mobileAuthLoggedIn.style.display = "none";
     mobileAuthLoggedOut.style.display = "block";
     mobileLoginButton.onclick = () =>
-      (window.location.href = "./src/pages/auth-login.html");
+      (window.location.href = "./src/pages/login.html");
   }
 
   logoutBtn.addEventListener("click", (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
-    window.location.href = "./src/pages/auth-login.html";
+    window.location.href = "./src/pages/login.html";
   });
 
   mobileLogoutBtn.addEventListener("click", (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
-    window.location.href = "./src/pages/auth-login.html";
+    window.location.href = "./src/pages/login.html";
   });
 
   // Menu mobile

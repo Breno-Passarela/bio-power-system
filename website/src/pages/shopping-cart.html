@@ -25,6 +25,7 @@
     />
 
     <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/rodape.css" />
     <link rel="stylesheet" href="../css/screen/shopping-cart.css" />
   </head>
 
@@ -87,11 +88,7 @@
           style="display: none"
         />
 
-        <a
-          href="auth-login.html"
-          class="login-text"
-          style="text-decoration: none"
-        >
+        <a href="login.html" class="login-text" style="text-decoration: none">
           <span id="loginText" style="display: none"
             >Fazer login/Criar conta</span
           >
@@ -124,7 +121,7 @@
             class="mobile-auth-item"
             style="display: none"
           >
-            <a href="auth-login.html" class="mobile-login-button">
+            <a href="login.html" class="mobile-login-button">
               <i class="fas fa-user-circle"></i> Fazer login/Criar conta
             </a>
           </div>
@@ -236,7 +233,28 @@
       </aside>
     </main>
 
+    <!-- Rodapé -->
+    <footer class="rodape">
+      <div class="rodape-conteudo">
+        <div class="rodape-logo">
+          <a href="./home.html">Bio-Power</a>
+        </div>
+        <div class="rodape-links">
+          <a href="src/pages/sobre.html">Sobre Nós</a>
+          <a href="src/pages/politica.html">Política de Privacidade</a>
+        </div>
+        <div class="rodape-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      <div class="rodape-direitos">
+        <p>&copy; 2025 Bio-Power. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
     <script src="../js/navbar-script.js"></script>
-    <script src="../js/auth/auth-shopping-cart.js"></script>
+    <script src="../js/screens/shopping-cart.js"></script>
   </body>
 </html>

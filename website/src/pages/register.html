@@ -4,15 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bio-Power - Cadastro</title>
-    <link rel="shortcut icon" href="../imgs/img-icon-site.png" type="image/x-icon" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link
+      rel="shortcut icon"
+      href="../imgs/img-icon-site.png"
+      type="image/x-icon"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <link rel="stylesheet" href="../css/screen/register-screen.css" />
   </head>
   <body class="bg-white d-flex justify-content-center align-items-center">
     <div class="container p-4 rounded shadow-sm" style="max-width: 1300px">
       <div class="text-center mb-4">
-        <img src="../imgs/img-logo-bio-power.png" height="150" alt="Logo Bio-Power" id="img-logo" style="cursor: pointer" />
+        <img
+          src="../imgs/img-logo-bio-power.png"
+          height="150"
+          alt="Logo Bio-Power"
+          id="img-logo"
+          style="cursor: pointer"
+        />
         <script>
           document.getElementById("img-logo").addEventListener("click", () => {
             window.location.href = "../../home.html";
@@ -28,10 +44,17 @@
             <div class="floating-field">
               <div class="input-group floating-input-group">
                 <div class="form-floating flex-grow-1">
-                  <input type="text" class="form-control" id="nome" placeholder="Nome completo" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nome"
+                    placeholder="Nome completo"
+                  />
                   <label for="nome">Nome</label>
                 </div>
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <span class="input-group-text"
+                  ><i class="fas fa-user"></i
+                ></span>
               </div>
               <div id="error-nome" class="invalid-feedback"></div>
             </div>
@@ -41,10 +64,17 @@
             <div class="floating-field">
               <div class="input-group floating-input-group">
                 <div class="form-floating flex-grow-1">
-                  <input type="text" class="form-control" id="sobrenome" placeholder="Sobrenome" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="sobrenome"
+                    placeholder="Sobrenome"
+                  />
                   <label for="sobrenome">Sobrenome</label>
                 </div>
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <span class="input-group-text"
+                  ><i class="fas fa-user"></i
+                ></span>
               </div>
               <div id="error-sobrenome" class="invalid-feedback"></div>
             </div>
@@ -54,10 +84,18 @@
             <div class="floating-field">
               <div class="input-group floating-input-group">
                 <div class="form-floating flex-grow-1">
-                  <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00" maxlength="14" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cpf"
+                    placeholder="000.000.000-00"
+                    maxlength="14"
+                  />
                   <label for="cpf">CPF</label>
                 </div>
-                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                <span class="input-group-text"
+                  ><i class="fas fa-id-card"></i
+                ></span>
               </div>
               <div id="error-cpf" class="invalid-feedback"></div>
             </div>
@@ -75,7 +113,9 @@
                   </select>
                   <label for="genero">Gênero Biológico</label>
                 </div>
-                <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+                <span class="input-group-text"
+                  ><i class="fas fa-venus-mars"></i
+                ></span>
               </div>
               <div id="error-genero" class="invalid-feedback"></div>
             </div>
@@ -85,10 +125,17 @@
             <div class="floating-field">
               <div class="input-group floating-input-group">
                 <div class="form-floating flex-grow-1">
-                  <input type="email" class="form-control" id="email" placeholder="email@exemplo.com" />
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="email@exemplo.com"
+                  />
                   <label for="email">Email</label>
                 </div>
-                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                <span class="input-group-text"
+                  ><i class="fas fa-envelope"></i
+                ></span>
               </div>
               <div id="error-email" class="invalid-feedback"></div>
             </div>
@@ -98,10 +145,17 @@
             <div class="floating-field">
               <div class="input-group floating-input-group">
                 <div class="form-floating flex-grow-1">
-                  <input type="text" class="form-control" id="telefone" placeholder="(00) 00000-0000" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="telefone"
+                    placeholder="(00) 00000-0000"
+                  />
                   <label for="telefone">Telefone</label>
                 </div>
-                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                <span class="input-group-text"
+                  ><i class="fas fa-phone"></i
+                ></span>
               </div>
               <div id="error-telefone" class="invalid-feedback"></div>
             </div>
@@ -114,7 +168,11 @@
                   <input type="date" class="form-control" id="data" />
                   <label for="data">Data de Nascimento</label>
                 </div>
-                <button type="button" class="btn btn-outline-danger" onclick="document.getElementById('data').showPicker()">
+                <button
+                  type="button"
+                  class="btn btn-outline-danger"
+                  onclick="document.getElementById('data').showPicker()"
+                >
                   <i class="fas fa-calendar-alt"></i>
                 </button>
               </div>
@@ -132,7 +190,9 @@
                   <option value="divorciado">Divorciado(a)</option>
                   <option value="viuvo">Viúvo(a)</option>
                   <option value="uniao_estavel">União Estável</option>
-                  <option value="prefiro_nao_informar">Prefiro não informar</option>
+                  <option value="prefiro_nao_informar">
+                    Prefiro não informar
+                  </option>
                 </select>
                 <label for="estadoCivil">Estado Civil</label>
               </div>
@@ -147,10 +207,17 @@
             <div class="floating-field">
               <div class="input-group floating-input-group">
                 <div class="form-floating flex-grow-1">
-                  <input type="text" class="form-control" id="cep" placeholder="00000-000" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cep"
+                    placeholder="00000-000"
+                  />
                   <label for="cep">CEP</label>
                 </div>
-                <span class="input-group-text"><i class="fas fa-map-pin"></i></span>
+                <span class="input-group-text"
+                  ><i class="fas fa-map-pin"></i
+                ></span>
               </div>
               <div id="error-cep" class="invalid-feedback"></div>
             </div>
@@ -160,10 +227,17 @@
             <div class="floating-field">
               <div class="input-group floating-input-group">
                 <div class="form-floating flex-grow-1">
-                  <input type="text" class="form-control" id="cidade" placeholder="Cidade" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cidade"
+                    placeholder="Cidade"
+                  />
                   <label for="cidade">Cidade</label>
                 </div>
-                <span class="input-group-text"><i class="fa-solid fa-location-dot"></i></span>
+                <span class="input-group-text"
+                  ><i class="fa-solid fa-location-dot"></i
+                ></span>
               </div>
               <div id="error-cidade" class="invalid-feedback"></div>
             </div>
@@ -206,7 +280,9 @@
                   </select>
                   <label for="estado">Estado</label>
                 </div>
-                <span class="input-group-text"><i class="fa-solid fa-location-dot"></i></span>
+                <span class="input-group-text"
+                  ><i class="fa-solid fa-location-dot"></i
+                ></span>
               </div>
               <div id="error-estado" class="invalid-feedback"></div>
             </div>
@@ -216,10 +292,17 @@
             <div class="floating-field">
               <div class="input-group floating-input-group">
                 <div class="form-floating flex-grow-1">
-                  <input type="text" class="form-control" id="bairro" placeholder="Bairro" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="bairro"
+                    placeholder="Bairro"
+                  />
                   <label for="bairro">Bairro</label>
                 </div>
-                <span class="input-group-text"><i class="fa-solid fa-location-dot"></i></span>
+                <span class="input-group-text"
+                  ><i class="fa-solid fa-location-dot"></i
+                ></span>
               </div>
               <div id="error-bairro" class="invalid-feedback"></div>
             </div>
@@ -229,10 +312,17 @@
             <div class="floating-field">
               <div class="input-group floating-input-group">
                 <div class="form-floating flex-grow-1">
-                  <input type="text" class="form-control" id="rua" placeholder="Rua" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="rua"
+                    placeholder="Rua"
+                  />
                   <label for="rua">Rua</label>
                 </div>
-                <span class="input-group-text"><i class="fa-solid fa-location-dot"></i></span>
+                <span class="input-group-text"
+                  ><i class="fa-solid fa-location-dot"></i
+                ></span>
               </div>
               <div id="error-rua" class="invalid-feedback"></div>
             </div>
@@ -242,10 +332,17 @@
             <div class="floating-field">
               <div class="input-group floating-input-group">
                 <div class="form-floating flex-grow-1">
-                  <input type="text" class="form-control" id="numero" placeholder="Número" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="numero"
+                    placeholder="Número"
+                  />
                   <label for="numero">Número</label>
                 </div>
-                <span class="input-group-text"><i class="fa-solid fa-location-dot"></i></span>
+                <span class="input-group-text"
+                  ><i class="fa-solid fa-location-dot"></i
+                ></span>
               </div>
               <div id="error-numero" class="invalid-feedback"></div>
             </div>
@@ -255,10 +352,16 @@
             <div class="floating-field">
               <div class="input-group floating-input-group">
                 <div class="form-floating flex-grow-1">
-                  <textarea class="form-control" id="complemento" style="height: 120px"></textarea>
+                  <textarea
+                    class="form-control"
+                    id="complemento"
+                    style="height: 120px"
+                  ></textarea>
                   <label for="complemento">Complemento</label>
                 </div>
-                <span class="input-group-text"><i class="fas fa-building"></i></span>
+                <span class="input-group-text"
+                  ><i class="fas fa-building"></i
+                ></span>
               </div>
               <div id="error-complemento" class="invalid-feedback"></div>
             </div>
@@ -273,10 +376,19 @@
               <div class="floating-field">
                 <div class="input-group floating-input-group">
                   <div class="form-floating flex-grow-1">
-                    <input type="password" class="form-control" id="senha" placeholder="Senha" />
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="senha"
+                      placeholder="Senha"
+                    />
                     <label for="senha">Senha</label>
                   </div>
-                  <button type="button" class="btn btn-outline-danger" onclick="passwordShow('toggleSenha','senha')">
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger"
+                    onclick="passwordShow('toggleSenha','senha')"
+                  >
                     <i id="toggleSenha" class="fa fa-eye"></i>
                   </button>
                 </div>
@@ -286,11 +398,18 @@
           </div>
 
           <div class="text-center mt-4">
-            <button type="submit" class="btn btn-danger px-5 py-2" id="btn-register">Cadastrar</button>
+            <button
+              type="submit"
+              class="btn btn-danger px-5 py-2"
+              id="btn-register"
+            >
+              Cadastrar
+            </button>
           </div>
 
-          <p class="text-center mt-3">Já tem uma conta?
-            <a href="auth-login.html" class="text-primary">Entrar</a>
+          <p class="text-center mt-3">
+            Já tem uma conta?
+            <a href="login.html" class="text-primary">Entrar</a>
           </p>
         </div>
       </form>
@@ -298,7 +417,7 @@
 
     <script src="../js/utils/valid-docs.js"></script>
     <script src="../js/toggle-password-login.js"></script>
-    <script src="../js/auth/auth-register.js"></script>
+    <script src="../js/screens/register.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

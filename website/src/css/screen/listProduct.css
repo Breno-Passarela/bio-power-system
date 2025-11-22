@@ -1,11 +1,9 @@
 /* Container */
 .form-container {
-  max-width: 1200px;
   background: #fff;
   border-radius: 15px;
   padding: 25px 30px;
 }
-
 
 /* Inputs com ícones */
 .floating-input-group .form-control {
@@ -44,6 +42,17 @@
 /* Tabela */
 table thead tr th {
   font-weight: 600;
+}
+
+.coluna {
+  text-wrap: balance;
+  border: 1px solid #dee2e6;
+}
+
+.coluna-descricao {
+  text-wrap: balance;
+  width: 40%;
+  border: 1px solid #dee2e6;
 }
 
 /* Botão excluir */

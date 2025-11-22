@@ -130,7 +130,7 @@
               class="mobile-auth-item"
               style="display: none"
             >
-              <a href="./auth-login.html" class="mobile-login-button">
+              <a href="./login.html" class="mobile-login-button">
                 <i class="fas fa-user-circle"></i> Fazer login/Criar conta
               </a>
             </div>
@@ -372,7 +372,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
 
     <script>
-      // Máscara para telefone
       document
         .getElementById("telefone")
         .addEventListener("input", function (e) {
@@ -384,13 +383,11 @@
           e.target.value = value;
         });
 
-      // Validação e envio do formulário
       document
         .getElementById("contactForm")
         .addEventListener("submit", function (e) {
           e.preventDefault();
 
-          // Validação básica
           const nome = document.getElementById("nome").value.trim();
           const email = document.getElementById("email").value.trim();
           const telefone = document.getElementById("telefone").value.trim();
@@ -402,7 +399,6 @@
             return;
           }
 
-          // Simulação de envio (aqui você integraria com backend)
           const formData = {
             nome: nome,
             email: email,
@@ -413,18 +409,14 @@
 
           console.log("Dados do formulário:", formData);
 
-          // Mostra mensagem de sucesso
           document.getElementById("successAlert").style.display = "block";
 
-          // Limpa o formulário
           this.reset();
 
-          // Esconde a mensagem após 5 segundos
           setTimeout(function () {
             document.getElementById("successAlert").style.display = "none";
           }, 5000);
 
-          // Scroll suave para o topo do formulário
           document.querySelector(".contact-section").scrollIntoView({
             behavior: "smooth",
             block: "start",

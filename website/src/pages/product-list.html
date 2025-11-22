@@ -22,6 +22,7 @@
 
     <link rel="stylesheet" href="../css/screen/product-list-screen.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/rodape.css" />
   </head>
 
   <body>
@@ -62,7 +63,7 @@
         <a href="#" id="abrirModalBtn">
           Categorias <i id="categoriaArrow" class="fas fa-chevron-down"></i>
         </a>
-         <a href="list-product.html">Produtos</a>
+        <a href="list-product.html">Produtos</a>
       </div>
       <div class="button-cart-container">
         <a
@@ -83,7 +84,7 @@
           style="display: none"
         />
 
-        <a href="auth-login.html">
+        <a href="login.html">
           <span id="loginText" class="login-text" style="display: none"
             >Fazer login/Criar conta</span
           >
@@ -116,7 +117,7 @@
             class="mobile-auth-item"
             style="display: none"
           >
-            <a href="auth-login.html" class="mobile-login-button">
+            <a href="login.html" class="mobile-login-button">
               <i class="fas fa-user-circle"></i> Fazer login/Criar conta
             </a>
           </div>
@@ -396,7 +397,28 @@
       </div>
     </main>
 
+    <!-- Rodapé -->
+    <footer class="rodape">
+      <div class="rodape-conteudo">
+        <div class="rodape-logo">
+          <a href="./home.html">Bio-Power</a>
+        </div>
+        <div class="rodape-links">
+          <a href="src/pages/sobre.html">Sobre Nós</a>
+          <a href="src/pages/politica.html">Política de Privacidade</a>
+        </div>
+        <div class="rodape-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      <div class="rodape-direitos">
+        <p>&copy; 2025 Bio-Power. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
     <script src="../js/navbar-script.js"></script>
-    <script src="../js/auth/auth-product-list.js"></script>
+    <script src="../js/screens/product-list.js"></script>
   </body>
 </html>

@@ -1,26 +1,76 @@
 var dados = [
   {
     id: 1,
-    name: "Creatina",
-    descricao: "descricao muito massa sobre a Creatina",
+    name: "Creatina Monohidratada",
+    descricao: "Creatina 100% pura, ajuda a aumentar força, explosão e desempenho nos treinos.",
     price: 10.0,
     quantidade: 2,
   },
   {
     id: 2,
-    name: "Whey de Chocolate",
-    descricao: "descricao muito massa sobre o whey",
+    name: "Whey Protein de Chocolate",
+    descricao: "Whey protein sabor chocolate, ótima absorção e excelente perfil de aminoácidos.",
     price: 15.5,
     quantidade: 5,
   },
   {
     id: 3,
-    name: "Cafeina",
-    descricao: "Descrição muito massa sobre a cafeina",
+    name: "Cafeína em Cápsulas",
+    descricao: "Cafeína de alta pureza para aumentar o foco, disposição e energia.",
     price: 7.25,
     quantidade: 10,
   },
+  {
+    id: 4,
+    name: "Pré-Workout Explosive",
+    descricao: "Pré-treino com blend de estimulantes que aumentam força, foco e resistência.",
+    price: 22.9,
+    quantidade: 8,
+  },
+  {
+    id: 5,
+    name: "BCAA 2:1:1",
+    descricao: "Aminoácidos essenciais que auxiliam na recuperação muscular e prevenção de catabolismo.",
+    price: 12.75,
+    quantidade: 12,
+  },
+  {
+    id: 6,
+    name: "Multivitamínico Ultra",
+    descricao: "Fórmula completa com vitaminas e minerais para reforçar a saúde e imunidade.",
+    price: 9.9,
+    quantidade: 20,
+  },
+  {
+    id: 7,
+    name: "Ômega 3 Concentrado",
+    descricao: "Cápsulas com alta concentração de EPA e DHA para saúde cardiovascular.",
+    price: 18.5,
+    quantidade: 15,
+  },
+  {
+    id: 8,
+    name: "Glutamina",
+    descricao: "Suplemento ideal para fortalecer o sistema imunológico e auxiliar na recuperação.",
+    price: 13.4,
+    quantidade: 9,
+  },
+  {
+    id: 9,
+    name: "Hipercalórico Mass Gainer",
+    descricao: "Alta caloria e proteínas para quem busca ganho de peso e massa muscular.",
+    price: 29.9,
+    quantidade: 6,
+  },
+  {
+    id: 10,
+    name: "Termogênico Fire Burn",
+    descricao: "Aumenta a termogênese e acelera o metabolismo para auxiliar na perda de gordura.",
+    price: 19.75,
+    quantidade: 7,
+  },
 ];
+
 
 function montarTabela() {
   let vTbody = document.querySelector("#grid tbody");
@@ -34,7 +84,7 @@ function montarTabela() {
             </td>
             <td class="coluna text-center">${item.id}</td>
             <td class="coluna">${item.name}</td>
-            <td class="coluna">${item.descricao}</td>
+            <td class="coluna-descricao">${item.descricao}</td>
             <td class="coluna text-center">R$ ${item.price.toFixed(2)}</td>
             <td class="coluna text-center">${item.quantidade}</td>
             <td class="text-center coluna">
