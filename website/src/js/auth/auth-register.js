@@ -36,22 +36,6 @@ const fieldOrder = [
   "senha"
 ];
 
-const requiredFields = [
-    "nome",
-    "sobrenome",
-    "email",
-    "senha",
-    "data-nascimento",
-    "cpf",
-    "telefone",
-    "cep",
-    "rua",
-    "numero",
-    "bairro",
-    "cidade",
-    "estado"
-];
-
 const NAME_MIN_LENGTH     = 3;
 const NAME_REGEX          = /^[A-Za-zÀ-ÿ]+(?: [A-Za-zÀ-ÿ]+)*$/;
 const CITY_REGEX          = /^[A-Za-zÀ-ÿ]+(?:[\s'-][A-Za-zÀ-ÿ]+)*$/;
@@ -373,8 +357,6 @@ window.addEventListener("load", () => {
   });
 });
 
-window.addEventListener("load", updateRegisterButton());
-
 // Função para mostrar senha
 function passwordShow(toggleId, inputId) {
   const toggle = document.getElementById(toggleId);
@@ -464,33 +446,4 @@ document.getElementById("cep").addEventListener("blur", async function () {
     console.error(error);
     setFieldError("cep", "Não foi possível localizar o CEP.");
   }
-});
-
-function updateRegisterButton() {
-  const registerButton = document.getElementById("btn-register");
-
-  collectFormValues();
-  const errors = validateFields();
-
-  let allValid = true;
-
-  requiredFields.forEach(field => {
-    const input = document.getElementById(field);
-    const isEmpty = !input || !input.value.trim();
-    const hasError = errors.hasOwnProperty(field);
-
-    if (isEmpty || hasError) {
-      allValid = false;
-    }
-  });
-
-  registerButton.disabled = !allValid;
-}
-
-requiredFields.forEach(field => {
-  const input = document.getElementById(field);
-  if (!input) return;
-
-  input.addEventListener("input", updateRegisterButton);
-  input.addEventListener("blur", updateRegisterButton);
 });
