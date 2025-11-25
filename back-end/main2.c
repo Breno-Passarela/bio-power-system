@@ -15,10 +15,18 @@ typedef struct{
 typedef struct{
     int cod, lote, quantidade;
     char nome[200], descricao[255], laboratorio[200], tipo[100];
-    float valor, desconto;
+    float valor;
+    float desconto;
     PromocaoProduto prom;
     Dia validade;
 } Produto;
+
+typedef struct {
+    int cod, quantidadeVendida;
+    char nome[200], laboratorio[200], tipo[100], formaPagamento[20];
+    float valorVenda;
+    Dia venda;
+} ProdutoVendido;
 
 typedef struct{
     char usuario[200], senha[200];
@@ -28,36 +36,56 @@ int buscaCodProduto(FILE *ptProduto, int cod){
     Produto p;
     rewind(ptProduto);
     fread(&p, sizeof(Produto), 1, ptProduto);
-    while (!feof(ptProduto) && p.cod != cod)
-    {
+    while (!feof(ptProduto) && p.cod != cod){
         fread(&p, sizeof(Produto), 1, ptProduto);
     }
-    if (!feof(ptProduto))
-    {
+    if (!feof(ptProduto)){
         return ftell(ptProduto) - sizeof(Produto);
     }
-    else
-    {
-        return -1;
-    }
+
+    return -1;
+}
+
+int exibirProduto() {
+    FILE *ptProduto;
+    Produto pd;
+    printf("\nExibir Produto\n");
+    ptProduto = fopen("produtos.bin", "rb");
+        if (ptProduto == NULL){
+            printf("Erro ao abrir o arquivo de produtos.\n");
+            system("pause");
+        }else{
+            printf("\nLista de Produtos:\n");
+            while (fread(&pd, sizeof(Produto), 1, ptProduto) == 1){
+                printf("\n---------------------------------\n");
+                printf("Codigo: %d\n", pd.cod);
+                printf("Produto: %s\n", pd.nome);
+                printf("Descricao: %s\n", pd.descricao);
+                printf("Laboratorio: %s\n", pd.laboratorio);
+                printf("Tipo: %s\n", pd.tipo);
+                printf("Valor: %.2f\n", pd.valor);
+                printf("Desconto: %.2f\n", pd.desconto);
+                printf("Lote: %d\n", pd.lote);
+                printf("Validade: %d/%d/%d\n", pd.validade.dia, pd.validade.mes, pd.validade.ano);
+                printf("---------------------------------\n");
+            }
+            fclose(ptProduto);
+        }
+    system("pause");
 }
 
 int buscaADM(FILE *ptAdm, char usuario[200]){
     Administrador adm;
     rewind(ptAdm);
     fread(&adm, sizeof(Administrador), 1, ptAdm);
-    while (!feof(ptAdm) && strcmp(adm.usuario, usuario) != 0)
-    {
+    while (!feof(ptAdm) && strcmp(adm.usuario, usuario) != 0){
         fread(&adm, sizeof(Administrador), 1, ptAdm);
     }
-    if (!feof(ptAdm))
-    {
+    if (!feof(ptAdm)){
         return ftell(ptAdm) - sizeof(Administrador);
     }
-    else
-    {
-        return -1;
-    }
+
+    return -1;
 }
 
 int loginAdministrador() {
@@ -113,7 +141,7 @@ void criarAdminInicial() {
 }
 
 // Telas do software
-// Menu do sistema de administrador
+#include <time.h>
 void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
     FILE *ptAdm;
     FILE *ptProduto;
@@ -556,40 +584,111 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
                 break;
             case 4:
                 printf("\nVender Produto\n");
-                system("pause");
-                break;
-            case 5:
-                printf("\nExibir Produto\n");
-                ptProduto = fopen("produtos.bin", "rb");
-                if (ptProduto == NULL){
-                    printf("Erro ao abrir o arquivo de produtos.\n");
+                
+                // --Abrir o arquivo binario de produtos
+                //     - se Produto existe (cod)
+                //     - se o produto tem estoque
+                //         - Criar arquivo produtosVendidos
+                //             - Adicinar isso produto, vendedor, dataDeVenda, quantidade, valorTotal, valorUnitario....
+                //         - Subtrair a quantidade do produto no arquivo de produtos
+                //             ( exclusão
+                //                 - Criar um arquivo temporarioProdutos passar todos os produtos menos o que está sendo alterado
+                //                 - Depois cadastrar esse produto dnv com quantidade menor
+                //                 - apaga o binario de produtos
+                //                 - Renomeia o temporario para produtos 
+                //             )
+
+                exibirProduto();
+
+                int cod, qtdVenda;
+
+                // --Abrir o arquivo binario de produtos
+                ptProduto = fopen("produtos.bin", "rb+");
+                if(ptProduto == NULL) {
+                    printf("Erro ao abrir produtos.bin\n");
                     system("pause");
-                }else{
-                    printf("\nLista de Produtos:\n");
-                    while (fread(&pd, sizeof(Produto), 1, ptProduto)){
-                        printf("\n---------------------------------\n");
-                        printf("Codigo: %d\n", pd.cod);
-                        printf("Produto: %s\n", pd.nome);
-                        printf("Descricao: %s\n", pd.descricao);
-                        printf("Laboratorio: %s\n", pd.laboratorio);
-                        printf("Tipo: %s\n", pd.tipo);
-                        printf("Valor: %.2f\n", pd.valor);
-                        printf("Desconto: %.2f\n", pd.desconto);
-                        printf("Lote: %d\n", pd.lote);
-                        printf("Validade: %d/%d/%d\n", pd.validade.dia, pd.validade.mes, pd.validade.ano);
-                        printf("---------------------------------\n");
+                } else {
+                    printf("Insira um codigo: ");
+                    scanf("%d", &cod);
+                    Produto pd;
+
+                    // - se Produto existe (cod)
+                    int pos = buscaCodProduto(ptProduto, cod);
+                    if (pos == -1) {
+                        printf("Código do produto inexistente\n");
+                        system("pause");
+                    } else {
+                        //- se o produto tem estoque
+                        /*
+                             Fseek leva o ponteiro do arquivo na posição correta
+                             SEEK_SET  
+                             SEEK_CUR  
+                             SEEK_END 
+                        */
+
+                        fseek(ptProduto, pos, SEEK_SET);
+
+                        fread(&pd, sizeof(Produto), 1, ptProduto);
+
+                        if(pd.quantidade < 1) {
+                            printf("\nEsse produto não tem estoque!\n");
+                            system("pause");
+                        } else {
+                            do {
+                                printf("\nO produto possui %d unidades. Quantos deseja vender?\n", pd.quantidade);
+                                scanf("%d", &qtdVenda);
+
+                                if(pd.quantidade < qtdVenda) {
+                                    printf("\nDigite uma quantidade válida!\n");
+                                }
+                            } while(pd.quantidade < qtdVenda);
+
+                            ProdutoVendido pv;
+
+                            pv.cod = pd.cod;
+                            pv.quantidadeVendida = qtdVenda;
+                            strcpy(pv.nome, pd.nome);
+                            strcpy(pv.laboratorio, pd.laboratorio);
+                            strcpy(pv.tipo, pd.tipo);
+                            pv.valorVenda = (pd.valor * qtdVenda) * (1 - pd.desconto);
+                            strcpy(pv.formaPagamento, ""); 
+
+                            time_t t = time(NULL);
+                            struct tm tm = *localtime(&t);
+                            pv.venda.dia = tm.tm_mday;
+                            pv.venda.mes = tm.tm_mon + 1;
+                            pv.venda.ano = tm.tm_year + 1900;
+
+                            FILE *ptProdutosVendidos;
+                            ptProdutosVendidos = fopen("produtosVendidos.bin", "ab+");
+                            if(ptProdutosVendidos == NULL) {
+                                printf("Erro ao abrir produtosVendidos.bin\n");
+                                system("pause");
+                            } else {
+                                fwrite(&pv, sizeof(ProdutoVendido), 1, ptProdutosVendidos);
+                                fclose(ptProdutosVendidos);
+                            }
+
+                            pd.quantidade -= qtdVenda;
+
+                            fseek(ptProduto, pos, SEEK_SET);
+                            fwrite(&pd, sizeof(Produto), 1, ptProduto);
+
+                            printf("\nVenda realizada com sucesso!\n");
+                        }
                     }
                     fclose(ptProduto);
+                    system("pause");
                 }
-                system("pause");
+                break;
+            case 5:
+                exibirProduto();
                 break;
             case 6:
-                printf("\nControlar Estoque\n");
-                system("pause");
+                controlarEstoque();
                 break;
             case 7:
-                printf("\nVerificar por tipo de produto\n");
-                system("pause");
+                verificarPorTipoProduto();
                 break;
             case 8:
                 printf("\nVoltando ao menu principal.\n");
@@ -888,6 +987,70 @@ void promocaoValidade(Produto *produtos, int produtosTopo)
             }
         }
     }
+}
+
+
+void controlarEstoque() {
+    FILE *ptProduto = fopen("produtos.bin", "rb");
+    Produto pd;
+    if (ptProduto == NULL) {
+        printf("Erro ao abrir o arquivo de produtos.\n");
+        system("pause");
+        return;
+    }
+
+    printf("\nControle de Estoque:\n");
+    int encontrou = 0;
+    while (fread(&pd, sizeof(Produto), 1, ptProduto) == 1) {
+        printf("---------------------------------\n");
+        printf("Codigo: %d\n", pd.cod);
+        printf("Produto: %s\n", pd.nome);
+        printf("Quantidade em estoque: %d\n", pd.quantidade);
+        printf("---------------------------------\n");
+        encontrou = 1;
+    }
+    if (!encontrou) {
+        printf("Nenhum produto cadastrado.\n");
+    }
+    fclose(ptProduto);
+    system("pause");
+}
+
+void verificarPorTipoProduto() {
+    FILE *ptProduto = fopen("produtos.bin", "rb");
+    Produto pd;
+    char tipoConsulta[100];
+
+    if (ptProduto == NULL) {
+        printf("Erro ao abrir o arquivo de produtos.\n");
+        system("pause");
+        return;
+    }
+
+    printf("\nDigite o tipo do produto a pesquisar: ");
+    scanf(" %99s", tipoConsulta);
+
+    printf("\nProdutos do tipo '%s':\n", tipoConsulta);
+    int encontrou = 0;
+
+    while (fread(&pd, sizeof(Produto), 1, ptProduto) == 1) {
+        if (strcmp(pd.tipo, tipoConsulta) == 0) {
+            printf("---------------------------------\n");
+            printf("Codigo: %d\n", pd.cod);
+            printf("Produto: %s\n", pd.nome);
+            printf("Descricao: %s\n", pd.descricao);
+            printf("Laboratorio: %s\n", pd.laboratorio);
+            printf("Valor: %.2f\n", pd.valor);
+            printf("Quantidade em estoque: %d\n", pd.quantidade);
+            printf("---------------------------------\n");
+            encontrou = 1;
+        }
+    }
+    if (!encontrou) {
+        printf("Nenhum produto encontrado para o tipo informado.\n");
+    }
+    fclose(ptProduto);
+    system("pause");
 }
 
 int main(){
