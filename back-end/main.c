@@ -152,6 +152,27 @@ int listarTipos(char lista[][100]) {
     return count;
 }
 
+int listarLaboratorios(char lista[][100]) {
+    FILE *arquivo;
+    Laboratorio lab;
+    int count = 0;
+
+    arquivo = fopen("laboratorios.bin", "rb");
+
+    if(arquivo == NULL) {
+        printf("Nenhum tipo de produto cadastrado!\n");
+        return 0;
+    }
+
+    while(fread(&lab, sizeof(Laboratorio), 1, arquivo) == 1) {
+        strcpy(lista[count], lab.nome);
+        count++;
+    }
+
+    fclose(arquivo);
+    return count;
+}
+
 int diasAproximados(Dia d) {
     return d.ano * 365 + d.mes * 30 + d.dia;
 }
@@ -164,29 +185,39 @@ int produtoExpirado(Produto p, Dia hoje) {
     return diasAproximados(p.validade) < diasAproximados(hoje);
 }
 
+void criarAdminPadrao() {
+	FILE *arquivo;
+	Administrador adm;
+	
+	arquivo = fopen("administradores.bin", "rb");
+	
+	if(arquivo) {
+		fclose(arquivo);
+		return;
+	}
+	
+    arquivo = fopen("administradores.bin", "wb");
+	
+	strcpy(adm.usuario, "biopower\n");
+	strcpy(adm.senha, "123456\n");
+	fwrite(&adm, sizeof(Administrador), 1, arquivo);
+	
+	fclose(arquivo);
+
+}
+
 /* ======== CRUD Administrador ======== */
 
 void cadastrarAdministrador() {
     FILE *arquivo;
     Administrador adm;
     long pos;
-    char opc;
 
     arquivo = fopen("administradores.bin", "rb+");
 
     if (arquivo == NULL) {
-        // se nao existe ainda cria e grava admin padrao
-        arquivo = fopen("administradores.bin", "wb");
-        if (arquivo == NULL) {
-            printf("Erro ao criar o arquivo de administradores.\n");
-            system("pause");
-            return;
-        }
-
-        strcpy(adm.usuario, "biopower\n");
-        strcpy(adm.senha, "123456\n");
-        fwrite(&adm, sizeof(Administrador), 1, arquivo);
-        fclose(arquivo);
+        printf("Erro ao criar o arquivo de administradores.\n");
+        system("pause");
         return;
     }
 
@@ -214,9 +245,7 @@ void cadastrarAdministrador() {
 
         printf("\n========================================\n");
         printf("Deseja continuar? [S/N]\n> ");
-        opc = toupper(getche());
-
-    } while (opc == 'S');
+    } while (toupper(getche()) == 'S');
 
     fclose(arquivo);
 }
@@ -230,6 +259,7 @@ void exibirAdministradores() {
     if (arquivo == NULL) {
         printf("Nenhum administrador cadastrado ou erro ao abrir arquivo.\n");
         system("pause");
+        fclose(arquivo);
         return;
     }
 
@@ -237,9 +267,8 @@ void exibirAdministradores() {
     printf("======== Administradores Cadastrados ========\n");
 
     while (fread(&adm, sizeof(Administrador), 1, arquivo) == 1) {
-        printf("\n=============================================\n");
-        printf("Usuario: %s", adm.usuario);
-        printf("Senha: %s", adm.senha);
+        printf("\nUsuario: %s\n", adm.usuario);
+        printf("Senha: %s\n", adm.senha);
         printf("=============================================\n");
     }
 
@@ -260,6 +289,7 @@ void alterarAdministrador() {
     if (arquivo == NULL) {
         printf("Erro ao abrir arquivo de administradores.\n");
         system("pause");
+        fclose(arquivo);
         return;
     }
 
@@ -316,6 +346,7 @@ void excluirAdministrador() {
     if (arquivo == NULL) {
         printf("Erro ao abrir arquivo de administradores.\n");
         system("pause");
+        fclose(arquivo);
         return;
     }
 
@@ -379,6 +410,7 @@ void cadastrarCliente() {
     if(arquivo == NULL) {
         printf("Erro no arquivo de clientes\n");
         system("pause");
+        fclose(arquivo);
         return;
     }
 
@@ -436,6 +468,7 @@ void exibirClientes() {
     if(arquivo == NULL) {
         printf("Erro no arquivo de clientes\n");
         system("pause");
+        fclose(arquivo);
         return;
     }
 
@@ -472,6 +505,7 @@ void alterarCliente() {
     if(arquivo == NULL) {
         printf("Erro no arquivo de clientes\n");
         system("pause");
+        fclose(arquivo);
         return;
     }
 
@@ -568,6 +602,7 @@ void excluirCliente() {
     if(arquivo == NULL) {
         printf("Erro no arquivo de clientes\n");
         system("pause");
+        fclose(arquivo);
         return;
     }
 
@@ -630,6 +665,7 @@ void cadastrarTipoProduto() {
     if(arquivo == NULL) {
         printf("Erro ao abrir arquivo de tipos.\n");
         system("pause");
+        fclose(arquivo);
         return;
     }
 
@@ -668,6 +704,7 @@ void exibirTipos() {
     if(arquivo == NULL) {
         printf("Erro ao abrir arquivo de tipos.\n");
         system("pause");
+        fclose(arquivo);
         return;
     }
 
@@ -696,6 +733,7 @@ void alterarTipoProduto() {
     if(arquivo == NULL) {
         printf("Erro ao abrir arquivo de tipos.\n");
         system("pause");
+        fclose(arquivo);
         return;
     }
 
@@ -746,6 +784,7 @@ void excluirTipoProduto() {
     if(arquivo == NULL) {
         printf("Erro no arquivo de tipos\n");
         system("pause");
+        fclose(arquivo);
         return;
     }
 
@@ -804,7 +843,9 @@ void cadastrarProduto() {
     FILE *arquivo;
     Produto p;
     char tipos[100][100];
+    char laboratorios[100][100];
     int qtdTipos, escolha;
+    int qtdLaboratorios;
     int pos;
     char opc;
 
@@ -815,6 +856,7 @@ void cadastrarProduto() {
         if(arquivo == NULL) {
             printf("Erro no arquivo de produtos\n");
             system("pause");
+        	fclose(arquivo);
             return;
         }
     }
@@ -835,9 +877,29 @@ void cadastrarProduto() {
 
             printf("\nDescricao: ");
             fgets(p.descricao, 254, stdin);
+            
+			qtdLaboratorios = listarLaboratorios(laboratorios);
+			if(qtdLaboratorios == 0) {
+                printf("\nNenhum laboratorio cadastrado. Cadastre primeiro!\n");
+                system("pause");
+                fclose(arquivo);
+                return;
+            }
+            
+            printf("\n--- Laboratorios disponiveis ---\n");
+            for(int i = 0; i < qtdLaboratorios; i++) {
+                printf("%d - %s", i+1, laboratorios[i]);
+            }
+            
+            printf("\nSelecione o laboratorio: ");
+            scanf("%d", &escolha);
+            
+            while(escolha < 1 || escolha > qtdLaboratorios) {
+                printf("\nOpcao invalida! Digite novamente: ");
+                scanf("%d", &escolha);
+            }
 
-            printf("\nLaboratorio: ");
-            fgets(p.laboratorio, 199, stdin);
+            strcpy(p.laboratorio, laboratorios[escolha-1]);
 
             qtdTipos = listarTipos(tipos);
             if(qtdTipos == 0) {
@@ -908,6 +970,7 @@ void exibirProduto() {
     if(arquivo == NULL) {
         printf("Erro no arquivo de produtos\n");
         system("pause");
+        fclose(arquivo);
         return;
     }
 
@@ -947,6 +1010,7 @@ void alterarProduto() {
     if(arquivo == NULL) {
         printf("Erro no arquivo de produtos\n");
         system("pause");
+        fclose(arquivo);
         return;
     }
 
@@ -970,7 +1034,8 @@ void alterarProduto() {
             printf("5 - Quantidade: %d\n", p.quantidade);
             printf("6 - Valor: %.2f\n", p.valor);
             printf("7 - Desconto: %.2f\n", p.desconto);
-            printf("8 - Validade\n");
+            printf("8 - Validade: ");
+            printData(p.validade.dia, p.validade.mes, p.validade.ano);
 
             printf("\nO que deseja alterar? ");
             scanf("%d", &opcao);
@@ -1069,6 +1134,7 @@ void excluirProduto() {
     if(arquivo == NULL) {
         printf("Erro no arquivo de produtos\n");
         system("pause");
+        fclose(arquivo);
         return;
     }
 
@@ -1133,6 +1199,7 @@ void cadastrarLaboratorio() {
     if(arquivo == NULL) {
         printf("Erro ao abrir arquivo de laboratorios.\n");
         system("pause");
+        fclose(arquivo);
         return;
     }
 
@@ -1171,6 +1238,7 @@ void exibirLaboratorios() {
     if(arquivo == NULL) {
         printf("Erro ao abrir arquivo de laboratorios.\n");
         system("pause");
+        fclose(arquivo);
         return;
     }
 
@@ -1199,6 +1267,7 @@ void alterarLaboratorio() {
     if(arquivo == NULL) {
         printf("Erro ao abrir arquivo de laboratorios.\n");
         system("pause");
+        fclose(arquivo);
         return;
     }
 
@@ -1249,6 +1318,7 @@ void excluirLaboratorio() {
     if(arquivo == NULL) {
         printf("Erro ao abrir arquivo de laboratorios.\n");
         system("pause");
+        fclose(arquivo);
         return;
     }
 
@@ -1363,6 +1433,39 @@ void exibirComprasRealizadas() {
     system("pause");
 }
 
+void exibirComprasRealizadasNaoDevolvido() {
+    FILE *ptProdutosVendidos = fopen("produtosVendidos.bin", "rb");
+    
+    if (ptProdutosVendidos == NULL) {
+        printf("Nenhuma compra registrada.\n");
+        system("pause");
+        return;
+    }
+    
+    ProdutoVendido pv;
+    char cpfCliente[15];
+
+    system("cls");
+    printf("\nDigite o CPF: ");
+    limpaBuffer();
+    fgets(cpfCliente, 14, stdin);
+
+    printf("===== Compras de %s =====\n", cpfCliente);
+
+    while (fread(&pv, sizeof(ProdutoVendido), 1, ptProdutosVendidos) == 1) {
+        if (strcmp(pv.cpfVenda, cpfCliente) == 0 && pv.devolvido) {
+            printf("\nProduto: %s", pv.nome);
+            printf("Quantidade: %d\n", pv.quantidadeVendida);
+            printf("Valor total: %.2f\n", pv.valorVenda);
+            printf("Data: %02d/%02d/%04d\n", pv.venda.dia, pv.venda.mes, pv.venda.ano);
+            printf("Devolvido: %s\n", pv.devolvido ? "Sim" : "Nao");
+        }
+    }
+
+    fclose(ptProdutosVendidos);
+    system("pause");
+}
+
 int comprarProdutos() {
     FILE *ptProdutosVendidos, *ptProduto;
     
@@ -1431,7 +1534,7 @@ int comprarProdutos() {
         strcpy(pv.nome, p.nome);
         strcpy(pv.laboratorio, p.laboratorio);
         strcpy(pv.tipo, p.tipo);
-        pv.valorVenda = (p.valor * qtdVenda) * (1 - p.desconto);
+        pv.valorVenda = (p.valor * qtdVenda);
         pv.devolvido = false;
 
         printf("\nDigite a data da compra:");
@@ -1461,6 +1564,11 @@ int comprarProdutos() {
     return 0;
 }
 
+//void formatarCpf() {
+//	
+//}
+
+
 int devolverProdutos() {
     ProdutoVendido pv;
     Produto p;
@@ -1482,8 +1590,9 @@ int devolverProdutos() {
         system("pause");
         return -1;
     }
-
-    system("cls");
+    
+    
+    system("cls");  
     printf("Digite o CPF do cliente: ");
     limpaBuffer();
     fgets(cpfCliente, 14, stdin);
@@ -1898,7 +2007,7 @@ int loginAdministrador(char nome[]) {
     }
 
     while(fread(&adm, sizeof(Administrador), 1, arquivo) == 1) {
-        if (strcmp(adm.usuario, usuario) == 0 && strcmp(adm.senha, senha) == 0) {
+        if (stricmp(adm.usuario, usuario) == 0 && stricmp(adm.senha, senha) == 0) {
             strcpy(nome, adm.usuario);
             fclose(arquivo);
             return 1; 
@@ -1948,12 +2057,13 @@ void sistemaAdmin(char adm[]) {
         printf("======== Administrador %s ========\n", adm);
         printf("\n1: Administradores");
         printf("\n2: Gerenciar Clientes");
-        printf("\n3: Gerenciar Tipos de Produto");
-        printf("\n4: Gerenciar Laboratorios");
-        printf("\n5: Definir promocao de produtos proximos ao vencimento");
-        printf("\n6: Descartar produtos vencidos");
-        printf("\n7: Relatorios");
-        printf("\n8: Voltar para login");
+        printf("\n3: Gerenciar Produtos");
+        printf("\n4: Gerenciar Tipos de Produto");
+        printf("\n5: Gerenciar Laboratorios");
+        printf("\n6: Definir promocao de produtos proximos ao vencimento");
+        printf("\n7: Descartar produtos vencidos");
+        printf("\n8: Relatorios");
+        printf("\n9: Voltar para login");
         printf("\n> ");
         scanf("%d", &menu);
 
@@ -2015,8 +2125,37 @@ void sistemaAdmin(char adm[]) {
                     }
                 } while(submenu != 5);
                 break;
-
+                
             case 3:
+                do {
+                    system("cls");
+                    printf("======== Produto ========\n");
+                    printf("1: Cadastrar Produto\n");
+                    printf("2: Exibir Produto\n");
+                    printf("3: Editar Produto\n");
+                    printf("4: Excluir Produto\n");
+                    printf("5: Voltar ao menu\n");
+                    printf("> ");
+                    scanf("%d", &submenu);
+
+                    switch(submenu) {
+                        case 1: cadastrarProduto(); break;
+                        case 2: exibirProduto(); break;
+                        case 3: alterarProduto(); break;
+                        case 4: excluirProduto(); break;
+                        case 5:
+                            printf("Voltando ao menu...\n\n");
+                            system("pause");
+                            break;
+                        default:
+                            printf("Opcao invalida!\n\n");
+                            system("pause");
+                            break;
+                    }
+                } while(submenu != 5);
+                break;
+
+            case 4:
                 do {
                     system("cls");
                     printf("======== Tipos de Produto ========\n");
@@ -2045,7 +2184,7 @@ void sistemaAdmin(char adm[]) {
                 } while(submenu != 5);
                 break;
 
-            case 4:
+            case 5:
                 do {
                     system("cls");
                     printf("======== Laboratorios ========\n");
@@ -2074,15 +2213,15 @@ void sistemaAdmin(char adm[]) {
                 } while(submenu != 5);
                 break;
 
-            case 5:
+            case 6:
                 definirPromocao();
                 break;
 
-            case 6:
+            case 7:
                 descartarProdutosVencidos();
                 break;
 
-            case 7:
+            case 8:
                 do {
                     system("cls");
                     printf("======== Relatorios ========\n");
@@ -2109,7 +2248,7 @@ void sistemaAdmin(char adm[]) {
                 } while (submenu != 4);
                 break;
 
-            case 8:
+            case 9:
                 printf("Voltando ao login...\n\n");
                 system("pause");
                 break;
@@ -2119,7 +2258,7 @@ void sistemaAdmin(char adm[]) {
                 system("pause");
                 break;
         }
-    } while(menu != 8);
+    } while(menu != 9);
 }
 
 void sistemaCliente(char cliente[]) {
@@ -2167,7 +2306,7 @@ int main() {
     char nomeCliente[200];
 
     // Garante que exista pelo menos um admin padrao
-    cadastrarAdministrador();
+    criarAdminPadrao();
 
     do {
         system("cls");
@@ -2188,12 +2327,12 @@ int main() {
             }
             break;
         case 2:
-            if (loginCliente(nomeCliente)) {
+            //if (loginCliente(nomeCliente)) {
                 sistemaCliente(nomeCliente);
-            } else {
-                printf("\nLogin incorreto!\n");
-                system("pause");
-            }
+            //} else {
+            //    printf("\nLogin incorreto!\n");
+            //    system("pause");
+            //}
             break;
         case 3:
             printf("\nSaindo do sistema...\n\n");
