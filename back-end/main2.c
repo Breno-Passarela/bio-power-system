@@ -155,10 +155,10 @@ int loginAdministrador() {
     Administrador adm;
 
     printf("\nDigite o usuario: ");
-    scanf(" %s", usuario);
+    fgets(usuario, 200, stdin);
 
     printf("Digite a senha: ");
-    scanf(" %s", senha);
+    fgets(senha, 200, stdin);
 
     ptAdm = fopen("administradores.bin", "rb");
     if (!ptAdm) {
@@ -242,7 +242,8 @@ void verificarPorTipoProduto() {
     }
 
     printf("\nDigite o tipo do produto a pesquisar: ");
-    scanf(" %99s", tipoConsulta);
+    fgets(tipoConsulta, 100, stdin);
+    /* scanf(" %99s", tipoConsulta); */
 
     printf("\nProdutos do tipo '%s':\n", tipoConsulta);
     int encontrou = 0;
@@ -290,7 +291,6 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
 
     system("cls");
     printf("\nVoce selecionou o sistema de Administrador!\n");
-
     do{
         printf("\n1: Administradores\n");
         printf("2: Gerenciar Produtos\n");
@@ -324,13 +324,11 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
                             else{
                                 do{
                                     printf("Digite o nome do novo administrador: ");
-                                    scanf(" %s", adm.usuario);
-                                    //gets(adm.usuario);
+                                    fgets(adm.usuario, 200, stdin);
                                     pos = buscaADM(ptAdm, adm.usuario);
                                     if (pos == -1){
                                         printf("Digite a senha do novo administrador: ");
-                                        scanf(" %s", adm.senha);
-                                        //gets(adm.senha);
+                                        fgets(adm.senha, 200, stdin);
                                         fwrite(&adm, sizeof(Administrador), 1, ptAdm);
                                         printf("Administrador cadastrado com sucesso!\n");
                                     }
@@ -356,7 +354,7 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
                             else{
                                 printf("\nDeletar Administrador\n");
                                 printf("Digite o nome do administrador a ser deletado: ");
-                                scanf(" %s", usuario);
+                                fgets(usuario, 200, stdin);
                                 if (strcmp(usuario, "/0") != 0){
                                     pos = buscaADM(ptAdm, usuario);
                                     if (pos == -1){
@@ -401,7 +399,7 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
                             } else {
                                 do {
                                     printf("Digite o nome do administrador a ser editado (0 para sair): ");
-                                    scanf(" %s", adm.usuario);
+                                    fgets(adm.usuario, 200, stdin);
                                     if (strcmp(adm.usuario, "0") == 0) {
                                         break;
                                     }
@@ -422,8 +420,7 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
                                         switch (op){
                                             case 1:{
                                                 printf("Digite o novo usuario: \n> ");
-                                                
-                                                scanf(" %s", adm.usuario);
+                                                fgets(adm.usuario, 200, stdin);
                                                 fseek(ptAdm, pos, 0);
                                                 fwrite(&adm, sizeof(Administrador), 1, ptAdm);
                                                 printf("Usuario alterado com sucesso!\n");
@@ -431,8 +428,7 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
                                             }
                                             case 2:{
                                                 printf("Digite a nova senha: \n> ");
-                                                
-                                                scanf(" %s", adm.senha);
+                                                fgets(adm.senha, 200, stdin);
                                                 fseek(ptAdm, pos, 0);
                                                 fwrite(&adm, sizeof(Administrador), 1, ptAdm);
                                                 printf("Senha alterada com sucesso!\n");
@@ -504,13 +500,13 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
                                     pos = buscaCodProduto(ptProduto, pd.cod);
                                     if(pos == -1){
                                         printf("Digite o nome do produto: ");
-                                        scanf(" %s", pd.nome);
+                                        fgets(pd.nome, 200, stdin);
                                         printf("Digite a descricao do produto: ");
-                                        scanf(" %s", pd.descricao);
+                                        fgets(pd.descricao, 200, stdin);
                                         printf("Digite o laboratorio do produto: ");
-                                        scanf(" %s", pd.laboratorio);
+                                        fgets(pd.laboratorio, 200, stdin);
                                         printf("Digite o tipo do produto: ");
-                                        scanf(" %s", pd.tipo);
+                                        fgets(pd.tipo, 100, stdin);
                                         printf("Digite o valor do produto: ");
                                         scanf("%f", &pd.valor);
                                         printf("Digite a quantidade do produto: ");
@@ -638,34 +634,34 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
                                         switch(op){
                                             case 1:
                                                 printf("Digite o novo nome: \n> ");
-                                                scanf(" %s", pd.nome);
+                                                fgets(pd.nome, 200, stdin);
                                                 fseek(ptProduto, pos, 0);
                                                 fwrite(&pd, sizeof(Produto), 1, ptProduto);
                                                 printf("Nome alterado com sucesso!\n");
                                             break;
                                             case 2:
                                                 printf("Digite a nova descricao: \n> ");
-                                                scanf(" %s", pd.descricao);
+                                                fgets(pd.descricao, 200, stdin);
                                                 fseek(ptProduto, pos, 0);
                                                 fwrite(&pd, sizeof(Produto), 1, ptProduto);
                                                 printf("Descricao alterada com sucesso!\n");
                                             break;
                                             case 3:
                                                 printf("Digite o novo laboratorio: \n> ");
-                                                scanf(" %s", pd.laboratorio);
+                                                fgets(pd.laboratorio, 200, stdin);
                                                 fseek(ptProduto, pos, 0);
                                                 fwrite(&pd, sizeof(Produto), 1, ptProduto);
                                                 printf("Laboratorio alterado com sucesso!\n");
                                             break;
                                             case 4:
                                                 printf("Digite o novo tipo: \n> ");
-                                                scanf(" %s", pd.tipo);
+                                                fgets(pd.tipo, 100, stdin);
                                                 fseek(ptProduto, pos, 0);
                                                 fwrite(&pd, sizeof(Produto), 1, ptProduto);
                                                 printf("Tipo alterado com sucesso!\n");
                                             break;
                                             case 5:
-                                                printf("Digite o novo valor: \n> ");
+                                                printf("Digite o novo valor: \n> ");   
                                                 scanf("%f", &pd.valor);
                                                 fseek(ptProduto, pos, 0);
                                                 fwrite(&pd, sizeof(Produto), 1, ptProduto);
@@ -724,7 +720,7 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
                             }
 
                             printf("Digite o CPF do cliente:\n> ");
-                            scanf(" %s", cpfCliente);
+                            fgets(cpfCliente, 15, stdin);
 
                             pos = buscaCliente(ptClientes, cpfCliente);
                             if(pos == -1){
@@ -891,8 +887,9 @@ void sistemaAdmin(char *login, Produto *produtos, int *produtosTopo){
                         }
                         case 7:{
                             printf("\nRelatório: Vendas realizadas\n");
-                             printf("\nDigite o CPF do cliente para consultar vendas:\n> ");
-                            scanf("%s", cpfCliente);
+                            printf("\nDigite o CPF do cliente para consultar vendas:\n> ");
+                            /* scanf("%s", cpfCliente); */
+                            fgets(cpfCliente, 15, stdin);
                             
                             buscarVendasPorCliente(cpfCliente);
                             
@@ -983,17 +980,17 @@ void sistemaCliente(Produto *produtos, int *produtosTopo){
                     system("pause");
                 }else{
                     printf("Digite seu cpf: ");
-                    scanf(" %s", cliente.cpf);
+                    fgets(cliente.cpf, 15, stdin);
                     pos = buscaCliente(ptClientes, cliente.cpf);
                     if(pos == -1){
                         printf("Digite seu nome: ");
-                        scanf(" %s", cliente.nome);
+                        fgets(cliente.nome, 100, stdin);
                         printf("Digite seu telefone: ");
-                        scanf(" %s", cliente.telefone);
+                        fgets(cliente.telefone, 15, stdin);
                         printf("Digite seu endereco: ");
-                        scanf(" %s", cliente.endereco);
+                        fgets(cliente.endereco, 100, stdin);
                         printf("Digite seu email: ");
-                        scanf(" %s", cliente.email);
+                        fgets(cliente.email, 100, stdin);
                         time_t t = time(NULL);
                         struct tm tm = *localtime(&t);
                         cliente.dataCadastro.dia = tm.tm_mday;
@@ -1029,57 +1026,43 @@ void sistemaCliente(Produto *produtos, int *produtosTopo){
                         fclose(ptProduto);
                         system("pause");
                     }
-
                     printf("Digite o seu CPF:\n> ");
-                    scanf(" %s", cpfCliente);
-
+                    fgets(cpfCliente, 15, stdin);
                     pos = buscaCliente(ptClientes, cpfCliente);
                     fclose(ptClientes);
-
                     if (pos == -1) {
                         printf("Cliente não encontrado!\n");
                         system("pause");
                     }
-
                     exibirProduto();
-
                     printf("Digite o código do produto que deseja comprar: ");
                     scanf("%d", &cod);
-
                     // Busca produto
                     pos = buscaCodProduto(ptProduto, cod);
-
                     if (pos == -1) {
                         printf("Codigo de produto invalido!\n");
                         system("pause");
                     }
-
                     // Ir até a posição correta do registro
                     fseek(ptProduto, pos, 0);
                     fread(&pd, sizeof(Produto), 1, ptProduto);
-
                     if (pd.quantidade < 1) {
                         printf("Produto sem estoque!\n");
                         system("pause");
                     }
-
                     do {
                         printf("\nO produto possui %d unidades. Quantas deseja comprar: ", pd.quantidade);
                         scanf("%d", &qtdVenda);
-
                         if (qtdVenda > pd.quantidade) {
                             printf("Quantidade inválida! Tente novamente.\n");
                         }
-
                     } while (qtdVenda > pd.quantidade);
-
                     // Criar arquivo de vendas
                     ptProdutosVendidos = fopen("produtosVendidos.bin", "ab");
                     if (ptProdutosVendidos == NULL) {
                         printf("Erro ao abrir o arquivo\n");
                         system("pause");
                     }
-
                     // Preenche struct de venda
                     strcpy(pv.cpfVenda, cpfCliente);
                     pv.cod = pd.cod;
@@ -1088,24 +1071,19 @@ void sistemaCliente(Produto *produtos, int *produtosTopo){
                     strcpy(pv.laboratorio, pd.laboratorio);
                     strcpy(pv.tipo, pd.tipo);
                     pv.valorVenda = (pd.valor * qtdVenda) * (1 - pd.desconto);
-
                     time_t t = time(NULL);
                     struct tm tm = *localtime(&t);
                     pv.venda.dia = tm.tm_mday;
                     pv.venda.mes = tm.tm_mon + 1;
                     pv.venda.ano = tm.tm_year + 1900;
-
                     fwrite(&pv, sizeof(ProdutoVendido), 1, ptProdutosVendidos);
                     fclose(ptProdutosVendidos);
-
                     // Atualizar estoque
                     pd.quantidade -= qtdVenda;
                     fseek(ptProduto, pos, 0);
                     fwrite(&pd, sizeof(Produto), 1, ptProduto);
-
                     printf("\nCompra realizada com sucesso!\n");
                     system("pause");
-
                     printf("Deseja comprar outro produto? (S/N): ");
                     scanf(" %c", &resp);
                 } while (resp == 'S' || resp == 's');
@@ -1114,10 +1092,9 @@ void sistemaCliente(Produto *produtos, int *produtosTopo){
             }
             case 4:{
                 printf("\nDigite o CPF do cliente para consultar vendas:\n> ");
-                scanf("%s", cpfCliente);
-                
+                fgets(cpfCliente, 15, stdin);
+                /* scanf("%s", cpfCliente); */
                 buscarVendasPorCliente(cpfCliente);
-                
                 system("pause");
                 break;
             }
