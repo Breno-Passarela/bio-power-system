@@ -40,8 +40,8 @@ const NAME_MIN_LENGTH     = 3;
 const NAME_REGEX          = /^[A-Za-zÀ-ÿ]+(?: [A-Za-zÀ-ÿ]+)*$/;
 const CITY_REGEX          = /^[A-Za-zÀ-ÿ]+(?:[\s'-][A-Za-zÀ-ÿ]+)*$/;
 const STREET_REGEX        = /^[A-Za-zÀ-ÿ0-9]+(?:[\s.'-][A-Za-zÀ-ÿ0-9]+)*$/;
-const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-const EMAIL_REGEX          = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PASSWORD_REGEX      = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+const EMAIL_REGEX         = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function isValidCPF(cpf) {
   if (!cpf || cpf.length !== 11) return false;
@@ -148,7 +148,7 @@ function applyMasks() {
 }
 
 function normalizeSpaces(str) {
-  return str.trim().split(" ").filter(Boolean).join(" ");
+  return str.trim().split(" ").filter((e) => e != "").join(" ");
 }
 
 function collectFormValues() {
