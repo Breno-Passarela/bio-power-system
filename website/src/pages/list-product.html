@@ -43,95 +43,256 @@
       <!-- <h4 class="mb-3 text-center">Listagem de Produtos</h4> -->
       <hr />
 
-      <!-- Campos de filtro / cadastro rápido -->
       <form id="lista" class="mb-4">
         <div class="row g-3">
-          <!-- Nome -->
-          <div class="col-md-3">
-            <div class="input-group floating-input-group">
-              <div class="form-floating flex-grow-1">
+          <div class="col-12 col-md-6">
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <input
+                    type="text"
+                    id="nome-produtos"
+                    class="form-control"
+                    placeholder="Nome"
+                  />
+                  <label for="nome-produtos">Nome</label>
+                </div>
+                <span class="input-group-text icon-addon"
+                  ><i class="fas fa-box"></i
+                ></span>
+              </div>
+              <div id="error-nome-produtos" class="invalid-feedback"></div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <input
+                    type="text"
+                    id="descricao-produtos"
+                    class="form-control"
+                    placeholder="Descrição"
+                  />
+                  <label for="descricao-produtos">Descrição</label>
+                </div>
+                <span class="input-group-text icon-addon"
+                  ><i class="fas fa-align-left"></i
+                ></span>
+              </div>
+              <div id="error-descricao-produtos" class="invalid-feedback"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3 mt-1">
+          <div class="col-12 col-md-6">
+            <div class="floating-field">
+              <div class="form-floating">
+                <select id="categoria-produto" class="form-select">
+                  <option value="" selected disabled hidden></option>
+                  <option value="Suplementos">Suplementos</option>
+                  <option value="Vitaminas">Vitaminas</option>
+                  <option value="Bebidas">Bebidas</option>
+                  <option value="Snacks">Snacks</option>
+                  <option value="Acessórios">Acessórios</option>
+                </select>
+                <label for="categoria-produto">Categoria</label>
+              </div>
+              <div id="error-categoria-produto" class="invalid-feedback"></div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <input
+                    type="text"
+                    id="sku-produto"
+                    class="form-control"
+                    placeholder="SKU"
+                  />
+                  <label for="sku-produto">SKU</label>
+                </div>
+                <span class="input-group-text icon-addon"
+                  ><i class="fas fa-barcode"></i
+                ></span>
+              </div>
+              <div id="error-sku-produto" class="invalid-feedback"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3 mt-1">
+          <div class="col-12 col-md-6">
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <input
+                    type="text"
+                    id="fornecedor-produto"
+                    class="form-control"
+                    placeholder="Fornecedor"
+                  />
+                  <label for="fornecedor-produto">Fornecedor</label>
+                </div>
+                <span class="input-group-text icon-addon"
+                  ><i class="fas fa-truck"></i
+                ></span>
+              </div>
+              <div id="error-fornecedor-produto" class="invalid-feedback"></div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <input
+                    type="text"
+                    inputmode="decimal"
+                    autocomplete="off"
+                    id="preco-produtos"
+                    class="form-control"
+                    placeholder="Preço"
+                  />
+                  <label for="preco-produtos">Preço</label>
+                </div>
+                <span class="input-group-text icon-addon"
+                  ><i class="fas fa-money-bill"></i
+                ></span>
+              </div>
+              <div id="error-preco-produtos" class="invalid-feedback"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3 mt-1">
+          <div class="col-12 col-md-6">
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <input
+                    type="text"
+                    inputmode="numeric"
+                    autocomplete="off"
+                    id="quantidade-produtos"
+                    class="form-control"
+                    placeholder="Qtd"
+                  />
+                  <label for="quantidade-produtos">Quantidade</label>
+                </div>
+                <span class="input-group-text icon-addon"
+                  ><i class="fas fa-layer-group"></i
+                ></span>
+              </div>
+              <div
+                id="error-quantidade-produtos"
+                class="invalid-feedback"
+              ></div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <div class="floating-field">
+              <div class="form-floating">
+                <select id="unidade-produto" class="form-select">
+                  <option value="" selected disabled hidden></option>
+                  <option value="Unidade">Unidade</option>
+                  <option value="g">Gramas (g)</option>
+                  <option value="kg">Quilos (kg)</option>
+                  <option value="mL">Mililitros (mL)</option>
+                  <option value="L">Litros (L)</option>
+                  <option value="Caps">Cápsulas</option>
+                </select>
+                <label for="unidade-produto">Unidade</label>
+              </div>
+              <div id="error-unidade-produto" class="invalid-feedback"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3 mt-1">
+          <div class="col-12 col-md-6">
+            <div class="floating-field">
+              <div class="form-floating">
                 <input
                   type="text"
-                  id="nome-produtos"
+                  inputmode="decimal"
+                  autocomplete="off"
+                  id="peso-produto"
                   class="form-control"
-                  placeholder="Nome"
+                  placeholder="Peso/Volume"
                 />
-                <label for="nome-produtos">Nome</label>
+                <label for="peso-produto">Peso / Volume</label>
               </div>
-              <span class="input-group-text icon-addon"
-                ><i class="fas fa-box"></i
-              ></span>
+              <div id="error-peso-produto" class="invalid-feedback"></div>
             </div>
           </div>
 
-          <!-- Descrição -->
-          <div class="col-md-3">
-            <div class="input-group floating-input-group">
-              <div class="form-floating flex-grow-1">
-                <input
-                  type="text"
-                  id="descricao-produtos"
-                  class="form-control"
-                  placeholder="Descrição"
-                />
-                <label for="descricao-produtos">Descrição</label>
+          <div class="col-12 col-md-6">
+            <div class="floating-field">
+              <div class="form-floating">
+                <input type="date" id="validade-produto" class="form-control" />
+                <label for="validade-produto">Validade</label>
               </div>
-              <span class="input-group-text icon-addon"
-                ><i class="fas fa-align-left"></i
-              ></span>
+              <div id="error-validade-produto" class="invalid-feedback"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3 mt-1">
+          <div class="col-12 col-md-6">
+            <div class="floating-field">
+              <div class="form-floating">
+                <select id="status-produto" class="form-select">
+                  <option value="" selected disabled hidden></option>
+                  <option value="Disponível">Disponível</option>
+                  <option value="Indisponível">Indisponível</option>
+                  <option value="Em falta">Em falta</option>
+                  <option value="Em breve">Em breve</option>
+                </select>
+                <label for="status-produto">Status</label>
+              </div>
+              <div id="error-status-produto" class="invalid-feedback"></div>
             </div>
           </div>
 
-          <!-- Preço -->
-          <div class="col-md-2">
-            <div class="input-group floating-input-group">
-              <div class="form-floating flex-grow-1">
-                <input
-                  type="number"
-                  id="preco-produtos"
-                  class="form-control"
-                  step="0.01"
-                  placeholder="Preço"
-                />
-                <label for="preco-produtos">Preço</label>
+          <div class="col-12 col-md-6">
+            <div class="floating-field">
+              <div class="input-group floating-input-group">
+                <div class="form-floating flex-grow-1">
+                  <input
+                    type="url"
+                    id="imagem-produto"
+                    class="form-control"
+                    placeholder="https://..."
+                  />
+                  <label for="imagem-produto">URL da Imagem</label>
+                </div>
+                <span class="input-group-text icon-addon"
+                  ><i class="fas fa-image"></i
+                ></span>
               </div>
-              <span class="input-group-text icon-addon"
-                ><i class="fas fa-money-bill"></i
-              ></span>
+              <div id="error-imagem-produto" class="invalid-feedback"></div>
             </div>
           </div>
+        </div>
 
-          <!-- Quantidade -->
-          <div class="col-md-2">
-            <div class="input-group floating-input-group">
-              <div class="form-floating flex-grow-1">
-                <input
-                  type="number"
-                  id="quantidade-produtos"
-                  class="form-control"
-                  placeholder="Qtd"
-                />
-                <label for="quantidade-produtos">Quantidade</label>
-              </div>
-              <span class="input-group-text icon-addon"
-                ><i class="fas fa-layer-group"></i
-              ></span>
-            </div>
-          </div>
-
-          <!-- Botão adicionar -->
-          <div class="col-md-2 d-flex align-items-center">
+        <div class="row g-3 mt-1">
+          <div class="col-12 col-md-6">
             <button
               type="button"
               id="btn-add"
-              class="btn btn-danger w-100 btn-register"
+              class="btn btn-danger w-100 btn-register h-100"
             >
               <i class="fa fa-plus"></i> Adicionar
             </button>
           </div>
         </div>
 
-        <!-- Tabela -->
         <div class="table-responsive mt-4">
           <table
             id="grid"
@@ -140,13 +301,21 @@
             <thead class="table-danger text-center">
               <tr>
                 <th class="coluna">
-                  <input type="checkbox" id="ckTodos" onchange="" />
+                  <input type="checkbox" id="ckTodos" />
                 </th>
                 <th class="coluna text-center">Código</th>
                 <th class="coluna">Nome</th>
-                <th class="coluna">Descrição</th>
+                <th class="coluna-descricao">Descrição</th>
+                <th class="coluna">Categoria</th>
+                <th class="coluna-sku text-center">SKU</th>
+                <th class="coluna">Fornecedor</th>
                 <th class="coluna text-center">Preço</th>
                 <th class="coluna text-center">Quantidade</th>
+                <th class="coluna text-center">Unidade</th>
+                <th class="coluna text-center">Peso/Volume</th>
+                <th class="coluna text-center">Validade</th>
+                <th class="coluna text-center">Status</th>
+                <th class="coluna text-center">Imagem</th>
                 <th class="coluna text-center">Ações</th>
               </tr>
             </thead>

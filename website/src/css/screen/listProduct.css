@@ -51,7 +51,13 @@ table thead tr th {
 
 .coluna-descricao {
   text-wrap: balance;
-  width: 40%;
+  width: 20rem;
+  border: 1px solid #dee2e6;
+}
+
+.coluna-sku {
+  text-wrap: balance;
+  width: 10rem;
   border: 1px solid #dee2e6;
 }
 
