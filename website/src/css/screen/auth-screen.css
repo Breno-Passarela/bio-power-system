@@ -4,6 +4,12 @@ body {
   margin: 0;
 }
 
+.titulo {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
 .presentation-section {
   background: linear-gradient(to bottom, #c80000, #7d0808);
 }
@@ -30,7 +36,7 @@ body {
   width: 50px;
   height: 50px;
   cursor: pointer;
-  border: 1px solid black;
+  border: 1px solid rgb(54, 54, 54);
   border-radius: 30px;
   transition: 0.3s;
 }
@@ -47,7 +53,7 @@ body {
 
 .input-icon {
   position: absolute;
-  left: 12px;
+  left: 18px;
   top: 50%;
   transform: translateY(-50%);
   color: #6c757d;

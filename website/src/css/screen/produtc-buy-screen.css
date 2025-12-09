@@ -1,9 +1,6 @@
 @import url("../components/cards/cards-buy.css");
 
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #fff;
   color: #333;
@@ -85,13 +82,14 @@ body {
 
 .cart-icon {
   background: white;
-  border: 2px solid #e60023;
-  color: #e60023;
-  border-radius: 10px;
+  border: 1px solid red;
+  color: red;
+  box-shadow: 0 2px 6px rgba(255, 0, 0, 0.3);
+  padding: 0.6rem 0.9rem;
+  border-radius: 12px;
   font-size: 1.3rem;
-  padding: 0.6rem 1.2rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .cart-icon:hover {

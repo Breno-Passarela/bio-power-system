@@ -32,7 +32,11 @@
         </a>
       </div>
 
-      <div class="navbar-search" id="navbarSearch">
+      <div
+        class="navbar-search conteiner my-5 p-4 bg-white shadow rounded"
+        style="max-width: 1000px"
+        id="navbarSearch"
+      >
         <button class="search-icon-mobile" id="searchIconMobile">
           <i class="fas fa-search"></i>
         </button>
@@ -57,17 +61,18 @@
 
       <div class="navbar-links">
         <a href="product-list.html">Loja</a>
-        <!--  <a href="sobre.html">Sobre Nós</a> -->
+        <a href="sobre.html">Sobre Nós</a>
         <a href="#" id="abrirModalBtn">
           Categorias <i id="categoriaArrow" class="fas fa-chevron-down"></i>
         </a>
+        <a href="./src/pages/list-product.html">Produtos</a>
       </div>
       <div class="button-cart-container">
         <a
           href="shopping-cart.html"
           style="text-decoration: none; color: white"
         >
-          <button class="cart-button">
+          <button class="btn btn-danger fw-bold px-3 py-2 rounded cart-button">
             <i class="fa-solid fa-cart-shopping"> </i>
           </button>
         </a>
@@ -81,7 +86,7 @@
           style="display: none"
         />
 
-        <a href="auth-login.html" class="login-text" style="text-decoration: none;">
+        <a href="login.html" class="login-text" style="text-decoration: none">
           <span id="loginText" style="display: none"
             >Fazer login/Criar conta</span
           >
@@ -104,7 +109,7 @@
         </button>
         <div class="mobile-menu-links">
           <a href="product-list.html">Loja</a>
-          <!--  <a href="sobre.html">Sobre Nós</a> -->
+          <a href="sobre.html">Sobre Nós</a>
           <a href="categorias.html">Categorias</a>
         </div>
         <div class="mobile-menu-auth">
@@ -113,7 +118,7 @@
             class="mobile-auth-item"
             style="display: none"
           >
-            <a href="auth-login.html" class="mobile-login-button">
+            <a href="login.html" class="mobile-login-button">
               <i class="fas fa-user-circle"></i> Fazer login/Criar conta
             </a>
           </div>
@@ -130,7 +135,7 @@
           </div>
         </div>
         <div class="mobile-menu-cart">
-          <button class="cart-button mobile-cart-button">
+          <button class="btn btn-danger fw-bold px-3 py-2 rounded cart-button">
             <a
               href="./shopping-cart.html"
               style="text-decoration: none; color: white"
@@ -218,7 +223,9 @@
           <p class="price-credit" id="product-credit"></p>
 
           <div class="buttons">
-            <button class="cart-icon">🛒</button>
+            <button class="cart-icon">
+              <i class="fa-solid fa-cart-shopping"> </i>
+            </button>
             <button id="buy-button">Comprar</button>
           </div>
         </div>
@@ -227,7 +234,7 @@
       <div class="product-description" id="product-description"></div>
     </div>
 
-    <script src="../js/auth/auth-product-buy.js"></script>
+    <script src="../js/screens/product-buy.js"></script>
     <script src="../js/navbar-script.js"></script>
   </body>
 </html>

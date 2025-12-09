@@ -1,29 +1,427 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bio-Power | Sobre Nós</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bio-Power | Página em desenvolvimento</title>
+    <link
+      rel="shortcut icon"
+      href="../imgs/img-icon-site.png"
+      type="image/x-icon"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="shortcut icon" href="../imgs/img-icon-site.png" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" href="../css/sobre-screen.css">
+    <link rel="stylesheet" href="../css/screen/sobre-screen.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/rodape.css" />
 
-</head>
+    <style></style>
+  </head>
 
-<body>
-    <div class="container">
-        <h1>Ops! Erro 404.</h1>
-        <p>Esta página não está funcionando no momento, <br> está em desenvolvimento no momento.</p>
-        <a onclick="history.back()" class="btn-home">Voltar para a Tela anterior</a>
+  <body>
+    <div class="main-container">
+      <!-- Navbar -->
+      <nav class="navbar">
+        <div class="navbar-logo">
+          <a
+            href="../../home.html"
+            style="text-decoration: none; color: #990000"
+          >
+            Bio-Power
+          </a>
+        </div>
+
+        <div class="navbar-search" id="navbarSearch">
+          <button class="search-icon-mobile" id="searchIconMobile">
+            <i class="fas fa-search"></i>
+          </button>
+          <input
+            type="search"
+            placeholder="Pesquisar produtos..."
+            aria-label="Pesquisar produtos"
+            class="search-input-hidden"
+            id="searchInputMobile"
+          />
+          <button class="search-submit-mobile" id="searchSubmitMobile">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+          <button class="search-close-mobile" id="searchCloseMobile">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <button class="hamburger-menu" id="hamburgerMenu">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="navbar-links">
+          <a href="./product-list.html">Loja</a>
+          <a href="./sobre.html">Sobre Nós</a>
+          <a href="#" id="abrirModalBtn">
+            Categorias <i id="categoriaArrow" class="fas fa-chevron-down"></i>
+          </a>
+          <a href="list-product.html">Produtos</a>
+        </div>
+        <div class="button-cart-container">
+          <a
+            href="./shopping-cart.html"
+            style="text-decoration: none; color: white"
+          >
+            <button class="cart-button">
+              <i class="fa-solid fa-cart-shopping"> </i>
+            </button>
+          </a>
+        </div>
+
+        <div class="navbar-profile" id="navbarProfile">
+          <img
+            id="profileAvatar"
+            class="navbar-avatar"
+            alt="Avatar"
+            style="display: none"
+          />
+          <span id="loginText" class="login-text" style="display: none"
+            >Fazer login/Criar conta</span
+          >
+
+          <div class="profile-dropdown" id="profileDropdown">
+            <div class="profile-dropdown-content">
+              <a href="#">Configuração</a>
+              <a href="#" id="logoutBtn">Sair</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Mobile Screen -->
+      <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-content">
+          <button class="close-menu-button" id="closeMenuButton">
+            <i class="fas fa-times"></i>
+          </button>
+          <div class="mobile-menu-links">
+            <a href="./product-list.html">Loja</a>
+            <a href="./sobre.html">Sobre Nós</a>
+            <a href="/categorias.html">Categorias</a>
+            <a href="./src/pages/list-product.html">Produtos</a>
+          </div>
+          <div class="mobile-menu-auth">
+            <div
+              id="mobileAuthLoggedOut"
+              class="mobile-auth-item"
+              style="display: none"
+            >
+              <a href="./login.html" class="mobile-login-button">
+                <i class="fas fa-user-circle"></i> Fazer login/Criar conta
+              </a>
+            </div>
+            <div
+              id="mobileAuthLoggedIn"
+              class="mobile-auth-item"
+              style="display: none"
+            >
+              <img id="mobileAvatar" class="mobile-avatar" alt="Avatar" />
+              <a href="#" class="mobile-settings-link">Configuração</a>
+              <button id="mobileLogoutBtn" class="mobile-logout-button">
+                <i class="fas fa-sign-out-alt"></i> Sair
+              </button>
+            </div>
+          </div>
+          <div class="mobile-menu-cart">
+            <button class="cart-button mobile-cart-button">
+              <a
+                href="./shopping-cart.html"
+                style="text-decoration: none; color: white"
+              >
+                <i class="fa-solid fa-cart-shopping"></i> Carrinho
+              </a>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal de Categorias -->
+      <div id="modalCategorias" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Categorias</h2>
+            <span class="fechar">&times;</span>
+          </div>
+          <div class="categorias-container">
+            <div class="categoria-coluna">
+              <h3>Proteína</h3>
+              <ul>
+                <li><a href="#">Whey Protein</a></li>
+                <li><a href="#">Albumina</a></li>
+                <li><a href="#">Caseína</a></li>
+                <li><a href="#">Blend de Proteína</a></li>
+                <li><a href="#">Proteína de Soja</a></li>
+              </ul>
+            </div>
+
+            <div class="categoria-coluna">
+              <h3>Aminoácidos</h3>
+              <ul>
+                <li><a href="#">BCAA</a></li>
+                <li><a href="#">Creatina</a></li>
+                <li><a href="#">Glutamina</a></li>
+                <li><a href="#">Leucina</a></li>
+              </ul>
+            </div>
+
+            <div class="categoria-coluna">
+              <h3>Carboidratos</h3>
+              <ul>
+                <li><a href="#">Waxy Maize</a></li>
+                <li><a href="#">Dextrose</a></li>
+                <li><a href="#">Maltodextrina</a></li>
+              </ul>
+            </div>
+
+            <div class="categoria-coluna">
+              <h3>indispo</h3>
+              <ul>
+                <li><a href="#">Proteína de Arroz</a></li>
+                <li><a href="#">Proteína da Ervilha</a></li>
+                <li><a href="#">Aminoácidos indispo</a></li>
+              </ul>
+            </div>
+
+            <div class="categoria-coluna">
+              <h3>Vitaminas</h3>
+              <ul>
+                <li><a href="#">Complexo B</a></li>
+                <li><a href="#">Multivitamínico</a></li>
+                <li><a href="#">Carnitina</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-wrapper">
+        <!-- Seção Sobre Nós -->
+        <div class="about-section">
+          <h2>Sobre Nós</h2>
+          <p class="about-text">
+            A <strong>Bio-Power</strong> nasceu da paixão por saúde, bem-estar e
+            performance. Somos uma farmácia especializada em suplementos
+            alimentares de alta qualidade, comprometidos em oferecer produtos
+            que realmente fazem a diferença na vida de nossos clientes.
+          </p>
+          <p class="about-text">
+            Com anos de experiência no mercado, nossa equipe é formada por
+            profissionais qualificados que entendem as necessidades de atletas,
+            praticantes de atividades físicas e pessoas que buscam uma vida mais
+            saudável. Trabalhamos apenas com marcas reconhecidas e produtos
+            certificados pela ANVISA.
+          </p>
+          <p class="about-text">
+            Nosso compromisso vai além da venda: oferecemos orientação
+            personalizada, preços justos e um atendimento que prioriza seu
+            bem-estar e seus objetivos.
+          </p>
+        </div>
+
+        <!-- Nossos Valores -->
+        <div class="values-section">
+          <div class="value-card">
+            <i class="fas fa-certificate"></i>
+            <h3>Qualidade</h3>
+            <p>Produtos certificados das melhores marcas do mercado</p>
+          </div>
+          <div class="value-card">
+            <i class="fas fa-user-shield"></i>
+            <h3>Confiança</h3>
+            <p>Transparência e segurança em cada produto</p>
+          </div>
+          <div class="value-card">
+            <i class="fas fa-heart"></i>
+            <h3>Cuidado</h3>
+            <p>Atendimento personalizado e humanizado</p>
+          </div>
+          <div class="value-card">
+            <i class="fas fa-rocket"></i>
+            <h3>Resultados</h3>
+            <p>Focados em ajudar você a alcançar seus objetivos</p>
+          </div>
+        </div>
+
+        <!-- Seção de Contato -->
+        <div class="contact-section">
+          <h2><i class="fas fa-envelope"></i> Entre em Contato</h2>
+
+          <div id="successAlert" class="alert alert-success" role="alert">
+            <i class="fas fa-check-circle"></i> Mensagem enviada com sucesso! Em
+            breve entraremos em contato.
+          </div>
+
+          <form id="contactForm">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="nome" class="form-label">Nome Completo *</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nome"
+                  name="nome"
+                  required
+                />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="email" class="form-label">E-mail *</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="telefone" class="form-label">Telefone *</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="telefone"
+                  name="telefone"
+                  placeholder="(00) 00000-0000"
+                  required
+                />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="assunto" class="form-label">Assunto *</label>
+                <select
+                  class="form-select"
+                  id="assunto"
+                  name="assunto"
+                  required
+                >
+                  <option value="">Selecione um assunto</option>
+                  <option value="duvida">Dúvida sobre produtos</option>
+                  <option value="pedido">Informações sobre pedido</option>
+                  <option value="sugestao">Sugestão</option>
+                  <option value="reclamacao">Reclamação</option>
+                  <option value="outro">Outro</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="mensagem" class="form-label">Mensagem *</label>
+              <textarea
+                class="form-control"
+                id="mensagem"
+                name="mensagem"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">
+              <i class="fas fa-paper-plane"></i> Enviar Mensagem
+            </button>
+          </form>
+        </div>
+      </div>
+      <!-- Rodapé -->
+      <footer class="rodape">
+        <div class="rodape-conteudo">
+          <div class="rodape-logo">
+            <a href="../../home.html">Bio-Power</a>
+          </div>
+          <div class="rodape-links">
+            <a href="src/pages/sobre.html">Sobre Nós</a>
+            <a href="src/pages/politica.html">Política de Privacidade</a>
+          </div>
+          <div class="rodape-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="rodape-direitos">
+          <p>&copy; 2025 Bio-Power. Todos os direitos reservados.</p>
+        </div>
+      </footer>
     </div>
-</body>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      document
+        .getElementById("telefone")
+        .addEventListener("input", function (e) {
+          let value = e.target.value.replace(/\D/g, "");
+          if (value.length <= 11) {
+            value = value.replace(/(\d{2})(\d)/, "($1) $2");
+            value = value.replace(/(\d{5})(\d)/, "$1-$2");
+          }
+          e.target.value = value;
+        });
+
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const nome = document.getElementById("nome").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const telefone = document.getElementById("telefone").value.trim();
+          const assunto = document.getElementById("assunto").value;
+          const mensagem = document.getElementById("mensagem").value.trim();
+
+          if (!nome || !email || !telefone || !assunto || !mensagem) {
+            alert("Por favor, preencha todos os campos obrigatórios.");
+            return;
+          }
+
+          const formData = {
+            nome: nome,
+            email: email,
+            telefone: telefone,
+            assunto: assunto,
+            mensagem: mensagem,
+          };
+
+          console.log("Dados do formulário:", formData);
+
+          document.getElementById("successAlert").style.display = "block";
+
+          this.reset();
+
+          setTimeout(function () {
+            document.getElementById("successAlert").style.display = "none";
+          }, 5000);
+
+          document.querySelector(".contact-section").scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        });
+    </script>
+  </body>
 </html>

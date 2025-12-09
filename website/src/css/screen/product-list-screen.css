@@ -40,13 +40,21 @@ nav a {
 }
 
 .cart-button {
-  background-color: #ff3e3e;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
+  background: white;
+  border: 1px solid red;
+  color: red;
+  box-shadow: 0 2px 6px rgba(255, 0, 0, 0.3);
+  padding: 0.6rem 0.9rem;
+  border-radius: 12px;
+  font-size: 1.3rem;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cart-button:hover {
+  background: red;
+  color: white;
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.5);
 }
 
 main {

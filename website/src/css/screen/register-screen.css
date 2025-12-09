@@ -2,11 +2,11 @@
 @import url("../components/error/error-message.css");
 @import url("../components/inputs/input-register.css");
 
-@font-face {
+/* @font-face {
   font-family: Montserrat;
   src: url("../../../fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
     format("truetype");
-}
+} */
 
 * {
   margin: 0px;
@@ -15,11 +15,21 @@
   font-family: "Montserrat", sans-serif;
 }
 
+hr{
+  color: #dc3545;
+}
+
+.titulo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
 body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   background: #ffffff;
   user-select: none;
 }
@@ -66,4 +76,67 @@ body {
 
 .link-register:hover {
   text-decoration: underline;
+}
+
+.readonly-style {
+  background-color: #f8f9fa;
+  pointer-events: none;
+  color: #6c757d;
+}
+
+/* Esconder ícone de data no chrome */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+/* Esconder  ícone no firefox*/
+input[type="date"],
+input[type="date"]:focus {
+  -webkit-text-fill-color: FieldText;
+  color: transparent;
+}
+
+.floating-input-group {
+  align-items: stretch;
+}
+
+.floating-input-group .form-floating {
+  min-width: 0;
+}
+
+.floating-input-group .form-floating > .form-control,
+.floating-input-group .form-floating > .form-select,
+.floating-input-group .form-floating > textarea {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  padding-top: 1.375rem;
+  padding-bottom: 0.5rem;
+}
+
+.floating-input-group .input-group-text,
+.floating-input-group > .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.floating-input-group .input-group-text {
+  background-color: #f8f9fa;
+}
+
+.floating-input-group textarea.form-control {
+  resize: vertical;
+}
+
+.floating-input-group .form-control.is-invalid,
+.floating-input-group .form-select.is-invalid,
+.floating-input-group textarea.is-invalid {
+  background-image: none;
+  padding-right: 0.75rem;
+}
+
+.floating-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }

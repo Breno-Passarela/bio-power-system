@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,6 +25,7 @@
     />
 
     <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/rodape.css" />
     <link rel="stylesheet" href="../css/screen/shopping-cart.css" />
   </head>
 
@@ -62,10 +63,11 @@
 
       <div class="navbar-links">
         <a href="product-list.html">Loja</a>
-        <!-- <a href="sobre.html">Sobre Nós</a> -->
+        <a href="sobre.html">Sobre Nós</a>
         <a href="#" id="abrirModalBtn">
           Categorias <i id="categoriaArrow" class="fas fa-chevron-down"></i>
         </a>
+        <a href="list-product.html">Produtos</a>
       </div>
       <div class="button-cart-container">
         <a
@@ -86,7 +88,7 @@
           style="display: none"
         />
 
-        <a href="auth-login.html" class="login-text" style="text-decoration: none;">
+        <a href="login.html" class="login-text" style="text-decoration: none">
           <span id="loginText" style="display: none"
             >Fazer login/Criar conta</span
           >
@@ -109,8 +111,9 @@
         </button>
         <div class="mobile-menu-links">
           <a href="product-list.html">Loja</a>
-          <!--  <a href="sobre.html">Sobre Nós</a> -->
+          <a href="sobre.html">Sobre Nós</a>
           <a href="/categorias.html">Categorias</a>
+          <a href="./src/pages/list-product.html">Produtos</a>
         </div>
         <div class="mobile-menu-auth">
           <div
@@ -118,7 +121,7 @@
             class="mobile-auth-item"
             style="display: none"
           >
-            <a href="auth-login.html" class="mobile-login-button">
+            <a href="login.html" class="mobile-login-button">
               <i class="fas fa-user-circle"></i> Fazer login/Criar conta
             </a>
           </div>
@@ -138,7 +141,7 @@
           href="./shopping-cart.html"
           style="text-decoration: none; color: white"
         >
-          <button class="cart-button mobile-cart-button">
+          <button class="btn btn-danger fw-bold px-3 py-2 rounded cart-button">
             <i class="fa-solid fa-cart-shopping"></i> Carrinho
           </button>
         </a>
@@ -230,7 +233,28 @@
       </aside>
     </main>
 
+    <!-- Rodapé -->
+    <footer class="rodape">
+      <div class="rodape-conteudo">
+        <div class="rodape-logo">
+          <a href="./home.html">Bio-Power</a>
+        </div>
+        <div class="rodape-links">
+          <a href="src/pages/sobre.html">Sobre Nós</a>
+          <a href="src/pages/politica.html">Política de Privacidade</a>
+        </div>
+        <div class="rodape-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      <div class="rodape-direitos">
+        <p>&copy; 2025 Bio-Power. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
     <script src="../js/navbar-script.js"></script>
-    <script src="../js/auth/auth-shopping-cart.js"></script>
+    <script src="../js/screens/shopping-cart.js"></script>
   </body>
 </html>
