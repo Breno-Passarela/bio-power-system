@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bio-Power | Home</title>
+
+  <link rel="shortcut icon" href="../public/assets/imgs/img-icon-site.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="../public/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    
+  <link rel="stylesheet" href="../assets/css/screen/home-screen.css" />
+  <link rel="stylesheet" href="../assets/css/navbar.css" />
+  <link rel="stylesheet" href="../assets/css/rodape.css" />
+  <link rel="stylesheet" href="../assets/css/components/carousel/carrousel.css">
+  <link rel="stylesheet" href="../assets/css/components/carousel/mini-carrousel.css">
+
+</head>
+<style>
+  .custom-carousel .carousel-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .custom-carousel .carousel-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+  }
+</style>
+<body>
+  <div class="containe">
+
+    <!-- Carrousel Principal-->
+    <!-- <div class="carousel-container">
+      <div class="carousel-wrapper" id="carouselWrapper">
+        <div class="carousel-slide"><img src="src/imgs/carrousel/banner.png" alt="Slide 1"></div>
+        <div class="carousel-slide"><img src="src/imgs/carrousel/banner-2.png" alt="Slide 2"></div>
+        <div class="carousel-slide"><img src="src/imgs/carrousel/banner-3.png" alt="Slide 3"></div>
+        <div class="carousel-slide"><img src="src/imgs/carrousel/banner-4.png" alt="Slide 4"></div>
+        <div class="carousel-slide"><img src="src/imgs/carrousel/banner-5.png" alt="Slide 5"></div>
+        <div class="carousel-slide"><img src="src/imgs/carrousel/banner-6.png" alt="Slide 6"></div>
+      </div>
+
+      <button class="carousel-btn prev" onclick="prevSlide()">&#10094;</button>
+      <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
+
+      <div class="carousel-dots" id="carouselDots"></div>
+    </div> -->
+
+    <div id="carouselExampleControls" class="carousel slide custom-carousel" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="../assets/imgs/carrousel/banner.png" class="d-block w-100 img-fluid" alt="First slide">
+        </div>
+        <!-- <div class="carousel-item">
+          <img src="src/imgs/carrousel/banner-2.png" class="d-block w-100 img-fluid" alt="Second slide">
+        </div> -->
+        <div class="carousel-item">
+          <img src="../assets/imgs/carrousel/banner-3.png" class="d-block w-100 img-fluid" alt="Third slide">
+        </div>
+        <div class="carousel-item">
+          <img src="../assets/imgs/carrousel/banner-4.png" class="d-block w-100 img-fluid" alt="Fourth slide">
+        </div>
+        <div class="carousel-item">
+          <img src="../assets/imgs/carrousel/banner-5.png" class="d-block w-100 img-fluid" alt="Fifth slide">
+        </div>
+        <div class="carousel-item">
+          <img src="../assets/imgs/carrousel/banner-6.png" class="d-block w-100 img-fluid" alt="Sixth slide">
+        </div>
+      </div>
+
+      <!-- Botão Anterior -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+
+      <!-- Botão Próximo -->
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+
+        </div>
+      </div>
+      
+
+  <!-- Mini - carrousel -->
+  <section class="categories-section">
+    <button class="arrow left-arrow" onclick="scrollCategories(-1)" disabled>‹</button>
+  
+    <div id="categoriesCarousel" class="categories-track">
+      <div class="category category-item">
+        <img src="../assets/imgs/categoria/Antioxidantes.png" alt="Categoria 1" />
+        <span>Antioxidantes</span>
+      </div>
+      <div class="category category-item">
+        <img src="../assets/imgs/categoria/Energéticos.png" alt="Categoria 2" />
+        <span>Energéticos</span>
+      </div>
+      <div class="category category-item">
+        <img src="../assets/imgs/categoria/Proteicos.png" alt="Proteicos" />
+        <span>Proteicos</span>
+      </div>
+      <div class="category category-item">
+        <img src="../assets/imgs/categoria/indispo.png" alt="indispo" />
+        <span>indisponivel</span>
+      </div>
+      <div class="category category-item">
+        <img src="../assets/imgs/categoria/indispo.png" alt="indispo" />
+        <span>indisponivel</span>
+      </div>
+      <div class="category category-item">
+        <img src="../assets/imgs/categoria/indispo.png" alt="indispo" />
+        <span>indisponivel</span>
+      </div>
+      <div class="category category-item">
+        <img src="../assets/imgs/categoria/indispo.png" alt="indispo" />
+        <span>indisponivel</span>
+      </div>
+      <div class="category category-item">
+        <img src="../assets/imgs/categoria/indispo.png" alt="indispo" />
+        <span>indisponivel</span>
+      </div>
+      <!-- mais itens -->
+    </div>
+  
+    <button class="arrow right-arrow" onclick="scrollCategories(1)">›</button>
+  </section>
+
+    <section class="bestsellers">
+      <div class="bestsellers-wrapper">
+        <h2 class="bestsellers-title">Mais vendidos</h2>
+        <div class="bestsellers-line"></div>
+      </div>
+
+      <div class="bestsellers-list">
+        <!-- Product 1 -->
+        <div class="product-card">
+          <img src="../assets/imgs/product/product9.png" alt="Pré-treino Insanity 300g" />
+          <h3>Pré-treino Insanity 300g</h3>
+          <p class="price">R$109,90 <span>no boleto ou pix</span></p>
+          <p class="installments">ou R$122,11 no cartão de crédito<br>em até 6x de R$20,35 sem juros</p>
+          <div class="buttons">
+            <a href="./src/pages/shopping-cart.html">
+              <button class=" cart-btn">
+                <i class="fa fa-shopping-cart"></i>
+              </button>
+            </a>
+            <button class="buy-btn">Comprar</button>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+          <img src="../assets/imgs/product/product11.png" alt="Creatina Monohidratada 250g" />
+          <h3>Creatina Monohidratada 250g</h3>
+          <p class="price">R$85,92 <span>no boleto ou pix</span></p>
+          <p class="installments">ou R$88,80 no cartão de crédito<br>em até 6x de R$14,80 sem juros</p>
+          <div class="buttons">
+            <a href="./src/pages/shopping-cart.html">
+              <button class="cart-btn">
+                <i class="fa fa-shopping-cart"></i>
+              </button>
+            </a>
+            <button class="buy-btn">Comprar</button>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+          <img src="../assets/imgs/product/product10.png" alt="Whey de baunilha 1kg" />
+          <h3>Whey de baunilha–1kg</h3>
+          <p class="price">R$99,90 <span>no boleto ou pix</span></p>
+          <p class="installments">ou R$138,77 no cartão de crédito<br>em até 6x de R$23,13 sem juros</p>
+          <div class="buttons">
+            <a href="./src/pages/shopping-cart.html">
+              <button class="cart-btn">
+                <i class="fa fa-shopping-cart"></i>
+              </button>
+            </a>
+            <button class="buy-btn">Comprar</button>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+          <img src="../assets/imgs/product/product13.png" alt="Whey de chocolate 1kg" />
+          <h3>Whey de chocolate–1kg</h3>
+          <p class="price">R$99,90 <span>no boleto ou pix</span></p>
+          <p class="installments">ou R$138,77 no cartão de crédito<br>em até 6x de R$23,13 sem juros</p>
+          <div class="buttons">
+            <a href="./src/pages/shopping-cart.html">
+              <button class="cart-btn">
+                <i class="fa fa-shopping-cart"></i>
+              </button>
+            </a>
+            <button class="buy-btn">Comprar</button>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card">
+          <img src="../assets/imgs/product/product12.png" alt="Whey de chocolate 1kg" />
+          <h3>Basic Whey</h3>
+          <p class="price">R$72,55 <span>no boleto ou pix</span></p>
+          <p class="installments">ou R$102,18 no cartão de crédito<br>em até 6x de R$17,03 sem juros</p>
+          <div class="buttons">
+            <a href="./src/pages/shopping-cart.html">
+              <button class="cart-btn">
+                <i class="fa fa-shopping-cart"></i>
+              </button>
+            </a>
+            <button class="buy-btn">Comprar</button>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card">
+          <img src="../assets/imgs/product/product8.png" alt="Whey de chocolate 1kg" />
+          <h3>Creatina Monohidratada</h3>
+          <p class="price">R$55,90 <span>no boleto ou pix</span></p>
+          <p class="installments">ou R$75,24 no cartão de crédito<br>em até 6x de R$12,54 sem juros</p>
+          <div class="buttons">
+            <a href="./src/pages/shopping-cart.html">
+              <button class="cart-btn">
+                <i class="fa fa-shopping-cart"></i>
+              </button>
+            </a>
+            <button class="buy-btn">Comprar</button>
+          </div>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="product-card">
+          <img src="../assets/imgs/product/product6.png" alt="Whey de chocolate 1kg" />
+          <h3>Suplemento alimentar de Vitamina B12 </h3>
+          <p class="price">R$74,90 <span>no boleto ou pix</span></p>
+          <p class="installments">ou R$87,38 no cartão de crédito<br>em até 6x de R$12,48 sem juros</p>
+          <div class="buttons">
+            <a href="./src/pages/shopping-cart.html">
+              <button class="cart-btn">
+                <i class="fa fa-shopping-cart"></i>
+              </button>
+            </a>
+            <button class="buy-btn">Comprar</button>
+          </div>
+        </div>
+        <!-- Product 8 -->
+        <div class="product-card">
+          <img src="../assets/imgs/product/product7.png" alt="Whey de chocolate 1kg" />
+          <h3>Fresh Vegan </h3>
+          <p class="price">R$185,90<span>no boleto ou pix</span></p>
+          <p class="installments">ou R$199,00 no cartão de crédito<br>em até 6x de R$33,16 sem juros</p>
+          <div class="buttons">
+            <a href="./src/pages/shopping-cart.html">
+              <button class="cart-btn">
+                <i class="fa fa-shopping-cart"></i>
+              </button>
+            </a>
+            <button class="buy-btn">Comprar</button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- Rodapé -->
+    <footer class="rodape">
+      <div class="rodape-conteudo">
+        <div class="rodape-logo">
+          <a href="./home.html">Bio-Power</a>
+        </div>
+        <div class="rodape-links">
+          <a href="src/pages/sobre.html">Sobre Nós</a>
+          <a href="src/pages/politica.html">Política de Privacidade</a>
+        </div>
+        <div class="rodape-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      <div class="rodape-direitos">
+        <p>&copy; 2026 Bio-Power. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <script src="../assets/js/navbar-script.js"></script>
+    <script src="../assets/js/carrosel/carrossel.js"></script>
+    <script src="../assets/js/carrosel/mini-carrousel.js"></script>
+    <script src="../website/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
