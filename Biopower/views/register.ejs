@@ -19,405 +19,769 @@
     />
     <link rel="stylesheet" href="../assets/css/screen/register-screen.css" />
   </head>
-  <body class="bg-white d-flex justify-content-center align-items-center">
-    <div class="container p-4 rounded shadow-sm" style="max-width: 1300px">
-      <div class="text-center mb-4">
-        <img
-          src="../assets/imgs/img-logo-bio-power.png"
-          height="150"
-          alt="Logo Bio-Power"
-          id="img-logo"
-          style="cursor: pointer"
-        />
-        <script>
-          document.getElementById("img-logo").addEventListener("click", () => {
-            window.location.href = "/";
-          });
-        </script>
-      </div>
+  <body>
+    <div class="register-wrapper">
+      <!-- ─── Painel lateral ─── -->
+      <aside class="register-aside d-none d-lg-flex">
+        <div class="aside-content">
+          <img
+            src="../assets/imgs/img-logo-bio-power.png"
+            alt="Logo Bio-Power"
+            class="aside-logo"
+            id="img-cadastro"
+          />
+          <script>
+            document
+              .getElementById("img-cadastro")
+              .addEventListener("click", () => {
+                window.location.href = "/";
+              });
+          </script>
+          <h2 class="aside-title">Crie sua conta</h2>
+          <p class="aside-subtitle">
+            Junte-se a milhares de atletas e alcance seus objetivos com a
+            Bio-Power.
+          </p>
 
-      <form id="registerForm" class="needs-validation" novalidate>
-        <div class="row g-4">
-          <div class="col-12"><h5 class="mb-3">Informações Pessoais</h5></div>
-
-          <div class="col-12 col-md-6">
-            <div class="floating-field">
-              <div class="input-group floating-input-group">
-                <div class="form-floating flex-grow-1">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="nome"
-                    placeholder="Nome completo"
-                  />
-                  <label for="nome">Nome</label>
-                </div>
-                <span class="input-group-text"
-                  ><i class="fas fa-user"></i
-                ></span>
+          <ul class="aside-benefits">
+            <li>
+              <span class="benefit-icon"><i class="fas fa-tag"></i></span>
+              <div>
+                <strong>Ofertas exclusivas</strong>
+                <span>Descontos e promoções só para membros cadastrados</span>
               </div>
-              <div id="error-nome" class="invalid-feedback"></div>
+            </li>
+            <li>
+              <span class="benefit-icon"><i class="fas fa-box"></i></span>
+              <div>
+                <strong>Rastreamento de pedidos</strong>
+                <span>Acompanhe suas compras em tempo real</span>
+              </div>
+            </li>
+            <li>
+              <span class="benefit-icon"><i class="fas fa-heart"></i></span>
+              <div>
+                <strong>Lista de desejos</strong>
+                <span>Salve produtos e acesse seu histórico de compras</span>
+              </div>
+            </li>
+            <li>
+              <span class="benefit-icon"
+                ><i class="fas fa-shield-alt"></i
+              ></span>
+              <div>
+                <strong>Dados protegidos</strong>
+                <span>Suas informações são criptografadas e seguras</span>
+              </div>
+            </li>
+          </ul>
+
+          <div class="aside-footer">
+            <div class="aside-stat">
+              <span class="aside-stat-num">+10k</span>
+              <span class="aside-stat-label">Clientes ativos</span>
+            </div>
+            <div class="aside-stat-divider"></div>
+            <div class="aside-stat">
+              <span class="aside-stat-num">4.9★</span>
+              <span class="aside-stat-label">Avaliação média</span>
+            </div>
+            <div class="aside-stat-divider"></div>
+            <div class="aside-stat">
+              <span class="aside-stat-num">100%</span>
+              <span class="aside-stat-label">Seguro</span>
             </div>
           </div>
+        </div>
+      </aside>
 
-          <div class="col-12 col-md-6">
-            <div class="floating-field">
-              <div class="input-group floating-input-group">
-                <div class="form-floating flex-grow-1">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="sobrenome"
-                    placeholder="Sobrenome"
-                  />
-                  <label for="sobrenome">Sobrenome</label>
-                </div>
-                <span class="input-group-text"
-                  ><i class="fas fa-user"></i
-                ></span>
-              </div>
-              <div id="error-sobrenome" class="invalid-feedback"></div>
+      <!-- ─── Formulário ─── -->
+      <main class="register-main">
+        <!-- Logo mobile -->
+        <div class="text-center d-lg-none mb-4">
+          <img
+            src="../assets/imgs/img-logo-bio-power.png"
+            height="90"
+            alt="Logo Bio-Power"
+            id="img-logo-mobile"
+            style="cursor: pointer"
+          />
+        </div>
+
+        <!-- Stepper -->
+        <div class="stepper-header">
+          <div class="stepper mb-3">
+            <div class="stepper-item active" id="step-item-1">
+              <div class="stepper-circle">1</div>
+              <span class="stepper-label">Dados Pessoais</span>
+            </div>
+            <div class="stepper-line" id="line-1-2"></div>
+            <div class="stepper-item" id="step-item-2">
+              <div class="stepper-circle">2</div>
+              <span class="stepper-label">Endereço</span>
+            </div>
+            <div class="stepper-line" id="line-2-3"></div>
+            <div class="stepper-item" id="step-item-3">
+              <div class="stepper-circle">3</div>
+              <span class="stepper-label">Senha</span>
             </div>
           </div>
-
-          <div class="col-12 col-md-6">
-            <div class="floating-field">
-              <div class="input-group floating-input-group">
-                <div class="form-floating flex-grow-1">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="cpf"
-                    placeholder="000.000.000-00"
-                    maxlength="14"
-                  />
-                  <label for="cpf">CPF</label>
-                </div>
-                <span class="input-group-text"
-                  ><i class="fas fa-id-card"></i
-                ></span>
-              </div>
-              <div id="error-cpf" class="invalid-feedback"></div>
-            </div>
+          <!-- Barra de progresso -->
+          <div class="step-progress-bar">
+            <div
+              class="step-progress-fill"
+              id="stepProgressFill"
+              style="width: 33%"
+            ></div>
           </div>
-
-          <div class="col-12 col-md-6">
-            <div class="floating-field">
-              <div class="input-group floating-input-group">
-                <div class="form-floating flex-grow-1">
-                  <select id="genero" class="form-select">
-                    <option value="" selected disabled hidden></option>
-                    <option value="nao_informado">Prefiro não informar</option>
-                    <option value="feminino">Feminino</option>
-                    <option value="masculino">Masculino</option>
-                  </select>
-                  <label for="genero">Gênero Biológico</label>
-                </div>
-                <span class="input-group-text"
-                  ><i class="fas fa-venus-mars"></i
-                ></span>
-              </div>
-              <div id="error-genero" class="invalid-feedback"></div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6">
-            <div class="floating-field">
-              <div class="input-group floating-input-group">
-                <div class="form-floating flex-grow-1">
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="email"
-                    placeholder="email@exemplo.com"
-                  />
-                  <label for="email">Email</label>
-                </div>
-                <span class="input-group-text"
-                  ><i class="fas fa-envelope"></i
-                ></span>
-              </div>
-              <div id="error-email" class="invalid-feedback"></div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6">
-            <div class="floating-field">
-              <div class="input-group floating-input-group">
-                <div class="form-floating flex-grow-1">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="telefone"
-                    placeholder="(00) 00000-0000"
-                  />
-                  <label for="telefone">Telefone</label>
-                </div>
-                <span class="input-group-text"
-                  ><i class="fas fa-phone"></i
-                ></span>
-              </div>
-              <div id="error-telefone" class="invalid-feedback"></div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6">
-            <div class="floating-field">
-              <div class="input-group floating-input-group">
-                <div class="form-floating flex-grow-1">
-                  <input type="date" class="form-control" id="data" />
-                  <label for="data">Data de Nascimento</label>
-                </div>
-                <button
-                  type="button"
-                  class="btn btn-outline-danger"
-                  onclick="document.getElementById('data').showPicker()"
-                >
-                  <i class="fas fa-calendar-alt"></i>
-                </button>
-              </div>
-              <div id="error-data" class="invalid-feedback"></div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6">
-            <div class="floating-field">
-              <div class="form-floating">
-                <select id="estadoCivil" class="form-select">
-                  <option value="" selected disabled hidden></option>
-                  <option value="solteiro">Solteiro(a)</option>
-                  <option value="casado">Casado(a)</option>
-                  <option value="divorciado">Divorciado(a)</option>
-                  <option value="viuvo">Viúvo(a)</option>
-                  <option value="uniao_estavel">União Estável</option>
-                  <option value="prefiro_nao_informar">
-                    Prefiro não informar
-                  </option>
-                </select>
-                <label for="estadoCivil">Estado Civil</label>
-              </div>
-              <div id="error-estadoCivil" class="invalid-feedback"></div>
-            </div>
-          </div>
-
-          <div class="col-12"><hr /></div>
-          <div class="col-12"><h5 class="mb-3">Endereço</h5></div>
-
-          <div class="col-md-3">
-            <div class="floating-field">
-              <div class="input-group floating-input-group">
-                <div class="form-floating flex-grow-1">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="cep"
-                    placeholder="00000-000"
-                  />
-                  <label for="cep">CEP</label>
-                </div>
-                <span class="input-group-text"
-                  ><i class="fas fa-map-pin"></i
-                ></span>
-              </div>
-              <div id="error-cep" class="invalid-feedback"></div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="floating-field">
-              <div class="input-group floating-input-group">
-                <div class="form-floating flex-grow-1">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="cidade"
-                    placeholder="Cidade"
-                  />
-                  <label for="cidade">Cidade</label>
-                </div>
-                <span class="input-group-text"
-                  ><i class="fa-solid fa-location-dot"></i
-                ></span>
-              </div>
-              <div id="error-cidade" class="invalid-feedback"></div>
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <div class="floating-field">
-              <div class="input-group floating-input-group">
-                <div class="form-floating flex-grow-1">
-                  <select id="estado" class="form-select">
-                    <option value="">Selecione</option>
-                    <option value="AC">Acre</option>
-                    <option value="AL">Alagoas</option>
-                    <option value="AP">Amapá</option>
-                    <option value="AM">Amazonas</option>
-                    <option value="BA">Bahia</option>
-                    <option value="CE">Ceará</option>
-                    <option value="DF">Distrito Federal</option>
-                    <option value="ES">Espírito Santo</option>
-                    <option value="GO">Goiás</option>
-                    <option value="MA">Maranhão</option>
-                    <option value="MT">Mato Grosso</option>
-                    <option value="MS">Mato Grosso do Sul</option>
-                    <option value="MG">Minas Gerais</option>
-                    <option value="PA">Pará</option>
-                    <option value="PB">Paraíba</option>
-                    <option value="PR">Paraná</option>
-                    <option value="PE">Pernambuco</option>
-                    <option value="PI">Piauí</option>
-                    <option value="RJ">Rio de Janeiro</option>
-                    <option value="RN">Rio Grande do Norte</option>
-                    <option value="RS">Rio Grande do Sul</option>
-                    <option value="RO">Rondônia</option>
-                    <option value="RR">Roraima</option>
-                    <option value="SC">Santa Catarina</option>
-                    <option value="SP">São Paulo</option>
-                    <option value="SE">Sergipe</option>
-                    <option value="TO">Tocantins</option>
-                    <option value="EX">Estrangeiro</option>
-                  </select>
-                  <label for="estado">Estado</label>
-                </div>
-                <span class="input-group-text"
-                  ><i class="fa-solid fa-location-dot"></i
-                ></span>
-              </div>
-              <div id="error-estado" class="invalid-feedback"></div>
-            </div>
-          </div>
-
-          <div class="col-md-5">
-            <div class="floating-field">
-              <div class="input-group floating-input-group">
-                <div class="form-floating flex-grow-1">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="bairro"
-                    placeholder="Bairro"
-                  />
-                  <label for="bairro">Bairro</label>
-                </div>
-                <span class="input-group-text"
-                  ><i class="fa-solid fa-location-dot"></i
-                ></span>
-              </div>
-              <div id="error-bairro" class="invalid-feedback"></div>
-            </div>
-          </div>
-
-          <div class="col-md-5">
-            <div class="floating-field">
-              <div class="input-group floating-input-group">
-                <div class="form-floating flex-grow-1">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="rua"
-                    placeholder="Rua"
-                  />
-                  <label for="rua">Rua</label>
-                </div>
-                <span class="input-group-text"
-                  ><i class="fa-solid fa-location-dot"></i
-                ></span>
-              </div>
-              <div id="error-rua" class="invalid-feedback"></div>
-            </div>
-          </div>
-
-          <div class="col-md-2">
-            <div class="floating-field">
-              <div class="input-group floating-input-group">
-                <div class="form-floating flex-grow-1">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="numero"
-                    placeholder="Número"
-                  />
-                  <label for="numero">Número</label>
-                </div>
-                <span class="input-group-text"
-                  ><i class="fa-solid fa-location-dot"></i
-                ></span>
-              </div>
-              <div id="error-numero" class="invalid-feedback"></div>
-            </div>
-          </div>
-
-          <div class="col-md-12">
-            <div class="floating-field">
-              <div class="input-group floating-input-group">
-                <div class="form-floating flex-grow-1">
-                  <textarea
-                    class="form-control"
-                    id="complemento"
-                    style="height: 120px"
-                  ></textarea>
-                  <label for="complemento">Complemento</label>
-                </div>
-                <span class="input-group-text"
-                  ><i class="fas fa-building"></i
-                ></span>
-              </div>
-              <div id="error-complemento" class="invalid-feedback"></div>
-            </div>
-          </div>
-
-          <div class="col-12"><hr /></div>
-
-          <div class="col-12"><h5 class="mb-3">Senha</h5></div>
-
-          <div class="row justify-content-center">
-            <div class="col-md-5">
-              <div class="floating-field">
-                <div class="input-group floating-input-group">
-                  <div class="form-floating flex-grow-1">
-                    <input
-                      type="password"
-                      class="form-control"
-                      id="senha"
-                      placeholder="Senha"
-                    />
-                    <label for="senha">Senha</label>
-                  </div>
-                  <button
-                    type="button"
-                    class="btn btn-outline-danger"
-                    onclick="passwordShow('toggleSenha', 'senha')"
-                  >
-                    <i id="toggleSenha" class="fa fa-eye"></i>
-                  </button>
-                </div>
-                <div id="error-senha" class="invalid-feedback"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="text-center mt-4">
-            <button
-              type="submit"
-              class="btn btn-danger px-5 py-2"
-              id="btn-register"
-            >
-              Cadastrar
-            </button>
-          </div>
-
-          <p class="text-center mt-3">
-            Já tem uma conta?
-            <a href="login.html" class="text-primary">Entrar</a>
+          <p class="step-progress-label" id="stepProgressLabel">
+            Etapa 1 de 3 — Dados Pessoais
           </p>
         </div>
-      </form>
+
+        <form id="registerForm" class="needs-validation" novalidate>
+          <!-- ══════════════ ETAPA 1 — Dados Pessoais ══════════════ -->
+          <div class="step-panel" id="step-1">
+            <div class="step-card">
+              <div class="step-card-header">
+                <h5 class="step-heading">
+                  <span class="step-heading-icon"
+                    ><i class="fas fa-user-circle"></i
+                  ></span>
+                  Informações Pessoais
+                </h5>
+                <p class="step-heading-sub">
+                  Preencha seus dados básicos de identificação.
+                </p>
+              </div>
+
+              <div class="row g-4">
+                <div class="col-12 col-md-6">
+                  <div class="floating-field">
+                    <div class="input-group floating-input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-user"></i
+                      ></span>
+                      <div class="form-floating flex-grow-1">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="nome"
+                          placeholder="Nome completo"
+                          autocomplete="given-name"
+                        />
+                        <label for="nome">Nome</label>
+                      </div>
+                    </div>
+                    <div id="error-nome" class="invalid-feedback"></div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <div class="floating-field">
+                    <div class="input-group floating-input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-user"></i
+                      ></span>
+                      <div class="form-floating flex-grow-1">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="sobrenome"
+                          placeholder="Sobrenome"
+                          autocomplete="family-name"
+                        />
+                        <label for="sobrenome">Sobrenome</label>
+                      </div>
+                    </div>
+                    <div id="error-sobrenome" class="invalid-feedback"></div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <div class="floating-field">
+                    <div class="input-group floating-input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-id-card"></i
+                      ></span>
+                      <div class="form-floating flex-grow-1">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="cpf"
+                          placeholder="000.000.000-00"
+                          maxlength="14"
+                          inputmode="numeric"
+                        />
+                        <label for="cpf">CPF</label>
+                      </div>
+                    </div>
+                    <div id="error-cpf" class="invalid-feedback"></div>
+                    <small class="field-hint"
+                      >Usado apenas para identificação</small
+                    >
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <div class="floating-field">
+                    <div class="input-group floating-input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-venus-mars"></i
+                      ></span>
+                      <div class="form-floating flex-grow-1">
+                        <select id="genero" class="form-select">
+                          <option value="" selected disabled hidden></option>
+                          <option value="nao_informado">
+                            Prefiro não informar
+                          </option>
+                          <option value="feminino">Feminino</option>
+                          <option value="masculino">Masculino</option>
+                        </select>
+                        <label for="genero">Gênero Biológico</label>
+                      </div>
+                    </div>
+                    <div id="error-genero" class="invalid-feedback"></div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <div class="floating-field">
+                    <div class="input-group floating-input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-envelope"></i
+                      ></span>
+                      <div class="form-floating flex-grow-1">
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="email"
+                          placeholder="email@exemplo.com"
+                          autocomplete="email"
+                        />
+                        <label for="email">Email</label>
+                      </div>
+                    </div>
+                    <div id="error-email" class="invalid-feedback"></div>
+                    <small class="field-hint"
+                      >Você receberá confirmações de pedidos neste email</small
+                    >
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <div class="floating-field">
+                    <div class="input-group floating-input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-phone"></i
+                      ></span>
+                      <div class="form-floating flex-grow-1">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="telefone"
+                          placeholder="(00) 00000-0000"
+                          inputmode="tel"
+                          autocomplete="tel"
+                        />
+                        <label for="telefone">Telefone / WhatsApp</label>
+                      </div>
+                    </div>
+                    <div id="error-telefone" class="invalid-feedback"></div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <div class="floating-field">
+                    <div class="input-group floating-input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-calendar-alt"></i
+                      ></span>
+                      <div class="form-floating flex-grow-1">
+                        <input type="date" class="form-control" id="data" />
+                        <label for="data">Data de Nascimento</label>
+                      </div>
+                      <button
+                        type="button"
+                        class="btn btn-outline-secondary btn-pick-date"
+                        onclick="document.getElementById('data').showPicker()"
+                        title="Abrir calendário"
+                      >
+                        <i class="fas fa-chevron-down"></i>
+                      </button>
+                    </div>
+                    <div id="error-data" class="invalid-feedback"></div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <div class="floating-field">
+                    <div class="input-group floating-input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-ring"></i
+                      ></span>
+                      <div class="form-floating flex-grow-1">
+                        <select id="estadoCivil" class="form-select">
+                          <option value="" selected disabled hidden></option>
+                          <option value="solteiro">Solteiro(a)</option>
+                          <option value="casado">Casado(a)</option>
+                          <option value="divorciado">Divorciado(a)</option>
+                          <option value="viuvo">Viúvo(a)</option>
+                          <option value="uniao_estavel">União Estável</option>
+                          <option value="prefiro_nao_informar">
+                            Prefiro não informar
+                          </option>
+                        </select>
+                        <label for="estadoCivil">Estado Civil</label>
+                      </div>
+                    </div>
+                    <div id="error-estadoCivil" class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="step-nav mt-4 justify-content-between align-items-center"
+              >
+                <p class="mb-0 text-muted small">
+                  Já tem uma conta?
+                  <a href="/login" class="reg-link fw-semibold">Fazer login</a>
+                </p>
+                <button type="button" class="btn btn-step-next" id="next-1">
+                  Próximo: Endereço <i class="fas fa-arrow-right ms-1"></i>
+                </button>
+              </div>
+            </div>
+            <!-- /step-card -->
+          </div>
+
+          <!-- ══════════════ ETAPA 2 — Endereço ══════════════ -->
+          <div class="step-panel d-none" id="step-2">
+            <div class="step-card">
+              <div class="step-card-header">
+                <h5 class="step-heading">
+                  <span class="step-heading-icon"
+                    ><i class="fas fa-map-marker-alt"></i
+                  ></span>
+                  Endereço de Entrega
+                </h5>
+                <p class="step-heading-sub">
+                  Digite o CEP para preencher automaticamente os campos abaixo.
+                </p>
+              </div>
+
+              <!-- Banner auto-fill -->
+              <div class="cep-autofill-banner">
+                <i class="fas fa-magic"></i>
+                <span
+                  >Preencha apenas o <strong>CEP</strong> — os campos de
+                  endereço serão completados automaticamente.</span
+                >
+              </div>
+
+              <div class="row g-4">
+                <!-- Linha 1: CEP + Cidade + Estado alinhados na base -->
+                <div class="col-12">
+                  <div class="row g-3 align-items-end">
+                    <!-- CEP -->
+                    <div class="col-12 col-sm-4">
+                      <div class="floating-field">
+                        <label class="field-label-above"
+                          >CEP
+                          <span class="badge-autofill"
+                            >Auto-preenche</span
+                          ></label
+                        >
+                        <div class="input-group floating-input-group">
+                          <span class="input-group-text"
+                            ><i class="fas fa-map-pin"></i
+                          ></span>
+                          <div class="form-floating flex-grow-1">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="cep"
+                              placeholder="00000-000"
+                              inputmode="numeric"
+                            />
+                            <label for="cep">00000-000</label>
+                          </div>
+                        </div>
+                        <div id="error-cep" class="invalid-feedback"></div>
+                        <small class="field-hint"
+                          >Os campos serão preenchidos ao sair do campo</small
+                        >
+                      </div>
+                    </div>
+
+                    <!-- Cidade -->
+                    <div class="col-12 col-sm-5">
+                      <div class="floating-field">
+                        <div class="input-group floating-input-group">
+                          <span class="input-group-text"
+                            ><i class="fa-solid fa-city"></i
+                          ></span>
+                          <div class="form-floating flex-grow-1">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="cidade"
+                              placeholder="Cidade"
+                              autocomplete="address-level2"
+                            />
+                            <label for="cidade">Cidade</label>
+                          </div>
+                        </div>
+                        <div id="error-cidade" class="invalid-feedback"></div>
+                      </div>
+                    </div>
+
+                    <!-- Estado -->
+                    <div class="col-12 col-sm-3">
+                      <div class="floating-field">
+                        <div class="input-group floating-input-group">
+                          <span class="input-group-text"
+                            ><i class="fa-solid fa-location-dot"></i
+                          ></span>
+                          <div class="form-floating flex-grow-1">
+                            <select id="estado" class="form-select">
+                              <option value="">Selecione</option>
+                              <option value="AC">Acre</option>
+                              <option value="AL">Alagoas</option>
+                              <option value="AP">Amapá</option>
+                              <option value="AM">Amazonas</option>
+                              <option value="BA">Bahia</option>
+                              <option value="CE">Ceará</option>
+                              <option value="DF">Distrito Federal</option>
+                              <option value="ES">Espírito Santo</option>
+                              <option value="GO">Goiás</option>
+                              <option value="MA">Maranhão</option>
+                              <option value="MT">Mato Grosso</option>
+                              <option value="MS">Mato Grosso do Sul</option>
+                              <option value="MG">Minas Gerais</option>
+                              <option value="PA">Pará</option>
+                              <option value="PB">Paraíba</option>
+                              <option value="PR">Paraná</option>
+                              <option value="PE">Pernambuco</option>
+                              <option value="PI">Piauí</option>
+                              <option value="RJ">Rio de Janeiro</option>
+                              <option value="RN">Rio Grande do Norte</option>
+                              <option value="RS">Rio Grande do Sul</option>
+                              <option value="RO">Rondônia</option>
+                              <option value="RR">Roraima</option>
+                              <option value="SC">Santa Catarina</option>
+                              <option value="SP">São Paulo</option>
+                              <option value="SE">Sergipe</option>
+                              <option value="TO">Tocantins</option>
+                              <option value="EX">Estrangeiro</option>
+                            </select>
+                            <label for="estado">Estado (UF)</label>
+                          </div>
+                        </div>
+                        <div id="error-estado" class="invalid-feedback"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="floating-field">
+                    <div class="input-group floating-input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-road"></i
+                      ></span>
+                      <div class="form-floating flex-grow-1">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="rua"
+                          placeholder="Rua"
+                          autocomplete="street-address"
+                        />
+                        <label for="rua">Rua / Logradouro</label>
+                      </div>
+                    </div>
+                    <div id="error-rua" class="invalid-feedback"></div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="floating-field">
+                    <div class="input-group floating-input-group">
+                      <span class="input-group-text"
+                        ><i class="fa-solid fa-location-dot"></i
+                      ></span>
+                      <div class="form-floating flex-grow-1">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="bairro"
+                          placeholder="Bairro"
+                        />
+                        <label for="bairro">Bairro</label>
+                      </div>
+                    </div>
+                    <div id="error-bairro" class="invalid-feedback"></div>
+                  </div>
+                </div>
+
+                <div class="col-md-2">
+                  <div class="floating-field">
+                    <div class="input-group floating-input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-hashtag"></i
+                      ></span>
+                      <div class="form-floating flex-grow-1">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="numero"
+                          placeholder="Nº"
+                          inputmode="numeric"
+                        />
+                        <label for="numero">Número</label>
+                      </div>
+                    </div>
+                    <div id="error-numero" class="invalid-feedback"></div>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="floating-field">
+                    <div class="input-group floating-input-group">
+                      <span class="input-group-text align-items-start pt-3"
+                        ><i class="fas fa-building"></i
+                      ></span>
+                      <div class="form-floating flex-grow-1">
+                        <textarea
+                          class="form-control"
+                          id="complemento"
+                          style="height: 90px"
+                          placeholder="Complemento"
+                        ></textarea>
+                        <label for="complemento">Complemento (opcional)</label>
+                      </div>
+                    </div>
+                    <div id="error-complemento" class="invalid-feedback"></div>
+                    <small class="field-hint"
+                      >Ex: Apto 12, Bloco B, Casa dos fundos</small
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="step-nav mt-4 justify-content-between align-items-center"
+              >
+                <button type="button" class="btn btn-step-back" id="back-2">
+                  <i class="fas fa-arrow-left me-1"></i> Voltar
+                </button>
+                <p class="mb-0 text-muted small d-none d-md-block">
+                  Já tem uma conta?
+                  <a href="/login" class="reg-link fw-semibold">Fazer login</a>
+                </p>
+                <button type="button" class="btn btn-step-next" id="next-2">
+                  Próximo: Criar Senha <i class="fas fa-arrow-right ms-1"></i>
+                </button>
+              </div>
+            </div>
+            <!-- /step-card -->
+          </div>
+
+          <!-- ══════════════ ETAPA 3 — Senha ══════════════ -->
+          <div class="step-panel d-none" id="step-3">
+            <div class="step-card">
+              <div class="step-card-header">
+                <h5 class="step-heading">
+                  <span class="step-heading-icon"
+                    ><i class="fas fa-lock"></i
+                  ></span>
+                  Crie sua Senha
+                </h5>
+                <p class="step-heading-sub">
+                  Escolha uma senha forte para proteger sua conta.
+                </p>
+              </div>
+
+              <div class="row g-4">
+                <div class="col-md-6">
+                  <div class="floating-field">
+                    <div class="input-group floating-input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-lock"></i
+                      ></span>
+                      <div class="form-floating flex-grow-1">
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="senha"
+                          placeholder="Senha"
+                          autocomplete="new-password"
+                        />
+                        <label for="senha">Nova Senha</label>
+                      </div>
+                      <button
+                        type="button"
+                        class="btn btn-outline-secondary"
+                        onclick="passwordShow('toggleSenha', 'senha')"
+                        title="Mostrar/ocultar"
+                      >
+                        <i id="toggleSenha" class="fa fa-eye"></i>
+                      </button>
+                    </div>
+                    <div id="error-senha" class="invalid-feedback"></div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="floating-field">
+                    <div class="input-group floating-input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-lock-open"></i
+                      ></span>
+                      <div class="form-floating flex-grow-1">
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="confirmarSenha"
+                          placeholder="Confirmar Senha"
+                          autocomplete="new-password"
+                        />
+                        <label for="confirmarSenha">Confirmar Senha</label>
+                      </div>
+                      <button
+                        type="button"
+                        class="btn btn-outline-secondary"
+                        onclick="
+                          passwordShow('toggleConfirmarSenha', 'confirmarSenha')
+                        "
+                        title="Mostrar/ocultar"
+                      >
+                        <i id="toggleConfirmarSenha" class="fa fa-eye"></i>
+                      </button>
+                    </div>
+                    <div
+                      id="error-confirmarSenha"
+                      class="invalid-feedback"
+                    ></div>
+                  </div>
+                </div>
+
+                <!-- Força da senha -->
+                <div class="col-md-12">
+                  <div
+                    class="password-strength-wrap d-none"
+                    id="passStrengthWrap"
+                  >
+                    <span class="pass-strength-title">Força:</span>
+                    <div class="password-strength-bar">
+                      <div
+                        class="password-strength-fill"
+                        id="passStrengthFill"
+                      ></div>
+                    </div>
+                    <span
+                      class="password-strength-label"
+                      id="passStrengthLabel"
+                    ></span>
+                  </div>
+                </div>
+
+                <!-- Checklist de requisitos -->
+                <div class="col-md-6">
+                  <div class="pass-requirements">
+                    <p class="pass-req-title">
+                      <i class="fas fa-shield-alt"></i> Requisitos da senha
+                    </p>
+                    <ul class="pass-req-list">
+                      <li id="req-length">
+                        <i class="fas fa-circle"></i> Mínimo 8 caracteres
+                      </li>
+                      <li id="req-upper">
+                        <i class="fas fa-circle"></i> Uma letra maiúscula (A-Z)
+                      </li>
+                      <li id="req-lower">
+                        <i class="fas fa-circle"></i> Uma letra minúscula (a-z)
+                      </li>
+                      <li id="req-number">
+                        <i class="fas fa-circle"></i> Um número (0-9)
+                      </li>
+                      <li id="req-symbol">
+                        <i class="fas fa-circle"></i> Um símbolo (!@#$%...)
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- Dica de segurança -->
+                <div class="col-md-6">
+                  <div class="security-tip-card">
+                    <div class="security-tip-icon">
+                      <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div>
+                      <p class="security-tip-title">Dica de segurança</p>
+                      <p class="security-tip-text">
+                        Evite senhas óbvias como datas de aniversário ou
+                        sequências numéricas. Use uma combinação de letras,
+                        números e símbolos.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Termos de uso -->
+                <div class="col-12">
+                  <div class="terms-check-wrap">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input terms-check"
+                        type="checkbox"
+                        id="termsCheck"
+                      />
+                      <label
+                        class="form-check-label terms-check-label"
+                        for="termsCheck"
+                      >
+                        Li e concordo com os
+                        <a href="#" class="reg-link">Termos de Uso</a>
+                        e a
+                        <a href="#" class="reg-link">Política de Privacidade</a>
+                        da Bio-Power.
+                      </label>
+                    </div>
+                    <div id="error-terms" class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="step-nav mt-4">
+                <button type="button" class="btn btn-step-back" id="back-3">
+                  <i class="fas fa-arrow-left me-1"></i> Voltar
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-step-submit"
+                  id="btn-register"
+                >
+                  <i class="fas fa-user-plus me-1"></i> Criar Minha Conta
+                </button>
+              </div>
+
+              <p class="text-center mt-4 text-muted small">
+                Já tem uma conta?
+                <a href="/login" class="reg-link fw-semibold">Fazer login</a>
+              </p>
+            </div>
+            <!-- /step-card -->
+          </div>
+        </form>
+      </main>
     </div>
 
-    <script src="../js/utils/valid-docs.js"></script>
-    <script src="../js/toggle-password-login.js"></script>
-    <script src="../js/screens/register.js"></script>
+    <script src="../assets/js/utils/valid-docs.js"></script>
+    <script src="../assets/js/toggle-password-login.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/screens/register.js"></script>
   </body>
 </html>

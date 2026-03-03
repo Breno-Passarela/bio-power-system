@@ -1,3 +1,9 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Bio-Power — register.js
+// Contém: validação por etapa, stepper, CEP (ViaCEP), força da senha, máscaras
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ─── Objeto de dados do formulário ──────────────────────────────────────────
 const form = {
   nome: "",
   sobrenome: "",
@@ -15,33 +21,35 @@ const form = {
   numero: "",
   complemento: "",
   senha: "",
+  confirmarSenha: "",
 };
 
 const fieldOrder = [
-  "nome",
-  "sobrenome",
-  "cpf",
-  "genero",
-  "email",
-  "telefone",
-  "data",
-  "estadoCivil",
-  "cep",
-  "cidade",
-  "estado",
-  "bairro",
-  "rua",
-  "numero",
-  "complemento",
-  "senha"
+  "nome", "sobrenome", "cpf", "genero", "email", "telefone",
+  "data", "estadoCivil",
+  "cep", "cidade", "estado", "bairro", "rua", "numero", "complemento",
+  "senha", "confirmarSenha",
 ];
 
-const NAME_MIN_LENGTH     = 3;
-const NAME_REGEX          = /^[A-Za-zÀ-ÿ]+(?: [A-Za-zÀ-ÿ]+)*$/;
-const CITY_REGEX          = /^[A-Za-zÀ-ÿ]+(?:[\s'-][A-Za-zÀ-ÿ]+)*$/;
-const STREET_REGEX        = /^[A-Za-zÀ-ÿ0-9]+(?:[\s.'-][A-Za-zÀ-ÿ0-9]+)*$/;
-const PASSWORD_REGEX      = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-const EMAIL_REGEX         = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// Campos por etapa — usados na validação parcial
+const stepFields = {
+  1: ["nome", "sobrenome", "cpf", "genero", "email", "telefone", "data", "estadoCivil"],
+  2: ["cep", "cidade", "estado", "bairro", "rua", "numero", "complemento"],
+  3: ["senha", "confirmarSenha"],
+};
+
+// Mapeamento campo → etapa (para navegar ao erro correto)
+const fieldStepMap = {};
+Object.entries(stepFields).forEach(([step, fields]) =>
+  fields.forEach((f) => (fieldStepMap[f] = Number(step)))
+);
+
+const NAME_MIN_LENGTH = 3;
+const NAME_REGEX = /^[A-Za-zÀ-ÿ]+(?: [A-Za-zÀ-ÿ]+)*$/;
+const CITY_REGEX = /^[A-Za-zÀ-ÿ]+(?:[\s'-][A-Za-zÀ-ÿ]+)*$/;
+const STREET_REGEX = /^[A-Za-zÀ-ÿ0-9]+(?:[\s.'-][A-Za-zÀ-ÿ0-9]+)*$/;
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function isValidCPF(cpf) {
   if (!cpf || cpf.length !== 11) return false;
@@ -108,16 +116,17 @@ function setFieldError(fieldId, message) {
 }
 
 function clearErrors() {
-  fieldOrder.forEach(f => setFieldError(f, null));
+  fieldOrder.forEach((f) => setFieldError(f, null));
+  const termsFb = document.getElementById("error-terms");
+  if (termsFb) { termsFb.innerHTML = ""; termsFb.style.display = "none"; }
+  document.getElementById("termsCheck")?.classList.remove("is-invalid");
 }
 
 function applyMasks() {
   const cpf = document.getElementById("cpf");
   const tel = document.getElementById("telefone");
   const cep = document.getElementById("cep");
-  const uf = document.getElementById("estado");
-
-  cpf.addEventListener("input", e => {
+  cpf?.addEventListener("input", e => {
     let v = e.target.value.replace(/\D/g, "").slice(0, 11);
     v = v.replace(/(\d{3})(\d)/, "$1.$2");
     v = v.replace(/(\d{3})(\d)/, "$1.$2");
@@ -125,7 +134,7 @@ function applyMasks() {
     e.target.value = v;
   });
 
-  tel.addEventListener("input", e => {
+  tel?.addEventListener("input", e => {
     let v = e.target.value.replace(/\D/g, "").slice(0, 11);
     if (v.length > 6)
       v = v.replace(/^(\d{2})(\d{5})(\d{1,4})$/, "($1) $2-$3");
@@ -136,14 +145,10 @@ function applyMasks() {
     e.target.value = v;
   });
 
-  cep.addEventListener("input", e => {
+  cep?.addEventListener("input", e => {
     let v = e.target.value.replace(/\D/g, "").slice(0, 8);
     v = v.replace(/(\d{5})(\d{1,3})$/, "$1-$2");
     e.target.value = v;
-  });
-
-  uf.addEventListener("input", e => {
-    e.target.value = e.target.value.toUpperCase().replace(/[^A-Z]/g, "").slice(0, 2);
   });
 }
 
@@ -152,22 +157,23 @@ function normalizeSpaces(str) {
 }
 
 function collectFormValues() {
-  form.nome         = normalizeSpaces(document.getElementById('nome')?.value || "");
-  form.sobrenome    = normalizeSpaces(document.getElementById('sobrenome')?.value || "");
-  form.cpf          = document.getElementById("cpf")?.value || "";
-  form.genero       = document.getElementById("genero")?.value || "";
-  form.email        = normalizeSpaces(document.getElementById("email")?.value || "");
-  form.telefone     = document.getElementById("telefone")?.value || "";
-  form.data         = document.getElementById("data")?.value || "";
-  form.estadoCivil  = document.getElementById("estadoCivil")?.value || "";
-  form.cep          = document.getElementById("cep")?.value || "";
-  form.cidade       = normalizeSpaces(document.getElementById("cidade")?.value || "");
-  form.estado       = normalizeSpaces(document.getElementById("estado")?.value || "");
-  form.bairro       = normalizeSpaces(document.getElementById("bairro")?.value || "");
-  form.rua          = normalizeSpaces(document.getElementById("rua")?.value || "");
-  form.numero       = document.getElementById("numero")?.value || "";
-  form.complemento  = normalizeSpaces(document.getElementById("complemento")?.value || "");
-  form.senha        = document.getElementById("senha")?.value || "";
+  form.nome = normalizeSpaces(document.getElementById('nome')?.value || "");
+  form.sobrenome = normalizeSpaces(document.getElementById('sobrenome')?.value || "");
+  form.cpf = document.getElementById("cpf")?.value || "";
+  form.genero = document.getElementById("genero")?.value || "";
+  form.email = normalizeSpaces(document.getElementById("email")?.value || "");
+  form.telefone = document.getElementById("telefone")?.value || "";
+  form.data = document.getElementById("data")?.value || "";
+  form.estadoCivil = document.getElementById("estadoCivil")?.value || "";
+  form.cep = document.getElementById("cep")?.value || "";
+  form.cidade = normalizeSpaces(document.getElementById("cidade")?.value || "");
+  form.estado = document.getElementById("estado")?.value || "";
+  form.bairro = normalizeSpaces(document.getElementById("bairro")?.value || "");
+  form.rua = normalizeSpaces(document.getElementById("rua")?.value || "");
+  form.numero = document.getElementById("numero")?.value || "";
+  form.complemento = normalizeSpaces(document.getElementById("complemento")?.value || "");
+  form.senha = document.getElementById("senha")?.value || "";
+  form.confirmarSenha = document.getElementById("confirmarSenha")?.value || "";
 }
 
 function validateFields() {
@@ -268,14 +274,9 @@ function validateFields() {
   }
   if (errors.cidade.length === 0) delete errors.cidade;
 
-  // ESTADO (UF)
+  // ESTADO (select)
   errors.estado = [];
-  if (!form.estado) {
-    errors.estado.push("Informe a UF");
-  } else {
-    if (!/^[A-Z]{2}$/.test(form.estado))
-      errors.estado.push("UF inválida");
-  }
+  if (!form.estado) errors.estado.push("Selecione o estado");
   if (errors.estado.length === 0) delete errors.estado;
 
   // BAIRRO
@@ -339,7 +340,27 @@ function validateFields() {
     errors.estadoCivil.push("Selecione o estado civil");
   if (errors.estadoCivil.length === 0) delete errors.estadoCivil;
 
+  // CONFIRMAR SENHA
+  errors.confirmarSenha = [];
+  if (!form.confirmarSenha) {
+    errors.confirmarSenha.push("Confirme a senha");
+  } else if (form.senha !== form.confirmarSenha) {
+    errors.confirmarSenha.push("As senhas não coincidem");
+  }
+  if (errors.confirmarSenha.length === 0) delete errors.confirmarSenha;
+
   return errors;
+}
+
+// Valida apenas os campos de uma etapa específica
+function validateStep(stepNum) {
+  collectFormValues();
+  const allErrors = validateFields();
+  const stepErr = {};
+  (stepFields[stepNum] || []).forEach((f) => {
+    if (allErrors[f]) stepErr[f] = allErrors[f];
+  });
+  return stepErr;
 }
 
 // Limpar campos no load
@@ -357,12 +378,11 @@ window.addEventListener("load", () => {
   });
 });
 
-// Função para mostrar senha
+// ─── Toggle senha ────────────────────────────────────────────────────────────
 function passwordShow(toggleId, inputId) {
   const toggle = document.getElementById(toggleId);
   const input = document.getElementById(inputId);
   if (!toggle || !input) return;
-  
   if (input.type === "password") {
     input.type = "text";
     toggle.classList.replace("fa-eye", "fa-eye-slash");
@@ -372,78 +392,233 @@ function passwordShow(toggleId, inputId) {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  applyMasks();
+// ─── Força da senha + checklist ───────────────────────────────────────────────
+function initPasswordStrength() {
+  const senhaInput = document.getElementById("senha");
+  const strengthBar = document.getElementById("passStrengthWrap");
+  const fill = document.getElementById("passStrengthFill");
+  const labelEl = document.getElementById("passStrengthLabel");
+  if (!senhaInput) return;
 
-  const formEl = document.querySelector("form.needs-validation");
+  const reqs = {
+    length: { el: document.getElementById("req-length"), test: (v) => v.length >= 8 },
+    upper: { el: document.getElementById("req-upper"), test: (v) => /[A-Z]/.test(v) },
+    lower: { el: document.getElementById("req-lower"), test: (v) => /[a-z]/.test(v) },
+    number: { el: document.getElementById("req-number"), test: (v) => /[0-9]/.test(v) },
+    symbol: { el: document.getElementById("req-symbol"), test: (v) => /[^A-Za-z0-9]/.test(v) },
+  };
 
-  formEl.addEventListener("submit", event => {
-    event.preventDefault();
+  senhaInput.addEventListener("input", () => {
+    const v = senhaInput.value;
+    let score = 0;
+    Object.values(reqs).forEach((r) => {
+      if (!r.el) return;
+      const ok = r.test(v);
+      if (ok) score++;
+      r.el.classList.toggle("req-ok", ok);
+      r.el.classList.toggle("req-fail", v.length > 0 && !ok);
+      r.el.querySelector("i").className = ok ? "fas fa-check-circle" : "fas fa-circle";
+    });
+    if (!v) { strengthBar?.classList.add("d-none"); return; }
+    strengthBar?.classList.remove("d-none");
+    const levels = [
+      { pct: "20%", color: "#ef3538", text: "Muito fraca" },
+      { pct: "40%", color: "#ef3538", text: "Fraca" },
+      { pct: "60%", color: "#f5a623", text: "Razoável" },
+      { pct: "80%", color: "#4caf50", text: "Boa" },
+      { pct: "100%", color: "#2e7d32", text: "Forte" },
+    ];
+    const lvl = levels[score - 1] || levels[0];
+    if (fill) { fill.style.width = lvl.pct; fill.style.background = lvl.color; }
+    if (labelEl) { labelEl.textContent = lvl.text; labelEl.style.color = lvl.color; }
+  });
+}
 
-    clearErrors();
-    collectFormValues();
+// ─── Stepper ──────────────────────────────────────────────────────────────────
+let _currentStep = 1;
 
-    const errors = validateFields();
+function _updateProgress(step) {
+  const labels = [
+    "Etapa 1 de 3 — Dados Pessoais",
+    "Etapa 2 de 3 — Endereço",
+    "Etapa 3 de 3 — Senha",
+  ];
+  const pcts = ["33%", "66%", "100%"];
+  const fill = document.getElementById("stepProgressFill");
+  const label = document.getElementById("stepProgressLabel");
+  if (fill) fill.style.width = pcts[step - 1];
+  if (label) label.textContent = labels[step - 1];
+  document.getElementById("line-1-2")?.classList.toggle("completed", step >= 2);
+  document.getElementById("line-2-3")?.classList.toggle("completed", step >= 3);
+}
 
-    Object.keys(errors).forEach(f => setFieldError(f, errors[f]));
+function _goToStep(step) {
+  document.getElementById("step-" + _currentStep)?.classList.add("d-none");
+  document.getElementById("step-item-" + _currentStep)?.classList.remove("active");
+  document.getElementById("step-item-" + _currentStep)?.classList.add("completed");
+  _currentStep = step;
+  const panel = document.getElementById("step-" + _currentStep);
+  if (panel) {
+    panel.classList.remove("d-none");
+    panel.classList.add("step-enter");
+    setTimeout(() => panel.classList.remove("step-enter"), 350);
+  }
+  document.getElementById("step-item-" + _currentStep)?.classList.add("active");
+  panel?.scrollIntoView({ behavior: "smooth", block: "start" });
+  _updateProgress(_currentStep);
+}
 
-    if (Object.keys(errors).length === 0) {
-      formEl.submit();
+function _goBack(step) {
+  document.getElementById("step-" + _currentStep)?.classList.add("d-none");
+  document.getElementById("step-item-" + _currentStep)?.classList.remove("active");
+  _currentStep = step;
+  document.getElementById("step-" + _currentStep)?.classList.remove("d-none");
+  document.getElementById("step-item-" + _currentStep)?.classList.remove("completed");
+  document.getElementById("step-item-" + _currentStep)?.classList.add("active");
+  _updateProgress(_currentStep);
+}
+
+function _focusFirstFieldError(stepErr, stepNum) {
+  const firstField = (stepFields[stepNum] || []).find((f) => stepErr[f]);
+  if (!firstField) return;
+  const el = document.getElementById(firstField);
+  if (!el) return;
+  el.scrollIntoView({ behavior: "smooth", block: "center" });
+  setTimeout(() => el.focus(), 300);
+}
+
+function initStepper() {
+  document.getElementById("next-1")?.addEventListener("click", () => {
+    const stepErr = validateStep(1);
+    if (Object.keys(stepErr).length) {
+      Object.entries(stepErr).forEach(([f, msg]) => setFieldError(f, msg));
+      _focusFirstFieldError(stepErr, 1);
+      return;
+    }
+    stepFields[1].forEach((f) => setFieldError(f, null));
+    _goToStep(2);
+  });
+
+  document.getElementById("next-2")?.addEventListener("click", () => {
+    const stepErr = validateStep(2);
+    if (Object.keys(stepErr).length) {
+      Object.entries(stepErr).forEach(([f, msg]) => setFieldError(f, msg));
+      _focusFirstFieldError(stepErr, 2);
+      return;
+    }
+    stepFields[2].forEach((f) => setFieldError(f, null));
+    _goToStep(3);
+  });
+
+  document.getElementById("back-2")?.addEventListener("click", () => _goBack(1));
+  document.getElementById("back-3")?.addEventListener("click", () => _goBack(2));
+}
+
+// ─── CEP — ViaCEP ─────────────────────────────────────────────────────────────
+function initCepLookup() {
+  const cepInput = document.getElementById("cep");
+  if (!cepInput) return;
+
+  cepInput.addEventListener("blur", async function () {
+    const digits = this.value.replace(/\D/g, "");
+    if (!digits) return;
+    if (!isValidCEP(digits)) { setFieldError("cep", "CEP inválido."); return; }
+
+    this.disabled = true;
+    try {
+      const res = await fetch(`https://viacep.com.br/ws/${digits}/json/`);
+      if (!res.ok) throw new Error();
+      const data = await res.json();
+      if (data.erro) throw new Error("não encontrado");
+
+      const mapa = { cidade: data.localidade || "", bairro: data.bairro || "", rua: data.logradouro || "" };
+      Object.entries(mapa).forEach(([id, val]) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.value = val;
+        el.classList.add("readonly-style");
+        if (val) setFieldError(id, null);
+      });
+
+      const estadoSelect = document.getElementById("estado");
+      if (estadoSelect && data.uf) {
+        estadoSelect.value = data.uf.toUpperCase();
+        estadoSelect.classList.add("readonly-style");
+        setFieldError("estado", null);
+      }
+
+      setFieldError("cep", null);
+      document.getElementById("numero")?.focus();
+    } catch {
+      setFieldError("cep", "Não foi possível localizar o CEP informado.");
+    } finally {
+      this.disabled = false;
     }
   });
-});
 
-const formEl = document.querySelector("form.needs-validation");
+  // Limpa campos ao apagar o CEP
+  cepInput.addEventListener("input", function () {
+    if (!this.value) {
+      ["cidade", "bairro", "rua", "estado"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.value = "";
+        el.classList.remove("readonly-style");
+      });
+    }
+  });
+}
 
-formEl.addEventListener("submit", event => {
-  event.preventDefault();
-  
-  clearErrors();
-  collectFormValues();
-  const errors = validateFields();
-  
-  Object.keys(errors).forEach(f => setFieldError(f, errors[f]));
-  
-  if (Object.keys(errors).length === 0) {
-    formEl.submit();
-  }
-});
+// ─── Inicialização ────────────────────────────────────────────────────────────
+document.addEventListener("DOMContentLoaded", () => {
+  // Logo mobile
+  document.getElementById("img-logo-mobile")?.addEventListener("click", () => {
+    window.location.href = "/";
+  });
 
-// API CEP
-document.getElementById("cep").addEventListener("blur", async function () {
-  const cepDigits = this.value.replace(/\D/g, "");
-  if (!cepDigits) return;
+  applyMasks();
+  initCepLookup();
+  initPasswordStrength();
+  initStepper();
 
-  if (!isValidCEP(cepDigits)) {
-    setFieldError("cep", "CEP inválido.");
-    return;
-  }
+  const formEl = document.getElementById("registerForm");
+  if (!formEl) return;
 
-  try {
-    const response = await fetch(`https://brasilapi.com.br/api/cep/v1/${cepDigits}`);
-    if (!response.ok) throw new Error("CEP não encontrado");
+  formEl.addEventListener("submit", (event) => {
+    event.preventDefault();
+    clearErrors();
+    collectFormValues();
+    const errors = validateFields();
 
-    const data = await response.json();
-    const mapa = {
-      estado: "state",
-      cidade: "city",
-      bairro: "neighborhood",
-      rua: "street",
-    };
+    // Termos de uso
+    const termsEl = document.getElementById("termsCheck");
+    if (termsEl && !termsEl.checked) {
+      errors.terms = ["Você precisa aceitar os Termos de Uso"];
+      termsEl.classList.add("is-invalid");
+      const termsFb = document.getElementById("error-terms");
+      if (termsFb) {
+        termsFb.appendChild(buildErrorList(errors.terms));
+        termsFb.style.display = "flex";
+      }
+    }
 
-    Object.keys(mapa).forEach(id => {
-      const input = document.getElementById(id);
-      input.value = data[mapa[id]] || "";
-      input.classList.add("readonly-style");
-      setFieldError(id, null);
+    Object.entries(errors).forEach(([f, msg]) => {
+      if (f !== "terms") setFieldError(f, msg);
     });
 
-    document.getElementById("estado").value =
-      document.getElementById("estado").value.toUpperCase();
+    if (Object.keys(errors).length === 0) { formEl.submit(); return; }
 
-    setFieldError("cep", null);
-  } catch (error) {
-    console.error(error);
-    setFieldError("cep", "Não foi possível localizar o CEP.");
-  }
+    // Navega à etapa do primeiro erro e foca o campo
+    const firstErrField = fieldOrder.find((f) => errors[f]);
+    if (firstErrField) {
+      const targetStep = fieldStepMap[firstErrField] || _currentStep;
+      if (targetStep !== _currentStep) _goToStep(targetStep);
+      requestAnimationFrame(() => {
+        const el = document.getElementById(firstErrField);
+        if (!el) return;
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        setTimeout(() => el.focus(), 300);
+      });
+    }
+  });
 });

@@ -1,105 +1,272 @@
 @import url("../colors.css");
 
+/* ─── Base ─────────────────────────────────────────── */
 body {
   font-family: var(--font-primary);
   user-select: none;
   margin: 0;
+  background: var(--color-bg);
 }
 
+/* ─── Lado da apresentação ──────────────────────────── */
+.presentation-section {
+  background: linear-gradient(
+    160deg,
+    var(--color-red-head) 0%,
+    var(--red-700) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.presentation-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.presentation-img {
+  max-height: 65vh;
+  object-fit: contain;
+  position: relative;
+  filter: drop-shadow(0 16px 40px rgba(0, 0, 0, 0.25));
+}
+
+/* ─── Painel do formulário ──────────────────────────── */
+.auth-form-side {
+  overflow-y: auto;
+}
+
+.auth-card {
+  max-width: 420px;
+  padding: 2.5rem 2rem;
+  background: #fff;
+  border-radius: var(--radius-2xl, 16px);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* ─── Logo ──────────────────────────────────────────── */
+.auth-logo {
+  height: 120px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.auth-logo:hover {
+  transform: scale(1.04);
+}
+
+/* ─── Input Group ───────────────────────────────────── */
+.auth-field-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.auth-input-group {
+  align-items: stretch;
+  border: 1.5px solid var(--color-border-input);
+  border-radius: 10px !important;
+  overflow: hidden;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.auth-input-group:focus-within {
+  border-color: var(--color-red-head);
+  box-shadow: 0 0 0 3px rgba(239, 53, 56, 0.12);
+}
+
+.auth-input-group .input-group-text,
+.auth-input-group .form-floating,
+.auth-input-group .btn {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.auth-input-icon {
+  background: var(--gray-100);
+  color: var(--gray-600);
+  padding: 0 1rem;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.auth-input-group:focus-within .auth-input-icon {
+  color: var(--color-red-head);
+}
+
+.auth-input {
+  border: none;
+  background: transparent;
+  padding-left: 0.75rem !important;
+}
+.auth-input:focus {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+/* Floating label ajuste */
+.auth-input-group .form-floating > label {
+  padding-left: 0.75rem;
+  color: var(--gray-500);
+  font-size: 0.875rem;
+}
+
+.auth-input-group .form-floating > .form-control:focus ~ label,
+.auth-input-group
+  .form-floating
+  > .form-control:not(:placeholder-shown)
+  ~ label {
+  color: var(--color-red-head);
+  transform: scale(0.85) translateY(-0.5rem);
+}
+
+/* Botão mostrar senha */
+.auth-toggle-pass {
+  background: var(--gray-100);
+  color: var(--gray-600);
+  border-left: 1px solid var(--color-border-input) !important;
+  padding: 0 0.9rem;
+  transition: color 0.2s;
+}
+.auth-toggle-pass:hover {
+  color: var(--color-red-head);
+  background: var(--gray-150);
+}
+
+/* ─── Mensagem de erro inline ───────────────────────── */
+.auth-error-msg {
+  font-size: 0.78rem;
+  color: var(--color-error);
+  min-height: 1rem;
+  padding-left: 0.25rem;
+  display: none;
+}
+.auth-error-msg.visible {
+  display: block;
+}
+
+/* ─── Checkbox ──────────────────────────────────────── */
+.auth-check {
+  accent-color: var(--color-red-head);
+}
+
+/* ─── Link ──────────────────────────────────────────── */
+.auth-link {
+  color: var(--color-red-head);
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.auth-link:hover {
+  opacity: 0.75;
+  text-decoration: underline;
+}
+
+/* ─── Botão principal ───────────────────────────────── */
+.btn-auth-primary {
+  background: linear-gradient(
+    135deg,
+    var(--color-red-head) 0%,
+    var(--red-600) 100%
+  );
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border: none;
+  border-radius: 10px;
+  transition:
+    filter 0.2s ease,
+    transform 0.15s ease;
+}
+.btn-auth-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  color: #fff;
+}
+.btn-auth-primary:active {
+  transform: translateY(0);
+}
+
+/* ─── Divisor "ou continue com" ─────────────────────── */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--gray-500);
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+/* ─── Botões sociais ────────────────────────────────── */
+.auth-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1.5px solid var(--color-border);
+  background: #fff;
+  color: var(--gray-800);
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.55rem 1rem;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+}
+.auth-social-btn:hover {
+  border-color: var(--gray-400);
+  background: var(--gray-50);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+.social-btn-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ─── Responsivo ────────────────────────────────────── */
+@media (max-width: 768px) {
+  .presentation-section {
+    display: none !important;
+  }
+  .auth-card {
+    box-shadow: none;
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* ─── Legado mantido para compatibilidade ───────────── */
 .titulo {
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--space-5);
   color: var(--color-text-body);
 }
-
-.presentation-section {
-  background: linear-gradient(to bottom, var(--color-red-head), var(--red-700));
-}
-
-.presentation-section img {
-  max-height: 90%;
-  object-fit: contain;
-}
-
 .logo-container img {
   height: 150px;
 }
-
-.input-group-text {
-  background: none;
-  border: none;
-}
-
-.register-link {
-  font-size: var(--font-size-sm);
-}
-
-.social-icons img {
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  border: 1px solid var(--gray-850);
-  border-radius: var(--radius-pill);
-  transition: var(--transition-slow);
-}
-
-.social-icons img:hover {
-  transform: scale(1.1);
-  border: 1px solid var(--color-red-head);
-}
-
-/* Inputs com ícones */
-.input-with-icon {
-  position: relative;
-}
-
-.input-icon {
-  position: absolute;
-  left: 18px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--gray-600);
-  z-index: var(--z-raised);
-}
-
-.input-with-icon input {
-  padding-left: 40px;
-}
-
-.toggle-password {
-  cursor: pointer;
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--gray-600);
-  z-index: var(--z-raised);
-}
-
 .btn-custom {
   background-color: var(--color-red-head);
   border-color: var(--color-red-head);
   color: var(--color-text-inverse);
   font-weight: var(--font-weight-bold);
-  font-family: var(--font-primary);
-  transition:
-    background-color var(--transition-fast),
-    border-color var(--transition-fast);
 }
-
 .btn-custom:hover {
   background-color: var(--color-primary-dark);
   border-color: var(--color-primary-dark);
   color: var(--color-text-inverse);
-}
-
-@media (max-width: 768px) {
-  .presentation-section {
-    display: none;
-  }
-
-  .logo-container img {
-    height: 120px;
-  }
 }

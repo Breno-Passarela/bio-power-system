@@ -1,81 +1,679 @@
 @import url("../components/buttons/button-register.css");
 @import url("../components/error/error-message.css");
 @import url("../components/inputs/input-register.css");
-
-/* @font-face {
-  font-family: Montserrat;
-  src: url("../../../fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
-    format("truetype");
-} */
+@import url("../colors.css");
 
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
 }
 
-hr{
-  color: var(--color-primary);
-}
-
-.titulo {
-  font-size: 24px;
-  font-weight: var(--font-weight-bold);
-  margin-bottom: 20px;
-  color: var(--color-text-body);
-}
-
+/* ─── Layout wrapper ────────────────────────────────────── */
 body {
+  background: var(--color-bg);
+  min-height: 100vh;
+}
+
+.register-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--color-surface);
-  user-select: none;
+  min-height: 100vh;
 }
 
-.container {
-  background-color: var(--color-text-inverse);
-  padding: 40px 30px;
-  border-radius: var(--radius-2xl);
-  width: 100%;
-  max-width: 90vw;
-}
-
-.logo-container {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.Suplementos {
-  font-size: 32px;
-}
-
-.img-flex-container {
+/* ─── Painel lateral melhorado ──────────────────────────── */
+.register-aside {
+  width: 340px;
+  flex-shrink: 0;
+  background: linear-gradient(
+    160deg,
+    var(--color-red-head) 0%,
+    var(--red-700) 100%
+  );
+  position: sticky;
+  top: 0;
+  height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 40px;
-  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2.5rem 2rem;
+  overflow: hidden;
 }
 
-.img-flex-container img {
-  max-width: 100%;
-  height: auto;
+.register-aside::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
-.register-link {
-  margin-top: 16px;
+.aside-content {
+  position: relative;
   text-align: center;
-  font-size: 14px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
-.link-register {
-  color: var(--color-blue-link);
+.aside-logo {
+  height: 110px;
+  margin-bottom: 1.25rem;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
 }
 
-.link-register:hover {
+.aside-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.aside-subtitle {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+/* Benefits lista melhorada */
+.aside-benefits {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  margin-bottom: 1.75rem;
+}
+
+.aside-benefits li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  opacity: 0.95;
+}
+
+.benefit-icon {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  backdrop-filter: blur(4px);
+}
+
+.aside-benefits li div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.aside-benefits li strong {
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.aside-benefits li span {
+  font-size: 0.76rem;
+  opacity: 0.75;
+  line-height: 1.3;
+}
+
+/* Stats no rodapé do painel */
+.aside-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.aside-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.aside-stat-num {
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.aside-stat-label {
+  font-size: 0.68rem;
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+.aside-stat-divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.25);
+  margin: 0 0.25rem;
+}
+
+/* ─── Área do formulário ────────────────────────────────── */
+.register-main {
+  flex: 1;
+  padding: 3rem 3rem 4rem;
+  overflow-y: auto;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ─── Stepper header ─────────────────────────────────────── */
+.stepper-header {
+  margin-bottom: 2rem;
+}
+
+/* ─── Stepper ────────────────────────────────────────────── */
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.stepper-item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.stepper-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: 2.5px solid var(--color-border);
+  background: #fff;
+  color: var(--gray-400);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.stepper-item.active .stepper-circle {
+  background: var(--color-red-head);
+  border-color: var(--color-red-head);
+  color: #fff;
+  box-shadow: 0 0 0 6px rgba(239, 53, 56, 0.12);
+}
+
+.stepper-item.completed .stepper-circle {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: #fff;
+  font-size: 0;
+  box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.12);
+}
+
+.stepper-item.completed .stepper-circle::after {
+  content: "\f00c";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 0.85rem;
+}
+
+.stepper-label {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+
+.stepper-item.active .stepper-label {
+  color: var(--color-red-head);
+}
+.stepper-item.completed .stepper-label {
+  color: var(--color-success);
+}
+
+.stepper-line {
+  flex: 1;
+  height: 2.5px;
+  background: var(--color-border);
+  margin: 0 0.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+  transition: background 0.4s ease;
+}
+
+.stepper-line.completed {
+  background: var(--color-success);
+}
+
+/* ─── Barra de progresso ─────────────────────────────────── */
+.step-progress-bar {
+  height: 5px;
+  background: var(--gray-200);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.step-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-red-head), var(--red-400));
+  border-radius: 999px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.step-progress-label {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  margin: 0.3rem 0 0;
+  font-weight: 500;
+}
+
+/* ─── Card de etapa ──────────────────────────────────────── */
+.step-card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 2rem 2rem 1.5rem;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+}
+
+.step-card-header {
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ─── Heading da etapa ───────────────────────────────────── */
+.step-heading {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gray-850);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 0.3rem;
+}
+
+.step-heading-icon {
+  width: 34px;
+  height: 34px;
+  background: var(--color-primary-bg);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-red-head);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.step-heading-sub {
+  font-size: 0.83rem;
+  color: var(--gray-500);
+  margin: 0;
+  padding-left: 3rem;
+}
+
+/* ─── Painel de etapa ────────────────────────────────────── */
+.step-panel {
+  animation: none;
+}
+
+.step-enter {
+  animation: stepFadeIn 0.3s ease forwards;
+}
+
+@keyframes stepFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ─── Helper text / hint ─────────────────────────────────── */
+.field-hint {
+  display: block;
+  font-size: 0.73rem;
+  color: var(--gray-500);
+  margin-top: 0.25rem;
+  padding-left: 0.25rem;
+}
+
+.field-label-above {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 0.4rem;
+}
+
+.badge-autofill {
+  background: linear-gradient(135deg, var(--color-red-head), var(--red-400));
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* ─── Banner auto-fill CEP ───────────────────────────────── */
+.cep-autofill-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--color-primary-bg);
+  border: 1px solid var(--color-primary-border);
+  border-radius: 10px;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.82rem;
+  color: var(--color-red-head);
+  margin-bottom: 1.5rem;
+}
+
+.cep-autofill-banner i {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* ─── Input group com ícone à ESQUERDA ───────────────────── */
+.floating-input-group .input-group-text:first-child {
+  border-top-left-radius: 8px !important;
+  border-bottom-left-radius: 8px !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+/* ─── Navegação entre etapas ─────────────────────────────── */
+.step-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border);
+  margin-top: 1.5rem;
+}
+
+.btn-step-next {
+  background: linear-gradient(
+    135deg,
+    var(--color-red-head) 0%,
+    var(--red-600) 100%
+  );
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  padding: 0.65rem 1.75rem;
+  transition:
+    filter 0.2s,
+    transform 0.15s,
+    box-shadow 0.2s;
+  margin-left: auto;
+  box-shadow: 0 3px 12px rgba(239, 53, 56, 0.3);
+}
+.btn-step-next:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(239, 53, 56, 0.35);
+  color: #fff;
+}
+
+.btn-step-back {
+  background: transparent;
+  color: var(--gray-600);
+  font-weight: 600;
+  border: 1.5px solid var(--color-border);
+  border-radius: 10px;
+  padding: 0.65rem 1.5rem;
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    color 0.2s;
+}
+.btn-step-back:hover {
+  border-color: var(--gray-400);
+  background: var(--gray-50);
+  color: var(--gray-800);
+}
+
+.btn-step-submit {
+  background: linear-gradient(
+    135deg,
+    #1b7d34 0%,
+    var(--color-success-light) 100%
+  );
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  padding: 0.65rem 1.75rem;
+  transition:
+    filter 0.2s,
+    transform 0.15s,
+    box-shadow 0.2s;
+  margin-left: auto;
+  box-shadow: 0 3px 12px rgba(46, 125, 50, 0.3);
+}
+.btn-step-submit:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.35);
+  color: #fff;
+}
+
+/* Botão picker de data */
+.btn-pick-date {
+  background: var(--gray-100);
+  border-left: 1px solid var(--color-border-input) !important;
+  color: var(--gray-600);
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.btn-pick-date:hover {
+  background: var(--gray-200);
+  color: var(--gray-800);
+}
+
+/* ─── Link ────────────────────────────────────────────────── */
+.reg-link {
+  color: var(--color-red-head);
+  text-decoration: none;
+}
+.reg-link:hover {
   text-decoration: underline;
+}
+
+/* ─── Indicador de força da senha ───────────────────────── */
+.password-strength-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.25rem 0;
+}
+
+.pass-strength-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--gray-600);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.password-strength-bar {
+  flex: 1;
+  height: 7px;
+  background: var(--gray-200);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.password-strength-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  transition:
+    width 0.35s ease,
+    background 0.35s ease;
+}
+
+.password-strength-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  min-width: 70px;
+  text-align: right;
+}
+
+/* ─── Checklist de requisitos de senha ───────────────────── */
+.pass-requirements {
+  background: var(--gray-50);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  height: 100%;
+}
+
+.pass-req-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--gray-700);
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.pass-req-title i {
+  color: var(--color-red-head);
+}
+
+.pass-req-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.pass-req-list li {
+  font-size: 0.8rem;
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.2s;
+}
+
+.pass-req-list li i {
+  font-size: 0.65rem;
+  width: 14px;
+  text-align: center;
+  transition: color 0.2s;
+  color: var(--gray-400);
+}
+
+.pass-req-list li.req-ok {
+  color: var(--color-success);
+}
+.pass-req-list li.req-ok i {
+  color: var(--color-success);
+}
+
+.pass-req-list li.req-fail {
+  color: var(--color-error);
+}
+.pass-req-list li.req-fail i {
+  color: var(--color-error);
+}
+
+/* ─── Card de dica de segurança ──────────────────────────── */
+.security-tip-card {
+  background: linear-gradient(135deg, #fffbf0, #fff8e1);
+  border: 1px solid #f5d77a;
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.security-tip-icon {
+  width: 32px;
+  height: 32px;
+  background: #f5a623;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.security-tip-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #7a4f00;
+  margin: 0 0 0.25rem;
+}
+
+.security-tip-text {
+  font-size: 0.78rem;
+  color: #8a6000;
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* ─── Termos de uso ──────────────────────────────────────── */
+.terms-check-wrap {
+  background: var(--gray-50);
+  border: 1.5px solid var(--color-border);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  transition: border-color 0.2s;
+}
+
+.terms-check-wrap:has(input:checked) {
+  border-color: var(--color-success);
+  background: var(--color-success-bg);
+}
+
+.terms-check {
+  accent-color: var(--color-success);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.terms-check-label {
+  font-size: 0.82rem;
+  color: var(--gray-700);
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+/* ─── Inputs flutuantes ─────────────────────────────────── */
+hr {
+  color: var(--color-primary);
 }
 
 .readonly-style {
@@ -84,13 +682,11 @@ body {
   color: var(--color-text-muted);
 }
 
-/* Esconder ícone de data no chrome */
 input[type="date"]::-webkit-calendar-picker-indicator {
   display: none !important;
   -webkit-appearance: none;
 }
 
-/* Esconder  ícone no firefox*/
 input[type="date"],
 input[type="date"]:focus {
   -webkit-text-fill-color: FieldText;
@@ -108,20 +704,31 @@ input[type="date"]:focus {
 .floating-input-group .form-floating > .form-control,
 .floating-input-group .form-floating > .form-select,
 .floating-input-group .form-floating > textarea {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+  border-radius: 0;
   padding-top: 1.375rem;
   padding-bottom: 0.5rem;
 }
 
-.floating-input-group .input-group-text,
-.floating-input-group > .btn {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+.floating-input-group > .btn:last-child,
+.floating-input-group > .input-group-text:last-child {
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+}
+
+.floating-input-group .form-floating:last-child > .form-control,
+.floating-input-group .form-floating:last-child > .form-select {
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
 }
 
 .floating-input-group .input-group-text {
   background-color: var(--gray-100);
+  border-color: var(--color-border-input);
+  color: var(--gray-600);
+}
+
+.floating-input-group:focus-within .input-group-text {
+  color: var(--color-red-head);
 }
 
 .floating-input-group textarea.form-control {
@@ -139,4 +746,44 @@ input[type="date"]:focus {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+}
+
+/* Foco no grupo de input */
+.floating-input-group:focus-within {
+  outline: none;
+}
+
+.floating-input-group .form-control:focus,
+.floating-input-group .form-select:focus {
+  box-shadow: none;
+  border-color: var(--color-red-head);
+}
+
+/* ─── Responsivo ─────────────────────────────────────────── */
+@media (max-width: 991px) {
+  .register-main {
+    padding: 2rem 1.5rem 3rem;
+  }
+  .step-card {
+    padding: 1.5rem 1.25rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .register-main {
+    padding: 1.5rem 1rem 2.5rem;
+  }
+  .stepper-label {
+    display: none;
+  }
+  .stepper-circle {
+    width: 36px;
+    height: 36px;
+  }
+  .step-card {
+    padding: 1.25rem 1rem;
+  }
+  .step-heading-sub {
+    padding-left: 0;
+  }
 }
