@@ -7,41 +7,43 @@
 
 .input-icon-container i {
   position: absolute;
-  right: 16px;
+  right: var(--space-4);
   top: 50%;
   transform: translateY(-50%);
-  color: #888;
+  color: var(--color-text-muted);
   cursor: pointer;
 }
 
 .input-auth-input {
   width: 100%;
-  padding: 14px 44px 14px 14px; 
-  border: 1px solid #F5F5F5;
-  background-color: #F5F5F5;
+  padding: 14px 44px 14px 14px;
+  border: 1px solid var(--gray-100);
+  background-color: var(--gray-100);
   outline: none;
+  font-family: var(--font-primary);
+  transition: box-shadow var(--transition-fast);
 }
 
 .input-auth-input:focus {
-  box-shadow: 0 0 0 2px rgba(200, 0, 0, 1);
+  box-shadow: 0 0 0 2px var(--color-primary);
 }
 
 .input-auth-label {
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
+  font-family: var(--font-primary);
 }
 
 .input-auth-input[type="email"],
 .input-auth-input[type="password"],
 .input-auth-input[type="text"] {
-  padding: 20px;
-  border: 1px solid #F5F5F5;
-  background-color: #F5F5F5;
+  padding: var(--space-5);
+  border: 1px solid var(--gray-100);
+  background-color: var(--gray-100);
   outline: none;
 }
 
 .input-auth-input[type="email"]:focus,
 .input-auth-input[type="password"]:focus {
-    box-shadow: 0 0 0 2px rgba(200, 0, 0, 1);
+  box-shadow: 0 0 0 2px var(--color-primary);
 }
-

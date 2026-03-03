@@ -1,5 +1,5 @@
 // Lista de produtos
-const products = [
+/* const products = [
   {
     nome: "Creatina Monohidratada 250g",
     preco: "R$79,92",
@@ -165,7 +165,7 @@ const products = [
     marca: "Adaptogen",
     sabor: "Melancia",
   },
-];
+]; */
 
 // Salvar produto e redirecionar
 function goToProductBuy(product) {
@@ -189,11 +189,11 @@ function renderProdutosFiltrados(produtos) {
       <p class="credit">${product.credito}</p>
       <div class="buttons">
         <button class="buy" onclick="event.stopPropagation(); goToProductBuy(${JSON.stringify(
-          product
-        ).replace(/"/g, "&quot;")})">Comprar</button>
+      product
+    ).replace(/"/g, "&quot;")})">Comprar</button>
         <button class="cart-icon" onclick="event.stopPropagation(); handleAddToCart(event, ${JSON.stringify(
-          product
-        ).replace(/"/g, "&quot;")})" title="Adicionar ao carrinho">
+      product
+    ).replace(/"/g, "&quot;")})" title="Adicionar ao carrinho">
           <i class="fa-solid fa-cart-shopping"></i>
         </button>
       </div>

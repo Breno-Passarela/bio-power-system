@@ -1,3 +1,5 @@
+@import url("../../colors.css");
+
 .bestsellers {
   padding: 2rem 3rem;
   margin-top: 1rem;
@@ -12,16 +14,16 @@
 
 .bestsellers-title {
   font-size: 2rem;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   font-family: "Inter", sans-serif;
-  color: #000;
+  color: var(--color-text);
   margin: 0;
 }
 
 .bestsellers-line {
   flex-grow: 1;
   height: 1.5px;
-  background-color: #000;
+  background-color: var(--color-text);
 }
 
 .bestsellers-list {
@@ -34,10 +36,10 @@
 
 .product-card {
   position: relative;
-  border: 1px solid #eee;
-  border-radius: 20px;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-3xl);
   padding: 2.5rem 1.5rem 1.5rem;
-  background: white;
+  background: var(--color-surface);
   text-align: center;
   transition: transform 0.3s ease;
   overflow: visible;
@@ -65,22 +67,22 @@
 .installments {
   margin: 0.25rem 0;
   text-align: start;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-secondary);
 }
 
 .price {
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
   font-size: 1.2rem;
 }
 
 .price span {
   font-size: 0.9rem;
   font-weight: normal;
-  color: #555;
+  color: var(--gray-700);
 }
 
 .installments {
-  color: #2e7d32;
+  color: var(--color-success);
   font-size: 0.9rem;
 }
 
@@ -92,50 +94,50 @@
   margin-top: 1rem;
 }
 .cart-btn {
-  background: white;
+  background: var(--color-surface);
   border: 1px solid red;
   color: red;
   box-shadow: 0 2px 6px rgba(255, 0, 0, 0.3);
   padding: 0.6rem 0.9rem;
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   font-size: 1.3rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: var(--transition-fast);
 }
 
 .cart-btn:hover {
   background: red;
-  color: white;
+  color: var(--color-text-inverse);
   box-shadow: 0 4px 12px rgba(255, 0, 0, 0.5);
 }
 
 .buy-btn {
   background: green;
-  color: white;
+  color: var(--color-text-inverse);
   border: none;
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   padding: 0.6rem 1.8rem;
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: background 0.2s ease;
   font-size: 1rem;
 }
 
 .cart-btn {
-  background: white;
+  background: var(--color-surface);
   border: 1px solid red;
   color: red;
   box-shadow: 0 2px 6px rgba(255, 0, 0, 0.3);
   padding: 0.6rem 0.9rem;
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   font-size: 1.3rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: var(--transition-fast);
 }
 
 .cart-btn:hover {
   background: red;
-  color: white;
+  color: var(--color-text-inverse);
   box-shadow: 0 4px 12px rgba(255, 0, 0, 0.5);
 }
 
@@ -144,12 +146,12 @@
 }
 
 .cart-btn:hover {
-  background-color: #ff0000;
-  color: #fff;
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
 }
 
 .buy-btn:hover {
-  background-color: #256729;
+  background-color: var(--color-success);
 }
 
 @media (max-width: 600px) {

@@ -1,17 +1,20 @@
+@import url("../colors.css");
+
 body {
-  font-family: sans-serif;
+  font-family: var(--font-primary);
   user-select: none;
   margin: 0;
 }
 
 .titulo {
-  font-size: 32px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #333;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-5);
+  color: var(--color-text-body);
 }
+
 .presentation-section {
-  background: linear-gradient(to bottom, #c80000, #7d0808);
+  background: linear-gradient(to bottom, var(--color-red-head), var(--red-700));
 }
 
 .presentation-section img {
@@ -29,24 +32,24 @@ body {
 }
 
 .register-link {
-  font-size: 14px;
+  font-size: var(--font-size-sm);
 }
 
 .social-icons img {
   width: 50px;
   height: 50px;
   cursor: pointer;
-  border: 1px solid rgb(54, 54, 54);
-  border-radius: 30px;
-  transition: 0.3s;
+  border: 1px solid var(--gray-850);
+  border-radius: var(--radius-pill);
+  transition: var(--transition-slow);
 }
 
 .social-icons img:hover {
   transform: scale(1.1);
-  border: 1px solid #c80000;
+  border: 1px solid var(--color-red-head);
 }
 
-/* Novos estilos para inputs com ícones */
+/* Inputs com ícones */
 .input-with-icon {
   position: relative;
 }
@@ -56,8 +59,8 @@ body {
   left: 18px;
   top: 50%;
   transform: translateY(-50%);
-  color: #6c757d;
-  z-index: 5;
+  color: var(--gray-600);
+  z-index: var(--z-raised);
 }
 
 .input-with-icon input {
@@ -70,21 +73,25 @@ body {
   right: 12px;
   top: 50%;
   transform: translateY(-50%);
-  color: #6c757d;
-  z-index: 5;
+  color: var(--gray-600);
+  z-index: var(--z-raised);
 }
 
 .btn-custom {
-  background-color: #c80000;
-  border-color: #c80000;
-  color: white;
-  font-weight: bold;
+  background-color: var(--color-red-head);
+  border-color: var(--color-red-head);
+  color: var(--color-text-inverse);
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-primary);
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
 }
 
 .btn-custom:hover {
-  background-color: #a30000;
-  border-color: #a30000;
-  color: white;
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  color: var(--color-text-inverse);
 }
 
 @media (max-width: 768px) {

@@ -16,28 +16,28 @@
 }
 
 hr{
-  color: #dc3545;
+  color: var(--color-primary);
 }
 
 .titulo {
   font-size: 24px;
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
   margin-bottom: 20px;
-  color: #333;
+  color: var(--color-text-body);
 }
 
 body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #ffffff;
+  background: var(--color-surface);
   user-select: none;
 }
 
 .container {
-  background-color: #ffffff;
+  background-color: var(--color-text-inverse);
   padding: 40px 30px;
-  border-radius: 16px;
+  border-radius: var(--radius-2xl);
   width: 100%;
   max-width: 90vw;
 }
@@ -79,9 +79,9 @@ body {
 }
 
 .readonly-style {
-  background-color: #f8f9fa;
+  background-color: var(--gray-100);
   pointer-events: none;
-  color: #6c757d;
+  color: var(--color-text-muted);
 }
 
 /* Esconder ícone de data no chrome */
@@ -121,7 +121,7 @@ input[type="date"]:focus {
 }
 
 .floating-input-group .input-group-text {
-  background-color: #f8f9fa;
+  background-color: var(--gray-100);
 }
 
 .floating-input-group textarea.form-control {

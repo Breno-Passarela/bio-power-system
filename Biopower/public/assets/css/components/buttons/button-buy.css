@@ -1,21 +1,33 @@
 @import "../../colors.css";
 
 .buy-button {
-    padding: 20px;
-    width: 100%;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size:larger;
-    background-color: var(--color-green-buy);
-    border: 0px;
-    border-radius: 12px;
+  padding: var(--space-5);
+  width: 100%;
+  text-align: center;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  background-color: var(--color-success-light);
+  border: 0;
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+
+.buy-button:hover {
+  opacity: 0.85;
 }
 
 .buy-button-high {
-    padding: 20px;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    background-color: var(--color-green-buy);
-    border: 0px;
-    border-radius: 12px;
+  padding: var(--space-5);
+  text-align: center;
+  font-family: var(--font-primary);
+  background-color: var(--color-success-light);
+  border: 0;
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+
+.buy-button-high:hover {
+  opacity: 0.85;
 }

@@ -1,7 +1,9 @@
+@import url("../../colors.css");
+
 /* =========== MODAL =========== */
 
 .modal {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-secondary);
   display: none;
   position: fixed;
   z-index: 999;
@@ -15,12 +17,12 @@
 }
 
 .modal-content {
-  background-color: #fff;
+  background-color: var(--color-text-inverse);
   margin: auto;
   padding: 80px;
   width: 90%;
   max-width: 1000px;
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   position: relative;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
@@ -36,7 +38,7 @@
 }
 
 .modal-header h2 {
-  color: #990000;
+  color: var(--color-primary-dark);
   margin: 0;
   font-size: 1.8rem;
 }
@@ -44,14 +46,14 @@
 .fechar {
   position: static;
   font-size: 28px;
-  font-weight: bold;
-  color: #aaa;
+  font-weight: var(--font-weight-bold);
+  color: var(--gray-400);
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
 .fechar:hover {
-  color: #990000;
+  color: var(--color-primary-dark);
 }
 
 /* =========== CATEGORIAS =========== */
@@ -72,7 +74,7 @@
 .categoria-coluna h3 {
   font-size: 1.1rem;
   margin-bottom: 10px;
-  color: #ff0000;
+  color: var(--color-primary);
 }
 
 .categoria-coluna ul {
@@ -87,12 +89,12 @@
 
 .categoria-coluna ul li a {
   text-decoration: none;
-  color: #333;
+  color: var(--color-text-body);
   transition: color 0.3s ease;
 }
 
 .categoria-coluna ul li a:hover {
-  color: #990000;
+  color: var(--color-primary-dark);
 }
 
 #categoriaArrow {

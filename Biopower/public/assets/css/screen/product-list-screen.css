@@ -1,63 +1,632 @@
+@import url("../colors.css");
 @import url("../components/sidebar-filtro/sidebar.css");
 @import url("../components/cards/cards-list.css");
 
-* {
-  margin: 0px;
-  padding: 0px;
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-header {
+body {
+  font-family: var(--font-primary);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* =============================================
+   BANNER DA LOJA
+============================================= */
+.store-banner {
+  background: linear-gradient(135deg, var(--gray-900) 0%, var(--red-800) 60%, var(--color-primary) 100%);
+  padding: 56px var(--space-10);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.store-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/assets/imgs/product/product1.png') center/cover no-repeat;
+  opacity: 0.04;
+}
+
+.store-banner-content {
+  position: relative;
+  z-index: var(--z-raised);
+}
+
+.store-breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: var(--space-3);
+}
+
+.store-breadcrumb a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.store-breadcrumb a:hover {
+  color: var(--color-primary-light);
+}
+
+.store-breadcrumb i {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.store-banner-title {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-text-inverse);
+  letter-spacing: var(--letter-spacing-tight);
+  margin-bottom: var(--space-2);
+}
+
+.store-banner-sub {
+  font-size: var(--font-size-base);
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* =============================================
+   BOTÃO SIDEBAR MOBILE
+============================================= */
+.sidebar-toggle-btn {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  border: none;
+  padding: 10px var(--space-5);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  margin: var(--space-4) var(--space-4) 0;
+  border-radius: var(--radius-lg);
+  transition: background var(--transition-base);
+}
+
+.sidebar-toggle-btn:hover {
+  background: var(--color-primary-dark);
+}
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--color-overlay-light);
+  z-index: var(--z-fixed);
+}
+
+.sidebar-overlay.visible {
+  display: block;
+}
+
+/* =============================================
+   LAYOUT PRINCIPAL
+============================================= */
+.store-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-5) 120px;
+}
+
+/* =============================================
+   ÁREA DE PRODUTOS
+============================================= */
+.products-area {
+  flex: 1;
+  min-width: 0;
+  padding-left: var(--space-6);
+}
+
+/* ---- Barra de ordenação ---- */
+.sort-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
-  border-bottom: 1px solid #ddd;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-3) var(--space-5);
+  margin-bottom: var(--space-5);
+  gap: var(--space-3);
+  flex-wrap: wrap;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #e60023;
-}
-.logo span {
-  color: #000;
+.sort-count {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
 }
 
-.search-bar {
-  flex: 1;
-  margin: 0 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  border: 1px solid #ccc;
+.sort-count strong {
+  color: var(--color-primary);
+  font-size: 1.05rem;
 }
 
-nav a {
-  margin: 0 0.5rem;
-  color: red;
-  text-decoration: none;
-  font-weight: bold;
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
 }
 
-.cart-button {
-  background: white;
-  border: 1px solid red;
-  color: red;
-  box-shadow: 0 2px 6px rgba(255, 0, 0, 0.3);
-  padding: 0.6rem 0.9rem;
-  border-radius: 12px;
-  font-size: 1.3rem;
+.sort-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.sort-select {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 7px 32px 7px 12px;
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  background: var(--color-bg);
   cursor: pointer;
-  transition: all 0.2s ease;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  transition: border-color var(--transition-base);
 }
 
-.cart-button:hover {
-  background: red;
-  color: white;
-  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.5);
+.sort-select:focus {
+  border-color: var(--color-primary);
 }
 
+/* ---- Grid de produtos ---- */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-5);
+}
+
+/* ---- Estado vazio pós-filtro ---- */
+.no-results-msg {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px var(--space-5);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.no-results-msg i {
+  font-size: 3rem;
+  margin-bottom: var(--space-4);
+  opacity: 0.35;
+}
+
+.no-results-msg h3 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.no-results-msg p {
+  font-size: 0.95rem;
+  margin-bottom: var(--space-5);
+}
+
+.no-results-msg button {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  border: none;
+  padding: 10px var(--space-6);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: background var(--transition-base);
+}
+
+.no-results-msg button:hover {
+  background: var(--color-primary-dark);
+}
+
+/* ---- Estado vazio inicial ---- */
+.empty-state {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px var(--space-5);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.empty-state i {
+  font-size: 3.5rem;
+  opacity: 0.3;
+  margin-bottom: var(--space-4);
+}
+
+.empty-state h3 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+/* =============================================
+   RESPONSIVO
+============================================= */
+@media (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    height: 100vh;
+    z-index: var(--z-sidebar);
+    transition: left var(--transition-slow);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+    overflow-y: auto;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .sidebar-toggle-btn {
+    display: flex;
+  }
+
+  .store-layout {
+    padding: var(--space-2) var(--space-3) 120px;
+  }
+
+  .products-area {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 540px) {
+  .store-banner {
+    padding: var(--space-8) var(--space-5);
+  }
+
+  .sort-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .products {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: var(--space-3);
+  }
+}
+
+/* LEGADO — sobrescreve regras antigas dos @import */
 main {
+  display: unset;
+}
+
+/* =============================================
+   BANNER DA LOJA
+============================================= */
+.store-banner {
+  background: linear-gradient(135deg, var(--color-text) 0%, var(--red-800) 60%, var(--color-primary) 100%);
+  padding: 56px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.store-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/assets/imgs/product/product1.png') center/cover no-repeat;
+  opacity: 0.04;
+}
+
+.store-banner-content {
+  position: relative;
+  z-index: 1;
+}
+
+.store-breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 12px;
+}
+
+.store-breadcrumb a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.store-breadcrumb a:hover {
+  color: var(--primary-light);
+}
+
+.store-breadcrumb i {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.4);
+}
+
+.store-banner-title {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--color-text-inverse);
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+
+.store-banner-sub {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.65);
+}
+
+/* =============================================
+   BOTÃO SIDEBAR MOBILE
+============================================= */
+.sidebar-toggle-btn {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary);
+  color: var(--color-text-inverse);
+  border: none;
+  padding: 10px 20px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 16px 16px 0;
+  border-radius: 10px;
+  transition: background var(--transition);
+}
+
+.sidebar-toggle-btn:hover {
+  background: var(--primary-dark);
+}
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 200;
+}
+
+.sidebar-overlay.visible {
+  display: block;
+}
+
+/* =============================================
+   LAYOUT PRINCIPAL
+============================================= */
+.store-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 24px 20px 120px;
+}
+
+/* =============================================
+   ÁREA DE PRODUTOS
+============================================= */
+.products-area {
+  flex: 1;
+  min-width: 0;
+  padding-left: 24px;
+}
+
+/* ---- Barra de ordenação ---- */
+.sort-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.sort-count {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.sort-count strong {
+  color: var(--primary);
+  font-size: 1.05rem;
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sort-label {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.sort-select {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 32px 7px 12px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  color: var(--text);
+  background: var(--bg);
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  transition: border-color var(--transition);
+}
+
+.sort-select:focus {
+  border-color: var(--primary);
+}
+
+/* ---- Grid de produtos ---- */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* ---- Estado vazio pós-filtro ---- */
+.no-results-msg {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.no-results-msg i {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  opacity: 0.35;
+}
+
+.no-results-msg h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.no-results-msg p {
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.no-results-msg button {
+  background: var(--primary);
+  color: var(--color-text-inverse);
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.no-results-msg button:hover {
+  background: var(--primary-dark);
+}
+
+/* ---- Estado vazio inicial ---- */
+.empty-state {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.empty-state i {
+  font-size: 3.5rem;
+  opacity: 0.3;
+  margin-bottom: 16px;
+}
+
+.empty-state h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+/* =============================================
+   RESPONSIVO
+============================================= */
+@media (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    height: 100vh;
+    z-index: 300;
+    transition: left 0.3s ease;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+    overflow-y: auto;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .sidebar-toggle-btn {
+    display: flex;
+  }
+
+  .store-layout {
+    padding: 8px 12px 120px;
+  }
+
+  .products-area {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 540px) {
+  .store-banner {
+    padding: 36px 20px;
+  }
+
+  .sort-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .products {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+  }
+}
+
+/* LEGADO — sobrescreve regras antigas dos @import */
+main {
+  display: unset;
+}
   display: flex;
   padding: 1rem;
 }

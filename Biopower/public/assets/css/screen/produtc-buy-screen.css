@@ -2,17 +2,17 @@
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fff;
-  color: #333;
+  background-color: var(--color-text-inverse);
+  color: var(--color-text-body);
 }
 
 .product-buy-container {
   max-width: 1000px;
   margin: 40px auto;
   padding: 2rem;
-  background: #fff;
+  background: var(--color-surface);
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
 }
 
 .product-top {
@@ -27,7 +27,7 @@ body {
   height: auto;
   object-fit: contain;
   flex-shrink: 0;
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
 }
 
 .product-info {
@@ -40,7 +40,7 @@ body {
 
 .product-name {
   font-size: 1.8rem;
-  color: #000;
+  color: var(--color-text);
   margin: 0;
 }
 
@@ -51,26 +51,26 @@ body {
 
 .rating small {
   font-size: 0.8rem;
-  color: #555;
+  color: var(--gray-700);
   margin-left: 5px;
 }
 
 .price-main {
   font-size: 2.4rem;
-  font-weight: bold;
-  color: #000;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
   margin: 0.5rem 0 0.25rem;
 }
 
 .price-discount {
   font-size: 1rem;
-  color: #666;
+  color: var(--gray-700);
 }
 
 .price-credit {
   font-size: 1.1rem;
-  color: #00a000;
-  font-weight: bold;
+  color: var(--color-success);
+  font-weight: var(--font-weight-bold);
 }
 
 .buttons {
@@ -81,44 +81,44 @@ body {
 }
 
 .cart-icon {
-  background: white;
+  background: var(--color-surface);
   border: 1px solid red;
   color: red;
   box-shadow: 0 2px 6px rgba(255, 0, 0, 0.3);
   padding: 0.6rem 0.9rem;
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   font-size: 1.3rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: var(--transition-fast);
 }
 
 .cart-icon:hover {
-  background-color: #e60023;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
 }
 
 #buy-button {
-  background: #009900;
-  color: white;
+  background: var(--color-success);
+  color: var(--color-text-inverse);
   padding: 0.6rem 2rem;
   border: none;
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: background 0.3s ease;
 }
 
 #buy-button:hover {
-  background: #007700;
+  background: var(--color-success);
 }
 
 .product-description {
   font-size: 1rem;
   line-height: 1.6;
-  color: #444;
+  color: var(--gray-800);
   margin-top: 2rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--color-border-light);
   padding-top: 1.2rem;
 }
 

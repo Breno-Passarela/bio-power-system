@@ -1,8 +1,13 @@
 const express = require('express');
-const homeRoutes = require('./routes/homeRoutes');
+const expressEjsLayout = require("express-ejs-layouts");
+
+/* Paginas */
+const homeRoutes = require('./routes/HomeRoutes');
 const loginRoutes = require('./routes/LoginRoutes');
 const registerRoutes = require('./routes/RegisterRoutes');
-const expressEjsLayout = require("express-ejs-layouts");
+const storeRoutes = require('./routes/StoreRoutes');
+const aboutUsRoutes = require('./routes/AboutUsRoutes');
+
 
 const server = express();
 const PORT = 5000;
@@ -16,6 +21,8 @@ server.use(express.urlencoded({ extended: true }));
 server.use('/', homeRoutes);
 server.use("/login", loginRoutes);
 server.use("/register", registerRoutes);
+server.use("/store", storeRoutes);
+server.use("/about-us", aboutUsRoutes);
 
 
 

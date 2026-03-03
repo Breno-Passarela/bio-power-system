@@ -166,10 +166,10 @@ const products = [
     },
 ];
 
-class homeController {
-    home(req, res) {
-        res.render("home", { products });
+class storeController {
+    store(req, res) {
+        res.render("store", { products });
     }
 }
 
-module.exports = homeController;
+module.exports = storeController;

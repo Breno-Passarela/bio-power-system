@@ -1,5 +1,7 @@
+@import url("../../colors.css");
+
 .error-message {
-  color: #dc3545;
+  color: var(--color-primary);
   font-size: 0.85rem;
   margin-top: 4px;
   display: flex;

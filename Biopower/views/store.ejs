@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bio-Power | Loja</title>
+
+    <link rel="shortcut icon" href="/assets/imgs/img-icon-site.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="/bootstrap-5.0.2-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <link rel="stylesheet" href="/assets/css/rodape.css" />
+    <link rel="stylesheet" href="/assets/css/screen/product-list-screen.css" />
+  </head>
+
+  <body>
+
+    <!-- ===== BANNER DA LOJA ===== -->
+    <section class="store-banner">
+      <div class="store-banner-content">
+        <nav class="store-breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Início</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span>Loja</span>
+        </nav>
+        <h1 class="store-banner-title">Nossa Loja</h1>
+        <p class="store-banner-sub">Suplementos de alto desempenho para sua evolução</p>
+      </div>
+    </section>
+
+    <!-- ===== BOTÃO SIDEBAR MOBILE ===== -->
+    <button class="sidebar-toggle-btn" id="sidebarToggle" aria-label="Abrir filtros">
+      <i class="fa-solid fa-sliders"></i> Filtros
+    </button>
+
+    <!-- ===== OVERLAY MOBILE ===== -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="store-layout">
+
+      <!-- ===== SIDEBAR ===== -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <span><i class="fa-solid fa-sliders"></i> Filtrar produtos</span>
+          <button class="sidebar-close-btn" id="sidebarClose" aria-label="Fechar filtros">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- Busca rápida -->
+        <div class="sidebar-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="buscaRapida" placeholder="Buscar produto..." />
+        </div>
+
+        <!-- Marcas -->
+        <div class="filter-section">
+          <button class="filter-toggle" aria-expanded="true">
+            <span>Marcas</span><i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="filter-body">
+            <label><input type="checkbox" name="marca" value="Growth" /> Growth</label>
+            <label><input type="checkbox" name="marca" value="DUX" /> DUX</label>
+            <label><input type="checkbox" name="marca" value="Dark Lab" /> Dark Lab</label>
+            <label><input type="checkbox" name="marca" value="Integral Médica" /> Integral Médica</label>
+            <label><input type="checkbox" name="marca" value="Black Skull" /> Black Skull</label>
+          </div>
+        </div>
+
+        <!-- Preço -->
+        <div class="filter-section">
+          <button class="filter-toggle" aria-expanded="true">
+            <span>Preço</span><i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="filter-body">
+            <div class="price-range-wrap">
+              <input type="range" id="filtroPreco" min="0" max="500" value="500" />
+              <div class="price-range-labels">
+                <span>R$0</span>
+                <span id="precoLabel" class="price-max-label">R$500</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sabores -->
+        <div class="filter-section">
+          <button class="filter-toggle" aria-expanded="false">
+            <span>Sabor</span><i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="filter-body" style="display:none">
+            <label><input type="checkbox" name="sabor" value="Chocolate" /> Chocolate</label>
+            <label><input type="checkbox" name="sabor" value="Baunilha" /> Baunilha</label>
+            <label><input type="checkbox" name="sabor" value="Doce de Leite" /> Doce de Leite</label>
+            <label><input type="checkbox" name="sabor" value="Uva" /> Uva</label>
+            <label><input type="checkbox" name="sabor" value="Sem sabor" /> Sem sabor</label>
+          </div>
+        </div>
+
+        <!-- Proteína -->
+        <div class="filter-section">
+          <button class="filter-toggle" aria-expanded="false">
+            <span>Proteína</span><i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="filter-body" style="display:none">
+            <label><input type="checkbox" name="categoria" value="Whey Protein" /> Whey Protein</label>
+            <label><input type="checkbox" name="categoria" value="Albumina" /> Albumina</label>
+            <label><input type="checkbox" name="categoria" value="Caseína" /> Caseína</label>
+            <label><input type="checkbox" name="categoria" value="Blend de Proteína" /> Blend de Proteína</label>
+            <label><input type="checkbox" name="categoria" value="Proteína de Soja" /> Proteína de Soja</label>
+          </div>
+        </div>
+
+        <!-- Aminoácidos -->
+        <div class="filter-section">
+          <button class="filter-toggle" aria-expanded="false">
+            <span>Aminoácidos</span><i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="filter-body" style="display:none">
+            <label><input type="checkbox" name="categoria" value="BCAA" /> BCAA</label>
+            <label><input type="checkbox" name="categoria" value="Creatina" /> Creatina</label>
+            <label><input type="checkbox" name="categoria" value="Glutamina" /> Glutamina</label>
+            <label><input type="checkbox" name="categoria" value="Leucina" /> Leucina</label>
+          </div>
+        </div>
+
+        <!-- Carboidratos -->
+        <div class="filter-section">
+          <button class="filter-toggle" aria-expanded="false">
+            <span>Carboidratos</span><i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="filter-body" style="display:none">
+            <label><input type="checkbox" name="categoria" value="Waxy Maize" /> Waxy Maize</label>
+            <label><input type="checkbox" name="categoria" value="Dextrose" /> Dextrose</label>
+            <label><input type="checkbox" name="categoria" value="Maltodextrina" /> Maltodextrina</label>
+          </div>
+        </div>
+
+        <!-- Veganos -->
+        <div class="filter-section">
+          <button class="filter-toggle" aria-expanded="false">
+            <span>Veganos</span><i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="filter-body" style="display:none">
+            <label><input type="checkbox" name="categoria" value="Proteína de Arroz" /> Proteína de Arroz</label>
+            <label><input type="checkbox" name="categoria" value="Proteína da Ervilha" /> Proteína da Ervilha</label>
+            <label><input type="checkbox" name="categoria" value="Aminoácidos Veganos" /> Aminoácidos Veganos</label>
+          </div>
+        </div>
+
+        <!-- Vitaminas -->
+        <div class="filter-section">
+          <button class="filter-toggle" aria-expanded="false">
+            <span>Vitaminas</span><i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="filter-body" style="display:none">
+            <label><input type="checkbox" name="categoria" value="Complexo B" /> Complexo B</label>
+            <label><input type="checkbox" name="categoria" value="Multivitamínico" /> Multivitamínico</label>
+            <label><input type="checkbox" name="categoria" value="Carnitina" /> Carnitina</label>
+          </div>
+        </div>
+
+        <button id="limparFiltros" class="btn-limpar-filtros">
+          <i class="fa-solid fa-rotate-left"></i> Limpar Filtros
+        </button>
+      </aside>
+
+      <!-- ===== ÁREA DE PRODUTOS ===== -->
+      <div class="products-area">
+
+        <!-- Barra de ordenação -->
+        <div class="sort-bar">
+          <span class="sort-count" id="contadorProdutos">
+            <strong><%= products ? products.length : 0 %></strong> produtos encontrados
+          </span>
+          <div class="sort-controls">
+            <label for="ordenacao" class="sort-label">Ordenar por:</label>
+            <select id="ordenacao" class="sort-select">
+              <option value="relevancia">Relevância</option>
+              <option value="menor-preco">Menor Preço</option>
+              <option value="maior-preco">Maior Preço</option>
+              <option value="nome-az">Nome A–Z</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Grid de produtos -->
+        <div class="products" id="productsGrid">
+          <% if (products && products.length) { %>
+            <% products.forEach((product, index) => { %>
+              <%
+                const precoNum = parseFloat(
+                  (product.preco || '0').replace(/[^\d,]/g, '').replace(',', '.')
+                ) || 0;
+                const temDesconto = !!product.desconto;
+              %>
+              <div class="product-card"
+                   data-price="<%= precoNum %>"
+                   data-name="<%= product.nome %>"
+                   data-index="<%= index %>">
+
+                <% if (temDesconto) { %>
+                  <span class="product-badge">Oferta</span>
+                <% } %>
+
+                <div class="product-img-wrap">
+                  <img src="<%= product.imagem %>" alt="<%= product.alt %>" loading="lazy" />
+                </div>
+
+                <div class="product-info">
+                  <h3 class="product-name"><%= product.nome %></h3>
+
+                  <div class="product-stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                  </div>
+
+                  <div class="product-pricing">
+                    <% if (product.desconto) { %>
+                      <span class="product-old-price"><%= product.desconto %></span>
+                    <% } %>
+                    <span class="product-price"><%= product.preco %></span>
+                  </div>
+
+                  <% if (product.credito) { %>
+                    <p class="product-credit"><%= product.credito %></p>
+                  <% } %>
+
+                  <div class="product-actions">
+                    <button class="btn-buy" type="button">
+                      <i class="fa-solid fa-bolt"></i> Comprar
+                    </button>
+                    <button class="btn-cart" type="button" aria-label="Adicionar ao carrinho">
+                      <i class="fa-solid fa-cart-shopping"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            <% }); %>
+          <% } else { %>
+            <div class="empty-state">
+              <i class="fa-solid fa-box-open"></i>
+              <h3>Nenhum produto encontrado</h3>
+              <p>Tente ajustar os filtros ou busque por outro termo.</p>
+            </div>
+          <% } %>
+        </div>
+
+        <!-- Estado vazio pós-filtro -->
+        <div class="no-results-msg" id="noResults" style="display:none">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <h3>Nenhum resultado</h3>
+          <p>Nenhum produto corresponde aos filtros selecionados.</p>
+          <button onclick="document.getElementById('limparFiltros').click()">Limpar filtros</button>
+        </div>
+
+      </div>
+    </div>
+
+    <script src="/assets/js/navbar-script.js"></script>
+    <script>
+      // ======== SIDEBAR MOBILE ========
+      const toggleBtn  = document.getElementById('sidebarToggle');
+      const closeBtn   = document.getElementById('sidebarClose');
+      const overlay    = document.getElementById('sidebarOverlay');
+      const sidebar    = document.getElementById('sidebar');
+
+      function openSidebar()  { sidebar.classList.add('open'); overlay.classList.add('visible'); }
+      function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('visible'); }
+
+      toggleBtn.addEventListener('click', openSidebar);
+      closeBtn.addEventListener('click', closeSidebar);
+      overlay.addEventListener('click', closeSidebar);
+
+      // ======== ACCORDION FILTROS ========
+      document.querySelectorAll('.filter-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const body    = btn.nextElementSibling;
+          const icon    = btn.querySelector('i');
+          const isOpen  = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!isOpen));
+          body.style.display = isOpen ? 'none' : 'block';
+          icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+        });
+      });
+
+      // ======== RANGE DE PREÇO ========
+      const rangeInput  = document.getElementById('filtroPreco');
+      const precoLabel  = document.getElementById('precoLabel');
+      rangeInput.addEventListener('input', () => {
+        precoLabel.textContent = 'R$' + rangeInput.value;
+        aplicarFiltros();
+      });
+
+      // ======== FILTROS E BUSCA ========
+      const buscaInput   = document.getElementById('buscaRapida');
+      const checkboxes   = document.querySelectorAll('.filter-body input[type="checkbox"]');
+      const cards        = document.querySelectorAll('#productsGrid .product-card');
+      const contador     = document.getElementById('contadorProdutos');
+      const noResults    = document.getElementById('noResults');
+      const grid         = document.getElementById('productsGrid');
+
+      buscaInput.addEventListener('input', aplicarFiltros);
+      checkboxes.forEach(cb => cb.addEventListener('change', aplicarFiltros));
+
+      function aplicarFiltros() {
+        const termo      = buscaInput.value.toLowerCase().trim();
+        const precoMax   = parseFloat(rangeInput.value);
+        const marcasSel  = [...document.querySelectorAll('input[name="marca"]:checked')].map(c => c.value);
+        const catsSel    = [...document.querySelectorAll('input[name="categoria"]:checked')].map(c => c.value);
+        const saboresSel = [...document.querySelectorAll('input[name="sabor"]:checked')].map(c => c.value);
+
+        let visiveis = 0;
+
+        cards.forEach(card => {
+          const nome  = (card.dataset.name || '').toLowerCase();
+          const preco = parseFloat(card.dataset.price) || 0;
+
+          const passaBusca  = !termo || nome.includes(termo);
+          const passaPreco  = preco <= precoMax;
+          const passaMarca  = marcasSel.length === 0 || marcasSel.some(m => nome.includes(m.toLowerCase()));
+          const passaCat    = catsSel.length === 0;   // sem dados de categoria por ora
+          const passaSabor  = saboresSel.length === 0; // sem dados de sabor por ora
+
+          const visivel = passaBusca && passaPreco && passaMarca && passaCat && passaSabor;
+          card.style.display = visivel ? '' : 'none';
+          if (visivel) visiveis++;
+        });
+
+        contador.innerHTML = '<strong>' + visiveis + '</strong> produtos encontrados';
+        noResults.style.display  = visiveis === 0 ? 'flex' : 'none';
+        grid.style.display       = visiveis === 0 ? 'none' : '';
+      }
+
+      // ======== LIMPAR FILTROS ========
+      document.getElementById('limparFiltros').addEventListener('click', () => {
+        checkboxes.forEach(cb => cb.checked = false);
+        rangeInput.value = 500;
+        precoLabel.textContent = 'R$500';
+        buscaInput.value = '';
+        aplicarFiltros();
+      });
+
+      // ======== ORDENAÇÃO ========
+      document.getElementById('ordenacao').addEventListener('change', function () {
+        const parent = document.getElementById('productsGrid');
+        const cardsArr = [...parent.querySelectorAll('.product-card')];
+
+        cardsArr.sort((a, b) => {
+          if (this.value === 'menor-preco') return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+          if (this.value === 'maior-preco') return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+          if (this.value === 'nome-az')     return (a.dataset.name || '').localeCompare(b.dataset.name || '');
+          return parseInt(a.dataset.index) - parseInt(b.dataset.index);
+        });
+
+        cardsArr.forEach(c => parent.appendChild(c));
+      });
+    </script>
+  </body>
+</html>

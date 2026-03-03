@@ -1,19 +1,23 @@
+@import "../../colors.css";
+
 .checkout-button {
-  background-color: #990000;
-  color: #fff;
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-inverse);
   border: none;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 8px;
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-primary);
+  border-radius: var(--radius-md);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-2);
+  transition: background-color var(--transition-fast);
 }
 
 .checkout-button:hover {
-  background-color: #b30000;
+  background-color: var(--color-primary);
 }
 
 .checkout-button:focus {

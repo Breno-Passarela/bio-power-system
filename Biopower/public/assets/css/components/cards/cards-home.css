@@ -1,3 +1,5 @@
+@import url("../../colors.css");
+
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -10,10 +12,10 @@
 
 .product-card {
   position: relative;
-  border: 1px solid #eee;
-  border-radius: 20px;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-3xl);
   padding: 2.5rem 1.5rem 1.5rem;
-  background: white;
+  background: var(--color-surface);
   text-align: center;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.185);
   transition: transform 0.3s ease;
@@ -44,14 +46,14 @@
 /* Preço à vista */
 .price {
   font-size: 1.4rem;
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
   margin-bottom: 0.3rem;
 }
 
 .price span {
   display: block;
   font-size: 0.9rem;
-  color: #333;
+  color: var(--color-text-body);
 }
 
 /* Parcelamento */
@@ -71,30 +73,30 @@
 }
 
 .cart-icon {
-  background: white;
+  background: var(--color-surface);
   border: 1px solid red;
   color: red;
   box-shadow: 0 2px 6px rgba(255, 0, 0, 0.3);
   padding: 0.6rem 0.9rem;
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   font-size: 1.3rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: var(--transition-fast);
 }
 
 .cart-icon:hover {
   background: red;
-  color: white;
+  color: var(--color-text-inverse);
   box-shadow: 0 4px 12px rgba(255, 0, 0, 0.562);
 }
 
 .buy {
   background: green;
-  color: white;
+  color: var(--color-text-inverse);
   border: none;
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   padding: 0.6rem 1.8rem;
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: background 0.2s ease;
   font-size: 1rem;

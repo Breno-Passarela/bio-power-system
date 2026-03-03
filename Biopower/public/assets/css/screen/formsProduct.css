@@ -1,7 +1,9 @@
+@import url("../colors.css");
+
 /* Container principal */
 .form-container {
   max-width: 900px;
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: 15px;
   padding: 30px;
 }
@@ -12,20 +14,20 @@
 }
 
 .icon-addon {
-  background: #f8f9fa;
+  background: var(--gray-100);
   border-left: 0 !important;
 }
 
 /* Efeito ao focar */
 .form-control:focus {
-  border-color: #dc3545;
+  border-color: var(--color-primary);
   box-shadow: 0 0 0 0.1rem rgba(220, 53, 69, 0.25);
 }
 
 /* Botão estilizado */
 .btn-register {
   font-size: 1.1rem;
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
 }
 
 /* Floating field */
