@@ -52,6 +52,9 @@
         <!-- Links centrais -->
         <div class="navbar-links" id="navbarLinks">
           <a href="/store">Loja</a>
+          <% if (sessionUser?.role === "admin") { %>
+            <a href="/admin/dashboard">Painel</a>
+          <% } %>
           <a href="/about-us">Sobre Nós</a>
           <a href="#" id="abrirModalBtn">
             Categorias <i id="categoriaArrow" class="fas fa-chevron-down"></i>
@@ -90,36 +93,52 @@
 
           <!-- Perfil / Login -->
           <div class="navbar-profile" id="navbarProfile">
-            <img
-              id="profileAvatar"
-              class="navbar-avatar"
-              alt="Avatar"
-              style="display: none"
-            />
-            <a
-              href="/login"
-              class="btn-login"
-              id="loginBtn"
-              style="display: none"
-            >
-              <i class="fas fa-user"></i>
-              <span id="loginText">Entrar</span>
-            </a>
+            <% if (sessionUser) { %>
+              <!-- Usuário logado: pill com inicial + nome + dropdown -->
+              <div class="nb-user-pill">
+                <div class="nb-user-pill-avatar nb-user-pill-avatar--<%= sessionUser.role %>">
+                  <%= sessionUser.name.charAt(0).toUpperCase() %>
+                </div>
+                <div class="nb-user-pill-info">
+                  <span class="nb-user-pill-name"><%= sessionUser.name.split(' ')[0] %></span>
+                  <span class="nb-user-pill-role nb-user-pill-role--<%= sessionUser.role %>">
+                    <% if (sessionUser.role === 'admin') { %>
+                      <i class="fa-solid fa-shield-halved"></i> Admin
+                    <% } else { %>
+                      <i class="fa-solid fa-user"></i> Cliente
+                    <% } %>
+                  </span>
+                </div>
+                <i class="fas fa-chevron-down nb-user-pill-arrow"></i>
+              </div>
 
-            <div class="profile-dropdown" id="profileDropdown">
-              <div class="profile-dropdown-header">
-                <i class="fas fa-user-circle"></i>
-                <span id="profileName">Minha Conta</span>
+              <div class="profile-dropdown">
+                <div class="profile-dropdown-header">
+                  <div class="nb-dd-avatar nb-dd-avatar--<%= sessionUser.role %>">
+                    <%= sessionUser.name.charAt(0).toUpperCase() %>
+                  </div>
+                  <div>
+                    <span class="nb-dd-name"><%= sessionUser.name %></span>
+                    <span class="nb-dd-email"><%= sessionUser.email %></span>
+                  </div>
+                </div>
+                <div class="profile-dropdown-content">
+                  <% if (sessionUser.role === 'admin') { %>
+                    <a href="/admin/dashboard"><i class="fa-solid fa-chart-line"></i> Painel Admin</a>
+                  <% } %>
+                  <a href="/pedidos"><i class="fas fa-box"></i> Meus Pedidos</a>
+                  <a href="#"><i class="fas fa-cog"></i> Configurações</a>
+                  <div class="dropdown-divider"></div>
+                  <a href="/logout" class="logout-item"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                </div>
               </div>
-              <div class="profile-dropdown-content">
-                <a href="#"><i class="fas fa-cog"></i> Configuração</a>
-                <a href="/pedidos"><i class="fas fa-box"></i> Meus Pedidos</a>
-                <div class="dropdown-divider"></div>
-                <a href="#" id="logoutBtn" class="logout-item">
-                  <i class="fas fa-sign-out-alt"></i> Sair
-                </a>
-              </div>
-            </div>
+            <% } else { %>
+              <!-- Não logado -->
+              <a href="/auth" class="btn-login">
+                <i class="fas fa-user"></i>
+                <span>Acessar conta</span>
+              </a>
+            <% } %>
           </div>
 
           <!-- Hamburger mobile -->
@@ -164,26 +183,36 @@
             <a href="/produtos">Produtos</a>
           </div>
           <div class="mobile-menu-auth">
-            <div
-              id="mobileAuthLoggedOut"
-              class="mobile-auth-item"
-              style="display: none"
-            >
-              <a href="/login" class="mobile-login-button">
-                <i class="fas fa-user-circle"></i> Fazer login/Criar conta
-              </a>
-            </div>
-            <div
-              id="mobileAuthLoggedIn"
-              class="mobile-auth-item"
-              style="display: none"
-            >
-              <img id="mobileAvatar" class="mobile-avatar" alt="Avatar" />
-              <a href="#" class="mobile-settings-link">Configuração</a>
-              <button id="mobileLogoutBtn" class="mobile-logout-button">
-                <i class="fas fa-sign-out-alt"></i> Sair
-              </button>
-            </div>
+            <% if (sessionUser) { %>
+              <div class="mobile-auth-item">
+                <div class="mobile-user-info">
+                  <div class="mobile-user-avatar mobile-user-avatar--<%= sessionUser.role %>">
+                    <%= sessionUser.name.charAt(0).toUpperCase() %>
+                  </div>
+                  <div>
+                    <strong><%= sessionUser.name %></strong>
+                    <span class="mobile-user-role mobile-user-role--<%= sessionUser.role %>">
+                      <% if (sessionUser.role === 'admin') { %>
+                        <i class="fa-solid fa-shield-halved"></i> Administrador
+                      <% } else { %>
+                        <i class="fa-solid fa-user"></i> Cliente
+                      <% } %>
+                    </span>
+                  </div>
+                </div>
+                <% if (sessionUser.role === 'admin') { %>
+                  <a href="/admin/dashboard" class="mobile-settings-link"><i class="fa-solid fa-chart-line"></i> Painel Admin</a>
+                <% } %>
+                <a href="/pedidos" class="mobile-settings-link"><i class="fas fa-box"></i> Meus Pedidos</a>
+                <a href="/logout" class="mobile-logout-button"><i class="fas fa-sign-out-alt"></i> Sair</a>
+              </div>
+            <% } else { %>
+              <div class="mobile-auth-item">
+                <a href="/auth" class="mobile-login-button">
+                  <i class="fas fa-user-circle"></i> Fazer login / Criar conta
+                </a>
+              </div>
+            <% } %>
           </div>
           <div class="mobile-menu-cart">
             <a href="/shopping-cart" class="mobile-cart-link">

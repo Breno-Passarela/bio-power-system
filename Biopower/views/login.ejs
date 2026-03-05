@@ -71,7 +71,12 @@
               </script>
             </div>
 
-            <form id="loginForm" novalidate>
+            <form method="POST" action="/login" id="loginForm" novalidate>
+              <% if (error) { %>
+                <div class="alert alert-danger mb-4" role="alert">
+                  <%= error %>
+                </div>
+              <% } %>
               <!-- Email -->
               <div class="mb-3 auth-field-wrap">
                 <div class="input-group auth-input-group">
@@ -80,11 +85,13 @@
                   </span>
                   <div class="form-floating flex-grow-1">
                     <input
+                      name="email"
                       type="email"
                       class="form-control auth-input"
                       id="email"
                       placeholder="email@exemplo.com"
                       autocomplete="email"
+                      value="<%= form?.email %>"
                     />
                     <label for="email">Email</label>
                   </div>
@@ -100,6 +107,7 @@
                   </span>
                   <div class="form-floating flex-grow-1">
                     <input
+                      name="password"
                       type="password"
                       class="form-control auth-input"
                       id="password"
@@ -188,6 +196,10 @@
                   <span>Facebook</span>
                 </button>
               </div>
+              <p class="text-center text-muted small mt-4">
+                Credenciais de teste: <strong>admin@biopower.com / admin123</strong>
+                (painel admin) ou <strong>cliente@biopower.com / cliente123</strong> para clientes.
+              </p>
             </form>
           </div>
         </div>

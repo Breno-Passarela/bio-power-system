@@ -10,7 +10,7 @@
 }(this, (function (Popper) { 'use strict';
 
   function _interopNamespace(e) {
-    if (e && e.__esModule) return e;
+    if (e && e.-esModule) return e;
     var n = Object.create(null);
     if (e) {
       Object.keys(e).forEach(function (k) {
@@ -29,7 +29,7 @@
     return Object.freeze(n);
   }
 
-  var Popper__namespace = /*#__PURE__*/_interopNamespace(Popper);
+  var Popper-namespace = /*#-PURE-*/_interopNamespace(Popper);
 
   /**
    * --------------------------------------------------------------------------
@@ -2092,7 +2092,7 @@
       if (this._inNavbar) {
         Manipulator.setDataAttribute(this._menu, 'popper', 'none');
       } else {
-        if (typeof Popper__namespace === 'undefined') {
+        if (typeof Popper-namespace === 'undefined') {
           throw new TypeError('Bootstrap\'s dropdowns require Popper (https://popper.js.org)');
         }
 
@@ -2109,7 +2109,7 @@
         const popperConfig = this._getPopperConfig();
 
         const isDisplayStatic = popperConfig.modifiers.find(modifier => modifier.name === 'applyStyles' && modifier.enabled === false);
-        this._popper = Popper__namespace.createPopper(referenceElement, this._menu, popperConfig);
+        this._popper = Popper-namespace.createPopper(referenceElement, this._menu, popperConfig);
 
         if (isDisplayStatic) {
           Manipulator.setDataAttribute(this._menu, 'popper', 'static');
@@ -3571,7 +3571,7 @@
 
   class Tooltip extends BaseComponent {
     constructor(element, config) {
-      if (typeof Popper__namespace === 'undefined') {
+      if (typeof Popper-namespace === 'undefined') {
         throw new TypeError('Bootstrap\'s tooltips require Popper (https://popper.js.org)');
       }
 
@@ -3708,7 +3708,7 @@
       if (this._popper) {
         this._popper.update();
       } else {
-        this._popper = Popper__namespace.createPopper(this._element, tip, this._getPopperConfig(attachment));
+        this._popper = Popper-namespace.createPopper(this._element, tip, this._getPopperConfig(attachment));
       }
 
       tip.classList.add(CLASS_NAME_SHOW$3);

@@ -579,14 +579,17 @@
 .mobile-logout-button {
   background: none;
   border: none;
-  color: var(--color-text-muted);
-  font-weight: var(--font-weight-medium);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-base);
   display: flex;
   align-items: center;
   gap: 8px;
-  transition: color var(--transition-fast);
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+  margin-top: 4px;
+  padding: 6px 0;
 }
 
 .mobile-logout-button:hover {
@@ -650,4 +653,187 @@
   .mobile-menu-content {
     width: 90%;
   }
+}
+
+/* ============================================================
+   NAVBAR · PERFIL DO USUÁRIO LOGADO
+   Componentes: nb-user-pill, nb-dd-*, mobile-user-*
+   ============================================================ */
+
+/* ── Pill (botão triggerdo hover) ──────────────────────────── */
+.nb-user-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px 5px 5px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.nb-user-pill:hover {
+  border-color: var(--color-primary-border);
+  box-shadow: var(--shadow-red-sm);
+}
+
+/* Círculo com inicial */
+.nb-user-pill-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  color: #fff;
+  line-height: 1;
+}
+
+.nb-user-pill-avatar--admin {
+  background: var(--color-primary);
+}
+.nb-user-pill-avatar--client {
+  background: var(--gray-600);
+}
+
+/* Info ao lado do avatar */
+.nb-user-pill-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.nb-user-pill-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+  max-width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nb-user-pill-role {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.nb-user-pill-role--admin {
+  color: var(--color-primary);
+}
+.nb-user-pill-role--client {
+  color: var(--color-text-muted);
+}
+
+.nb-user-pill-arrow {
+  font-size: 0.6rem;
+  color: var(--color-text-subtle);
+  transition: transform var(--transition-fast);
+}
+
+.navbar-profile:hover .nb-user-pill-arrow {
+  transform: rotate(180deg);
+}
+
+/* ── Dropdown header atualizado ────────────────────────────── */
+.nb-dd-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.nb-dd-avatar--admin {
+  background: var(--color-primary);
+}
+.nb-dd-avatar--client {
+  background: var(--gray-600);
+}
+
+.nb-dd-name {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.nb-dd-email {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+/* Largura maior para o dropdown de perfil */
+.navbar-profile .profile-dropdown {
+  width: 230px;
+}
+
+/* ── Mobile: info do usuário logado ────────────────────────── */
+.mobile-user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0 16px;
+  border-bottom: 1px solid var(--color-border-light);
+  margin-bottom: 8px;
+}
+
+.mobile-user-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.mobile-user-avatar--admin {
+  background: var(--color-primary);
+}
+.mobile-user-avatar--client {
+  background: var(--gray-600);
+}
+
+.mobile-user-info strong {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.mobile-user-role {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.mobile-user-role--admin {
+  color: var(--color-primary);
+}
+.mobile-user-role--client {
+  color: var(--color-text-muted);
 }
