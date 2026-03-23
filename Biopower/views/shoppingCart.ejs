@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bio-Power | Carrinho de Compras</title>
+    <link rel="shortcut icon" href="/assets/imgs/img-icon-site.png" type="image/x-icon" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <link rel="stylesheet" href="/assets/css/rodape.css" />
+    <link rel="stylesheet" href="/assets/css/screen/shopping-cart.css" />
+  </head>
+
+  <body>
+    <!-- ===== LAYOUT PRINCIPAL ===== -->
+    <main class="cart-layout">
+
+      <!-- ─── Coluna Esquerda: Itens ─── -->
+      <section class="cart-items-section">
+
+        <!-- Header da seção -->
+        <div class="cart-section-header">
+          <span class="cart-section-title">Itens no carrinho</span>
+          <button class="btn-limpar-carrinho" id="btnLimparCarrinho" title="Limpar carrinho">
+            <i class="fas fa-trash-alt"></i> Limpar
+          </button>
+        </div>
+
+        <!-- Lista de itens (preenchida pelo JS) -->
+        <div id="cartItems"></div>
+
+        <!-- Estado vazio -->
+        <div class="cart-empty" id="cartEmpty">
+          <div class="cart-empty-icon">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </div>
+          <h3>Seu carrinho está vazio</h3>
+          <p>Adicione produtos incríveis para começar suas compras!</p>
+          <a href="/store" class="btn-ir-loja">
+            <i class="fas fa-store"></i> Ir para a Loja
+          </a>
+        </div>
+
+      </section>
+
+      <!-- ─── Coluna Direita: Resumo ─── -->
+      <aside class="cart-summary-section" id="orderSummary">
+
+        <!-- Barra de progresso frete grátis -->
+        <div class="frete-progress-wrap">
+          <div class="frete-progress-msg" id="freteProgressMsg">Calcule o frete grátis</div>
+          <div class="frete-bar">
+            <div class="frete-bar-fill" id="freteProgressBar" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- Resumo dos valores -->
+        <div class="order-summary-box">
+          <h2 class="summary-title">Resumo do pedido</h2>
+
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="subtotal">R$ 0,00</span>
+          </div>
+          <div class="summary-row">
+            <span>Frete</span>
+            <span id="frete">—</span>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-row summary-total">
+            <span>Total</span>
+            <span id="total">R$ 0,00</span>
+          </div>
+
+          <button class="checkout-button">
+            Avançar para pagamento
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+
+          <a href="/store" class="btn-continuar-comprando">
+            <i class="fas fa-arrow-left"></i> Continuar comprando
+          </a>
+        </div>
+
+        <!-- Selos de segurança -->
+        <div class="security-badges">
+          <div class="security-badge">
+            <i class="fas fa-lock"></i>
+            <span>Compra segura</span>
+          </div>
+          <div class="security-badge">
+            <i class="fas fa-shield-halved"></i>
+            <span>Dados protegidos</span>
+          </div>
+          <div class="security-badge">
+            <i class="fas fa-rotate-left"></i>
+            <span>7 dias para troca</span>
+          </div>
+        </div>
+
+      </aside>
+
+    </main>
+
+    <!-- Scripts — CartService DEVE vir antes de shopping-cart.js -->
+    <script src="/assets/js/utils/cart.js"></script>
+    <script src="/assets/js/navbar-script.js"></script>
+    <script src="/assets/js/screens/shopping-cart.js"></script>
+  </body>
+</html>
