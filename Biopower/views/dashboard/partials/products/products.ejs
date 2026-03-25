@@ -1,0 +1,252 @@
+<!-- PRODUTOS -->
+<section class="adm-section" id="products">
+  <div class="adm-page-header">
+    <div>
+      <h1>Produtos</h1>
+      <p>
+        Gerencie todo o catálogo da Bio-Power. (<%= products.length %>
+        produto<%= products.length !== 1 ? 's' : '' %>)
+      </p>
+    </div>
+    <button
+      class="adm-btn adm-btn--primary"
+      onclick="document.getElementById('dialog-novo-produto').classList.add('adm-dialog--open')"
+    >
+      <i class="fa-solid fa-plus"></i> Novo produto
+    </button>
+  </div>
+
+  <% if (flash === 'produto-adicionado') { %>
+  <div class="adm-flash adm-flash--success" id="flashMsg">
+    <i class="fa-solid fa-circle-check"></i>
+    Produto cadastrado com sucesso!
+    <button
+      class="adm-flash-close"
+      onclick="document.getElementById('flashMsg').remove()"
+    >
+      &#x2715;
+    </button>
+  </div>
+  <% } %>
+
+  <div class="adm-card">
+    <div class="adm-table-wrap">
+      <table class="adm-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Produto</th>
+            <th>Categoria</th>
+            <th>Marca</th>
+            <th>Sabor</th>
+            <th>Preço</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (products.length === 0) { %>
+          <tr>
+            <td colspan="7" style="text-align:center;padding:2rem;color:var(--gray-500)">
+              Nenhum produto cadastrado.
+            </td>
+          </tr>
+          <% } %>
+          <% products.forEach(function(p, i) { %>
+          <tr>
+            <td><span class="adm-small-text"><%= i + 1 %></span></td>
+            <td>
+              <div class="adm-product-cell">
+                <div
+                  class="adm-product-thumb"
+                  style="background-image:url('<%= p.imagem %>');background-size:cover;background-position:center;"
+                ></div>
+                <div>
+                  <strong><%= p.nome %></strong>
+                </div>
+              </div>
+            </td>
+            <td><span class="adm-badge adm-badge--info"><%= p.categoria %></span></td>
+            <td><%= p.marca %></td>
+            <td><%= p.sabor %></td>
+            <td><strong><%= p.preco %></strong></td>
+            <td>
+              <div class="adm-actions">
+                <form
+                  method="POST"
+                  action="/admin/products/delete/<%= i %>"
+                  style="display:inline"
+                  class="form-delete-product"
+                  data-nome="<%= p.nome %>"
+                >
+                  <button
+                    type="submit"
+                    class="adm-btn-icon adm-btn-icon--danger"
+                    title="Excluir"
+                  >
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </form>
+              </div>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- DIALOG: NOVO PRODUTO -->
+<div class="adm-dialog" id="dialog-novo-produto">
+  <div
+    class="adm-dialog-backdrop"
+    onclick="document.getElementById('dialog-novo-produto').classList.remove('adm-dialog--open')"
+  ></div>
+  <div class="adm-dialog-panel" style="max-width:600px">
+    <div class="adm-dialog-header">
+      <h2><i class="fa-solid fa-box-open"></i> Novo produto</h2>
+      <button
+        class="adm-dialog-close"
+        onclick="document.getElementById('dialog-novo-produto').classList.remove('adm-dialog--open')"
+      >
+        &#x2715;
+      </button>
+    </div>
+    <form
+      method="POST"
+      action="/admin/products"
+      class="adm-form"
+      enctype="multipart/form-data"
+    >
+      <div class="adm-form-grid">
+        <div class="adm-form-group adm-form-group--full">
+          <label>Nome do produto *</label>
+          <input
+            type="text"
+            name="nome"
+            required
+            placeholder="Ex: Whey Protein Baunilha 900g"
+            class="adm-input"
+          />
+        </div>
+        <div class="adm-form-group">
+          <label>Categoria *</label>
+          <select name="categoria" required class="adm-input">
+            <option value="">Selecione…</option>
+            <option>Creatina</option>
+            <option>Whey</option>
+            <option>Pré-treino</option>
+            <option>Termogênico</option>
+            <option>BCAA</option>
+            <option>Glutamina</option>
+            <option>Hipercalórico</option>
+            <option>Vitaminas</option>
+            <option>Outros</option>
+          </select>
+        </div>
+        <div class="adm-form-group">
+          <label>Marca</label>
+          <input
+            type="text"
+            name="marca"
+            placeholder="Ex: Growth Supplements"
+            class="adm-input"
+          />
+        </div>
+        <div class="adm-form-group">
+          <label>Sabor</label>
+          <input
+            type="text"
+            name="sabor"
+            placeholder="Ex: Chocolate"
+            class="adm-input"
+          />
+        </div>
+        <div class="adm-form-group">
+          <label>Preço *</label>
+          <input
+            type="text"
+            name="preco"
+            required
+            placeholder="Ex: R$129,90"
+            class="adm-input"
+          />
+        </div>
+        <div class="adm-form-group">
+          <label>Estoque inicial</label>
+          <input
+            type="number"
+            name="estoque"
+            min="0"
+            step="1"
+            value="0"
+            placeholder="Ex: 50"
+            class="adm-input"
+          />
+        </div>
+        <div class="adm-form-group">
+          <label>Estoque mínimo</label>
+          <input
+            type="number"
+            name="estoqueMin"
+            min="0"
+            step="1"
+            value="10"
+            placeholder="Ex: 10"
+            class="adm-input"
+          />
+        </div>
+        <div class="adm-form-group adm-form-group--full">
+          <label>Texto do crédito</label>
+          <input
+            type="text"
+            name="credito"
+            placeholder="Ex: ou R$144,30 no cartão em até 6x de R$24,05"
+            class="adm-input"
+          />
+        </div>
+        <div class="adm-form-group adm-form-group--full">
+          <label>Imagem do produto</label>
+          <input
+            type="file"
+            name="imagem"
+            accept="image/jpeg,image/png,image/webp,image/gif"
+            class="adm-input"
+            id="inputImagemFile"
+            onchange="previewImagem(this)"
+          />
+          <img
+            id="previewImgProduto"
+            src=""
+            alt=""
+            style="display:none;margin-top:8px;max-height:100px;border-radius:6px;border:1px solid #e5e7eb"
+          />
+          <small style="color:#6b7280;margin-top:4px;display:block">
+            JPEG, PNG, WEBP ou GIF · máx. 5 MB
+          </small>
+        </div>
+        <div class="adm-form-group adm-form-group--full">
+          <label>Texto alternativo (alt)</label>
+          <input
+            type="text"
+            name="alt"
+            placeholder="Descrição curta da imagem"
+            class="adm-input"
+          />
+        </div>
+      </div>
+      <div class="adm-dialog-footer">
+        <button
+          type="button"
+          class="adm-btn adm-btn--ghost"
+          onclick="document.getElementById('dialog-novo-produto').classList.remove('adm-dialog--open')"
+        >
+          Cancelar
+        </button>
+        <button type="submit" class="adm-btn adm-btn--primary">
+          <i class="fa-solid fa-floppy-disk"></i> Salvar produto
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

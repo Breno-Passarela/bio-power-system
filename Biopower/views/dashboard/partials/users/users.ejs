@@ -1,0 +1,80 @@
+<!-- USUÁRIOS -->
+<section class="adm-section" id="users">
+  <div class="adm-page-header">
+    <div>
+      <h1>Usuários</h1>
+      <p>Clientes, administradores e atendentes cadastrados.</p>
+    </div>
+    <!-- COLOCAR UM BOTAO DE CADASTRO AQUI IGUAL NAS OUTRAS TELAS -->
+    <a href="/usuarios/cadastrar" class="adm-btn adm-btn--primary">
+      <i class="fas fa-plus"></i> Adicionar Usuário
+    </a>
+  </div>
+  <div class="adm-filters">
+    <div class="adm-search-wrap">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input
+        type="search"
+        placeholder="Buscar por nome ou e-mail…"
+        class="adm-search"
+      />
+    </div>
+    <select class="adm-select">
+      <option>Todos os perfis</option>
+      <option>Clientes</option>
+      <option>Administradores</option>
+    </select>
+    <select class="adm-select">
+      <option>Todos os status</option>
+      <option>Ativo</option>
+      <option>Inativo</option>
+    </select>
+  </div>
+  <div class="adm-card">
+    <div class="adm-table-wrap">
+      <table class="adm-table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Perfil</th>
+            <th>CPF / CNPJ</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (let i = 0; i < listaUsuarios.length; i++) { %>
+          <tr>
+            <td><%= listaUsuarios[i].usuNome %></td>
+            <td><%= listaUsuarios[i].usuEmail %></td>
+            <td><%= listaUsuarios[i].usuTypeId %></td>
+            <td><%= listaUsuarios[i].usuCpfCnpj %></td>
+            <td>
+              <span
+                class="adm-badge <%= Number(listaUsuarios[i].usuAtivo) === 1 ? 'adm-badge--success' : 'adm-badge--error' %>"
+              >
+                <%= Number(listaUsuarios[i].usuAtivo) === 1 ? 'Ativo' : 'Inativo' %>
+              </span>
+            </td>
+            <td>
+              <a
+                href="/usuarios/alterar/<%= listaUsuarios[i].usuId %>"
+                class="btn btn-sm btn-outline-primary"
+              >
+                <i class="fas fa-edit"></i>
+              </a>
+              <button
+                class="btnExcluir btn btn-sm btn-outline-danger"
+                data-id="<%= listaUsuarios[i].usuId %>"
+              >
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

@@ -1,11 +1,22 @@
 const products = require("../data/products");
+const UsuariosModels = require("../models/usuariosModels");
 
 class AdminController {
-  dashboard(req, res) {
-    res.render("admin/dashboard", {
+  async dashboard(req, res) {
+    let listaUsuarios = [];
+    try {
+      const usuariosModel = new UsuariosModels();
+      listaUsuarios = await usuariosModel.listar();
+    } catch (err) {
+      console.error("Erro ao listar usuários:", err);
+      listaUsuarios = [];
+    }
+
+    res.render("dashboard/dashboard", {
       layout: false,
       user: req.session.user,
       products,
+      listaUsuarios,
       flash: req.query.flash || null,
     });
   }
@@ -41,7 +52,7 @@ class AdminController {
         estoqueMin: parseInt(estoqueMin) > 0 ? parseInt(estoqueMin) : 10,
       });
     }
-    res.redirect("/admin/dashboard?flash=produto-adicionado#products");
+    res.redirect("/dashboard?flash=produto-adicionado#products");
   }
 
   updateStock(req, res) {
@@ -58,7 +69,7 @@ class AdminController {
         (products[index].estoque || 0) + quantidade,
       );
     }
-    res.redirect("/admin/dashboard?flash=estoque-atualizado#stock");
+    res.redirect("/dashboard?flash=estoque-atualizado#stock");
   }
 
   deleteProduct(req, res) {
@@ -66,7 +77,7 @@ class AdminController {
     if (!isNaN(index) && index >= 0 && index < products.length) {
       products.splice(index, 1);
     }
-    res.redirect("/admin/dashboard#products");
+    res.redirect("/dashboard#products");
   }
 }
 

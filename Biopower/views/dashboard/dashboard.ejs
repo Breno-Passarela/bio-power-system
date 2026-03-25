@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bio-Power · Painel Administrativo</title>
+    <link
+      rel="shortcut icon"
+      href="/assets/imgs/img-icon-site.png"
+      type="image/x-icon"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/assets/css/colors.css" />
+    <link rel="stylesheet" href="/assets/css/screen/admin-dashboard.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+  </head>
+  <body class="adm">
+    <!-- SIDEBAR -->
+    <aside class="adm-sidebar" id="admSidebar">
+      <div class="adm-sidebar-brand">
+        <img
+          src="/assets/imgs/img-logo-bio-power.png"
+          alt="Bio-Power"
+          class="adm-sidebar-logo"
+        />
+        <span class="adm-sidebar-brand-label">Bio-Power</span>
+      </div>
+      <div class="adm-sidebar-user">
+        <div class="adm-sidebar-avatar">
+          <i class="fa-solid fa-user-tie"></i>
+        </div>
+        <div class="adm-sidebar-user-info">
+          <strong><%= user?.name || "Administrador" %></strong>
+          <span><%= user?.roleDisplay || "Administrador" %></span>
+        </div>
+      </div>
+      <nav class="adm-nav">
+        <p class="adm-nav-section-label">Principal</p>
+        <a
+          href="#overview"
+          class="adm-nav-item adm-nav-item--active"
+          data-section="overview"
+        >
+          <i class="fa-solid fa-chart-line"></i><span>Visão Geral</span>
+        </a>
+        <a href="#products" class="adm-nav-item" data-section="products">
+          <i class="fa-solid fa-box-open"></i><span>Produtos</span
+          ><span class="adm-nav-badge"><%= products.length %></span>
+        </a>
+        <a href="#categories" class="adm-nav-item" data-section="categories">
+          <i class="fa-solid fa-tags"></i><span>Categorias</span>
+        </a>
+        <a href="#orders" class="adm-nav-item" data-section="orders">
+          <i class="fa-solid fa-receipt"></i><span>Pedidos</span
+          ><span class="adm-nav-badge adm-nav-badge--alert">07</span>
+        </a>
+        <a href="#stock" class="adm-nav-item" data-section="stock">
+          <i class="fa-solid fa-warehouse"></i><span>Estoque</span>
+        </a>
+        <p class="adm-nav-section-label">Gestão</p>
+        <a href="#users" class="adm-nav-item" data-section="users">
+          <i class="fa-solid fa-users"></i><span>Usuários</span>
+        </a>
+        <a href="#services" class="adm-nav-item" data-section="services">
+          <i class="fa-solid fa-calendar-check"></i><span>Serviços</span>
+        </a>
+        <a href="#coupons" class="adm-nav-item" data-section="coupons">
+          <i class="fa-solid fa-ticket"></i><span>Cupons & Promoções</span>
+        </a>
+        <p class="adm-nav-section-label">Análise</p>
+        <a href="#reports" class="adm-nav-item" data-section="reports">
+          <i class="fa-solid fa-chart-bar"></i><span>Relatórios</span>
+        </a>
+        <p class="adm-nav-section-label">Sistema</p>
+        <a href="#settings" class="adm-nav-item" data-section="settings">
+          <i class="fa-solid fa-gear"></i><span>Configurações</span>
+        </a>
+        <a href="#permissions" class="adm-nav-item" data-section="permissions">
+          <i class="fa-solid fa-shield-halved"></i><span>Permissões</span>
+        </a>
+      </nav>
+      <a class="adm-sidebar-logout" href="/logout">
+        <i class="fa-solid fa-right-from-bracket"></i
+        ><span>Encerrar sessão</span>
+      </a>
+    </aside>
+    <div class="adm-overlay" id="admOverlay"></div>
+
+    <!-- SHELL -->
+    <div class="adm-shell">
+      <header class="adm-topbar">
+        <div class="adm-topbar-left">
+          <button
+            class="adm-topbar-hamburger"
+            id="admHamburger"
+            aria-label="Abrir menu"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="adm-topbar-breadcrumb">
+            <a href="/">Bio-Power</a>
+            <i class="fa-solid fa-chevron-right"></i>
+            <span id="breadcrumbCurrent">Visão Geral</span>
+          </div>
+        </div>
+        <div class="adm-topbar-right">
+          <div class="adm-notif-wrap" id="notifWrap">
+            <button class="adm-topbar-icon-btn" id="notifBtn" title="Notificações" aria-expanded="false">
+              <i class="fa-solid fa-bell"></i>
+              <span class="adm-notif-count" id="notifCount">5</span>
+            </button>
+
+            <!-- PAINEL DE NOTIFICAÇÕES -->
+            <div class="adm-notif-panel" id="notifPanel" hidden>
+              <div class="adm-notif-panel-header">
+                <span>Notificações</span>
+                <button class="adm-notif-panel-mark-all" id="notifMarkAll">Marcar todas como lidas</button>
+              </div>
+              <ul class="adm-notif-list" id="notifList">
+                <li class="adm-notif-item adm-notif-item--unread" data-id="1">
+                  <div class="adm-notif-item-icon adm-notif-item-icon--order">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                  </div>
+                  <div class="adm-notif-item-body">
+                    <p class="adm-notif-item-title">Novo pedido recebido</p>
+                    <p class="adm-notif-item-desc">Pedido #4821 — Whey Protein + Creatina</p>
+                    <span class="adm-notif-item-time">há 2 minutos</span>
+                  </div>
+                  <button class="adm-notif-item-read" title="Marcar como lida">×</button>
+                </li>
+                <li class="adm-notif-item adm-notif-item--unread" data-id="2">
+                  <div class="adm-notif-item-icon adm-notif-item-icon--alert">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                  </div>
+                  <div class="adm-notif-item-body">
+                    <p class="adm-notif-item-title">Estoque crítico</p>
+                    <p class="adm-notif-item-desc">Creatina Monohidratada 250g — apenas 3 un.</p>
+                    <span class="adm-notif-item-time">há 15 minutos</span>
+                  </div>
+                  <button class="adm-notif-item-read" title="Marcar como lida">×</button>
+                </li>
+                <li class="adm-notif-item adm-notif-item--unread" data-id="3">
+                  <div class="adm-notif-item-icon adm-notif-item-icon--user">
+                    <i class="fa-solid fa-user-plus"></i>
+                  </div>
+                  <div class="adm-notif-item-body">
+                    <p class="adm-notif-item-title">Novo usuário cadastrado</p>
+                    <p class="adm-notif-item-desc">joãosilva@email.com acabou de se registrar</p>
+                    <span class="adm-notif-item-time">há 1 hora</span>
+                  </div>
+                  <button class="adm-notif-item-read" title="Marcar como lida">×</button>
+                </li>
+                <li class="adm-notif-item adm-notif-item--unread" data-id="4">
+                  <div class="adm-notif-item-icon adm-notif-item-icon--order">
+                    <i class="fa-solid fa-truck"></i>
+                  </div>
+                  <div class="adm-notif-item-body">
+                    <p class="adm-notif-item-title">Pedido enviado</p>
+                    <p class="adm-notif-item-desc">Pedido #4819 foi marcado como enviado</p>
+                    <span class="adm-notif-item-time">há 3 horas</span>
+                  </div>
+                  <button class="adm-notif-item-read" title="Marcar como lida">×</button>
+                </li>
+                <li class="adm-notif-item adm-notif-item--unread" data-id="5">
+                  <div class="adm-notif-item-icon adm-notif-item-icon--alert">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                  </div>
+                  <div class="adm-notif-item-body">
+                    <p class="adm-notif-item-title">Estoque crítico</p>
+                    <p class="adm-notif-item-desc">BCAA 2400 — apenas 2 un. disponíveis</p>
+                    <span class="adm-notif-item-time">há 5 horas</span>
+                  </div>
+                  <button class="adm-notif-item-read" title="Marcar como lida">×</button>
+                </li>
+              </ul>
+              <div class="adm-notif-panel-footer">
+                <span id="notifEmpty" style="display:none">Nenhuma notificação pendente 🎉</span>
+              </div>
+            </div>
+          </div>
+          <a href="/" class="adm-topbar-site-link">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i
+            ><span>Ver site</span>
+          </a>
+        </div>
+      </header>
+
+      <main class="adm-main">
+        <%- include('./partials/overview/overview') %>
+        <%- include('./partials/products/products') %>
+        <%- include('./partials/categories/categories') %>
+        <%- include('./partials/orders/orders') %>
+        <%- include('./partials/stock/stock') %>
+        <%- include('./partials/users/users') %>
+        <%- include('./partials/services/services') %>
+        <%- include('./partials/coupons/coupons') %>
+        <%- include('./partials/reports/reports') %>
+        <%- include('./partials/settings/settings') %>
+        <%- include('./partials/permissions/permissions') %>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/assets/js/admin-dashboard.js"></script>
+  </body>
+</html>

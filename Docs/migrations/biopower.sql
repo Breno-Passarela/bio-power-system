@@ -17,6 +17,26 @@ USE `bio_sys_db`;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+-- Tabela de dominios/status genericos
+DROP TABLE IF EXISTS `tb_status_diversos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tb_status_diversos` (
+  `sta_id` int NOT NULL AUTO_INCREMENT,
+  `sta_dominio` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sta_codigo` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sta_descricao` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`sta_id`),
+  UNIQUE KEY `uq_status_dominio_codigo` (`sta_dominio`,`sta_codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `tb_status_diversos` WRITE;
+/*!40000 ALTER TABLE `tb_status_diversos` DISABLE KEYS */;
+INSERT INTO `tb_status_diversos` VALUES (1,'agendamento_status','CONFIRMADO','Agendamento confirmado'),(2,'agendamento_status','AGUARDANDO_PAGAMENTO','Aguardando pagamento'),(3,'agendamento_status','CANCELADO','Agendamento cancelado'),(4,'agendamento_status','CONCLUIDO','Agendamento concluido'),(5,'devolucao_status','PENDENTE','Aguardando avaliacao'),(6,'devolucao_status','APROVADO','Devolucao aprovada'),(7,'devolucao_status','RECUSADO','Devolucao recusada'),(8,'fluxo_caixa_tipo','RECEITA','Entrada de recursos'),(9,'fluxo_caixa_tipo','DESPESA','Saida de recursos'),(10,'pedido_status','SOLICITADO','Pedido solicitado'),(11,'pedido_status','EM_ANDAMENTO','Pedido em andamento'),(12,'pedido_status','CONCLUIDO','Pedido concluido'),(13,'venda_metodo_pagamento','PIX','Pagamento via PIX'),(14,'venda_metodo_pagamento','CREDITO','Cartao de credito'),(15,'venda_metodo_pagamento','DEBITO','Cartao de debito'),(16,'venda_metodo_pagamento','BOLETO','Pagamento por boleto'),(17,'venda_status','AGUARDANDO','Aguardando pagamento'),(18,'venda_status','PAGO','Pagamento confirmado'),(19,'venda_status','CANCELADO','Venda cancelada');
+/*!40000 ALTER TABLE `tb_status_diversos` ENABLE KEYS */;
+UNLOCK TABLES;
+
 --
 -- Table structure for table `tb_Agendamentos`
 --
@@ -30,14 +50,18 @@ CREATE TABLE `tb_Agendamentos` (
   `age_id_profissional` int NOT NULL,
   `age_id_servico` int NOT NULL,
   `age_data_hora` datetime NOT NULL,
-  `age_status` enum('CONFIRMADO','AGUARDANDO_PAGAMENTO','CANCELADO','CONCLUIDO') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `age_status_id` int NOT NULL DEFAULT '2',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`age_id`),
   UNIQUE KEY `uq_agendamento_profissional` (`age_id_profissional`,`age_data_hora`),
   KEY `age_id_cliente` (`age_id_cliente`),
-  KEY `age_id_servico` (`age_id_servico`),
+  KEY `age_id_tb_servico` (`age_id_servico`),
+  KEY `fk_age_status` (`age_status_id`),
   CONSTRAINT `tb_Agendamentos_ibfk_1` FOREIGN KEY (`age_id_cliente`) REFERENCES `tb_Usuarios` (`usu_id`),
   CONSTRAINT `tb_Agendamentos_ibfk_2` FOREIGN KEY (`age_id_profissional`) REFERENCES `tb_Usuarios` (`usu_id`),
-  CONSTRAINT `tb_Agendamentos_ibfk_3` FOREIGN KEY (`age_id_servico`) REFERENCES `tb_Servicos` (`ser_id`)
+  CONSTRAINT `tb_Agendamentos_ibfk_3` FOREIGN KEY (`age_id_servico`) REFERENCES `tb_Servicos` (`ser_id`),
+  CONSTRAINT `fk_age_status` FOREIGN KEY (`age_status_id`) REFERENCES `tb_status_diversos` (`sta_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -116,10 +140,12 @@ CREATE TABLE `tb_Devolucoes` (
   `dev_id_venda` int NOT NULL,
   `dev_motivo` text COLLATE utf8mb4_unicode_ci,
   `dev_caminho_nota_fiscal` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `dev_status` enum('PENDENTE','APROVADO','RECUSADO') COLLATE utf8mb4_unicode_ci DEFAULT 'PENDENTE',
+  `dev_status_id` int NOT NULL DEFAULT '5',
   PRIMARY KEY (`dev_id`),
   KEY `dev_id_venda` (`dev_id_venda`),
-  CONSTRAINT `tb_Devolucoes_ibfk_1` FOREIGN KEY (`dev_id_venda`) REFERENCES `tb_Vendas` (`ven_id`)
+  KEY `fk_dev_status` (`dev_status_id`),
+  CONSTRAINT `tb_Devolucoes_ibfk_1` FOREIGN KEY (`dev_id_venda`) REFERENCES `tb_Vendas` (`ven_id`),
+  CONSTRAINT `fk_dev_status` FOREIGN KEY (`dev_status_id`) REFERENCES `tb_status_diversos` (`sta_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -141,13 +167,15 @@ DROP TABLE IF EXISTS `tb_Fluxo_Caixa`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tb_Fluxo_Caixa` (
   `flu_id` int NOT NULL AUTO_INCREMENT,
-  `flu_tipo` enum('RECEITA','DESPESA') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `flu_tipo_id` int NOT NULL,
   `flu_valor` decimal(10,2) NOT NULL,
   `flu_data_movimentacao` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `flu_descricao` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `flu_origem_id` int DEFAULT NULL,
   `flu_origem_tipo` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`flu_id`)
+  PRIMARY KEY (`flu_id`),
+  KEY `fk_flu_tipo` (`flu_tipo_id`),
+  CONSTRAINT `fk_flu_tipo` FOREIGN KEY (`flu_tipo_id`) REFERENCES `tb_status_diversos` (`sta_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -232,7 +260,7 @@ CREATE TABLE `tb_Itens_Venda` (
   `ite_id_lote` int DEFAULT NULL,
   PRIMARY KEY (`ite_id`),
   KEY `ite_id_venda` (`ite_id_venda`),
-  KEY `ite_id_produto` (`ite_id_produto`),
+  KEY `idx_item_produto` (`ite_id_produto`),
   KEY `fk_item_lote` (`ite_id_lote`),
   CONSTRAINT `fk_item_lote` FOREIGN KEY (`ite_id_lote`) REFERENCES `tb_Lotes_Estoque` (`lot_id`),
   CONSTRAINT `tb_Itens_Venda_ibfk_1` FOREIGN KEY (`ite_id_venda`) REFERENCES `tb_Vendas` (`ven_id`) ON DELETE CASCADE,
@@ -289,9 +317,12 @@ CREATE TABLE `tb_Lotes_Estoque` (
   `lot_data_validade` date NOT NULL,
   `lot_data_entrada` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `lot_id_fornecedor` int DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`lot_id`),
   KEY `lot_id_produto` (`lot_id_produto`),
   KEY `lot_id_fornecedor` (`lot_id_fornecedor`),
+  KEY `idx_lote_produto_validade` (`lot_id_produto`,`lot_data_validade`),
   CONSTRAINT `tb_Lotes_Estoque_ibfk_1` FOREIGN KEY (`lot_id_produto`) REFERENCES `tb_Produtos` (`pro_id`) ON DELETE CASCADE,
   CONSTRAINT `tb_Lotes_Estoque_ibfk_2` FOREIGN KEY (`lot_id_fornecedor`) REFERENCES `tb_Fornecedores` (`for_id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -319,12 +350,16 @@ CREATE TABLE `tb_Pedidos_Compra` (
   `ped_id_responsavel` int NOT NULL,
   `ped_data_pedido` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `ped_prazo_entrega_previsto` date DEFAULT NULL,
-  `ped_status` enum('SOLICITADO','EM_ANDAMENTO','CONCLUIDO') COLLATE utf8mb4_unicode_ci DEFAULT 'SOLICITADO',
+  `ped_status_id` int NOT NULL DEFAULT '10',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ped_id`),
   KEY `ped_id_fornecedor` (`ped_id_fornecedor`),
   KEY `ped_id_responsavel` (`ped_id_responsavel`),
+  KEY `fk_ped_status` (`ped_status_id`),
   CONSTRAINT `tb_Pedidos_Compra_ibfk_1` FOREIGN KEY (`ped_id_fornecedor`) REFERENCES `tb_Fornecedores` (`for_id`),
-  CONSTRAINT `tb_Pedidos_Compra_ibfk_2` FOREIGN KEY (`ped_id_responsavel`) REFERENCES `tb_Usuarios` (`usu_id`)
+  CONSTRAINT `tb_Pedidos_Compra_ibfk_2` FOREIGN KEY (`ped_id_responsavel`) REFERENCES `tb_Usuarios` (`usu_id`),
+  CONSTRAINT `fk_ped_status` FOREIGN KEY (`ped_status_id`) REFERENCES `tb_status_diversos` (`sta_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -379,9 +414,12 @@ CREATE TABLE `tb_Produtos` (
   `pro_id_categoria` int DEFAULT NULL,
   `pro_id_laboratorio` int DEFAULT NULL,
   `pro_porcentagem_promocao` decimal(5,2) DEFAULT '0.00',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`pro_id`),
   KEY `pro_id_laboratorio` (`pro_id_laboratorio`),
   KEY `idx_produto_categoria` (`pro_id_categoria`),
+  KEY `idx_produto_nome` (`pro_nome`),
   CONSTRAINT `tb_Produtos_ibfk_1` FOREIGN KEY (`pro_id_categoria`) REFERENCES `tb_Categorias` (`cat_id`) ON DELETE SET NULL,
   CONSTRAINT `tb_Produtos_ibfk_2` FOREIGN KEY (`pro_id_laboratorio`) REFERENCES `tb_Laboratorios` (`lab_id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -433,14 +471,17 @@ CREATE TABLE `tb_Usuarios` (
   `usu_nome` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   `usu_email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `usu_senha` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `usu_cpf_cnpj` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `usu_cpf_cnpj` char(14) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `usu_typ_id` int NOT NULL,
+  `usu_ativo` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`usu_id`),
   UNIQUE KEY `usu_email` (`usu_email`),
   UNIQUE KEY `usu_cpf_cnpj` (`usu_cpf_cnpj`),
   KEY `usu_typ_id` (`usu_typ_id`),
   CONSTRAINT `tb_Usuarios_ibfk_1` FOREIGN KEY (`usu_typ_id`) REFERENCES `tb_typeUser` (`typ_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -449,7 +490,7 @@ CREATE TABLE `tb_Usuarios` (
 
 LOCK TABLES `tb_Usuarios` WRITE;
 /*!40000 ALTER TABLE `tb_Usuarios` DISABLE KEYS */;
-INSERT INTO `tb_Usuarios` VALUES (1,'Breno','breno@gmail.com','123456','12345678900',1);
+INSERT INTO `tb_Usuarios` VALUES (1,'Breno','breno@gmail.com','123456','12345678900',1,1,'2026-03-25 14:42:42','2026-03-25 14:42:42'),(2,'Almeida','almeida@biopower.com','admin123','11111111111',1,1,'2026-03-25 17:19:29','2026-03-25 17:19:29'),(3,'Mariana Souza','mariana.souza@biopower.com','admin123','22222222222',1,1,'2026-03-25 17:20:57','2026-03-25 17:20:57'),(4,'Carlos Pereira','carlos.pereira@biopower.com','func123','33333333333',2,1,'2026-03-25 17:20:57','2026-03-25 17:20:57'),(5,'Fernanda Lima','fernanda.lima@biopower.com','func123','44444444444',2,1,'2026-03-25 17:20:57','2026-03-25 17:20:57'),(6,'João Silva','joao.silva@biopower.com','cliente123','55555555555',3,1,'2026-03-25 17:20:57','2026-03-25 17:20:57'),(7,'Ana Paula','ana.paula@biopower.com','cliente123','66666666666',3,1,'2026-03-25 17:20:57','2026-03-25 17:20:57'),(8,'Ricardo Mendes','ricardo.mendes@biopower.com','cliente123','77777777777',3,0,'2026-03-25 17:20:57','2026-03-25 17:20:57');
 /*!40000 ALTER TABLE `tb_Usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -465,13 +506,19 @@ CREATE TABLE `tb_Vendas` (
   `ven_id_cliente` int NOT NULL,
   `ven_data_venda` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `ven_valor_total` decimal(10,2) NOT NULL,
-  `ven_metodo_pagamento` enum('PIX','CREDITO','DEBITO','BOLETO') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ven_status_venda` enum('AGUARDANDO','PAGO','CANCELADO') COLLATE utf8mb4_unicode_ci DEFAULT 'AGUARDANDO',
+  `ven_metodo_pagamento_id` int NOT NULL DEFAULT '13',
+  `ven_status_id` int NOT NULL DEFAULT '17',
   `ven_endereco_entrega` text COLLATE utf8mb4_unicode_ci,
   `ven_frete` decimal(10,2) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ven_id`),
   KEY `ven_id_cliente` (`ven_id_cliente`),
-  CONSTRAINT `tb_Vendas_ibfk_1` FOREIGN KEY (`ven_id_cliente`) REFERENCES `tb_Usuarios` (`usu_id`)
+  KEY `fk_ven_metodo_pagamento` (`ven_metodo_pagamento_id`),
+  KEY `fk_ven_status` (`ven_status_id`),
+  CONSTRAINT `tb_Vendas_ibfk_1` FOREIGN KEY (`ven_id_cliente`) REFERENCES `tb_Usuarios` (`usu_id`),
+  CONSTRAINT `fk_ven_metodo_pagamento` FOREIGN KEY (`ven_metodo_pagamento_id`) REFERENCES `tb_status_diversos` (`sta_id`),
+  CONSTRAINT `fk_ven_status` FOREIGN KEY (`ven_status_id`) REFERENCES `tb_status_diversos` (`sta_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -526,4 +573,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-03-10  8:54:34
+-- Dump completed on 2026-03-25 16:00:34

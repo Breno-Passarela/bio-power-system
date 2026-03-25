@@ -12,10 +12,10 @@ class Database {
 
   constructor() {
     this.#conexao = mysql.createPool({
-      host: "132.226.245.178", //endereço do nosso banco de dados na nuvem
-      database: "PFS1_10442519524", //a database de cada um de vocês possui a nomenclatura PFS1_(RA)
-      user: "10442519524", // usuario e senha de cada um de vocês é o RA
-      password: "10442519524",
+      host: "localhost", //endereço do nosso banco de dados na nuvem
+      database: "bio_sys_db", //a database de cada um de vocês possui a nomenclatura PFS1_(RA)
+      user: "root", // usuario e senha de cada um de vocês é o RA
+      password: "root", // usuario e senha de cada um de vocês é o RA
       idleTimeout: 30000,
       connectionLimit: 50,
     });

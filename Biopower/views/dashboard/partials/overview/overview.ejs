@@ -1,0 +1,233 @@
+<!-- VISÃO GERAL -->
+<section class="adm-section adm-section--active" id="overview">
+  <div class="adm-page-header">
+    <div>
+      <h1>Visão Geral</h1>
+      <p>Indicadores estratégicos da operação em tempo real.</p>
+    </div>
+    <div class="adm-page-header-actions">
+      <select class="adm-select">
+        <option>Hoje</option>
+        <option>Esta semana</option>
+        <option selected>Este mês</option>
+        <option>Este ano</option>
+      </select>
+    </div>
+  </div>
+  <div class="adm-kpi-grid">
+    <div class="adm-kpi adm-kpi--primary">
+      <div class="adm-kpi-icon">
+        <i class="fa-solid fa-sack-dollar"></i>
+      </div>
+      <div class="adm-kpi-body">
+        <p>Faturamento do mês</p>
+        <strong>R$&nbsp;48.620</strong>
+        <span class="adm-kpi-delta adm-kpi-delta--up"
+          ><i class="fa-solid fa-arrow-trend-up"></i> +14,3%</span
+        >
+      </div>
+    </div>
+    <div class="adm-kpi">
+      <div class="adm-kpi-icon">
+        <i class="fa-solid fa-basket-shopping"></i>
+      </div>
+      <div class="adm-kpi-body">
+        <p>Pedidos do mês</p>
+        <strong>312</strong>
+        <span class="adm-kpi-delta adm-kpi-delta--up"
+          ><i class="fa-solid fa-arrow-trend-up"></i> +6,1%</span
+        >
+      </div>
+    </div>
+    <div class="adm-kpi">
+      <div class="adm-kpi-icon"><i class="fa-solid fa-users"></i></div>
+      <div class="adm-kpi-body">
+        <p>Novos clientes</p>
+        <strong>87</strong>
+        <span class="adm-kpi-delta adm-kpi-delta--up"
+          ><i class="fa-solid fa-arrow-trend-up"></i> +9,5%</span
+        >
+      </div>
+    </div>
+    <div class="adm-kpi adm-kpi--alert">
+      <div class="adm-kpi-icon">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      <div class="adm-kpi-body">
+        <p>Estoque crítico</p>
+        <strong>03 itens</strong>
+        <span class="adm-kpi-delta adm-kpi-delta--down"
+          ><i class="fa-solid fa-arrow-trend-down"></i> Requer atenção</span
+        >
+      </div>
+    </div>
+    <div class="adm-kpi">
+      <div class="adm-kpi-icon">
+        <i class="fa-solid fa-percent"></i>
+      </div>
+      <div class="adm-kpi-body">
+        <p>Taxa de conversão</p>
+        <strong>3,8%</strong>
+        <span class="adm-kpi-delta adm-kpi-delta--up"
+          ><i class="fa-solid fa-arrow-trend-up"></i> +0,4pp</span
+        >
+      </div>
+    </div>
+    <div class="adm-kpi">
+      <div class="adm-kpi-icon">
+        <i class="fa-solid fa-receipt"></i>
+      </div>
+      <div class="adm-kpi-body">
+        <p>Ticket médio</p>
+        <strong>R$&nbsp;155,90</strong>
+        <span class="adm-kpi-delta adm-kpi-delta--neutral"
+          ><i class="fa-solid fa-minus"></i> Estável</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="adm-charts-row">
+    <div class="adm-card adm-card--chart">
+      <div class="adm-card-header">
+        <h3>Faturamento — Últimos 7 dias</h3>
+      </div>
+      <div class="adm-chart-placeholder">
+        <div class="adm-chart-empty">
+          <i class="fa-regular fa-chart-bar"></i>
+          <p>Integre uma fonte de dados para exibir o gráfico de receita</p>
+        </div>
+      </div>
+    </div>
+    <div class="adm-card">
+      <div class="adm-card-header"><h3>Pedidos por status</h3></div>
+      <div class="adm-status-list">
+        <div class="adm-status-item">
+          <span class="adm-status-dot adm-status-dot--warning"></span
+          ><span>Pendentes</span><strong>07</strong>
+        </div>
+        <div class="adm-status-item">
+          <span class="adm-status-dot adm-status-dot--info"></span
+          ><span>Em processamento</span><strong>14</strong>
+        </div>
+        <div class="adm-status-item">
+          <span class="adm-status-dot adm-status-dot--primary"></span
+          ><span>Enviados</span><strong>38</strong>
+        </div>
+        <div class="adm-status-item">
+          <span class="adm-status-dot adm-status-dot--success"></span
+          ><span>Concluídos</span><strong>253</strong>
+        </div>
+        <div class="adm-status-item">
+          <span class="adm-status-dot adm-status-dot--error"></span
+          ><span>Cancelados</span><strong>12</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="adm-tables-row">
+    <div class="adm-card">
+      <div class="adm-card-header adm-card-header--between">
+        <h3>Últimos pedidos</h3>
+        <button class="adm-btn adm-btn--ghost adm-btn--sm" data-goto="orders">
+          Ver todos
+        </button>
+      </div>
+      <div class="adm-table-wrap">
+        <table class="adm-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Cliente</th>
+              <th>Valor</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#4501</td>
+              <td>Lucas Mendes</td>
+              <td>R$ 219,90</td>
+              <td>
+                <span class="adm-badge adm-badge--success">Concluído</span>
+              </td>
+              <td>
+                <button class="adm-btn-icon">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>#4502</td>
+              <td>Ana Paula</td>
+              <td>R$ 87,50</td>
+              <td>
+                <span class="adm-badge adm-badge--warning">Pendente</span>
+              </td>
+              <td>
+                <button class="adm-btn-icon">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>#4503</td>
+              <td>Rafael Costa</td>
+              <td>R$ 312,00</td>
+              <td>
+                <span class="adm-badge adm-badge--info">Enviado</span>
+              </td>
+              <td>
+                <button class="adm-btn-icon">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="adm-card adm-card--chart">
+      <div class="adm-card-header">
+        <h3>Produtos mais vendidos</h3>
+      </div>
+      <div class="adm-card-body">
+        <button class="adm-btn adm-btn--ghost adm-btn--sm" data-goto="products">
+          Ver catálogo
+        </button>
+      </div>
+      <ul class="adm-rank-list">
+        <li class="adm-rank-item">
+          <span class="adm-rank-pos">1</span>
+          <div class="adm-rank-info">
+            <strong>Whey Protein 900g</strong><span>142 unidades</span>
+          </div>
+          <span class="adm-rank-revenue">R$ 18.460</span>
+        </li>
+        <li class="adm-rank-item">
+          <span class="adm-rank-pos">2</span>
+          <div class="adm-rank-info">
+            <strong>Creatina Monohidratada</strong><span>98 unidades</span>
+          </div>
+          <span class="adm-rank-revenue">R$ 7.840</span>
+        </li>
+        <li class="adm-rank-item">
+          <span class="adm-rank-pos">3</span>
+          <div class="adm-rank-info">
+            <strong>BCAA 2400</strong><span>76 unidades</span>
+          </div>
+          <span class="adm-rank-revenue">R$ 5.320</span>
+        </li>
+        <li class="adm-rank-item">
+          <span class="adm-rank-pos">4</span>
+          <div class="adm-rank-info">
+            <strong>Pré-treino Extremo</strong><span>54 unidades</span>
+          </div>
+          <span class="adm-rank-revenue">R$ 4.860</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

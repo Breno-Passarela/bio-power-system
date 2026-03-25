@@ -1,0 +1,112 @@
+<!-- ESTOQUE -->
+<section class="adm-section" id="stock">
+  <%
+    var critCount = 0;
+    products.forEach(function(p) {
+      if ((p.estoque || 0) < (p.estoqueMin || 10)) critCount++;
+    });
+  %>
+  <div class="adm-page-header">
+    <div>
+      <h1>Estoque</h1>
+      <p>Monitore quantidades e receba alertas automáticos.</p>
+    </div>
+  </div>
+
+  <% if (flash === 'estoque-atualizado') { %>
+  <div class="adm-flash adm-flash--success" id="flashMsgStock">
+    <i class="fa-solid fa-circle-check"></i>
+    Estoque atualizado com sucesso!
+    <button
+      class="adm-flash__close"
+      onclick="document.getElementById('flashMsgStock').remove()"
+    >
+      &#x2715;
+    </button>
+  </div>
+  <% } %>
+
+  <% if (critCount > 0) { %>
+  <div class="adm-alert-banner">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    <span
+      ><strong><%= critCount %> produto<%= critCount !== 1 ? 's' : '' %></strong>
+      estão abaixo do nível mínimo de estoque.</span
+    >
+  </div>
+  <% } %>
+
+  <div class="adm-card">
+    <div class="adm-table-wrap">
+      <table class="adm-table">
+        <thead>
+          <tr>
+            <th>Produto</th>
+            <th>Categoria</th>
+            <th>Qtd. atual</th>
+            <th>Mínimo</th>
+            <th>Status</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% products.forEach(function(p, i) {
+            var qty     = p.estoque    || 0;
+            var minQty  = p.estoqueMin || 10;
+            var pct     = qty / minQty;
+            var isAlert = qty < minQty;
+            var statusLabel, statusClass;
+            if (qty === 0)        { statusLabel = 'Zerado';  statusClass = 'adm-badge--error'; }
+            else if (pct <= 0.5)  { statusLabel = 'Crítico'; statusClass = 'adm-badge--error'; }
+            else if (pct < 1)     { statusLabel = 'Baixo';   statusClass = 'adm-badge--warning'; }
+            else                  { statusLabel = 'Normal';  statusClass = 'adm-badge--success'; }
+          %>
+          <tr class="<%= isAlert ? 'adm-row--alert' : '' %>">
+            <td>
+              <div class="adm-product-cell">
+                <div
+                  class="adm-product-thumb"
+                  style="background-image:url('<%= p.imagem %>');background-size:cover;background-position:center;"
+                ></div>
+                <div><strong><%= p.nome %></strong></div>
+              </div>
+            </td>
+            <td><span class="adm-badge adm-badge--info"><%= p.categoria %></span></td>
+            <td class="<%= qty <= minQty * 0.5 ? 'adm-cell--alert' : '' %>">
+              <strong><%= qty %></strong> un.
+            </td>
+            <td><%= minQty %> un.</td>
+            <td><span class="adm-badge <%= statusClass %>"><%= statusLabel %></span></td>
+            <td>
+              <% if (isAlert) { %>
+              <button
+                class="adm-btn adm-btn--sm adm-btn--primary"
+                data-index="<%= i %>"
+                data-nome="<%= p.nome %>"
+                onclick="reporEstoque(this)"
+              >
+                Repor
+              </button>
+              <% } else { %>
+              <button
+                class="adm-btn adm-btn--sm adm-btn--ghost"
+                data-index="<%= i %>"
+                data-nome="<%= p.nome %>"
+                onclick="reporEstoque(this)"
+              >
+                Ajustar
+              </button>
+              <% } %>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- form oculto para reposição via POST -->
+  <form id="formRepor" method="POST" action="" style="display:none">
+    <input type="hidden" name="quantidade" id="reporQtd" />
+  </form>
+</section>

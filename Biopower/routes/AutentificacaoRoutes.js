@@ -1,8 +1,8 @@
 const express = require("express");
-const AutentificacaoController = require("../controllers/AutentificacaoController");
+const UsuariosController = require("../controllers/usuariosController");
 
 const router = express.Router();
-const controller = new AutentificacaoController();
+const controller = new UsuariosController();
 
 router.get("/auth", controller.autentificacao);
 router.get("/login", controller.login);

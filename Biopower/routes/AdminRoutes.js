@@ -23,13 +23,15 @@ const upload = multer({
 });
 
 function ensureAdmin(req, res, next) {
-  if (req.session.user && req.session.user.role === "admin") {
+  if (req.session.user && (req.session.user.role === "admin" || req.session.user.role === "staff")) {
     return next();
   }
   return res.redirect("/login");
 }
 
-router.get("/dashboard", ensureAdmin, controller.dashboard);
+router.get("/", ensureAdmin, controller.dashboard);
+// rota legado para /dashboard/dashboard
+router.get("/dashboard", ensureAdmin, (req, res) => res.redirect("/dashboard"));
 router.post("/products", ensureAdmin, upload.single("imagem"), (req, res) =>
   controller.addProduct(req, res),
 );

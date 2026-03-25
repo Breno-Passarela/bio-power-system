@@ -33,7 +33,7 @@ server.use((req, res, next) => {
 
 server.use("/", homeRoutes);
 server.use("/", autentificacaoRoutes);
-server.use("/admin", adminRoutes);
+server.use("/dashboard", adminRoutes);
 server.use("/store", storeRoutes);
 server.use("/about-us", aboutUsRoutes);
 

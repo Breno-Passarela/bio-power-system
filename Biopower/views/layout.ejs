@@ -53,7 +53,7 @@
         <div class="navbar-links" id="navbarLinks">
           <a href="/store">Loja</a>
           <% if (sessionUser?.role === "admin") { %>
-            <a href="/admin/dashboard">Painel</a>
+            <a href="/dashboard/dashboard">Painel</a>
           <% } %>
           <a href="/about-us">Sobre Nós</a>
           <a href="#" id="abrirModalBtn">
@@ -104,6 +104,8 @@
                   <span class="nb-user-pill-role nb-user-pill-role--<%= sessionUser.role %>">
                     <% if (sessionUser.role === 'admin') { %>
                       <i class="fa-solid fa-shield-halved"></i> Admin
+                    <% } else if (sessionUser.role === 'staff') { %>
+                      <i class="fa-solid fa-briefcase"></i> Funcionário
                     <% } else { %>
                       <i class="fa-solid fa-user"></i> Cliente
                     <% } %>
@@ -123,8 +125,8 @@
                   </div>
                 </div>
                 <div class="profile-dropdown-content">
-                  <% if (sessionUser.role === 'admin') { %>
-                    <a href="/admin/dashboard"><i class="fa-solid fa-chart-line"></i> Painel Admin</a>
+                  <% if (sessionUser.role === 'admin' || sessionUser.role === 'staff') { %>
+                    <a href="/dashboard/dashboard"><i class="fa-solid fa-chart-line"></i> Painel Admin</a>
                   <% } %>
                   <a href="/pedidos"><i class="fas fa-box"></i> Meus Pedidos</a>
                   <a href="#"><i class="fas fa-cog"></i> Configurações</a>
@@ -194,14 +196,16 @@
                     <span class="mobile-user-role mobile-user-role--<%= sessionUser.role %>">
                       <% if (sessionUser.role === 'admin') { %>
                         <i class="fa-solid fa-shield-halved"></i> Administrador
+                      <% } else if (sessionUser.role === 'staff') { %>
+                        <i class="fa-solid fa-briefcase"></i> Funcionário
                       <% } else { %>
                         <i class="fa-solid fa-user"></i> Cliente
                       <% } %>
                     </span>
                   </div>
                 </div>
-                <% if (sessionUser.role === 'admin') { %>
-                  <a href="/admin/dashboard" class="mobile-settings-link"><i class="fa-solid fa-chart-line"></i> Painel Admin</a>
+                <% if (sessionUser.role === 'admin' || sessionUser.role === 'staff') { %>
+                  <a href="/dashboard/dashboard" class="mobile-settings-link"><i class="fa-solid fa-chart-line"></i> Painel Admin</a>
                 <% } %>
                 <a href="/pedidos" class="mobile-settings-link"><i class="fas fa-box"></i> Meus Pedidos</a>
                 <a href="/logout" class="mobile-logout-button"><i class="fas fa-sign-out-alt"></i> Sair</a>

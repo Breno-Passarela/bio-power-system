@@ -1,0 +1,94 @@
+<!-- PEDIDOS -->
+<section class="adm-section" id="orders">
+  <div class="adm-page-header">
+    <div>
+      <h1>Pedidos</h1>
+      <p>Acompanhe e gerencie todas as solicitações de compra.</p>
+    </div>
+  </div>
+  <div class="adm-status-tabs">
+    <button class="adm-tab adm-tab--active">Todos</button>
+    <button class="adm-tab">
+      Pendentes <span class="adm-tab-count">07</span>
+    </button>
+    <button class="adm-tab">Em processamento</button>
+    <button class="adm-tab">Enviados</button>
+    <button class="adm-tab">Concluídos</button>
+    <button class="adm-tab">Cancelados</button>
+  </div>
+  <div class="adm-filters">
+    <div class="adm-search-wrap">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input
+        type="search"
+        placeholder="Buscar por pedido ou cliente…"
+        class="adm-search"
+      />
+    </div>
+    <input type="date" class="adm-input adm-input--date" />
+  </div>
+  <div class="adm-card">
+    <div class="adm-table-wrap">
+      <table class="adm-table">
+        <thead>
+          <tr>
+            <th>Pedido</th>
+            <th>Cliente</th>
+            <th>Data</th>
+            <th>Itens</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#4501</td>
+            <td>Lucas Mendes</td>
+            <td>05/03/2026</td>
+            <td>3 itens</td>
+            <td>R$ 219,90</td>
+            <td>
+              <span class="adm-badge adm-badge--success">Concluído</span>
+            </td>
+            <td>
+              <button class="adm-btn-icon">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>#4502</td>
+            <td>Ana Paula</td>
+            <td>05/03/2026</td>
+            <td>1 item</td>
+            <td>R$ 87,50</td>
+            <td>
+              <span class="adm-badge adm-badge--warning">Pendente</span>
+            </td>
+            <td>
+              <button class="adm-btn-icon">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>#4503</td>
+            <td>Rafael Costa</td>
+            <td>04/03/2026</td>
+            <td>5 itens</td>
+            <td>R$ 312,00</td>
+            <td>
+              <span class="adm-badge adm-badge--info">Enviado</span>
+            </td>
+            <td>
+              <button class="adm-btn-icon">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
