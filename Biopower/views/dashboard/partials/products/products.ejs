@@ -73,13 +73,13 @@
               <div class="adm-actions">
                 <form
                   method="POST"
-                  action="/admin/products/delete/<%= i %>"
+                  action="/dashboard/products/delete/<%= p.id || i %>"
                   style="display:inline"
                   class="form-delete-product"
                   data-nome="<%= p.nome %>"
                 >
                   <button
-                    type="submit"
+                    type="button"
                     class="adm-btn-icon adm-btn-icon--danger"
                     title="Excluir"
                   >
@@ -113,8 +113,9 @@
       </button>
     </div>
     <form
+      id="formProduto"
       method="POST"
-      action="/admin/products"
+      action="/dashboard/products"
       class="adm-form"
       enctype="multipart/form-data"
     >
@@ -123,6 +124,7 @@
           <label>Nome do produto *</label>
           <input
             type="text"
+            id="nome"
             name="nome"
             required
             placeholder="Ex: Whey Protein Baunilha 900g"
@@ -131,7 +133,7 @@
         </div>
         <div class="adm-form-group">
           <label>Categoria *</label>
-          <select name="categoria" required class="adm-input">
+          <select id="categoria" name="categoria" required class="adm-input">
             <option value="">Selecione…</option>
             <option>Creatina</option>
             <option>Whey</option>
@@ -148,6 +150,7 @@
           <label>Marca</label>
           <input
             type="text"
+            id="marca"
             name="marca"
             placeholder="Ex: Growth Supplements"
             class="adm-input"
@@ -157,6 +160,7 @@
           <label>Sabor</label>
           <input
             type="text"
+            id="sabor"
             name="sabor"
             placeholder="Ex: Chocolate"
             class="adm-input"
@@ -166,6 +170,7 @@
           <label>Preço *</label>
           <input
             type="text"
+            id="preco"
             name="preco"
             required
             placeholder="Ex: R$129,90"
@@ -176,6 +181,7 @@
           <label>Estoque inicial</label>
           <input
             type="number"
+            id="estoque"
             name="estoque"
             min="0"
             step="1"
@@ -188,6 +194,7 @@
           <label>Estoque mínimo</label>
           <input
             type="number"
+            id="estoqueMin"
             name="estoqueMin"
             min="0"
             step="1"
@@ -200,6 +207,7 @@
           <label>Texto do crédito</label>
           <input
             type="text"
+            id="credito"
             name="credito"
             placeholder="Ex: ou R$144,30 no cartão em até 6x de R$24,05"
             class="adm-input"
@@ -209,10 +217,10 @@
           <label>Imagem do produto</label>
           <input
             type="file"
+            id="imagem"
             name="imagem"
             accept="image/jpeg,image/png,image/webp,image/gif"
             class="adm-input"
-            id="inputImagemFile"
             onchange="previewImagem(this)"
           />
           <img
@@ -229,6 +237,7 @@
           <label>Texto alternativo (alt)</label>
           <input
             type="text"
+            id="alt"
             name="alt"
             placeholder="Descrição curta da imagem"
             class="adm-input"
@@ -243,7 +252,7 @@
         >
           Cancelar
         </button>
-        <button type="submit" class="adm-btn adm-btn--primary">
+        <button type="button" id="btnSalvarProduto" class="adm-btn adm-btn--primary">
           <i class="fa-solid fa-floppy-disk"></i> Salvar produto
         </button>
       </div>

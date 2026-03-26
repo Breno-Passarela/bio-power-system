@@ -76,6 +76,12 @@ var dados = [
   },
 ];
 
+const showAlert = (options) => {
+  if (window.Swal) return window.Swal.fire(options);
+  console.log(options.title || options.text || "");
+  return Promise.resolve();
+};
+
 const productForm = {
   nome: "",
   descricao: "",
@@ -423,7 +429,7 @@ function excluirItem(id) {
 function excluirSelecionados() {
   const listaCk = document.querySelectorAll(".check-row");
   if (listaCk.length === 0) {
-    alert("Não há produtos na lista para serem excluídos.");
+    showAlert({ icon: "warning", title: "Não há produtos na lista para serem excluídos." });
     return;
   }
 
@@ -436,7 +442,7 @@ function excluirSelecionados() {
   });
 
   if (!alterou) {
-    alert("Selecione pelo menos um produto para excluir.");
+    showAlert({ icon: "info", title: "Selecione pelo menos um produto para excluir." });
   }
 }
 

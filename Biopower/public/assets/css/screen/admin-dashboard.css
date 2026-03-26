@@ -896,6 +896,115 @@ ol {
   background: var(--color-bg);
 }
 
+/* ── Contracts table (services) ───────────────────────────── */
+.adm-table--contracts {
+  font-size: 0.86rem;
+}
+
+.adm-table--contracts th {
+  letter-spacing: 0.05em;
+}
+
+.adm-table--contracts .col-status { width: 170px; }
+.adm-table--contracts .col-valor { width: 120px; }
+.adm-table--contracts .col-date { width: 150px; }
+.adm-table--contracts .col-obs { width: 210px; }
+.adm-table--contracts .col-actions { width: 120px; text-align: right; }
+
+.adm-contracts-header {
+  margin-bottom: 10px;
+  gap: 16px;
+}
+
+.adm-contracts-header p {
+  margin: 2px 0 0;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.adm-contracts-filters {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.adm-filter-control {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 180px;
+}
+
+.adm-filter-control label {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.adm-select-status {
+  border-radius: var(--radius-full);
+  padding: 8px 12px;
+  font-weight: 700;
+  text-transform: capitalize;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.adm-select-status:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-bg);
+  outline: none;
+}
+
+.adm-select-status.status-pendente {
+  background: var(--color-warning-bg);
+  color: #b07200;
+}
+.adm-select-status.status-em_analise {
+  background: #e8f0ff;
+  color: #0f4fc3;
+}
+.adm-select-status.status-aprovado {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+.adm-select-status.status-em_andamento {
+  background: rgba(204, 0, 0, 0.09);
+  color: var(--color-primary);
+}
+.adm-select-status.status-finalizado {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+.adm-select-status.status-cancelado {
+  background: var(--color-primary-bg);
+  color: var(--color-primary-dark);
+}
+
+.adm-table--contracts .adm-date-main {
+  display: block;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.adm-table--contracts .adm-date-sub {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.adm-table--contracts .adm-input--ghost {
+  background: var(--color-bg);
+  border-color: var(--color-border);
+}
+
+.adm-table--contracts .adm-actions {
+  justify-content: flex-end;
+}
+
 .adm-row--alert td {
   background: var(--color-warning-bg) !important;
 }

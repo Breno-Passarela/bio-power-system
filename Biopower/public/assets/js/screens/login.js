@@ -4,6 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
 
+  const showAlert = (options) => {
+    if (window.Swal) return window.Swal.fire(options);
+    console.log(options.title || options.text || "");
+    return Promise.resolve();
+  };
+
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -11,12 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = passwordInput.value.trim();
 
     if (!email || !password) {
-      alert("Por favor, preencha todos os campos.");
+      showAlert({ icon: "warning", title: "Por favor, preencha todos os campos." });
       return;
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      alert("Por favor, insira um e-mail válido.");
+      showAlert({ icon: "warning", title: "Por favor, insira um e-mail válido." });
       return;
     }
 

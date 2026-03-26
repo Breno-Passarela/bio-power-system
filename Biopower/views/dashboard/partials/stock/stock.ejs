@@ -81,7 +81,7 @@
               <% if (isAlert) { %>
               <button
                 class="adm-btn adm-btn--sm adm-btn--primary"
-                data-index="<%= i %>"
+                data-id="<%= p.id %>"
                 data-nome="<%= p.nome %>"
                 onclick="reporEstoque(this)"
               >
@@ -90,7 +90,7 @@
               <% } else { %>
               <button
                 class="adm-btn adm-btn--sm adm-btn--ghost"
-                data-index="<%= i %>"
+                data-id="<%= p.id %>"
                 data-nome="<%= p.nome %>"
                 onclick="reporEstoque(this)"
               >
@@ -105,8 +105,4 @@
     </div>
   </div>
 
-  <!-- form oculto para reposição via POST -->
-  <form id="formRepor" method="POST" action="" style="display:none">
-    <input type="hidden" name="quantidade" id="reporQtd" />
-  </form>
 </section>

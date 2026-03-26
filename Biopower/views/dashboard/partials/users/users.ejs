@@ -5,10 +5,9 @@
       <h1>Usuários</h1>
       <p>Clientes, administradores e atendentes cadastrados.</p>
     </div>
-    <!-- COLOCAR UM BOTAO DE CADASTRO AQUI IGUAL NAS OUTRAS TELAS -->
-    <a href="/usuarios/cadastrar" class="adm-btn adm-btn--primary">
+    <button class="adm-btn adm-btn--primary" type="button" data-goto="users" id="btnNovoUsuario">
       <i class="fas fa-plus"></i> Adicionar Usuário
-    </a>
+    </button>
   </div>
   <div class="adm-filters">
     <div class="adm-search-wrap">
@@ -48,7 +47,7 @@
           <tr>
             <td><%= listaUsuarios[i].usuNome %></td>
             <td><%= listaUsuarios[i].usuEmail %></td>
-            <td><%= listaUsuarios[i].usuTypeId %></td>
+            <td><%= (userProfiles && userProfiles[listaUsuarios[i].usuTypeId]) || listaUsuarios[i].usuTypeId %></td>
             <td><%= listaUsuarios[i].usuCpfCnpj %></td>
             <td>
               <span
@@ -58,23 +57,104 @@
               </span>
             </td>
             <td>
-              <a
-                href="/usuarios/alterar/<%= listaUsuarios[i].usuId %>"
-                class="btn btn-sm btn-outline-primary"
-              >
-                <i class="fas fa-edit"></i>
-              </a>
-              <button
-                class="btnExcluir btn btn-sm btn-outline-danger"
-                data-id="<%= listaUsuarios[i].usuId %>"
-              >
-                <i class="fas fa-trash"></i>
-              </button>
+              <div class="adm-actions">
+                <button
+                  type="button"
+                  class="adm-btn-icon js-edit-user"
+                  title="Editar"
+                  data-id="<%= listaUsuarios[i].usuId %>"
+                  data-nome="<%= listaUsuarios[i].usuNome %>"
+                  data-email="<%= listaUsuarios[i].usuEmail %>"
+                  data-cpf="<%= listaUsuarios[i].usuCpfCnpj %>"
+                  data-type="<%= listaUsuarios[i].usuTypeId %>"
+                  data-ativo="<%= listaUsuarios[i].usuAtivo %>"
+                >
+                  <i class="fa-solid fa-pen"></i>
+                </button>
+                <button
+                  type="button"
+                  class="adm-btn-icon adm-btn-icon--danger js-delete-user"
+                  title="Excluir"
+                  data-id="<%= listaUsuarios[i].usuId %>"
+                  data-nome="<%= listaUsuarios[i].usuNome %>"
+                >
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
             </td>
           </tr>
           <% } %>
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <div class="adm-dialog" id="dialog-usuario">
+    <div class="adm-dialog-backdrop" onclick="document.getElementById('dialog-usuario').classList.remove('adm-dialog--open')"></div>
+    <div class="adm-dialog-panel" style="max-width:560px">
+      <div class="adm-dialog-header">
+        <h2><i class="fa-solid fa-user"></i> Usuário</h2>
+        <button
+          class="adm-dialog-close"
+          type="button"
+          onclick="document.getElementById('dialog-usuario').classList.remove('adm-dialog--open')"
+        >
+          &#x2715;
+        </button>
+      </div>
+      <form id="formUsuario" class="adm-form">
+        <input type="hidden" id="usuarioId" />
+        <div class="adm-form-grid">
+          <div class="adm-form-group">
+            <label>Nome *</label>
+            <input type="text" id="usuarioNome" class="adm-input" placeholder="Nome completo" required />
+          </div>
+          <div class="adm-form-group">
+            <label>Email *</label>
+            <input type="email" id="usuarioEmail" class="adm-input" placeholder="email@exemplo.com" required />
+          </div>
+        </div>
+        <div class="adm-form-grid">
+          <div class="adm-form-group">
+            <label>Senha <span id="senhaHint">*</span></label>
+            <input type="password" id="usuarioSenha" class="adm-input" placeholder="••••••" />
+          </div>
+          <div class="adm-form-group">
+            <label>CPF / CNPJ</label>
+            <input type="text" id="usuarioCpf" class="adm-input" placeholder="Somente números" />
+          </div>
+        </div>
+        <div class="adm-form-grid">
+          <div class="adm-form-group">
+            <label>Perfil *</label>
+            <select id="usuarioTipo" class="adm-input">
+              <option value="">Selecione</option>
+              <option value="1">Administrador</option>
+              <option value="2">Funcionario</option>
+              <option value="3">Cliente</option>
+            </select>
+          </div>
+          <div class="adm-form-group">
+            <label>Status *</label>
+            <select id="usuarioAtivo" class="adm-input">
+              <option value="1">Ativo</option>
+              <option value="0">Inativo</option>
+            </select>
+          </div>
+        </div>
+        <div class="adm-dialog-footer">
+          <button
+            type="button"
+            class="adm-btn adm-btn--ghost"
+            onclick="document.getElementById('dialog-usuario').classList.remove('adm-dialog--open')"
+          >
+            Cancelar
+          </button>
+          <button type="button" id="btnSalvarUsuario" class="adm-btn adm-btn--primary">
+            <i class="fa-solid fa-floppy-disk"></i> Salvar
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </section>

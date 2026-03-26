@@ -95,6 +95,60 @@ class UsuariosModels {
     return lista;
   }
 
+  async buscarPorId(id) {
+    const sql = "select * from tb_Usuarios where usu_id = ?";
+    const rows = await banco.ExecutaComando(sql, [id]);
+    if (rows.length === 0) return null;
+    const u = rows[0];
+    return new UsuariosModels(
+      u["usu_nome"],
+      u["usu_email"],
+      u["usu_senha"],
+      u["usu_cpf_cnpj"],
+      u["usu_typ_id"],
+      u["usu_ativo"],
+      u["usu_id"],
+    );
+  }
+
+  async criar({ nome, email, senha, cpfCnpj = null, typeId, ativo = 1 }) {
+    const sql = `insert into tb_Usuarios
+      (usu_nome, usu_email, usu_senha, usu_cpf_cnpj, usu_typ_id, usu_ativo)
+      values (?, ?, ?, ?, ?, ?)`;
+    const novoId = await banco.ExecutaComandoLastInserted(sql, [
+      nome,
+      email,
+      senha,
+      cpfCnpj,
+      typeId,
+      ativo,
+    ]);
+    return novoId;
+  }
+
+  async atualizar(id, { nome, email, senha, cpfCnpj = null, typeId, ativo }) {
+    const campos = [];
+    const valores = [];
+
+    if (nome !== undefined) { campos.push("usu_nome = ?"); valores.push(nome); }
+    if (email !== undefined) { campos.push("usu_email = ?"); valores.push(email); }
+    if (senha !== undefined && senha !== null && senha !== "") { campos.push("usu_senha = ?"); valores.push(senha); }
+    if (cpfCnpj !== undefined) { campos.push("usu_cpf_cnpj = ?"); valores.push(cpfCnpj); }
+    if (typeId !== undefined) { campos.push("usu_typ_id = ?"); valores.push(typeId); }
+    if (ativo !== undefined) { campos.push("usu_ativo = ?"); valores.push(ativo); }
+
+    if (campos.length === 0) return false;
+
+    const sql = `update tb_Usuarios set ${campos.join(", ")} where usu_id = ?`;
+    valores.push(id);
+    return banco.ExecutaComandoNonQuery(sql, valores);
+  }
+
+  async desativar(id) {
+    const sql = "update tb_Usuarios set usu_ativo = 0 where usu_id = ?";
+    return banco.ExecutaComandoNonQuery(sql, [id]);
+  }
+
   async login(){
     const sql  = "select * from tb_Usuarios where usu_email = ? and usu_senha = ? and usu_ativo = 1";
     const rows = await banco.ExecutaComando(sql, [this.#usuEmail, this.#usuSenha]);

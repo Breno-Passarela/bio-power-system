@@ -1,0 +1,202 @@
+<link rel="stylesheet" href="assets/css/screen/services.css" />
+
+<main class="services-main">
+
+  <!-- ── Hero ── -->
+  <section class="services-hero">
+    <div class="services-hero-container">
+
+      <div class="services-hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-bolt"></i>
+          <span>Consultoria Bio-Power</span>
+        </div>
+
+        <h1 class="hero-title">
+          Serviços para seu<br>
+          <em>desempenho</em> e saúde
+        </h1>
+
+        <p class="hero-subtitle">
+          Avaliações físicas, acompanhamento nutricional e orientação
+          personalizada de suplementos — tudo em um só lugar.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#catalogo" class="btn-hero btn-hero--primary">
+            <i class="fas fa-arrow-down"></i>
+            Explorar serviços
+          </a>
+          <% if (sessionUser) { %>
+          <a href="#meus" class="btn-hero btn-hero--secondary">
+            <i class="fas fa-clipboard-list"></i>
+            Meus serviços
+          </a>
+          <% } %>
+        </div>
+      </div>
+
+      <!-- Stats panel (decorative, substitua os valores se quiser dados reais) -->
+      <div class="services-hero-visual" aria-hidden="true">
+        <div class="hero-stat-card">
+          <div class="stat-icon"><i class="fas fa-users"></i></div>
+          <div class="stat-text">
+            <span class="stat-value">+1.200</span>
+            <span class="stat-label">Alunos atendidos</span>
+          </div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="stat-icon"><i class="fas fa-medal"></i></div>
+          <div class="stat-text">
+            <span class="stat-value">8 anos</span>
+            <span class="stat-label">De experiência</span>
+          </div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="stat-icon"><i class="fas fa-star"></i></div>
+          <div class="stat-text">
+            <span class="stat-value">4.9 / 5</span>
+            <span class="stat-label">Avaliação média</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Catálogo ── -->
+  <section class="services-catalog" id="catalogo">
+    <div class="section-container">
+
+      <div class="section-header">
+        <div class="header-content">
+          <span class="eyebrow">Catálogo</span>
+          <h2>Escolha o serviço ideal</h2>
+          <p class="section-subtitle">Planos e atendimentos pensados para diferentes objetivos e resultados.</p>
+        </div>
+        <div class="search-wrapper">
+          <i class="fas fa-search"></i>
+          <input
+            type="search"
+            id="buscaServicos"
+            class="search-input"
+            placeholder="Buscar serviço..."
+            aria-label="Buscar serviço"
+          />
+        </div>
+      </div>
+
+      <% if (!services || services.length === 0) { %>
+        <div class="empty-state">
+          <div class="empty-state-icon"><i class="fas fa-inbox"></i></div>
+          <h3>Nenhum serviço disponível</h3>
+          <p>Em breve teremos novos serviços disponíveis para você.</p>
+        </div>
+      <% } else { %>
+      <div class="services-grid" id="gridServicos">
+        <% services.forEach(function(s){ %>
+          <article class="service-card" data-nome="<%= s.nome %>">
+
+            <div class="card-header">
+              <div class="card-icon">
+                <i class="fas fa-leaf"></i>
+              </div>
+              <span class="card-tag">Serviço</span>
+            </div>
+
+            <div class="card-content">
+              <h3 class="card-title"><%= s.nome %></h3>
+              <p class="card-description"><%= s.descricao || 'Nenhuma descrição disponível.' %></p>
+            </div>
+
+            <div class="card-divider"></div>
+
+            <div class="card-footer">
+              <div class="card-price">
+                <span class="price-label">A partir de</span>
+                <span class="price-value">R$ <%= Number(s.preco || 0).toFixed(2) %></span>
+              </div>
+              <button
+                class="btn-contratar"
+                data-id="<%= s.id %>"
+                data-nome="<%= s.nome %>"
+                type="button"
+              >
+                Contratar
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+
+          </article>
+        <% }) %>
+      </div>
+      <% } %>
+
+    </div>
+  </section>
+
+  <!-- ── Meus Serviços ── -->
+  <% if (sessionUser) { %>
+  <section class="services-contracted" id="meus">
+    <div class="section-container">
+
+      <div class="section-header">
+        <div class="header-content">
+          <span class="eyebrow">Acompanhamento</span>
+          <h2>Meus serviços contratados</h2>
+          <p class="section-subtitle">Acompanhe o status das suas solicitações e agendamentos.</p>
+        </div>
+      </div>
+
+      <% if (!meusServicos || meusServicos.length === 0) { %>
+        <div class="empty-state">
+          <div class="empty-state-icon"><i class="fas fa-handshake"></i></div>
+          <h3>Nenhum serviço contratado</h3>
+          <p>Clique em "Contratar" para solicitar um de nossos serviços.</p>
+        </div>
+      <% } else { %>
+      <div class="contracts-list">
+        <% meusServicos.forEach(function(sc){ %>
+          <div class="contract-item">
+
+            <div class="contract-header">
+              <div class="contract-info">
+                <h4 class="contract-service"><%= sc.servicoNome %></h4>
+                <p class="contract-date">
+                  <i class="fas fa-calendar-alt"></i>
+                  <%= new Date(sc.dataContratacao).toLocaleDateString('pt-BR', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}) %>
+                </p>
+              </div>
+              <span class="contract-status contract-status-<%= sc.status %>">
+                <span class="status-dot"></span>
+                <%= sc.status %>
+              </span>
+            </div>
+
+            <p class="contract-description"><%= sc.servicoDescricao || 'Sem descrição adicional.' %></p>
+
+            <div class="contract-footer">
+              <div class="contract-price">
+                <span class="label">Valor</span>
+                <span class="value">R$ <%= Number(sc.servicoPreco || 0).toFixed(2) %></span>
+              </div>
+              <% if (sc.observacoes) { %>
+              <div class="contract-notes">
+                <span class="label">Observações</span>
+                <span class="value"><%= sc.observacoes %></span>
+              </div>
+              <% } %>
+            </div>
+
+          </div>
+        <% }) %>
+      </div>
+      <% } %>
+
+    </div>
+  </section>
+  <% } %>
+
+</main>
+
+<script src="/assets/js/screens/services.js"></script>

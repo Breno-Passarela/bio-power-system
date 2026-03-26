@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Bio-Power · Editar serviço</title>
+		<link rel="shortcut icon" href="/assets/imgs/img-icon-site.png" type="image/x-icon" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="/assets/css/colors.css" />
+		<link rel="stylesheet" href="/assets/css/screen/admin-dashboard.css" />
+	</head>
+	<body class="adm">
+		<aside class="adm-sidebar" id="admSidebar">
+			<div class="adm-sidebar-brand">
+				<img src="/assets/imgs/img-logo-bio-power.png" alt="Bio-Power" class="adm-sidebar-logo" />
+				<span class="adm-sidebar-brand-label">Bio-Power</span>
+			</div>
+			<div class="adm-sidebar-user">
+				<div class="adm-sidebar-avatar"><i class="fa-solid fa-user-tie"></i></div>
+				<div class="adm-sidebar-user-info">
+					<strong><%= user?.name || "Administrador" %></strong>
+					<span><%= user?.roleDisplay || "Administrador" %></span>
+				</div>
+			</div>
+			<nav class="adm-nav">
+				<p class="adm-nav-section-label">Principal</p>
+				<a href="/dashboard#overview" class="adm-nav-item" data-section="overview">
+					<i class="fa-solid fa-chart-line"></i><span>Visão Geral</span>
+				</a>
+				<a href="/dashboard#products" class="adm-nav-item" data-section="products">
+					<i class="fa-solid fa-box-open"></i><span>Produtos</span><span class="adm-nav-badge"><%= (typeof products !== 'undefined' && products ? products.length : 0) %></span>
+				</a>
+				<a href="/dashboard#categories" class="adm-nav-item" data-section="categories">
+					<i class="fa-solid fa-tags"></i><span>Categorias</span>
+				</a>
+				<a href="/dashboard#orders" class="adm-nav-item" data-section="orders">
+					<i class="fa-solid fa-receipt"></i><span>Pedidos</span><span class="adm-nav-badge adm-nav-badge--alert">07</span>
+				</a>
+				<a href="/dashboard#stock" class="adm-nav-item" data-section="stock">
+					<i class="fa-solid fa-warehouse"></i><span>Estoque</span>
+				</a>
+				<p class="adm-nav-section-label">Gestão</p>
+				<a href="/dashboard#users" class="adm-nav-item" data-section="users">
+					<i class="fa-solid fa-users"></i><span>Usuários</span>
+				</a>
+				<a href="/dashboard#services" class="adm-nav-item adm-nav-item--active" data-section="services">
+					<i class="fa-solid fa-calendar-check"></i><span>Serviços</span>
+				</a>
+				<a href="/dashboard#services-contracts" class="adm-nav-item" data-section="services-contracts">
+					<i class="fa-solid fa-handshake"></i><span>Serviços contratados</span>
+				</a>
+				<a href="/dashboard#coupons" class="adm-nav-item" data-section="coupons">
+					<i class="fa-solid fa-ticket"></i><span>Cupons & Promoções</span>
+				</a>
+				<p class="adm-nav-section-label">Análise</p>
+				<a href="/dashboard#reports" class="adm-nav-item" data-section="reports">
+					<i class="fa-solid fa-chart-bar"></i><span>Relatórios</span>
+				</a>
+				<p class="adm-nav-section-label">Sistema</p>
+				<a href="/dashboard#settings" class="adm-nav-item" data-section="settings">
+					<i class="fa-solid fa-gear"></i><span>Configurações</span>
+				</a>
+				<a href="/dashboard#permissions" class="adm-nav-item" data-section="permissions">
+					<i class="fa-solid fa-shield-halved"></i><span>Permissões</span>
+				</a>
+			</nav>
+			<a class="adm-sidebar-logout" href="/logout">
+				<i class="fa-solid fa-right-from-bracket"></i><span>Encerrar sessão</span>
+			</a>
+		</aside>
+		<div class="adm-overlay" id="admOverlay"></div>
+
+		<div class="adm-shell">
+			<header class="adm-topbar">
+				<div class="adm-topbar-left">
+					<button class="adm-topbar-hamburger" id="admHamburger" aria-label="Abrir menu">
+						<i class="fa-solid fa-bars"></i>
+					</button>
+					<div class="adm-topbar-breadcrumb">
+						<a href="/">Bio-Power</a>
+						<i class="fa-solid fa-chevron-right"></i>
+						<a href="/dashboard#services">Serviços</a>
+						<i class="fa-solid fa-chevron-right"></i>
+						<span>Editar serviço</span>
+					</div>
+				</div>
+				<div class="adm-topbar-right">
+					<a href="/" class="adm-topbar-site-link">
+						<i class="fa-solid fa-arrow-up-right-from-square"></i><span>Ver site</span>
+					</a>
+				</div>
+			</header>
+
+			<main class="adm-main" style="padding:24px">
+				<section class="adm-section adm-section--active" id="service-edit">
+					<div class="adm-page-header" style="align-items:center;gap:12px">
+						<div>
+							<h1>Editar serviço</h1>
+							<p>Atualize os dados de <strong><%= servico?.nome %></strong>.</p>
+						</div>
+						<a class="adm-btn adm-btn--ghost" href="/dashboard#services">
+							<i class="fa-solid fa-arrow-left"></i> Voltar
+						</a>
+					</div>
+
+					<div class="adm-card" style="padding:20px">
+						<form id="serviceEditForm" class="adm-form" method="POST" action="/dashboard/services/<%= servico?.id %>">
+							<div class="adm-form-grid">
+								<div class="adm-form-group adm-form-group--full">
+									<label>Nome do serviço *</label>
+									<input
+										type="text"
+										name="nome"
+										required
+										value="<%= servico?.nome || '' %>"
+										class="adm-input"
+									/>
+								</div>
+
+								<div class="adm-form-group">
+									<label>Preço *</label>
+									<input
+										type="number"
+										name="preco"
+										min="0"
+										step="0.01"
+										required
+										value="<%= servico?.preco ?? '' %>"
+										class="adm-input"
+									/>
+								</div>
+
+								<div class="adm-form-group adm-form-group--full">
+									<label>Descrição</label>
+									<textarea
+										name="descricao"
+										rows="3"
+										class="adm-input"
+										placeholder="Detalhes do serviço"
+									><%= servico?.descricao || '' %></textarea>
+								</div>
+							</div>
+
+							<div class="adm-dialog-footer" style="margin-top:12px">
+								<a class="adm-btn adm-btn--ghost" href="/dashboard#services">Cancelar</a>
+								<button type="submit" class="adm-btn adm-btn--primary">
+									<i class="fa-solid fa-floppy-disk"></i> Salvar alterações
+								</button>
+							</div>
+						</form>
+					</div>
+				</section>
+			</main>
+		</div>
+
+		<script src="/assets/js/admin-dashboard.js"></script>
+		<script>
+			(function () {
+				const form = document.getElementById("serviceEditForm");
+				form.addEventListener("submit", async (ev) => {
+					ev.preventDefault();
+					const data = new FormData(form);
+					const body = new URLSearchParams();
+					data.forEach((value, key) => {
+						body.append(key, value);
+					});
+					try {
+						const resp = await fetch(form.action, {
+							method: "PUT",
+							headers: {
+								Accept: "application/json",
+								"Content-Type": "application/x-www-form-urlencoded",
+							},
+							body: body.toString(),
+						});
+						if (resp.ok) {
+							window.location.href = "/dashboard?flash=servico-atualizado#services";
+						} else {
+							alert("Não foi possível salvar o serviço.");
+						}
+					} catch (err) {
+						console.error(err);
+						alert("Erro ao salvar o serviço.");
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>

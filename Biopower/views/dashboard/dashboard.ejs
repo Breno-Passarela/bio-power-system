@@ -74,6 +74,9 @@
         <a href="#services" class="adm-nav-item" data-section="services">
           <i class="fa-solid fa-calendar-check"></i><span>Serviços</span>
         </a>
+        <a href="#services-contracts" class="adm-nav-item" data-section="services-contracts">
+          <i class="fa-solid fa-handshake"></i><span>Serviços contratados</span>
+        </a>
         <a href="#coupons" class="adm-nav-item" data-section="coupons">
           <i class="fa-solid fa-ticket"></i><span>Cupons & Promoções</span>
         </a>
@@ -203,6 +206,7 @@
         <%- include('./partials/stock/stock') %>
         <%- include('./partials/users/users') %>
         <%- include('./partials/services/services') %>
+        <%- include('./partials/services/services-contracts') %>
         <%- include('./partials/coupons/coupons') %>
         <%- include('./partials/reports/reports') %>
         <%- include('./partials/settings/settings') %>
@@ -212,5 +216,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/assets/js/admin-dashboard.js"></script>
+    <script src="/assets/js/screens/admin-products.js"></script>
+    <script src="/assets/js/screens/admin-services.js"></script>
+    <script src="/assets/js/screens/admin-users.js"></script>
   </body>
 </html>

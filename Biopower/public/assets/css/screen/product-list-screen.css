@@ -622,11 +622,3 @@ main {
     gap: 12px;
   }
 }
-
-/* LEGADO — sobrescreve regras antigas dos @import */
-main {
-  display: unset;
-}
-  display: flex;
-  padding: 1rem;
-}

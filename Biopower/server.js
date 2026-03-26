@@ -7,6 +7,7 @@ const homeRoutes = require("./routes/HomeRoutes");
 const storeRoutes = require("./routes/StoreRoutes");
 const aboutUsRoutes = require("./routes/AboutUsRoutes");
 const autentificacaoRoutes = require("./routes/AutentificacaoRoutes");
+const servicesRoutes = require("./routes/ServicesRoutes");
 
 const adminRoutes = require("./routes/AdminRoutes");
 const server = express();
@@ -16,6 +17,7 @@ server.set("layout", "./layout.ejs");
 server.use(express.static("public"));
 
 server.use(expressEjsLayout);
+server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(
   session({
@@ -36,6 +38,7 @@ server.use("/", autentificacaoRoutes);
 server.use("/dashboard", adminRoutes);
 server.use("/store", storeRoutes);
 server.use("/about-us", aboutUsRoutes);
+server.use("/", servicesRoutes);
 
 server.listen(PORT, () => {
   console.log(`Servidor rodando na porta http://localhost:${PORT}`);

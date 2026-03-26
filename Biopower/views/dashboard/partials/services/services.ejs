@@ -5,13 +5,112 @@
       <h1>Serviços</h1>
       <p>Consultorias nutricionais e acompanhamentos agendados.</p>
     </div>
-    <button class="adm-btn adm-btn--primary">
+    <button
+      class="adm-btn adm-btn--primary"
+      id="btnNovoServico"
+      type="button"
+      onclick="document.getElementById('dialog-servico').classList.add('adm-dialog--open');document.getElementById('formServico').reset();document.getElementById('servicoId').value='';"
+    >
       <i class="fa-solid fa-plus"></i> Novo serviço
     </button>
   </div>
+
+  <% if ((services || []).length === 0) { %>
   <div class="adm-empty-state">
-    <i class="fa-solid fa-calendar-check"></i>
-    <h2>Nenhum agendamento ativo</h2>
-    <p>Quando houver consultorias registradas, elas aparecerão aqui.</p>
+    <i class="fa-solid fa-clipboard-list"></i>
+    <h2>Nenhum serviço cadastrado</h2>
+    <p>Cadastre serviços como avaliação física, consulta nutricional ou acompanhamento.</p>
+  </div>
+  <% } else { %>
+  <div class="adm-card">
+    <div class="adm-table-wrap">
+      <table class="adm-table">
+        <thead>
+          <tr>
+            <th>Serviço</th>
+            <th>Preço</th>
+            <th>Descrição</th>
+            <th style="width:120px">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% services.forEach(function(s) { %>
+          <tr>
+            <td><strong><%= s.nome %></strong></td>
+            <td><strong>R$ <%= (Number(s.preco || 0)).toFixed(2) %></strong></td>
+            <td style="max-width:440px;white-space:normal"><%= s.descricao || '-' %></td>
+            <td>
+              <div class="adm-actions">
+                <button
+                  type="button"
+                  class="adm-btn-icon"
+                  title="Editar"
+                  data-id="<%= s.id %>"
+                  data-nome="<%= s.nome %>"
+                  data-preco="<%= s.preco %>"
+                  data-descricao="<%= s.descricao %>"
+                  onclick="window.editarServico(this)"
+                >
+                  <i class="fa-solid fa-pen"></i>
+                </button>
+                <button
+                  type="button"
+                  class="adm-btn-icon adm-btn-icon--danger btn-delete-service"
+                  data-id="<%= s.id %>"
+                  data-nome="<%= s.nome %>"
+                  onclick="window.excluirServico(this)"
+                >
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <% } %>
+
+  <div class="adm-dialog" id="dialog-servico">
+    <div class="adm-dialog-backdrop" onclick="document.getElementById('dialog-servico').classList.remove('adm-dialog--open')"></div>
+    <div class="adm-dialog-panel" style="max-width:520px">
+      <div class="adm-dialog-header">
+        <h2><i class="fa-solid fa-calendar-check"></i> Serviço</h2>
+        <button
+          class="adm-dialog-close"
+          onclick="document.getElementById('dialog-servico').classList.remove('adm-dialog--open')"
+        >
+          &#x2715;
+        </button>
+      </div>
+      <form id="formServico" class="adm-form">
+        <input type="hidden" id="servicoId" />
+        <div class="adm-form-group">
+          <label>Nome do serviço *</label>
+          <input type="text" id="servicoNome" class="adm-input" placeholder="Ex: Avaliação física" required />
+        </div>
+        <div class="adm-form-group">
+          <label>Preço *</label>
+          <input type="number" step="0.01" min="0" id="servicoPreco" class="adm-input" placeholder="Ex: 150" required />
+        </div>
+        <div class="adm-form-group">
+          <label>Descrição</label>
+          <textarea id="servicoDesc" class="adm-input" rows="3" placeholder="Detalhes do serviço"></textarea>
+        </div>
+        <div class="adm-dialog-footer">
+          <button
+            type="button"
+            class="adm-btn adm-btn--ghost"
+            onclick="document.getElementById('dialog-servico').classList.remove('adm-dialog--open')"
+          >
+            Cancelar
+          </button>
+          <button type="button" id="btnSalvarServico" class="adm-btn adm-btn--primary">
+            <i class="fa-solid fa-floppy-disk"></i> Salvar
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </section>

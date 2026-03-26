@@ -1,7 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const showAlert = (options) => {
+    if (window.Swal) return window.Swal.fire(options);
+    console.log(options.title || options.text || "");
+    return Promise.resolve();
+  };
+
   const productData = sessionStorage.getItem("selectedProduct");
   if (!productData) {
-    alert("Nenhum produto selecionado!");
+    showAlert({ icon: "warning", title: "Nenhum produto selecionado!" });
     window.location.href = "home.html";
     return;
   }
@@ -23,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
       Aproveite nossas condições especiais!`;
 
   document.getElementById("buy-button").onclick = () => {
-    alert(`Compra iniciada para: ${product.nome}`);
+    showAlert({ icon: "success", title: `Compra iniciada para: ${product.nome}` });
   };
 
   // Simulação de avaliação dinâmica (ex: viria de um backend)

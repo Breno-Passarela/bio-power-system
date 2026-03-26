@@ -1,5 +1,4 @@
 const UsuariosModels = require("../models/usuariosModels");
-const products = require("../data/products");
 
 class UsuariosController {
   async autentificacao(req, res) {

@@ -31,6 +31,7 @@
 
     <link rel="stylesheet" href="../assets/css/navbar.css" />
     <link rel="stylesheet" href="../assets/css/rodape.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
   </head>
 
   <body>
@@ -55,11 +56,11 @@
           <% if (sessionUser?.role === "admin") { %>
             <a href="/dashboard/dashboard">Painel</a>
           <% } %>
+          <a href="/services">Serviços</a>
           <a href="/about-us">Sobre Nós</a>
           <a href="#" id="abrirModalBtn">
             Categorias <i id="categoriaArrow" class="fas fa-chevron-down"></i>
           </a>
-          <a href="/produtos">Produtos</a>
         </div>
 
         <!-- Ações (direita) -->
@@ -180,9 +181,9 @@
           </button>
           <div class="mobile-menu-links">
             <a href="/store">Loja</a>
+            <a href="/services">Serviços</a>
             <a href="/about-us">Sobre Nós</a>
             <a href="/categorias">Categorias</a>
-            <a href="/produtos">Produtos</a>
           </div>
           <div class="mobile-menu-auth">
             <% if (sessionUser) { %>

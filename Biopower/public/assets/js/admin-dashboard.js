@@ -123,59 +123,6 @@
     }
   }
 
-  // SweetAlert2 — reposição de estoque
-  function reporEstoque(btn) {
-    const index = btn.dataset.index;
-    const nome  = btn.dataset.nome || 'este produto';
-    Swal.fire({
-      title: 'Atualizar estoque',
-      html: 'Produto: <strong>' + nome + '</strong><br>Informe a quantidade a <b>adicionar</b> (use número negativo para subtrair).',
-      input: 'number',
-      inputLabel: 'Quantidade',
-      inputPlaceholder: 'Ex: 50',
-      inputAttributes: { min: '-9999', step: '1' },
-      showCancelButton: true,
-      confirmButtonText: '<i class="fa-solid fa-boxes-stacked"></i> Atualizar',
-      cancelButtonText: 'Cancelar',
-      confirmButtonColor: '#cc0000',
-      cancelButtonColor: '#6b7280',
-      reverseButtons: true,
-      inputValidator: function(value) {
-        if (!value || isNaN(Number(value))) return 'Informe uma quantidade válida.';
-      }
-    }).then(function(result) {
-      if (result.isConfirmed) {
-        var form = document.getElementById('formRepor');
-        if (!form) return;
-        form.action = '/admin/stock/update/' + index;
-        document.getElementById('reporQtd').value = result.value;
-        form.submit();
-      }
-    });
-  }
-
-  // SweetAlert2 — exclusão de produtos reais (POST form)
-  document.querySelectorAll('.form-delete-product').forEach(function(form) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const nome = form.dataset.nome || 'este produto';
-      Swal.fire({
-        title: 'Excluir produto?',
-        html: 'Você está prestes a excluir <strong>' + nome + '</strong>.<br>Essa ação é irreversível.',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: '<i class="fa-solid fa-trash"></i> Excluir',
-        cancelButtonText: 'Cancelar',
-        confirmButtonColor: '#cc0000',
-        cancelButtonColor: '#6b7280',
-        reverseButtons: true,
-        focusCancel: true,
-      }).then(function(result) {
-        if (result.isConfirmed) form.submit();
-      });
-    });
-  });
-
   // SweetAlert2 — ações de exclusão estática (outras seções)
   function confirmDelete(btn) {
     const row = btn.closest('tr') || btn.closest('.adm-card');
@@ -197,6 +144,5 @@
 
   window.activateSection = activateSection;
   window.previewImagem = previewImagem;
-  window.reporEstoque = reporEstoque;
   window.confirmDelete = confirmDelete;
 })();
