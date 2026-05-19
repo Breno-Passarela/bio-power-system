@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recebimento de produtos</title>
+
+       <link
+      rel="shortcut icon"
+      href="/assets/imgs/img-icon-site.png"
+      type="image/x-icon"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <link rel="stylesheet" href="/assets/css/screen/produtc-buy-screen.css" />
+</head>
+<body>
+    <div>
+        <h1>Recebimento de produtos</h1>
+        
+        <p>Pedido: <%= pedido.id %></p>
+        <p>Produto: <%= pedido.produto %></p>
+        <p>Quantidade: <%= pedido.quantidade %></p>
+        <p>Preço Total: <%= pedido.preco_total %></p>
+
+        <form action="/receber" method="POST">
+            
+            <input type="hidden" name="pedidoId" value="<%= pedido.id%>">
+
+            <label>Quantidade Recebida:</label>
+            <input type="number" name="quantidadeRecebida" min="1" required>
+            <button type="submit">Receber Produto</button>
+
+            <label>Lote:</label>
+            <input type="text" name="lote" required>
+
+            <label>Validade:</label>
+            <input type="date" name="validade" required>
+
+            <button type="submit">Receber Produto</button>
+        </form>
+    </div>
+</body>
+</html>

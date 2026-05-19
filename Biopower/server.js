@@ -39,7 +39,7 @@ server.use("/dashboard", adminRoutes);
 server.use("/store", storeRoutes);
 server.use("/about-us", aboutUsRoutes);
 server.use("/", servicesRoutes);
-
+server.use()
 server.listen(PORT, () => {
   console.log(`Servidor rodando na porta http://localhost:${PORT}`);
 });
